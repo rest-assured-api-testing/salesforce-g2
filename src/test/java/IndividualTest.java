@@ -9,7 +9,11 @@ import api.ApiRequestManger;
 import api.ApiResponse;
 import auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import endpointurl.ElementParam;
+import endpointurl.Endpoint;
+import entities.ModifiedResponse;
 import entities.Person;
+import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -23,6 +27,7 @@ import java.util.Map;
 public class IndividualTest {
 
     Person addedPerson;
+    ModifiedResponse modifiedResponse;
 
     /**
      * Obtains the respective token.
@@ -39,14 +44,20 @@ public class IndividualTest {
     public void createAIndividualTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         Person person = new Person();
-        person.setFirstname("Pepito");
-        person.setLastname("Flores");
+        person.setFirstName("Pepito");
+        person.setLastName("Flores");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManger.create("Individual", pathParams, person);
-        addedPerson =apiResponse.getResponse().as(Person.class);
+        apiResponse = ApiRequestManger.create(Endpoint.PEOPLE, pathParams, person);
+        modifiedResponse =apiResponse.getResponse().as(ModifiedResponse.class);
 
-        apiResponse.getResponse().then().assertThat().statusCode(200).log().body();
+        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
+    }
 
+    @AfterSuite
+    public void deleteCreatedOnes() {
+        Map<String, String> pathParams = new HashMap<>();
+        pathParams.put(ElementParam.ID, modifiedResponse.getId());
+        ApiRequestManger.delete(Endpoint.PERSON, pathParams);
     }
 }

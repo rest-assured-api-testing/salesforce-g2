@@ -29,7 +29,7 @@ public class ApiRequestManger {
      */
     public static <T> ApiRequestBuilder buildRequest(String endpoint, Map<String, String> pathParams,
                                                      Enum<ApiMethod> type) {
-        return new ApiRequestBuilder().header(Header.AUTHORIZATION, access_token)
+        return new ApiRequestBuilder().header(Header.AUTHORIZATION, "Bearer " + access_token)
                 .baseUri(dotenv.get(EnvVariable.BASE_URL.name()))
                 .method((ApiMethod) type)
                 .endpoint(endpoint)

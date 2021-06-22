@@ -1,5 +1,8 @@
 package auth;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Token {
     public static String access_token;
     private String instance_url;
