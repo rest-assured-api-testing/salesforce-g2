@@ -14,6 +14,7 @@ public class Endpoints {
 
     public static final String GET_FEED_ELEMENTS = "/chatter/feeds/record/{user_id}/feed-elements";
     public static final String POST_FEED_ELEMENT = "/chatter/feed-elements";
+    public static final String CREATE_PRODUCT = "/sobjects/Product2";
 
     private Endpoints() {
     }

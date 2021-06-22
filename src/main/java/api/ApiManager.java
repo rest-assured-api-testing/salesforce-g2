@@ -10,6 +10,7 @@ package api;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.apache.http.auth.AUTH;
 
 import static io.restassured.RestAssured.given;
 
@@ -18,6 +19,8 @@ import static io.restassured.RestAssured.given;
  */
 public class ApiManager {
 
+    public static final String AUTHORIZATION = "Authorization";
+    public static final String BEARER = "Bearer ";
     /**
      * Builds a RequestSpecification with the parameters of an ApiRequest object.
      * @param apiRequest
@@ -25,11 +28,10 @@ public class ApiManager {
      */
     private static RequestSpecification buildRequest(ApiRequest apiRequest) {
         RequestSpecification requestSpecification = given()
-                .headers(apiRequest.getHeaders())
+                //.headers(apiRequest.getHeaders())
+                .headers(AUTHORIZATION, BEARER+apiRequest.getToken())
                 .queryParams(apiRequest.getQueryParams())
                 .pathParams(apiRequest.getPathParams())
-                .auth()
-                .oauth2(apiRequest.getToken())
                 .baseUri(apiRequest.getBaseUri())
                 .contentType(ContentType.JSON);
         if (apiRequest.getBody() != null) {
@@ -45,7 +47,7 @@ public class ApiManager {
      * @param apiRequest
      * @return RequestSpecification to execute a request
      */
-    private static RequestSpecification buildLoginRequest(ApiRequest apiRequest) {
+    private static RequestSpecification buildNoAuthRequest(ApiRequest apiRequest) {
         return given()
                 .headers(apiRequest.getHeaders())
                 .formParams(apiRequest.getFormParams())
@@ -61,7 +63,7 @@ public class ApiManager {
     public static ApiResponse execute(ApiRequest apiRequest) {
         Response response;
         if (apiRequest.getEndpoint() == null) {
-            response = buildLoginRequest(apiRequest)
+            response = buildNoAuthRequest(apiRequest)
                     .request(apiRequest.getMethod().name());
         } else {
             response = buildRequest(apiRequest)

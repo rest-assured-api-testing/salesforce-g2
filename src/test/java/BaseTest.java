@@ -19,8 +19,8 @@ import org.testng.annotations.BeforeMethod;
 @SuppressWarnings("unchecked")
 public class BaseTest {
 
-    ApiRequest apiRequest = new ApiRequest();
-    ApiResponse apiResponse;
+    protected ApiRequest apiRequest = new ApiRequest();
+    protected ApiResponse apiResponse;
     private String username;
     private String password;
     private String client_id;
