@@ -61,7 +61,7 @@ public class ApiRequestManager {
      */
     public static <T> ApiResponse update(String endpoint, Map<String, String> pathParams, T entity)
             throws JsonProcessingException {
-        return executeWithBody(endpoint, pathParams, entity, ApiMethod.PUT);
+        return executeWithBody(endpoint, pathParams, entity, ApiMethod.PATCH);
     }
 
     /**
