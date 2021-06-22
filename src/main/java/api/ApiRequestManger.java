@@ -9,9 +9,12 @@ package api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import config.EnvVariable;
+import config.Header;
 
 import java.util.Map;
 
+import static auth.Token.access_token;
 import static config.EnvConfigurationFile.dotenv;
 
 public class ApiRequestManger {
@@ -26,8 +29,8 @@ public class ApiRequestManger {
      */
     public static <T> ApiRequestBuilder buildRequest(String endpoint, Map<String, String> pathParams,
                                                      Enum<ApiMethod> type) {
-        return new ApiRequestBuilder().header("Authorization", dotenv.get("TOKEN"))
-                .baseUri(dotenv.get("BASE_URL"))
+        return new ApiRequestBuilder().header(Header.AUTHORIZATION, access_token)
+                .baseUri(dotenv.get(EnvVariable.BASE_URL.name()))
                 .method((ApiMethod) type)
                 .endpoint(endpoint)
                 .pathParams(pathParams);

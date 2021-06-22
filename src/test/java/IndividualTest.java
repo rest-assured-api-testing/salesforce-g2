@@ -7,10 +7,11 @@
  */
 import api.ApiRequestManger;
 import api.ApiResponse;
-import config.Authentication;
+import auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import config.EnvVariable;
 import entities.Person;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -20,6 +21,17 @@ import java.util.Map;
  * Tests individual endpoint of a sales-force account.
  */
 public class IndividualTest {
+
+    Person addedPerson;
+
+    /**
+     * Obtains the respective token.
+     */
+    @BeforeSuite
+    public void getToken() {
+        Authentication.getAuth();
+    }
+
     /**
      * Tests that individual endpoint creates a person.
      */
@@ -32,16 +44,9 @@ public class IndividualTest {
         ApiResponse apiResponse;
 
         apiResponse = ApiRequestManger.create("Individual", pathParams, person);
+        addedPerson =apiResponse.getResponse().as(Person.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(200).log().body();
 
-    }
-
-    /**
-     * Tests that token endpoint generates the respective token.
-     */
-    @Test
-    public void obtainTokenTest(){
-        Authentication.getAuth();
     }
 }

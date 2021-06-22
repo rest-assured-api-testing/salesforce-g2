@@ -5,14 +5,16 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package config;
+package auth;
+
+import config.*;
 
 import static config.EnvConfigurationFile.dotenv;
 import static io.restassured.RestAssured.given;
 
 public class Authentication {
 
-    public static String getAuth() {
+    public static Token getAuth() {
         return
                 given().urlEncodingEnabled(true)
                         .param(Param.USERNAME,dotenv.get(EnvVariable.USERNAME1.name()))
@@ -24,8 +26,9 @@ public class Authentication {
                         .header(Header.CONTENT_TYPE, HeaderValue.APP_X_FORM)
                         .log().all()
                         .when().
-                        post(dotenv.get(EnvVariable.TOKEN_URL.name())).
-                        then().assertThat().statusCode(200).log().all().extract().path("access_token");
+                        post(dotenv.get(EnvVariable.TOKEN_URL.name()))
+                        .as(Token.class);
+//                        then().assertThat().statusCode(200).log().all().extract().path("access_token");
 
     }
 }

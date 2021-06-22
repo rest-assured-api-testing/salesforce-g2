@@ -12,5 +12,6 @@ public enum EnvVariable {
     PASSWORD,
     CLIENT_ID,
     CLIENT_SECRET,
-    TOKEN_URL;
+    TOKEN_URL,
+    BASE_URL;
 }
