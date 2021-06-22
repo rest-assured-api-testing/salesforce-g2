@@ -5,7 +5,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-import api.ApiRequestManger;
+import api.ApiRequestManager;
 import api.ApiResponse;
 import auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,25 +21,17 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Tests individual endpoint of a sales-force account.
- */
 public class IndividualTest {
 
     Person addedPerson;
     ModifiedResponse modifiedResponse;
 
-    /**
-     * Obtains the respective token.
-     */
+
     @BeforeSuite
     public void getToken() {
         Authentication.getAuth();
     }
 
-    /**
-     * Tests that individual endpoint creates a person.
-     */
     @Test
     public void createAIndividualTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
@@ -48,7 +40,7 @@ public class IndividualTest {
         person.setLastName("Flores");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManger.create(Endpoint.PEOPLE, pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoint.PEOPLE, pathParams, person);
         modifiedResponse =apiResponse.getResponse().as(ModifiedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
@@ -58,6 +50,6 @@ public class IndividualTest {
     public void deleteCreatedOnes() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, modifiedResponse.getId());
-        ApiRequestManger.delete(Endpoint.PERSON, pathParams);
+        ApiRequestManager.delete(Endpoint.PERSON, pathParams);
     }
 }

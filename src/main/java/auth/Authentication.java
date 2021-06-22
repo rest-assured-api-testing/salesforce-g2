@@ -28,7 +28,5 @@ public class Authentication {
                         .when().
                         post(dotenv.get(EnvVariable.TOKEN_URL.name()))
                         .as(Token.class);
-//                        then().assertThat().statusCode(200).log().all().extract().path("access_token");
-
     }
 }

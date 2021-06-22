@@ -17,7 +17,7 @@ import java.util.Map;
 import static auth.Token.access_token;
 import static config.EnvConfigurationFile.dotenv;
 
-public class ApiRequestManger {
+public class ApiRequestManager {
 
     /**
      * Builds a basic ApiRequestBuilder
