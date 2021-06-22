@@ -7,7 +7,9 @@
  */
 import api.ApiRequestManger;
 import api.ApiResponse;
+import config.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import config.EnvVariable;
 import entities.Person;
 import org.testng.annotations.Test;
 
@@ -31,7 +33,15 @@ public class IndividualTest {
 
         apiResponse = ApiRequestManger.create("Individual", pathParams, person);
 
-        apiResponse.getResponse().then().log().body();
+        apiResponse.getResponse().then().assertThat().statusCode(200).log().body();
 
+    }
+
+    /**
+     * Tests that token endpoint generates the respective token.
+     */
+    @Test
+    public void obtainTokenTest(){
+        Authentication.getAuth();
     }
 }

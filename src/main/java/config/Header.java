@@ -5,13 +5,9 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package api;
+package config;
 
-import io.github.cdimascio.dotenv.Dotenv;
-
-public class EnvConfigurationFile {
-    /**
-     * Constant that refers path of environment variables file.
-     */
-    public static Dotenv dotenv = Dotenv.configure().filename(".env.develop").ignoreIfMalformed().ignoreIfMissing().load();
+public class Header {
+    public static final String ACCEPT = "Accept";
+    public static final String CONTENT_TYPE = "Content-Type";
 }

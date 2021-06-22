@@ -23,34 +23,34 @@ public class ApiResponse {
     }
 
     /**
-     *
-     * @return
+     * Gets the response.
+     * @return a Response.
      */
     public Response getResponse() {
         return response;
     }
 
     /**
-     *
-     * @return
+     * Gets the status of response.
+     * @return a integer that represents the status.
      */
     public int getStatusCode() {
         return response.getStatusCode();
     }
 
     /**
-     *
-     * @param cls
-     * @param <T>
-     * @return
+     * Transforms an ApiResponse to a T entity.
+     * @param cls is type of entity.
+     * @param <T> is type of entity.
+     * @return a T entity.
      */
     public <T> T getBody(Class<T> cls) {
         return response.getBody().as(cls);
     }
 
     /**
-     *
-     * @param schema
+     * Validates the schema of a respond body.
+     * @param schema is the path where is schema
      */
     public void validateBodySchema(String schema) {
       response.then().log().body().assertThat().body(matchesJsonSchemaInClasspath(schema));

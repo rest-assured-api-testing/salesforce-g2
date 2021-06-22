@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Map;
 
-import static api.EnvConfigurationFile.dotenv;
+import static config.EnvConfigurationFile.dotenv;
 
 public class ApiRequestManger {
 
@@ -34,13 +34,13 @@ public class ApiRequestManger {
     }
 
     /**
-     *
+     * Executes a request to create an entity.
      * @param endpoint is complement of base url.
      * @param pathParams contains names and values of params.
      * @param entity that sends as body of request.
      * @param <T> is type of a entity.
      * @return a ApiResponse that is result of request execution.
-     * @throws JsonProcessingException
+     * @throws JsonProcessingException due to method execution.
      */
     public static <T> ApiResponse create(String endpoint, Map<String, String> pathParams, T entity)
             throws JsonProcessingException {
@@ -48,13 +48,13 @@ public class ApiRequestManger {
     }
 
     /**
-     *
+     *Executes a request to update an entity.
      * @param endpoint is complement of base url.
      * @param pathParams contains names and values of params.
      * @param entity that sends as body of request.
      * @param <T> is type of a entity.
      * @return a ApiResponse that is result of request execution.
-     * @throws JsonProcessingException
+     * @throws JsonProcessingException due to method execution.
      */
     public static <T> ApiResponse update(String endpoint, Map<String, String> pathParams, T entity)
             throws JsonProcessingException {
@@ -62,7 +62,7 @@ public class ApiRequestManger {
     }
 
     /**
-     *
+     *Executes a request to get an entity.
      * @param endpoint is complement of base url.
      * @param pathParams contains names and values of params.
      * @param <T> is type of a entity.
@@ -73,7 +73,7 @@ public class ApiRequestManger {
     }
 
     /**
-     *
+     * Executes a request to delete an entity.
      * @param endpoint is complement of base url.
      * @param pathParams contains names and values of params.
      * @param <T> is type of a entity.
@@ -84,14 +84,14 @@ public class ApiRequestManger {
     }
 
     /**
-     *
+     * Executes a request with body.
      * @param endpoint is complement of base url.
      * @param pathParams contains names and values of params.
      * @param entity that sends as body of request.
      * @param type of request.
      * @param <T> is type of a entity.
      * @returna ApiResponse that is result of request execution.
-     * @throws JsonProcessingException
+     * @throws JsonProcessingException due to method execution.
      */
     public static <T> ApiResponse executeWithBody(String endpoint, Map<String, String> pathParams, T entity,
                                                   Enum<ApiMethod> type) throws JsonProcessingException {
@@ -100,7 +100,7 @@ public class ApiRequestManger {
     }
 
     /**
-     *
+     * Executes a request.
      * @param endpoint is complement of base url.
      * @param pathParams contains names and values of params.
      * @param type of request.
