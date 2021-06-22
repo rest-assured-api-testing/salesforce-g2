@@ -7,21 +7,14 @@
  */
 package Commons;
 
-import org.aeonbits.owner.ConfigCache;
-
 /**
- * Singleton for a GeneralConfig class.
+ * Contains the values for the endpoints to be used.
  */
-public class ConfigurationManager {
+public class Endpoints {
 
-    private ConfigurationManager() {
-    }
+    public static final String GET_FEED_ELEMENTS = "/chatter/feeds/record/{user_id}/feed-elements";
+    public static final String POST_FEED_ELEMENT = "/chatter/feed-elements";
 
-    /**
-     * Returns an instance of the GeneralConfig class.
-     * @return
-     */
-    public static GeneralConfig getConfiguration() {
-        return ConfigCache.getOrCreate(GeneralConfig.class);
+    private Endpoints() {
     }
 }

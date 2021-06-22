@@ -4,4 +4,4 @@
 # Ignore Gradle build output directory
 /build/*
 #Ignore property files
-general.properties
+/src/main/resources/general.properties

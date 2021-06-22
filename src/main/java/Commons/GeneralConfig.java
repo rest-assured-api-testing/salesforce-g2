@@ -9,7 +9,9 @@ package Commons;
 
 import org.aeonbits.owner.Config;
 
-@Config.LoadPolicy(Config.LoadType.MERGE)
+/**
+ * Represents an Owner Config class that retrieves the values of the defined property files.
+ */
 @Config.Sources({
         "classpath:general.properties"
 })
@@ -29,4 +31,13 @@ public interface GeneralConfig extends Config{
 
     @Config.Key("app.security_token")
     String security_token();
+
+    @Config.Key("base_url")
+    String base_url();
+
+    @Config.Key("login_url")
+    String login_url();
+
+    @Config.Key("token_duration")
+    long token_duration();
 }
