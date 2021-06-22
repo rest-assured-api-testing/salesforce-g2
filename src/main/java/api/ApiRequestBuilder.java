@@ -1,4 +1,13 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
 package api;
+
+import java.util.Map;
 
 /**
  * Helps to build an ApiRequest entity.
@@ -43,6 +52,11 @@ public class ApiRequestBuilder implements IBuilder {
 
     public ApiRequestBuilder pathParam(final String param, final String value) {
         apiRequest.addPathParam(param, value);
+        return this;
+    }
+
+    public ApiRequestBuilder pathParams(Map<String, String> pathParam) {
+        apiRequest.addPathParam(pathParam);
         return this;
     }
 
