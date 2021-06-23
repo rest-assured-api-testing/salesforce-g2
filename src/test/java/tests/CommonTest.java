@@ -1,11 +1,11 @@
 package tests;
 
 import auth.Authentication;
-import entities.ModifiedResponse;
+import entities.CreatedResponse;
 import org.testng.annotations.BeforeSuite;
 
 public class CommonTest {
-    protected ModifiedResponse modifiedResponse;
+    protected CreatedResponse createdResponse;
 
     @BeforeSuite
     public void getToken() {

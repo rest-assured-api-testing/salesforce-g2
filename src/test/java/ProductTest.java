@@ -12,26 +12,19 @@ import auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import endpointurl.ElementParam;
 import endpointurl.Endpoint;
-import entities.ModifiedResponse;
+import entities.CreatedResponse;
 import entities.Product;
 import org.apache.http.HttpStatus;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import tests.CommonTest;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductTest {
-
-    ModifiedResponse modifiedResponse;
-
-    @BeforeSuite
-    public void getToken() {
-        Authentication.getAuth();
-    }
+public class ProductTest extends CommonTest {
 
     @BeforeMethod(onlyForGroups = {"post", "patch", "delete"})
     public void createAProduct() throws JsonProcessingException {
@@ -42,14 +35,14 @@ public class ProductTest {
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
         apiResponse = ApiRequestManager.create(Endpoint.PRODUCTS, pathParams, product);
-        modifiedResponse = apiResponse.getResponse().as(ModifiedResponse.class);
+        createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
 
     @AfterMethod(onlyForGroups = {"post", "patch"})
     public void deleteAProduct() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, modifiedResponse.getId());
+        pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;
         apiResponse = ApiRequestManager.delete(Endpoint.PRODUCT, pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
@@ -71,14 +64,14 @@ public class ProductTest {
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
         apiResponse = ApiRequestManager.create(Endpoint.PRODUCTS, pathParams, product);
-        modifiedResponse = apiResponse.getResponse().as(ModifiedResponse.class);
+        createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
 
     @Test(groups = "post")
     public void getAProduct() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, modifiedResponse.getId());
+        pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse = ApiRequestManager.get(Endpoint.PRODUCT, pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
@@ -86,7 +79,7 @@ public class ProductTest {
     @Test(groups = "patch")
     public void updateProduct() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, modifiedResponse.getId());
+        pathParams.put(ElementParam.ID, createdResponse.getId());
         Product product = new Product();
         product.setProductCode("FP1-1");
         product.setDescription("The description of the product with the description changed");
@@ -98,7 +91,7 @@ public class ProductTest {
     @Test(groups = "delete")
     public void deleteProduct() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, modifiedResponse.getId());
+        pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;
         apiResponse = ApiRequestManager.delete(Endpoint.PRODUCT, pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);

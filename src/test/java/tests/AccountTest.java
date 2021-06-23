@@ -1,35 +1,29 @@
-/**
- * Copyright (c) 2021 Fundacion Jala.
- * This software is the confidential and proprietary information of Fundacion Jala
- * ("Confidential Information"). You shall not disclose such Confidential
- * Information and shall use it only in accordance with the terms of the
- * license agreement you entered into with Fundacion Jala
- */
 package tests;
+
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import endpointurl.ElementParam;
 import endpointurl.Endpoint;
 import entities.CreatedResponse;
-import entities.Person;
+import entities.Account;
 import org.apache.http.HttpStatus;
-import org.testng.annotations.*;
-
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IndividualTest extends CommonTest {
+public class AccountTest extends CommonTest {
 
     @BeforeMethod(onlyForGroups = {"get", "update", "delete"})
     public void create() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
-        person.setFirstName("Pepito");
-        person.setLastName("Flores");
+        Account account = new Account();
+        account.setName("First Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoint.PEOPLE, pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoint.ACCOUNTS, pathParams, account);
         createdResponse =apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
@@ -39,7 +33,7 @@ public class IndividualTest extends CommonTest {
     public void getAllIndividualTest() {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get(Endpoint.PEOPLE, new HashMap<String,String>());
+        apiResponse = ApiRequestManager.get(Endpoint.ACCOUNTS, new HashMap<String,String>());
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
@@ -47,49 +41,48 @@ public class IndividualTest extends CommonTest {
     @Test(groups = "post")
     public void createAIndividualTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
-        person.setFirstName("Pepito");
-        person.setLastName("Flores");
+        Account account = new Account();
+        account.setName("Created Account ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoint.PEOPLE, pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoint.ACCOUNTS, pathParams, account);
         createdResponse =apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @Test(groups = "get")
-    public void getAIndividualTest() {
+    public void getAIndividualTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get(Endpoint.PERSON, pathParams);
+        apiResponse = ApiRequestManager.get(Endpoint.ACCOUNT, pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
+
     }
 
     @Test(groups = "update")
     public void updateAIndividualTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
-        Person person = new Person();
-        person.setFirstName("Pedrito");
-        person.setLastName("Fantasy");
+        Account account = new Account();
+        account.setName("Updated Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.update(Endpoint.PERSON, pathParams, person);
+        apiResponse = ApiRequestManager.update(Endpoint.ACCOUNT, pathParams, account);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 
     @Test(groups = "delete")
-    public void deleteAIndividualTest() {
+    public void deleteAIndividualTest(){
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoint.PERSON, pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoint.ACCOUNT, pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -100,20 +93,8 @@ public class IndividualTest extends CommonTest {
         pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoint.PERSON, pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoint.ACCOUNT, pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
-
-    @Test
-    public void doNotCreateAIndividualTest() throws JsonProcessingException {
-        Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
-        ApiResponse apiResponse;
-
-        apiResponse = ApiRequestManager.create(Endpoint.PEOPLE, pathParams, person);
-
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST).log().body();
-    }
-
 }
