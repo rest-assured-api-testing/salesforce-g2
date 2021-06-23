@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProjectTest {
+public class ProductTest {
 
     ModifiedResponse modifiedResponse;
 
@@ -33,7 +33,7 @@ public class ProjectTest {
         Authentication.getAuth();
     }
 
-    @BeforeMethod(onlyForGroups = {"patch", "delete"})
+    @BeforeMethod(onlyForGroups = {"post", "patch", "delete"})
     public void createAProduct() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         Product product = new Product();
@@ -73,6 +73,14 @@ public class ProjectTest {
         apiResponse = ApiRequestManager.create(Endpoint.PRODUCTS, pathParams, product);
         modifiedResponse = apiResponse.getResponse().as(ModifiedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
+    }
+
+    @Test(groups = "post")
+    public void getAProduct() {
+        Map<String, String> pathParams = new HashMap<>();
+        pathParams.put(ElementParam.ID, modifiedResponse.getId());
+        ApiResponse apiResponse = ApiRequestManager.get(Endpoint.PRODUCT, pathParams);
+        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
     @Test(groups = "patch")
