@@ -41,7 +41,7 @@ public class ProjectTest {
         product.setProductCode("FP1");
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoint.PRODUCT, pathParams, product);
+        apiResponse = ApiRequestManager.create(Endpoint.PRODUCTS, pathParams, product);
         modifiedResponse = apiResponse.getResponse().as(ModifiedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
@@ -51,14 +51,14 @@ public class ProjectTest {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, modifiedResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoint.PRODUCTS, pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoint.PRODUCT, pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test
     public void getProducts() {
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.get(Endpoint.PRODUCT, pathParams);
+        ApiResponse apiResponse = ApiRequestManager.get(Endpoint.PRODUCTS, pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
@@ -70,7 +70,7 @@ public class ProjectTest {
         product.setProductCode("FP1");
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoint.PRODUCT, pathParams, product);
+        apiResponse = ApiRequestManager.create(Endpoint.PRODUCTS, pathParams, product);
         modifiedResponse = apiResponse.getResponse().as(ModifiedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
@@ -83,7 +83,7 @@ public class ProjectTest {
         product.setProductCode("FP1-1");
         product.setDescription("The description of the product with the description changed");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.updatePatch(Endpoint.PRODUCTS, pathParams, product);
+        apiResponse = ApiRequestManager.update(Endpoint.PRODUCT, pathParams, product);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
@@ -92,7 +92,7 @@ public class ProjectTest {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, modifiedResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoint.PRODUCTS, pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoint.PRODUCT, pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
