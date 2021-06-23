@@ -1,4 +1,4 @@
-/**
+package tests; /**
  * Copyright (c) 2021 Fundacion Jala.
  * This software is the confidential and proprietary information of Fundacion Jala
  * ("Confidential Information"). You shall not disclose such Confidential
@@ -96,5 +96,4 @@ public class ProductTest extends CommonTest {
         apiResponse = ApiRequestManager.delete(Endpoint.PRODUCT, pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
-
 }

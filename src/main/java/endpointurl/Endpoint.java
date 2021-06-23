@@ -9,8 +9,8 @@ public class Endpoint {
     public static final String ORDER = ORDERS + "/{" + ElementParam.ID + "}";
     public static final String CONTACTS = "/" + Element.CONTACT;
     public static final String CONTACT = CONTACTS + "/{" + ElementParam.ID + "}";
-    public static final String CONTRACTS = "/" + Element.CONTRACT;
-    public static final String CONTRACT = CONTRACTS + "/{" + ElementParam.ID + "}";
+    public static final String CAMPAIGNS = "/" + Element.CAMPAIGN;
+    public static final String CAMPAIGN = CAMPAIGNS + "/{" + ElementParam.ID + "}";
     public static final String PRODUCTS = "/" + Element.PRODUCT;
     public static final String PRODUCT = PRODUCTS + "/{" + ElementParam.ID + "}";
 }
