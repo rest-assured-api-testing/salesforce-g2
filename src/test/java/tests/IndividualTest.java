@@ -94,7 +94,7 @@ public class IndividualTest extends CommonTest {
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 
-    @AfterMethod(onlyForGroups = {"get", "post", "update"})
+    @AfterMethod(onlyForGroups = {"get", "post", "update", "badDelete"})
     public void deleteCreatedOnes() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
@@ -103,6 +103,15 @@ public class IndividualTest extends CommonTest {
         apiResponse = ApiRequestManager.delete(Endpoint.PERSON, pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
+    }
+
+    @Test(groups = "get")
+    public void doNotGetAllIndividualTest() {
+        ApiResponse apiResponse;
+
+        apiResponse = ApiRequestManager.get("/Inidivua", new HashMap<String,String>());
+
+        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
 
     @Test
@@ -116,4 +125,39 @@ public class IndividualTest extends CommonTest {
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST).log().body();
     }
 
+    @Test(groups = "get")
+    public void doNotGetAIndividualTest() {
+        Map<String, String> pathParams = new HashMap<>();
+        pathParams.put(ElementParam.ID, " ");
+        ApiResponse apiResponse;
+
+        apiResponse = ApiRequestManager.get(Endpoint.PERSON, pathParams);
+
+        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
+    }
+
+    @Test(groups = "update")
+    public void doNotUpdateAIndividualTest() throws JsonProcessingException {
+        Map<String, String> pathParams = new HashMap<>();
+        pathParams.put(ElementParam.ID, " ");
+        Person person = new Person();
+        person.setFirstName("Pedrito");
+        person.setLastName("Fantasy 2");
+        ApiResponse apiResponse;
+
+        apiResponse = ApiRequestManager.update(Endpoint.PERSON, pathParams, person);
+
+        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
+    }
+
+    @Test(groups = {"delete", "badDelete"})
+    public void doNotDeleteAIndividualTest() {
+        Map<String, String> pathParams = new HashMap<>();
+        pathParams.put(ElementParam.ID, " ");
+        ApiResponse apiResponse;
+
+        apiResponse = ApiRequestManager.delete(Endpoint.PERSON, pathParams);
+
+        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
+    }
 }
