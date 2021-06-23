@@ -98,7 +98,7 @@ public class Order {
     @JsonProperty("OrderNumber")
     public String orderNumber;
     @JsonProperty("TotalAmount")
-    public double totalAmount;
+    public Double totalAmount;
     @JsonProperty("CreatedDate")
     public Date createdDate;
     @JsonProperty("CreatedById")
@@ -476,11 +476,11 @@ public class Order {
         this.orderNumber = orderNumber;
     }
 
-    public double getTotalAmount() {
+    public Double getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
+    public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
 
