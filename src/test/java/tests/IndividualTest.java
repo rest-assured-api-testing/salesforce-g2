@@ -21,14 +21,7 @@ import org.testng.annotations.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IndividualTest {
-
-    ModifiedResponse modifiedResponse;
-
-    @BeforeSuite
-    public void getToken() {
-        Authentication.getAuth();
-    }
+public class IndividualTest extends CommonTest {
 
     @BeforeMethod(onlyForGroups = {"get", "update", "delete"})
     public void create() throws JsonProcessingException {
@@ -68,7 +61,7 @@ public class IndividualTest {
     }
 
     @Test(groups = "get")
-    public void getAIndividualTest() throws JsonProcessingException {
+    public void getAIndividualTest() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, modifiedResponse.getId());
         ApiResponse apiResponse;
@@ -93,7 +86,7 @@ public class IndividualTest {
     }
 
     @Test(groups = "delete")
-    public void deleteAIndividualTest() throws JsonProcessingException {
+    public void deleteAIndividualTest() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, modifiedResponse.getId());
         ApiResponse apiResponse;
