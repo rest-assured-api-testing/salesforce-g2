@@ -12,7 +12,7 @@ public class Contact {
     @JsonProperty("Id")
     public String id;
     @JsonProperty("IsDeleted")
-    public boolean isDeleted;
+    public Boolean isDeleted;
     @JsonProperty("MasterRecordId")
     public String masterRecordId;
     @JsonProperty("AccountId")
@@ -116,7 +116,7 @@ public class Contact {
     @JsonProperty("EmailBouncedDate")
     public String emailBouncedDate;
     @JsonProperty("IsEmailBounced")
-    public boolean isEmailBounced;
+    public Boolean isEmailBounced;
     @JsonProperty("PhotoUrl")
     public String photoUrl;
     @JsonProperty("Jigsaw")
@@ -148,11 +148,11 @@ public class Contact {
         this.id = id;
     }
 
-    public boolean isDeleted() {
+    public Boolean isDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -564,11 +564,11 @@ public class Contact {
         this.emailBouncedDate = emailBouncedDate;
     }
 
-    public boolean isEmailBounced() {
+    public Boolean isEmailBounced() {
         return isEmailBounced;
     }
 
-    public void setEmailBounced(boolean emailBounced) {
+    public void setEmailBounced(Boolean emailBounced) {
         isEmailBounced = emailBounced;
     }
 

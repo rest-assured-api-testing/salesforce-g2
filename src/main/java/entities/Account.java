@@ -12,7 +12,7 @@ public class Account {
     @JsonProperty("Id")
     public String id;
     @JsonProperty("IsDeleted")
-    public boolean isDeleted;
+    public Boolean isDeleted;
     @JsonProperty("MasterRecordId")
     public String masterRecordId;
     @JsonProperty("Name")
@@ -158,11 +158,11 @@ public class Account {
         this.id = id;
     }
 
-    public boolean isDeleted() {
+    public Boolean isDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 

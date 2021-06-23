@@ -18,7 +18,7 @@ public class Product {
     @JsonProperty("Description")
     public String description;
     @JsonProperty("IsActive")
-    public boolean isActive;
+    public Boolean isActive;
     @JsonProperty("CreatedDate")
     public Date createdDate;
     @JsonProperty("CreatedById")
@@ -40,9 +40,9 @@ public class Product {
     @JsonProperty("QuantityUnitOfMeasure")
     public String quantityUnitOfMeasure;
     @JsonProperty("IsDeleted")
-    public boolean isDeleted;
+    public Boolean isDeleted;
     @JsonProperty("IsArchived")
-    public boolean isArchived;
+    public Boolean isArchived;
     @JsonProperty("LastViewedDate")
     public Date lastViewedDate;
     @JsonProperty("LastReferencedDate")
@@ -90,11 +90,11 @@ public class Product {
         this.description = description;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 
@@ -178,19 +178,19 @@ public class Product {
         this.quantityUnitOfMeasure = quantityUnitOfMeasure;
     }
 
-    public boolean isDeleted() {
+    public Boolean isDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public boolean isArchived() {
+    public Boolean isArchived() {
         return isArchived;
     }
 
-    public void setArchived(boolean archived) {
+    public void setArchived(Boolean archived) {
         isArchived = archived;
     }
 

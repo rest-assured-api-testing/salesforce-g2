@@ -40,7 +40,7 @@ public class Contract {
     @JsonProperty("BillingAddress")
     public String billingAddress;
     @JsonProperty("ContractTerm")
-    public int contractTerm;
+    public Integer contractTerm;
     @JsonProperty("OwnerId")
     public String ownerId;
     @JsonProperty("Status")
@@ -66,7 +66,7 @@ public class Contract {
     @JsonProperty("Description")
     public String description;
     @JsonProperty("IsDeleted")
-    public boolean isDeleted;
+    public Boolean isDeleted;
     @JsonProperty("ContractNumber")
     public String contractNumber;
     @JsonProperty("LastApprovedDate")
@@ -216,11 +216,11 @@ public class Contract {
         this.billingAddress = billingAddress;
     }
 
-    public int getContractTerm() {
+    public Integer getContractTerm() {
         return contractTerm;
     }
 
-    public void setContractTerm(int contractTerm) {
+    public void setContractTerm(Integer contractTerm) {
         this.contractTerm = contractTerm;
     }
 
@@ -320,11 +320,11 @@ public class Contract {
         this.description = description;
     }
 
-    public boolean isDeleted() {
+    public Boolean isDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 

@@ -14,7 +14,7 @@ public class Individual {
     @JsonProperty("OwnerId")
     public String ownerId;
     @JsonProperty("IsDeleted")
-    public boolean isDeleted;
+    public Boolean isDeleted;
     @JsonProperty("LastName")
     public String lastName;
     @JsonProperty("FirstName")
@@ -24,21 +24,21 @@ public class Individual {
     @JsonProperty("Name")
     public String name;
     @JsonProperty("HasOptedOutTracking")
-    public boolean hasOptedOutTracking;
+    public Boolean hasOptedOutTracking;
     @JsonProperty("HasOptedOutProfiling")
-    public boolean hasOptedOutProfiling;
+    public Boolean hasOptedOutProfiling;
     @JsonProperty("HasOptedOutProcessing")
-    public boolean hasOptedOutProcessing;
+    public Boolean hasOptedOutProcessing;
     @JsonProperty("HasOptedOutSolicit")
-    public boolean hasOptedOutSolicit;
+    public Boolean hasOptedOutSolicit;
     @JsonProperty("ShouldForget")
-    public boolean shouldForget;
+    public Boolean shouldForget;
     @JsonProperty("SendIndividualData")
-    public boolean sendIndividualData;
+    public Boolean sendIndividualData;
     @JsonProperty("CanStorePiiElsewhere")
-    public boolean canStorePiiElsewhere;
+    public Boolean canStorePiiElsewhere;
     @JsonProperty("HasOptedOutGeoTracking")
-    public boolean hasOptedOutGeoTracking;
+    public Boolean hasOptedOutGeoTracking;
     @JsonProperty("BirthDate")
     public String birthDate;
     @JsonProperty("DeathDate")
@@ -50,7 +50,7 @@ public class Individual {
     @JsonProperty("MilitaryService")
     public String militaryService;
     @JsonProperty("IsHomeOwner")
-    public boolean isHomeOwner;
+    public Boolean isHomeOwner;
     @JsonProperty("Occupation")
     public String occupation;
     @JsonProperty("Website")
@@ -102,11 +102,11 @@ public class Individual {
         this.ownerId = ownerId;
     }
 
-    public boolean isDeleted() {
+    public Boolean isDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -142,67 +142,67 @@ public class Individual {
         this.name = name;
     }
 
-    public boolean isHasOptedOutTracking() {
+    public Boolean isHasOptedOutTracking() {
         return hasOptedOutTracking;
     }
 
-    public void setHasOptedOutTracking(boolean hasOptedOutTracking) {
+    public void setHasOptedOutTracking(Boolean hasOptedOutTracking) {
         this.hasOptedOutTracking = hasOptedOutTracking;
     }
 
-    public boolean isHasOptedOutProfiling() {
+    public Boolean isHasOptedOutProfiling() {
         return hasOptedOutProfiling;
     }
 
-    public void setHasOptedOutProfiling(boolean hasOptedOutProfiling) {
+    public void setHasOptedOutProfiling(Boolean hasOptedOutProfiling) {
         this.hasOptedOutProfiling = hasOptedOutProfiling;
     }
 
-    public boolean isHasOptedOutProcessing() {
+    public Boolean isHasOptedOutProcessing() {
         return hasOptedOutProcessing;
     }
 
-    public void setHasOptedOutProcessing(boolean hasOptedOutProcessing) {
+    public void setHasOptedOutProcessing(Boolean hasOptedOutProcessing) {
         this.hasOptedOutProcessing = hasOptedOutProcessing;
     }
 
-    public boolean isHasOptedOutSolicit() {
+    public Boolean isHasOptedOutSolicit() {
         return hasOptedOutSolicit;
     }
 
-    public void setHasOptedOutSolicit(boolean hasOptedOutSolicit) {
+    public void setHasOptedOutSolicit(Boolean hasOptedOutSolicit) {
         this.hasOptedOutSolicit = hasOptedOutSolicit;
     }
 
-    public boolean isShouldForget() {
+    public Boolean isShouldForget() {
         return shouldForget;
     }
 
-    public void setShouldForget(boolean shouldForget) {
+    public void setShouldForget(Boolean shouldForget) {
         this.shouldForget = shouldForget;
     }
 
-    public boolean isSendIndividualData() {
+    public Boolean isSendIndividualData() {
         return sendIndividualData;
     }
 
-    public void setSendIndividualData(boolean sendIndividualData) {
+    public void setSendIndividualData(Boolean sendIndividualData) {
         this.sendIndividualData = sendIndividualData;
     }
 
-    public boolean isCanStorePiiElsewhere() {
+    public Boolean isCanStorePiiElsewhere() {
         return canStorePiiElsewhere;
     }
 
-    public void setCanStorePiiElsewhere(boolean canStorePiiElsewhere) {
+    public void setCanStorePiiElsewhere(Boolean canStorePiiElsewhere) {
         this.canStorePiiElsewhere = canStorePiiElsewhere;
     }
 
-    public boolean isHasOptedOutGeoTracking() {
+    public Boolean isHasOptedOutGeoTracking() {
         return hasOptedOutGeoTracking;
     }
 
-    public void setHasOptedOutGeoTracking(boolean hasOptedOutGeoTracking) {
+    public void setHasOptedOutGeoTracking(Boolean hasOptedOutGeoTracking) {
         this.hasOptedOutGeoTracking = hasOptedOutGeoTracking;
     }
 
@@ -246,11 +246,11 @@ public class Individual {
         this.militaryService = militaryService;
     }
 
-    public boolean isHomeOwner() {
+    public Boolean isHomeOwner() {
         return isHomeOwner;
     }
 
-    public void setHomeOwner(boolean homeOwner) {
+    public void setHomeOwner(Boolean homeOwner) {
         isHomeOwner = homeOwner;
     }
 
