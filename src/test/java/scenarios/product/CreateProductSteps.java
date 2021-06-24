@@ -42,6 +42,6 @@ public class CreateProductSteps {
     @Then("the response status code should be {string} to post product request")
     public void theResponseStatusCodeShouldBeToPostProductRequest(final String statusCode) {
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
-        
+
     }
 }

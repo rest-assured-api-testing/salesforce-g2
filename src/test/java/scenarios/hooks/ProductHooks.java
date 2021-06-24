@@ -6,7 +6,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
-import salesforce.auth.Authentication;
 import salesforce.endpointurl.ElementParam;
 import salesforce.endpointurl.Endpoint;
 import salesforce.entities.Product;
@@ -18,7 +17,7 @@ import java.util.Map;
 public class ProductHooks {
     private CreatedResponse createdResponse;
 
-    public ProductHooks(CreatedResponse createdResponse) {
+    public ProductHooks(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 

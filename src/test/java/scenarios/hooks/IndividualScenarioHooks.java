@@ -24,7 +24,7 @@ public class IndividualScenarioHooks {
         this.createdResponse = createdResponse;
     }
 
-    @Before
+    @Before(order = 1)
     public void getToken() {
         Authentication.getAuth();
     }

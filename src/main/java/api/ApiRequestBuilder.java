@@ -12,30 +12,30 @@ import java.util.Map;
 /**
  * Helps to build an ApiRequest entity.
  */
-public class ApiRequestBuilder implements IBuilder {
+public class ApiRequestBuilder {
     ApiRequest apiRequest = new ApiRequest();
 
-    public ApiRequestBuilder baseUri(String baseUri) {
+    public ApiRequestBuilder baseUri(final String baseUri) {
         apiRequest.setBaseUri(baseUri);
         return this;
     }
 
-    public ApiRequestBuilder endpoint(String endpoint) {
+    public ApiRequestBuilder endpoint(final String endpoint) {
         apiRequest.setEndpoint(endpoint);
         return this;
     }
 
-    public ApiRequestBuilder body(String body) {
+    public ApiRequestBuilder body(final String body) {
         apiRequest.setBody(body);
         return this;
     }
 
-    public ApiRequestBuilder token(String token) {
+    public ApiRequestBuilder token(final String token) {
         apiRequest.setToken(token);
         return this;
     }
 
-    public ApiRequestBuilder method(Enum<ApiMethod> method) {
+    public ApiRequestBuilder method(final Enum<ApiMethod> method) {
         apiRequest.setMethod(method);
         return this;
     }
@@ -60,21 +60,20 @@ public class ApiRequestBuilder implements IBuilder {
         return this;
     }
 
-    public ApiRequestBuilder pathParams(Map<String, String> pathParam) {
+    public ApiRequestBuilder pathParams(final Map<String, String> pathParam) {
         apiRequest.addPathParam(pathParam);
         return this;
     }
 
-    public ApiRequestBuilder params(Map<String, String> params) {
+    public ApiRequestBuilder params(final Map<String, String> params) {
         apiRequest.addParam(params);
         return this;
     }
 
-    public ApiRequestBuilder pathParam(String param, final Long value) {
+    public ApiRequestBuilder pathParam(final String param, final Long value) {
         return pathParam(param, value.toString());
     }
 
-    @Override
     public ApiRequest build() {
         return apiRequest;
     }

@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
 package tests;
 
 import api.ApiRequestManager;
@@ -39,8 +46,7 @@ public class CampaignTest extends CommonTest {
 
     @Test
     public void getCampaign() {
-        Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.get(Endpoint.CAMPAIGNS, pathParams);
+        ApiResponse apiResponse = ApiRequestManager.get(Endpoint.CAMPAIGNS, new HashMap<>());
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
