@@ -8,18 +8,15 @@ package tests; /**
 
 import api.ApiRequestManager;
 import api.ApiResponse;
-import auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import endpointurl.ElementParam;
-import endpointurl.Endpoint;
-import entities.CreatedResponse;
-import entities.Product;
+import salesforce.endpointurl.ElementParam;
+import salesforce.endpointurl.Endpoint;
+import salesforce.entities.CreatedResponse;
+import salesforce.entities.Product;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import tests.CommonTest;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -26,12 +26,14 @@ public class ApiRequest {
     private Enum<ApiMethod> method;
     private List<Header> headers;
     private Map<String, String> queryParams;
-    private Map<String, String> pathParms;
+    private Map<String, String> pathParams;
+    private Map<String, String> params;
 
     public ApiRequest() {
         headers = new ArrayList<>();
         queryParams = new HashMap<>();
-        pathParms = new HashMap<>();
+        pathParams = new HashMap<>();
+        params = new HashMap<>();
     }
 
     public String getBaseUri() {
@@ -83,15 +85,23 @@ public class ApiRequest {
     }
 
     public void addPathParam(final String param, final String value) {
-        pathParms.put(param, value);
+        pathParams.put(param, value);
+    }
+
+    public void addParam(final String param, final String value) {
+        params.put(param, value);
     }
 
     public void addPathParam(Map<String, String> pathParams) {
-        pathParms.putAll(pathParams);
+        this.pathParams.putAll(pathParams);
     }
 
     public void addQueryParam(Map<String, String> queryParams) {
         queryParams.putAll(queryParams);
+    }
+
+    public void addParam(Map<String, String> pathParams) {
+        this.params.putAll(pathParams);
     }
 
     public Headers getHeaders() {
@@ -102,7 +112,7 @@ public class ApiRequest {
         return queryParams;
     }
 
-    public Map<String, String> getPathParms() {
-        return pathParms;
+    public Map<String, String> getPathParams() {
+        return pathParams;
     }
 }

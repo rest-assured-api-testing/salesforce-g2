@@ -14,7 +14,7 @@ import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
 
 /**
- * Manages the creation of RequestSpecification and execution of an ApiRequest entities.
+ * Manages the creation of RequestSpecification and execution of an ApiRequest salesforce.entities.
  */
 public class ApiManager {
 
@@ -27,7 +27,7 @@ public class ApiManager {
     {
         return given().headers(apiRequest.getHeaders())
                 .queryParams(apiRequest.getQueryParams())
-                .pathParams(apiRequest.getPathParms())
+                .pathParams(apiRequest.getPathParams())
                 .baseUri(apiRequest.getBaseUri())
                 .contentType(ContentType.JSON)
                 .log().all();

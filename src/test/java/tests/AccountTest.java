@@ -3,10 +3,10 @@ package tests;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import endpointurl.ElementParam;
-import endpointurl.Endpoint;
-import entities.CreatedResponse;
-import entities.Account;
+import salesforce.endpointurl.ElementParam;
+import salesforce.endpointurl.Endpoint;
+import salesforce.entities.CreatedResponse;
+import salesforce.entities.Account;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -24,7 +24,7 @@ public class AccountTest extends CommonTest {
         ApiResponse apiResponse;
 
         apiResponse = ApiRequestManager.create(Endpoint.ACCOUNTS, pathParams, account);
-        createdResponse =apiResponse.getResponse().as(CreatedResponse.class);
+        createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
@@ -33,7 +33,7 @@ public class AccountTest extends CommonTest {
     public void getAllAccountTest() {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get(Endpoint.ACCOUNTS, new HashMap<String,String>());
+        apiResponse = ApiRequestManager.get(Endpoint.ACCOUNTS, new HashMap<String, String>());
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
@@ -46,13 +46,13 @@ public class AccountTest extends CommonTest {
         ApiResponse apiResponse;
 
         apiResponse = ApiRequestManager.create(Endpoint.ACCOUNTS, pathParams, account);
-        createdResponse =apiResponse.getResponse().as(CreatedResponse.class);
+        createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @Test(groups = "get")
-    public void getAAccountTest() throws JsonProcessingException {
+    public void getAAccountTest() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;
@@ -60,7 +60,6 @@ public class AccountTest extends CommonTest {
         apiResponse = ApiRequestManager.get(Endpoint.ACCOUNT, pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
-
     }
 
     @Test(groups = "update")
@@ -77,7 +76,7 @@ public class AccountTest extends CommonTest {
     }
 
     @Test(groups = "delete")
-    public void deleteAAccountTest(){
+    public void deleteAAccountTest() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;
@@ -102,7 +101,7 @@ public class AccountTest extends CommonTest {
     public void doNotGetAllAccountTest() {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get("/Accoun", new HashMap<String,String>());
+        apiResponse = ApiRequestManager.get("/Accoun", new HashMap<String, String>());
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
@@ -127,7 +126,6 @@ public class AccountTest extends CommonTest {
         apiResponse = ApiRequestManager.get(Endpoint.ACCOUNT, pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
-
     }
 
     @Test(groups = "update")
@@ -144,7 +142,7 @@ public class AccountTest extends CommonTest {
     }
 
     @Test(groups = {"delete", "badDelete"})
-    public void doNotDeleteAAccountTest(){
+    public void doNotDeleteAAccountTest() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, " ");
         ApiResponse apiResponse;

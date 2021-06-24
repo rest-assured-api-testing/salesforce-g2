@@ -60,7 +60,7 @@
       "type": "string"
     },
     "BillingAddress": {
-      "type": "string"
+      "type": "object"
     },
     "ShippingStreet": {
       "type": "string"
@@ -87,7 +87,7 @@
       "type": "string"
     },
     "ShippingAddress": {
-      "type": "string"
+      "type": "object"
     },
     "Phone": {
       "type": "string"
