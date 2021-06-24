@@ -26,7 +26,7 @@ public class CreateProductSteps {
     @Given("I build post product request")
     public void iBuildAPostProductRequest() {
         pathParams = new HashMap<>();
-        Product product = new Product();
+        product = new Product();
         product.setName("New incoming product");
     }
 
