@@ -1,4 +1,4 @@
-package scenarios.individual;
+package scenarios.account;
 
 import api.ApiRequestManager;
 import api.ApiResponse;

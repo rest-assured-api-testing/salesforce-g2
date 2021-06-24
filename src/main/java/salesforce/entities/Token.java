@@ -1,30 +1,35 @@
 package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Token {
-    public static String access_token;
-    private String instance_url;
+    public static String accessToken;
+    private String instanceUrl;
     private String id;
-    private String token_type;
-    private String issued_at;
+    private String tokenType;
+    private String issuedAt;
     private String signature;
 
-    public String getAccess_token() {
-        return access_token;
+    @JsonProperty("access_token")
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
+    @JsonProperty("access_token")
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public String getInstance_url() {
-        return instance_url;
+    @JsonProperty("instance_url")
+    public String getInstanceUrl() {
+        return instanceUrl;
     }
 
-    public void setInstance_url(String instance_url) {
-        this.instance_url = instance_url;
+    @JsonProperty("instance_url")
+    public void setInstanceUrl(String instanceUrl) {
+        this.instanceUrl = instanceUrl;
     }
 
     public String getId() {
@@ -35,20 +40,24 @@ public class Token {
         this.id = id;
     }
 
-    public String getToken_type() {
-        return token_type;
+    @JsonProperty("token_type")
+    public String getTokenType() {
+        return tokenType;
     }
 
-    public void setToken_type(String token_type) {
-        this.token_type = token_type;
+    @JsonProperty("token_type")
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
     }
 
-    public String getIssued_at() {
-        return issued_at;
+    @JsonProperty("issued_at")
+    public String getIssuedAt() {
+        return issuedAt;
     }
 
-    public void setIssued_at(String issued_at) {
-        this.issued_at = issued_at;
+    @JsonProperty("issued_at")
+    public void setIssuedAt(String issuedAt) {
+        this.issuedAt = issuedAt;
     }
 
     public String getSignature() {
