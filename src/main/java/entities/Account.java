@@ -2,7 +2,6 @@ package entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -38,7 +37,7 @@ public class Account {
     @JsonProperty("BillingGeocodeAccuracy")
     public String billingGeocodeAccuracy;
     @JsonProperty("BillingAddress")
-    public String billingAddress;
+    public Address billingAddress;
     @JsonProperty("ShippingStreet")
     public String shippingStreet;
     @JsonProperty("ShippingCity")
@@ -56,7 +55,7 @@ public class Account {
     @JsonProperty("ShippingGeocodeAccuracy")
     public String shippingGeocodeAccuracy;
     @JsonProperty("ShippingAddress")
-    public String shippingAddress;
+    public Address shippingAddress;
     @JsonProperty("Phone")
     public String phone;
     @JsonProperty("Fax")
@@ -262,11 +261,11 @@ public class Account {
         this.billingGeocodeAccuracy = billingGeocodeAccuracy;
     }
 
-    public String getBillingAddress() {
+    public Address getBillingAddress() {
         return billingAddress;
     }
 
-    public void setBillingAddress(String billingAddress) {
+    public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
     }
 
@@ -334,11 +333,11 @@ public class Account {
         this.shippingGeocodeAccuracy = shippingGeocodeAccuracy;
     }
 
-    public String getShippingAddress() {
+    public Address getShippingAddress() {
         return shippingAddress;
     }
 
-    public void setShippingAddress(String shippingAddress) {
+    public void setShippingAddress(Address shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 

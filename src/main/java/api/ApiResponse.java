@@ -55,4 +55,18 @@ public class ApiResponse {
     public void validateBodySchema(String schema) {
       response.then().log().body().assertThat().body(matchesJsonSchemaInClasspath(schema));
     }
+
+    /**
+     * Prints logs of respond body.
+     */
+    public void logBody() {
+        response.then().log().body();
+    }
+
+    /**
+     * Prints all logs of respond.
+     */
+    public void logAll() {
+        response.then().log().all();
+    }
 }

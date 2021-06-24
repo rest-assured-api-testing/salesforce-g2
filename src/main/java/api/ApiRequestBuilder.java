@@ -55,8 +55,18 @@ public class ApiRequestBuilder implements IBuilder {
         return this;
     }
 
+    public ApiRequestBuilder param(final String param, final String value) {
+        apiRequest.addParam(param, value);
+        return this;
+    }
+
     public ApiRequestBuilder pathParams(Map<String, String> pathParam) {
         apiRequest.addPathParam(pathParam);
+        return this;
+    }
+
+    public ApiRequestBuilder params(Map<String, String> params) {
+        apiRequest.addParam(params);
         return this;
     }
 
