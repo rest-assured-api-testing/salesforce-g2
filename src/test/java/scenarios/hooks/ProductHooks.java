@@ -1,34 +1,35 @@
-package scenarios.individual.hooks;
+package scenarios.hooks;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.endpointurl.ElementParam;
-import salesforce.endpointurl.Endpoint;
-import salesforce.entities.CreatedResponse;
-import salesforce.entities.Account;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
+import salesforce.auth.Authentication;
+import salesforce.endpointurl.ElementParam;
+import salesforce.endpointurl.Endpoint;
+import salesforce.entities.Product;
+import salesforce.entities.CreatedResponse;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountScenarioHooks {
+public class ProductHooks {
     private CreatedResponse createdResponse;
 
-    public AccountScenarioHooks(CreatedResponse createdResponse) {
+    public ProductHooks(CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
-    @Before(value = "@GetAccounts or @GetAccount or @UpdateAccount or @DeleteAccount", order = 2)
+    @Before(value = "@GetProducts or @GetProduct or @UpdateProduct or @DeleteProduct", order = 2)
     public void setUp() throws JsonProcessingException {
-        System.out.println("======================= A Account Before Hook");
         Map<String, String> pathParams = new HashMap<>();
-        Account account = new Account();
-        account.setName("First Account");
+        Product product = new Product();
+        product.setName("The first product");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoint.ACCOUNTS, pathParams, account);
+        apiResponse = ApiRequestManager.create(Endpoint.PRODUCTS, pathParams, product);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -37,14 +38,13 @@ public class AccountScenarioHooks {
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
-    @After(value = "@GetAccounts or @GetAccount or @UpdateAccount or @CreateAccount")
-    public void setDown() {
-        System.out.println("======================= A Account After Hook");
+    @After(value = "@GetProducts or @GetProduct or @UpdateProduct or @CreateProduct")
+    public void setLast() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoint.ACCOUNT, pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoint.PRODUCT, pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
