@@ -5,11 +5,8 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package api;
+package config;
 
-/**
- * Helps to build an ApiRequest entity.
- */
-public interface IBuilder {
-    <T> T build();
+public class ParamValue {
+    public static final String PASSWORD = "password";
 }

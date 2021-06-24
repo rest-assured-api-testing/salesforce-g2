@@ -5,11 +5,13 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package api;
+package config;
 
-/**
- * Helps to build an ApiRequest entity.
- */
-public interface IBuilder {
-    <T> T build();
+import io.github.cdimascio.dotenv.Dotenv;
+
+public class EnvConfigurationFile {
+    /**
+     * Constant that refers path of environment variables file.
+     */
+    public static Dotenv dotenv = Dotenv.configure().filename(".env.develop").ignoreIfMalformed().ignoreIfMissing().load();
 }

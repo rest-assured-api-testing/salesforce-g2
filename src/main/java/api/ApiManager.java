@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
 package api;
 
 import io.restassured.http.ContentType;
@@ -13,6 +20,8 @@ public class ApiManager {
 
     /**
      * Builds a RequestSpecification.
+     * @param apiRequest contains all data of request.
+     * @return a created RequestSpecification.
      */
     private static RequestSpecification buildRequest(ApiRequest apiRequest)
     {
@@ -26,6 +35,8 @@ public class ApiManager {
 
     /**
      * Executes a ApiRequest without body.
+     * @param apiRequest contains all data of request.
+     * @return a ApiResponse after execution of request.
      */
     public static ApiResponse execute(ApiRequest apiRequest){
         Response response = buildRequest(apiRequest)
@@ -37,6 +48,8 @@ public class ApiManager {
 
     /**
      * Executes a ApiRequest with body.
+     * @param apiRequest contains all data of request.
+     * @return a ApiResponse after execution of request.
      */
     public static ApiResponse executeWithBody(ApiRequest apiRequest){
         Response response = buildRequest(apiRequest)

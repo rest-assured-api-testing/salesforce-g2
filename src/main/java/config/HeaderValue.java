@@ -5,11 +5,9 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package api;
+package config;
 
-/**
- * Helps to build an ApiRequest entity.
- */
-public interface IBuilder {
-    <T> T build();
+public class HeaderValue {
+    public static final String APP_JSON = "application/json";
+    public static final String APP_X_FORM = "application/x-www-form-urlencoded";
 }

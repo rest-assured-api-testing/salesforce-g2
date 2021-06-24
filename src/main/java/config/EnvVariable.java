@@ -5,11 +5,13 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package api;
+package config;
 
-/**
- * Helps to build an ApiRequest entity.
- */
-public interface IBuilder {
-    <T> T build();
+public enum EnvVariable {
+    USERNAME1,
+    PASSWORD,
+    CLIENT_ID,
+    CLIENT_SECRET,
+    TOKEN_URL,
+    BASE_URL;
 }
