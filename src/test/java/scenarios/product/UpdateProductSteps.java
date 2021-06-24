@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.http.HttpStatus;
 import salesforce.endpointurl.ElementParam;
-import salesforce.endpointurl.Endpoint;
 import salesforce.entities.Product;
 import salesforce.entities.CreatedResponse;
 
@@ -18,15 +17,15 @@ import java.util.Map;
 public class UpdateProductSteps {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
-    private Map<String,String> pathParams;
-    Product product;
+    private Map<String, String> pathParams;
+    private Product product;
 
-    public UpdateProductSteps(CreatedResponse createdResponse) {
+    public UpdateProductSteps(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
     @Given("I build update product request {string}")
-    public void iBuildAUpdateProductRequest(String arg0) {
+    public void iBuildAUpdateProductRequest() {
         pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
         product = new Product();
@@ -34,12 +33,12 @@ public class UpdateProductSteps {
     }
 
     @When("I add this {string} endpoint and execute patch product request")
-    public void iAddThisEndpointAndExecutePatchProductRequest(String arg0) throws JsonProcessingException {
-        apiResponse = ApiRequestManager.update(Endpoint.PRODUCT, pathParams, product);
+    public void iAddThisEndpointAndExecutePatchProductRequest(final String endpoint) throws JsonProcessingException {
+        apiResponse = ApiRequestManager.update(endpoint, pathParams, product);
     }
 
     @Then("the response status code should be {string} to patch product request")
-    public void theResponseStatusCodeShouldBeToPatchProductRequest(String arg0) {
+    public void theResponseStatusCodeShouldBeToPatchProductRequest(final String statusCode) {
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 }
