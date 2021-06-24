@@ -21,7 +21,7 @@ public class DeleteProductSteps {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build delete a product request {string}")
+    @Given("I build delete a product request")
     public void iBuildADeleteProductRequest() {
         pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());

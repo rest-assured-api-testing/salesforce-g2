@@ -20,7 +20,7 @@ public class GetProductsSteps {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build get products request {string}")
+    @Given("I build get products request")
     public void iBuildAAllGetProductRequest() {
         pathParams = new HashMap<>();
     }

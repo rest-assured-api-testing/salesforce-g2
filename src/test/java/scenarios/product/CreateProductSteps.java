@@ -23,7 +23,7 @@ public class CreateProductSteps {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build post product request {string}")
+    @Given("I build post product request")
     public void iBuildAPostProductRequest() {
         pathParams = new HashMap<>();
         Product product = new Product();

@@ -24,7 +24,7 @@ public class UpdateProductSteps {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build update product request {string}")
+    @Given("I build update product request")
     public void iBuildAUpdateProductRequest() {
         pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());

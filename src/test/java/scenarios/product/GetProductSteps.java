@@ -21,7 +21,7 @@ public class GetProductSteps {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build get a product request {string}")
+    @Given("I build get a product request")
     public void iBuildAGetProductRequest() {
         pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
