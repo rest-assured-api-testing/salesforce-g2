@@ -14,6 +14,8 @@ import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
+import static salesforce.config.EnvConfigurationFile.LOGGER;
+
 public class IndividualScenarioHooks {
 
     private CreatedResponse createdResponse;
@@ -29,7 +31,7 @@ public class IndividualScenarioHooks {
 
     @Before(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @DeleteIndividual", order = 2)
     public void setUp() throws JsonProcessingException {
-        System.out.println("======================= A Individual Before Hook");
+        LOGGER.info("======================= A Individual Before Hook");
         Map<String, String> pathParams = new HashMap<>();
         Person person = new Person();
         person.setFirstName("Pepito");
@@ -47,7 +49,7 @@ public class IndividualScenarioHooks {
 
     @After(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @CreateIndividual")
     public void setDown() {
-        System.out.println("======================= A Individual After Hook");
+        LOGGER.info("======================= A Individual After Hook");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;

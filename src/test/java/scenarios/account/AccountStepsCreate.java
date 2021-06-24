@@ -9,9 +9,10 @@ import salesforce.entities.CreatedResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
+
+import static salesforce.config.EnvConfigurationFile.LOGGER;
 
 public class AccountStepsCreate {
     private CreatedResponse createdResponse;
@@ -23,17 +24,17 @@ public class AccountStepsCreate {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build a post account request {string}")
-    public void iBuildAPostAccountRequest(String arg0) {
-        System.out.println("=================== Account Create Given ==============================");
+    @Given("I build a post account request")
+    public void iBuildAPostAccountRequest() {
+        LOGGER.info("=================== Account Create Given ==============================");
         pathParams = new HashMap<>();
         account = new Account();
         account.setName("First Account");
     }
 
     @When("I add this {string} endpoint and execute post account request")
-    public void iAddThisEndpointAndExecutePostAccountRequest(String arg0) throws JsonProcessingException {
-        System.out.println("=================== Account Create When ==============================");
+    public void iAddThisEndpointAndExecutePostAccountRequest(String endpoint) throws JsonProcessingException {
+        LOGGER.info("=================== Account Create When ==============================");
         apiResponse = ApiRequestManager.create(Endpoint.ACCOUNTS, pathParams, account);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
@@ -42,8 +43,8 @@ public class AccountStepsCreate {
     }
 
     @Then("the response status code should be {string} to post account request")
-    public void theResponseStatusCodeShouldBeToPostAccountRequest(String arg0) {
-        System.out.println("=================== Account Create Then ==============================");
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
+    public void theResponseStatusCodeShouldBeToPostAccountRequest(String status) {
+        LOGGER.info("=================== Account Create Then ==============================");
+        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 }

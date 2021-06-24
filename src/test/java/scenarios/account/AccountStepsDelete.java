@@ -8,9 +8,10 @@ import salesforce.entities.CreatedResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
+
+import static salesforce.config.EnvConfigurationFile.LOGGER;
 
 public class AccountStepsDelete {
     private CreatedResponse createdResponse;
@@ -21,22 +22,22 @@ public class AccountStepsDelete {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build a delete account request {string}")
-    public void iBuildADeleteAccountRequest(String arg0) {
-        System.out.println("=================== Account Delete Given ==============================");
+    @Given("I build a delete account request")
+    public void iBuildADeleteAccountRequest() {
+        LOGGER.info("=================== Account Delete Given ==============================");
         pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
      }
 
     @When("I add this {string} endpoint and execute delete account request")
-    public void iAddThisEndpointAndExecuteDeleteAccountRequest(String arg0) {
-        System.out.println("=================== Account Delete When ==============================");
+    public void iAddThisEndpointAndExecuteDeleteAccountRequest(String endpoint) {
+        LOGGER.info("=================== Account Delete When ==============================");
         apiResponse = ApiRequestManager.delete(Endpoint.ACCOUNT, pathParams);
     }
 
     @Then("the response status code should be {string} to delete account request")
-    public void theResponseStatusCodeShouldBeToDeleteAccountRequest(String arg0) {
-        System.out.println("=================== Account Delete Then ==============================");
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
+    public void theResponseStatusCodeShouldBeToDeleteAccountRequest(String status) {
+        LOGGER.info("=================== Account Delete Then ==============================");
+        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 }
