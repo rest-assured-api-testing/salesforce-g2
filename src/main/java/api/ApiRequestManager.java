@@ -9,12 +9,12 @@ package api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.HttpHeaders;
 import salesforce.config.EnvVariable;
-import salesforce.config.Header;
 
 import java.util.Map;
 
-import static salesforce.entities.Token.access_token;
+import static salesforce.entities.Token.accessToken;
 import static salesforce.config.EnvConfigurationFile.dotenv;
 
 public class ApiRequestManager {
@@ -29,9 +29,9 @@ public class ApiRequestManager {
      */
     public static <T> ApiRequestBuilder buildRequest(String endpoint, Map<String, String> pathParams,
                                                      Enum<ApiMethod> type) {
-        return new ApiRequestBuilder().header(Header.AUTHORIZATION, "Bearer " + access_token)
+        return new ApiRequestBuilder().header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s",accessToken))
                 .baseUri(dotenv.get(EnvVariable.BASE_URL.name()))
-                .method((ApiMethod) type)
+                .method(type)
                 .endpoint(endpoint)
                 .pathParams(pathParams);
     }

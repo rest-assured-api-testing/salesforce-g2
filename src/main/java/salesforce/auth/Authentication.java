@@ -7,6 +7,7 @@
  */
 package salesforce.auth;
 
+import org.apache.http.HttpHeaders;
 import salesforce.config.*;
 import salesforce.entities.Token;
 
@@ -23,8 +24,8 @@ public class Authentication {
                         .param(Param.CLIENT_ID, dotenv.get(EnvVariable.CLIENT_ID.name()))
                         .param(Param.CLIENT_SECRET, dotenv.get(EnvVariable.CLIENT_SECRET.name()))
                         .param(Param.GRANT_TYPE, ParamValue.PASSWORD)
-                        .header(Header.ACCEPT, HeaderValue.APP_JSON)
-                        .header(Header.CONTENT_TYPE, HeaderValue.APP_X_FORM)
+                        .header(HttpHeaders.ACCEPT, HeaderValue.APP_JSON)
+                        .header(HttpHeaders.CONTENT_TYPE, HeaderValue.APP_X_FORM)
                         .log().all()
                         .when().
                         post(dotenv.get(EnvVariable.TOKEN_URL.name()))
