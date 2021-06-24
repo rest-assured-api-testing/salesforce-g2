@@ -2,12 +2,12 @@ package scenarios.individual.hooks;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
-import auth.Authentication;
+import salesforce.auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import endpointurl.ElementParam;
-import endpointurl.Endpoint;
-import entities.CreatedResponse;
-import entities.Person;
+import salesforce.endpointurl.ElementParam;
+import salesforce.endpointurl.Endpoint;
+import salesforce.entities.CreatedResponse;
+import salesforce.entities.Person;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;

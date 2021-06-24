@@ -9,13 +9,13 @@ package api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import config.EnvVariable;
-import config.Header;
+import salesforce.config.EnvVariable;
+import salesforce.config.Header;
 
 import java.util.Map;
 
-import static auth.Token.access_token;
-import static config.EnvConfigurationFile.dotenv;
+import static salesforce.entities.Token.access_token;
+import static salesforce.config.EnvConfigurationFile.dotenv;
 
 public class ApiRequestManager {
 

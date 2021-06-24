@@ -1,7 +1,7 @@
 package tests;
 
-import auth.Authentication;
-import entities.CreatedResponse;
+import salesforce.auth.Authentication;
+import salesforce.entities.CreatedResponse;
 import org.testng.annotations.BeforeSuite;
 
 public class CommonTest {

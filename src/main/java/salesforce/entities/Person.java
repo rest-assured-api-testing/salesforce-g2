@@ -1,82 +1,53 @@
-package entities;
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Individual {
+public class Person {
 
-    public Attribute attributes;
-    @JsonProperty("Id")
-    public String id;
-    @JsonProperty("OwnerId")
-    public String ownerId;
-    @JsonProperty("IsDeleted")
-    public Boolean isDeleted;
-    @JsonProperty("LastName")
-    public String lastName;
-    @JsonProperty("FirstName")
-    public String firstName;
-    @JsonProperty("Salutation")
-    public String salutation;
-    @JsonProperty("Name")
-    public String name;
-    @JsonProperty("HasOptedOutTracking")
-    public Boolean hasOptedOutTracking;
-    @JsonProperty("HasOptedOutProfiling")
-    public Boolean hasOptedOutProfiling;
-    @JsonProperty("HasOptedOutProcessing")
-    public Boolean hasOptedOutProcessing;
-    @JsonProperty("HasOptedOutSolicit")
-    public Boolean hasOptedOutSolicit;
-    @JsonProperty("ShouldForget")
-    public Boolean shouldForget;
-    @JsonProperty("SendIndividualData")
-    public Boolean sendIndividualData;
-    @JsonProperty("CanStorePiiElsewhere")
-    public Boolean canStorePiiElsewhere;
-    @JsonProperty("HasOptedOutGeoTracking")
-    public Boolean hasOptedOutGeoTracking;
-    @JsonProperty("BirthDate")
-    public String birthDate;
-    @JsonProperty("DeathDate")
-    public String deathDate;
-    @JsonProperty("ConvictionsCount")
-    public String convictionsCount;
-    @JsonProperty("ChildrenCount")
-    public String childrenCount;
-    @JsonProperty("MilitaryService")
-    public String militaryService;
-    @JsonProperty("IsHomeOwner")
-    public Boolean isHomeOwner;
-    @JsonProperty("Occupation")
-    public String occupation;
-    @JsonProperty("Website")
-    public String website;
-    @JsonProperty("IndividualsAge")
-    public String individualsAge;
-    @JsonProperty("LastViewedDate")
-    public Date lastViewedDate;
-    @JsonProperty("MasterRecordId")
-    public String masterRecordId;
-    @JsonProperty("ConsumerCreditScore")
-    public String consumerCreditScore;
-    @JsonProperty("ConsumerCreditScoreProviderName")
-    public String consumerCreditScoreProviderName;
-    @JsonProperty("InfluencerRating")
-    public String influencerRating;
-    @JsonProperty("CreatedDate")
-    public Date createdDate;
-    @JsonProperty("CreatedById")
-    public String createdById;
-    @JsonProperty("LastModifiedDate")
-    public Date lastModifiedDate;
-    @JsonProperty("LastModifiedById")
-    public String lastModifiedById;
-    @JsonProperty("SystemModstamp")
-    public Date systemModstamp;
+    Attribute attributes;
+    private String id;
+    private String ownerId;
+    private Boolean isDeleted;
+    private String lastName;
+    private String firstName;
+    private String salutation;
+    private String name;
+    private Boolean hasOptedOutTracking;
+    private Boolean hasOptedOutProfiling;
+    private Boolean hasOptedOutProcessing;
+    private Boolean hasOptedOutSolicit;
+    private Boolean shouldForget;
+    private Boolean sendIndividualData;
+    private Boolean canStorePiiElsewhere;
+    private Boolean hasOptedOutGeoTracking;
+    private String birthDate;
+    private String deathDate;
+    private String convictionsCount;
+    private String childrenCount;
+    private String militaryService;
+    private Boolean isHomeOwner;
+    private String occupation;
+    private String website;
+    private String individualsAge;
+    private String lastViewedDate;
+    private String masterRecordId;
+    private String consumerCreditScore;
+    private String consumerCreditScoreProviderName;
+    private String influencerRating;
+    private String createdDate;
+    private String createdById;
+    private String lastModifiedDate;
+    private String lastModifiedById;
+    private String systemModstamp;
 
     public Attribute getAttributes() {
         return attributes;
@@ -86,275 +57,343 @@ public class Individual {
         this.attributes = attributes;
     }
 
+    @JsonProperty("Id")
     public String getId() {
         return id;
     }
 
+    @JsonProperty("Id")
     public void setId(String id) {
         this.id = id;
     }
 
+    @JsonProperty("OwnerId")
     public String getOwnerId() {
         return ownerId;
     }
 
+    @JsonProperty("OwnerId")
     public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
     }
 
+    @JsonProperty("IsDeleted")
     public Boolean isDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    @JsonProperty("IsDeleted")
+    public void setDeleted(boolean deleted) {
         isDeleted = deleted;
     }
 
+    @JsonProperty("LastName")
     public String getLastName() {
         return lastName;
     }
 
+    @JsonProperty("LastName")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    @JsonProperty("FirstName")
     public String getFirstName() {
         return firstName;
     }
 
+    @JsonProperty("FirstName")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    @JsonProperty("Salutation")
     public String getSalutation() {
         return salutation;
     }
 
+    @JsonProperty("Salutation")
     public void setSalutation(String salutation) {
         this.salutation = salutation;
     }
 
+    @JsonProperty("Name")
     public String getName() {
         return name;
     }
 
+    @JsonProperty("Name")
     public void setName(String name) {
         this.name = name;
     }
 
+    @JsonProperty("HasOptedOutTracking")
     public Boolean isHasOptedOutTracking() {
         return hasOptedOutTracking;
     }
 
-    public void setHasOptedOutTracking(Boolean hasOptedOutTracking) {
+    @JsonProperty("HasOptedOutTracking")
+    public void setHasOptedOutTracking(boolean hasOptedOutTracking) {
         this.hasOptedOutTracking = hasOptedOutTracking;
     }
 
+    @JsonProperty("HasOptedOutProfiling")
     public Boolean isHasOptedOutProfiling() {
         return hasOptedOutProfiling;
     }
 
-    public void setHasOptedOutProfiling(Boolean hasOptedOutProfiling) {
+    @JsonProperty("HasOptedOutProfiling")
+    public void setHasOptedOutProfiling(boolean hasOptedOutProfiling) {
         this.hasOptedOutProfiling = hasOptedOutProfiling;
     }
 
+    @JsonProperty("HasOptedOutProcessing")
     public Boolean isHasOptedOutProcessing() {
         return hasOptedOutProcessing;
     }
 
-    public void setHasOptedOutProcessing(Boolean hasOptedOutProcessing) {
+    @JsonProperty("HasOptedOutProcessing")
+    public void setHasOptedOutProcessing(boolean hasOptedOutProcessing) {
         this.hasOptedOutProcessing = hasOptedOutProcessing;
     }
 
+    @JsonProperty("HasOptedOutSolicit")
     public Boolean isHasOptedOutSolicit() {
         return hasOptedOutSolicit;
     }
 
-    public void setHasOptedOutSolicit(Boolean hasOptedOutSolicit) {
+    @JsonProperty("HasOptedOutSolicit")
+    public void setHasOptedOutSolicit(boolean hasOptedOutSolicit) {
         this.hasOptedOutSolicit = hasOptedOutSolicit;
     }
 
+    @JsonProperty("ShouldForget")
     public Boolean isShouldForget() {
         return shouldForget;
     }
 
-    public void setShouldForget(Boolean shouldForget) {
+    @JsonProperty("ShouldForget")
+    public void setShouldForget(boolean shouldForget) {
         this.shouldForget = shouldForget;
     }
 
+    @JsonProperty("SendIndividualData")
     public Boolean isSendIndividualData() {
         return sendIndividualData;
     }
 
-    public void setSendIndividualData(Boolean sendIndividualData) {
+    @JsonProperty("SendIndividualData")
+    public void setSendIndividualData(boolean sendIndividualData) {
         this.sendIndividualData = sendIndividualData;
     }
 
+    @JsonProperty("CanStorePiiElsewhere")
     public Boolean isCanStorePiiElsewhere() {
         return canStorePiiElsewhere;
     }
 
-    public void setCanStorePiiElsewhere(Boolean canStorePiiElsewhere) {
+    @JsonProperty("CanStorePiiElsewhere")
+    public void setCanStorePiiElsewhere(boolean canStorePiiElsewhere) {
         this.canStorePiiElsewhere = canStorePiiElsewhere;
     }
 
+    @JsonProperty("HasOptedOutGeoTracking")
     public Boolean isHasOptedOutGeoTracking() {
         return hasOptedOutGeoTracking;
     }
 
-    public void setHasOptedOutGeoTracking(Boolean hasOptedOutGeoTracking) {
+    @JsonProperty("HasOptedOutGeoTracking")
+    public void setHasOptedOutGeoTracking(boolean hasOptedOutGeoTracking) {
         this.hasOptedOutGeoTracking = hasOptedOutGeoTracking;
     }
 
+    @JsonProperty("BirthDate")
     public String getBirthDate() {
         return birthDate;
     }
 
+    @JsonProperty("BirthDate")
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
+    @JsonProperty("DeathDate")
     public String getDeathDate() {
         return deathDate;
     }
 
+    @JsonProperty("DeathDate")
     public void setDeathDate(String deathDate) {
         this.deathDate = deathDate;
     }
 
+    @JsonProperty("ConvictionsCount")
     public String getConvictionsCount() {
         return convictionsCount;
     }
 
+    @JsonProperty("ConvictionsCount")
     public void setConvictionsCount(String convictionsCount) {
         this.convictionsCount = convictionsCount;
     }
 
+    @JsonProperty("ChildrenCount")
     public String getChildrenCount() {
         return childrenCount;
     }
 
+    @JsonProperty("ChildrenCount")
     public void setChildrenCount(String childrenCount) {
         this.childrenCount = childrenCount;
     }
 
+    @JsonProperty("MilitaryService")
     public String getMilitaryService() {
         return militaryService;
     }
 
+    @JsonProperty("MilitaryService")
     public void setMilitaryService(String militaryService) {
         this.militaryService = militaryService;
     }
 
+    @JsonProperty("IsHomeOwner")
     public Boolean isHomeOwner() {
         return isHomeOwner;
     }
 
-    public void setHomeOwner(Boolean homeOwner) {
+    @JsonProperty("IsHomeOwner")
+    public void setHomeOwner(boolean homeOwner) {
         isHomeOwner = homeOwner;
     }
 
+    @JsonProperty("Occupation")
     public String getOccupation() {
         return occupation;
     }
 
+    @JsonProperty("Occupation")
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
 
+    @JsonProperty("Website")
     public String getWebsite() {
         return website;
     }
 
+    @JsonProperty("Website")
     public void setWebsite(String website) {
         this.website = website;
     }
 
+    @JsonProperty("IndividualsAge")
     public String getIndividualsAge() {
         return individualsAge;
     }
 
+    @JsonProperty("IndividualsAge")
     public void setIndividualsAge(String individualsAge) {
         this.individualsAge = individualsAge;
     }
 
-    public Date getLastViewedDate() {
+    @JsonProperty("LastViewedDate")
+    public String getLastViewedDate() {
         return lastViewedDate;
     }
 
-    public void setLastViewedDate(Date lastViewedDate) {
+    @JsonProperty("LastViewedDate")
+    public void setLastViewedDate(String lastViewedDate) {
         this.lastViewedDate = lastViewedDate;
     }
 
+    @JsonProperty("MasterRecordId")
     public String getMasterRecordId() {
         return masterRecordId;
     }
 
+    @JsonProperty("MasterRecordId")
     public void setMasterRecordId(String masterRecordId) {
         this.masterRecordId = masterRecordId;
     }
 
+    @JsonProperty("ConsumerCreditScore")
     public String getConsumerCreditScore() {
         return consumerCreditScore;
     }
 
+    @JsonProperty("ConsumerCreditScore")
     public void setConsumerCreditScore(String consumerCreditScore) {
         this.consumerCreditScore = consumerCreditScore;
     }
 
+    @JsonProperty("ConsumerCreditScoreProviderName")
     public String getConsumerCreditScoreProviderName() {
         return consumerCreditScoreProviderName;
     }
 
+    @JsonProperty("ConsumerCreditScoreProviderName")
     public void setConsumerCreditScoreProviderName(String consumerCreditScoreProviderName) {
         this.consumerCreditScoreProviderName = consumerCreditScoreProviderName;
     }
 
+    @JsonProperty("InfluencerRating")
     public String getInfluencerRating() {
         return influencerRating;
     }
 
+    @JsonProperty("InfluencerRating")
     public void setInfluencerRating(String influencerRating) {
         this.influencerRating = influencerRating;
     }
 
-    public Date getCreatedDate() {
+    @JsonProperty("CreatedDate")
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    @JsonProperty("CreatedDate")
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
+    @JsonProperty("CreatedById")
     public String getCreatedById() {
         return createdById;
     }
 
+    @JsonProperty("CreatedById")
     public void setCreatedById(String createdById) {
         this.createdById = createdById;
     }
 
-    public Date getLastModifiedDate() {
+    @JsonProperty("LastModifiedDate")
+    public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    @JsonProperty("LastModifiedDate")
+    public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
+    @JsonProperty("LastModifiedById")
     public String getLastModifiedById() {
         return lastModifiedById;
     }
 
+    @JsonProperty("LastModifiedById")
     public void setLastModifiedById(String lastModifiedById) {
         this.lastModifiedById = lastModifiedById;
     }
 
-    public Date getSystemModstamp() {
+    @JsonProperty("SystemModstamp")
+    public String getSystemModstamp() {
         return systemModstamp;
     }
 
-    public void setSystemModstamp(Date systemModstamp) {
+    @JsonProperty("SystemModstamp")
+    public void setSystemModstamp(String systemModstamp) {
         this.systemModstamp = systemModstamp;
     }
 }

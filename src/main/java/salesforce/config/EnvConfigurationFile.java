@@ -5,13 +5,13 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package config;
+package salesforce.config;
 
-public enum EnvVariable {
-    USERNAME1,
-    PASSWORD,
-    CLIENT_ID,
-    CLIENT_SECRET,
-    TOKEN_URL,
-    BASE_URL;
+import io.github.cdimascio.dotenv.Dotenv;
+
+public class EnvConfigurationFile {
+    /**
+     * Constant that refers path of environment variables file.
+     */
+    public static Dotenv dotenv = Dotenv.configure().filename(".env.develop").ignoreIfMalformed().ignoreIfMissing().load();
 }

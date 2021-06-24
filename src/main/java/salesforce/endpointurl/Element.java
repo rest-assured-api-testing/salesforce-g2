@@ -1,4 +1,4 @@
-package endpointurl;
+package salesforce.endpointurl;
 
 public class Element {
     public static final String INDIVIDUAL = "Individual";

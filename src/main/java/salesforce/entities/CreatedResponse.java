@@ -1,4 +1,4 @@
-package entities;
+package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -1,4 +1,4 @@
-package auth;
+package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -9,10 +9,10 @@ package tests;
 
 import api.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import endpointurl.Endpoint;
-import entities.Account;
-import entities.CreatedResponse;
-import entities.Order;
+import salesforce.endpointurl.Endpoint;
+import salesforce.entities.Account;
+import salesforce.entities.CreatedResponse;
+import salesforce.entities.Order;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.*;

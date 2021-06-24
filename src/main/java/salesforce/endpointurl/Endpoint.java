@@ -1,4 +1,4 @@
-package endpointurl;
+package salesforce.endpointurl;
 
 public class Endpoint {
     public static final String PEOPLE = "/" + Element.INDIVIDUAL;

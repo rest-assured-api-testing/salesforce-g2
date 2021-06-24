@@ -5,11 +5,12 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package auth;
+package salesforce.auth;
 
-import config.*;
+import salesforce.config.*;
+import salesforce.entities.Token;
 
-import static config.EnvConfigurationFile.dotenv;
+import static salesforce.config.EnvConfigurationFile.dotenv;
 import static io.restassured.RestAssured.given;
 
 public class Authentication {
