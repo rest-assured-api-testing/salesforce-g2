@@ -7,9 +7,10 @@ import salesforce.entities.CreatedResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
+
+import static salesforce.config.EnvConfigurationFile.LOGGER;
 
 public class AccountStepsGetAll {
     private CreatedResponse createdResponse;
@@ -20,21 +21,21 @@ public class AccountStepsGetAll {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build a all get account request {string}")
-    public void iBuildAAllGetAccountRequest(String arg0) {
-        System.out.println("=================== Account Get All Given ==============================");
+    @Given("I build a all get account request")
+    public void iBuildAAllGetAccountRequest() {
+        LOGGER.info("=================== Account Get All Given ==============================");
         pathParams = new HashMap<>();
     }
 
     @When("I add this {string} endpoint and execute all get account request")
-    public void iAddThisEndpointAndExecuteAllGetAccountRequest(String arg0) {
-        System.out.println("=================== Account Get All When ==============================");
+    public void iAddThisEndpointAndExecuteAllGetAccountRequest(String endpoint) {
+        LOGGER.info("=================== Account Get All When ==============================");
         apiResponse = ApiRequestManager.get(Endpoint.ACCOUNTS, pathParams);
     }
 
     @Then("the response status code should be {string} to all get account request")
-    public void theResponseStatusCodeShouldBeToAllGetAccountRequest(String arg0) {
-        System.out.println("=================== Account Get All Then ==============================");
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
+    public void theResponseStatusCodeShouldBeToAllGetAccountRequest(String status) {
+        LOGGER.info("=================== Account Get All Then ==============================");
+        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 }

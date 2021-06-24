@@ -10,6 +10,8 @@ import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
+import static salesforce.config.EnvConfigurationFile.LOGGER;
+
 public class IndividualStepsGetAll {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
@@ -19,21 +21,21 @@ public class IndividualStepsGetAll {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build a all get request {string}")
-    public void iBuildAAllGetRequest(String arg0) {
-        System.out.println("================>>>>>>> Individual Get All Given <<<<<<<<=============");
+    @Given("I build a all get request")
+    public void iBuildAAllGetRequest() {
+        LOGGER.info("================>>>>>>> Individual Get All Given <<<<<<<<=============");
         pathParams = new HashMap<String,String>();
     }
 
     @When("I add this {string} endpoint and execute all get request")
     public void iAddThisEndpointAndExecuteAllGetRequest(String endpoint) {
-        System.out.println("================>>>>>>> Individual Get All When <<<<<<<<=============");
+        LOGGER.info("================>>>>>>> Individual Get All When <<<<<<<<=============");
         apiResponse = ApiRequestManager.get(endpoint, pathParams);
     }
 
     @Then("the response status code should be {string} to all get request")
-    public void theResponseStatusCodeShouldBeToAllGetRequest(String arg0) {
-        System.out.println("================>>>>>>> Individual Get All Then <<<<<<<<=============");
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
+    public void theResponseStatusCodeShouldBeToAllGetRequest(String status) {
+        LOGGER.info("================>>>>>>> Individual Get All Then <<<<<<<<=============");
+        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 }

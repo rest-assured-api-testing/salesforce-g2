@@ -14,6 +14,8 @@ import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
+import static salesforce.config.EnvConfigurationFile.LOGGER;
+
 public class AccountStepsUpdate {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
@@ -24,9 +26,9 @@ public class AccountStepsUpdate {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build a update account request {string}")
-    public void iBuildAUpdateAccountRequest(String arg0) {
-        System.out.println("=================== Account Update Given ==============================");
+    @Given("I build a update account request")
+    public void iBuildAUpdateAccountRequest() {
+        LOGGER.info("=================== Account Update Given ==============================");
         pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
         account = new Account();
@@ -34,14 +36,14 @@ public class AccountStepsUpdate {
     }
 
     @When("I add this {string} endpoint and execute patch account request")
-    public void iAddThisEndpointAndExecutePatchAccountRequest(String arg0) throws JsonProcessingException {
-        System.out.println("=================== Account Update When ==============================");
+    public void iAddThisEndpointAndExecutePatchAccountRequest(String endpoint) throws JsonProcessingException {
+        LOGGER.info("=================== Account Update When ==============================");
         apiResponse = ApiRequestManager.update(Endpoint.ACCOUNT, pathParams, account);
     }
 
     @Then("the response status code should be {string} to patch account request")
-    public void theResponseStatusCodeShouldBeToPatchAccountRequest(String arg0) {
-        System.out.println("=================== Account Update Then ==============================");
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
+    public void theResponseStatusCodeShouldBeToPatchAccountRequest(String status) {
+        LOGGER.info("=================== Account Update Then ==============================");
+        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 }

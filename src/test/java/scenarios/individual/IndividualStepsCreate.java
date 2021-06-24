@@ -13,6 +13,8 @@ import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
+import static salesforce.config.EnvConfigurationFile.LOGGER;
+
 public class IndividualStepsCreate {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
@@ -23,9 +25,9 @@ public class IndividualStepsCreate {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build a post request {string}")
-    public void iBuildAPostRequest(String arg0) {
-        System.out.println("================>>>>>>> Individual Post Given <<<<<<<<=============");
+    @Given("I build a post request")
+    public void iBuildAPostRequest() {
+        LOGGER.info("================>>>>>>> Individual Post Given <<<<<<<<=============");
         pathParams = new HashMap<>();
         person = new Person();
         person.setFirstName("Pepito");
@@ -33,9 +35,9 @@ public class IndividualStepsCreate {
     }
 
     @When("I add this {string} endpoint and execute post request")
-    public void iAddThisEndpointAndExecutePostRequest(String arg0) throws JsonProcessingException {
-        System.out.println("================>>>>>>> Individual Post When <<<<<<<<=============");
-        apiResponse = ApiRequestManager.create(Endpoint.PEOPLE, pathParams, person);
+    public void iAddThisEndpointAndExecutePostRequest(String endpoint) throws JsonProcessingException {
+        LOGGER.info("================>>>>>>> Individual Post When <<<<<<<<=============");
+        apiResponse = ApiRequestManager.create(endpoint, pathParams, person);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -43,8 +45,8 @@ public class IndividualStepsCreate {
     }
 
     @Then("the response status code should be {string} to post request")
-    public void theResponseStatusCodeShouldBeToPostRequest(String arg0) {
-        System.out.println("================>>>>>>> Individual Post Then <<<<<<<<=============");
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
+    public void theResponseStatusCodeShouldBeToPostRequest(String status) {
+        LOGGER.info("================>>>>>>> Individual Post Then <<<<<<<<=============");
+        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 }
