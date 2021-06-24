@@ -1,0 +1,288 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ]
+    },
+    "Id": {
+      "type": "string"
+    },
+    "IsDeleted": {
+      "type": "boolean"
+    },
+    "MasterRecordId": {
+      "type": "string"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Type": {
+      "type": "string"
+    },
+    "ParentId": {
+      "type": "string"
+    },
+    "BillingStreet": {
+      "type": "string"
+    },
+    "BillingCity": {
+      "type": "string"
+    },
+    "BillingState": {
+      "type": "string"
+    },
+    "BillingPostalCode": {
+      "type": "string"
+    },
+    "BillingCountry": {
+      "type": "string"
+    },
+    "BillingLatitude": {
+      "type": "string"
+    },
+    "BillingLongitude": {
+      "type": "string"
+    },
+    "BillingGeocodeAccuracy": {
+      "type": "string"
+    },
+    "BillingAddress": {
+      "type": "object"
+    },
+    "ShippingStreet": {
+      "type": "string"
+    },
+    "ShippingCity": {
+      "type": "string"
+    },
+    "ShippingState": {
+      "type": "string"
+    },
+    "ShippingPostalCode": {
+      "type": "string"
+    },
+    "ShippingCountry": {
+      "type": "string"
+    },
+    "ShippingLatitude": {
+      "type": "string"
+    },
+    "ShippingLongitude": {
+      "type": "string"
+    },
+    "ShippingGeocodeAccuracy": {
+      "type": "string"
+    },
+    "ShippingAddress": {
+      "type": "object"
+    },
+    "Phone": {
+      "type": "string"
+    },
+    "Fax": {
+      "type": "string"
+    },
+    "AccountNumber": {
+      "type": "string"
+    },
+    "Website": {
+      "type": "string"
+    },
+    "PhotoUrl": {
+      "type": "string"
+    },
+    "Sic": {
+      "type": "string"
+    },
+    "Industry": {
+      "type": "string"
+    },
+    "AnnualRevenue": {
+      "type": "string"
+    },
+    "NumberOfEmployees": {
+      "type": "string"
+    },
+    "Ownership": {
+      "type": "string"
+    },
+    "TickerSymbol": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "Rating": {
+      "type": "string"
+    },
+    "Site": {
+      "type": "string"
+    },
+    "OwnerId": {
+      "type": "string"
+    },
+    "CreatedDate": {
+      "type": "string"
+    },
+    "CreatedById": {
+      "type": "string"
+    },
+    "LastModifiedDate": {
+      "type": "string"
+    },
+    "LastModifiedById": {
+      "type": "string"
+    },
+    "SystemModstamp": {
+      "type": "string"
+    },
+    "LastActivityDate": {
+      "type": "string"
+    },
+    "LastViewedDate": {
+      "type": "string"
+    },
+    "LastReferencedDate": {
+      "type": "string"
+    },
+    "Jigsaw": {
+      "type": "string"
+    },
+    "JigsawCompanyId": {
+      "type": "string"
+    },
+    "CleanStatus": {
+      "type": "string"
+    },
+    "AccountSource": {
+      "type": "string"
+    },
+    "DunsNumber": {
+      "type": "string"
+    },
+    "Tradestyle": {
+      "type": "string"
+    },
+    "NaicsCode": {
+      "type": "string"
+    },
+    "NaicsDesc": {
+      "type": "string"
+    },
+    "YearStarted": {
+      "type": "string"
+    },
+    "SicDesc": {
+      "type": "string"
+    },
+    "DandbCompanyId": {
+      "type": "string"
+    },
+    "OperatingHoursId": {
+      "type": "string"
+    },
+    "CustomerPriority__c": {
+      "type": "string"
+    },
+    "SLA__c": {
+      "type": "string"
+    },
+    "Active__c": {
+      "type": "string"
+    },
+    "NumberofLocations__c": {
+      "type": "string"
+    },
+    "UpsellOpportunity__c": {
+      "type": "string"
+    },
+    "SLASerialNumber__c": {
+      "type": "string"
+    },
+    "SLAExpirationDate__c": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "attributes",
+    "Id",
+    "IsDeleted",
+    "MasterRecordId",
+    "Name",
+    "Type",
+    "ParentId",
+    "BillingStreet",
+    "BillingCity",
+    "BillingState",
+    "BillingPostalCode",
+    "BillingCountry",
+    "BillingLatitude",
+    "BillingLongitude",
+    "BillingGeocodeAccuracy",
+    "BillingAddress",
+    "ShippingStreet",
+    "ShippingCity",
+    "ShippingState",
+    "ShippingPostalCode",
+    "ShippingCountry",
+    "ShippingLatitude",
+    "ShippingLongitude",
+    "ShippingGeocodeAccuracy",
+    "ShippingAddress",
+    "Phone",
+    "Fax",
+    "AccountNumber",
+    "Website",
+    "PhotoUrl",
+    "Sic",
+    "Industry",
+    "AnnualRevenue",
+    "NumberOfEmployees",
+    "Ownership",
+    "TickerSymbol",
+    "Description",
+    "Rating",
+    "Site",
+    "OwnerId",
+    "CreatedDate",
+    "CreatedById",
+    "LastModifiedDate",
+    "LastModifiedById",
+    "SystemModstamp",
+    "LastActivityDate",
+    "LastViewedDate",
+    "LastReferencedDate",
+    "Jigsaw",
+    "JigsawCompanyId",
+    "CleanStatus",
+    "AccountSource",
+    "DunsNumber",
+    "Tradestyle",
+    "NaicsCode",
+    "NaicsDesc",
+    "YearStarted",
+    "SicDesc",
+    "DandbCompanyId",
+    "OperatingHoursId",
+    "CustomerPriority__c",
+    "SLA__c",
+    "Active__c",
+    "NumberofLocations__c",
+    "UpsellOpportunity__c",
+    "SLASerialNumber__c",
+    "SLAExpirationDate__c"
+  ]
+}
