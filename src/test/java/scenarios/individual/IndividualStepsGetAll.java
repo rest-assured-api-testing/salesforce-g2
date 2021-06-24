@@ -2,13 +2,11 @@ package scenarios.individual;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
-import endpointurl.Endpoint;
 import entities.CreatedResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.http.HttpStatus;
-
 import java.util.HashMap;
 import java.util.Map;
 

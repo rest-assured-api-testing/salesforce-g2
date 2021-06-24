@@ -2,41 +2,33 @@ package scenarios.individual.hooks;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
-import auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import endpointurl.ElementParam;
 import endpointurl.Endpoint;
 import entities.CreatedResponse;
-import entities.Person;
+import entities.Account;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IndividualScenarioHooks {
-
+public class AccountScenarioHooks {
     private CreatedResponse createdResponse;
 
-    public IndividualScenarioHooks(CreatedResponse createdResponse) {
+    public AccountScenarioHooks(CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
-    @Before(order = 1)
-    public void getToken() {
-        Authentication.getAuth();
-    }
-
-    @Before(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @DeleteIndividual", order = 2)
+    @Before(value = "@GetAccounts or @GetAccount or @UpdateAccount or @DeleteAccount", order = 2)
     public void setUp() throws JsonProcessingException {
-        System.out.println("======================= A Individual Before Hook");
+        System.out.println("======================= A Account Before Hook");
         Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
-        person.setFirstName("Pepito");
-        person.setLastName("Flores");
+        Account account = new Account();
+        account.setName("First Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoint.PEOPLE, pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoint.ACCOUNTS, pathParams, account);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -45,14 +37,14 @@ public class IndividualScenarioHooks {
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
-    @After(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @CreateIndividual")
+    @After(value = "@GetAccounts or @GetAccount or @UpdateAccount or @CreateAccount")
     public void setDown() {
-        System.out.println("======================= A Individual After Hook");
+        System.out.println("======================= A Account After Hook");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(ElementParam.ID, createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoint.PERSON, pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoint.ACCOUNT, pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
