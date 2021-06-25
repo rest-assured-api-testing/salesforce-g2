@@ -2,19 +2,18 @@ package scenarios.individual;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import salesforce.endpointurl.ElementParam;
-import salesforce.endpointurl.Endpoint;
 import salesforce.entities.CreatedResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
-import static salesforce.config.EnvConfigurationFile.LOGGER;
-
 public class IndividualStepsGet {
+    public Logger LOGGER = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
     private Map<String,String> pathParams;
