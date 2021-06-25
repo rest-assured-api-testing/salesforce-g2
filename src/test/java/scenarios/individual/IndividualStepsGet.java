@@ -1,14 +1,20 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package scenarios.individual;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
-import salesforce.endpointurl.ElementParam;
-import salesforce.endpointurl.Endpoint;
+import salesforce.endpointurl.Endpoints;
 import salesforce.entities.CreatedResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.http.HttpStatus;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,9 +23,9 @@ import static salesforce.config.EnvConfigurationFile.LOGGER;
 public class IndividualStepsGet {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
-    private Map<String,String> pathParams;
+    private Map<String, String> pathParams;
 
-    public IndividualStepsGet(CreatedResponse createdResponse) {
+    public IndividualStepsGet(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
@@ -27,17 +33,17 @@ public class IndividualStepsGet {
     public void iBuildAGetRequest() {
         LOGGER.info("================>>>>>>> Individual Get Given <<<<<<<<=============");
         pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, createdResponse.getId());
+        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
     }
 
     @When("I add this {string} endpoint and execute get request")
-    public void iAddThisEndpointAndExecuteGetRequest(String endpoint) {
+    public void iAddThisEndpointAndExecuteGetRequest(final String endpoint) {
         LOGGER.info("================>>>>>>> Individual Get When <<<<<<<<=============");
         apiResponse = ApiRequestManager.get(endpoint, pathParams);
     }
 
     @Then("the response status code should be {string} to get request")
-    public void theResponseStatusCodeShouldBeToGetRequest(String status) {
+    public void theResponseStatusCodeShouldBeToGetRequest(final String status) {
         LOGGER.info("================>>>>>>> Individual Get Then <<<<<<<<=============");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }

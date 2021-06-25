@@ -1,15 +1,21 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package scenarios.individual;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.endpointurl.Endpoint;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Person;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.http.HttpStatus;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,10 +24,10 @@ import static salesforce.config.EnvConfigurationFile.LOGGER;
 public class IndividualStepsCreate {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
-    private Map<String,String> pathParams;
-    Person person;
+    private Map<String, String> pathParams;
+    private Person person;
 
-    public IndividualStepsCreate(CreatedResponse createdResponse) {
+    public IndividualStepsCreate(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
@@ -35,7 +41,7 @@ public class IndividualStepsCreate {
     }
 
     @When("I add this {string} endpoint and execute post request")
-    public void iAddThisEndpointAndExecutePostRequest(String endpoint) throws JsonProcessingException {
+    public void iAddThisEndpointAndExecutePostRequest(final String endpoint) throws JsonProcessingException {
         LOGGER.info("================>>>>>>> Individual Post When <<<<<<<<=============");
         apiResponse = ApiRequestManager.create(endpoint, pathParams, person);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
@@ -45,7 +51,7 @@ public class IndividualStepsCreate {
     }
 
     @Then("the response status code should be {string} to post request")
-    public void theResponseStatusCodeShouldBeToPostRequest(String status) {
+    public void theResponseStatusCodeShouldBeToPostRequest(final String status) {
         LOGGER.info("================>>>>>>> Individual Post Then <<<<<<<<=============");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }

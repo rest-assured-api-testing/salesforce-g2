@@ -1,13 +1,20 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package scenarios.account;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
-import salesforce.endpointurl.ElementParam;
-import salesforce.endpointurl.Endpoint;
+import salesforce.endpointurl.Endpoints;
 import salesforce.entities.CreatedResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,9 +23,9 @@ import static salesforce.config.EnvConfigurationFile.LOGGER;
 public class AccountStepsDelete {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
-    private Map<String,String> pathParams;
+    private Map<String, String> pathParams;
 
-    public AccountStepsDelete(CreatedResponse createdResponse) {
+    public AccountStepsDelete(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
@@ -26,17 +33,17 @@ public class AccountStepsDelete {
     public void iBuildADeleteAccountRequest() {
         LOGGER.info("=================== Account Delete Given ==============================");
         pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, createdResponse.getId());
-     }
+        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+    }
 
     @When("I add this {string} endpoint and execute delete account request")
-    public void iAddThisEndpointAndExecuteDeleteAccountRequest(String endpoint) {
+    public void iAddThisEndpointAndExecuteDeleteAccountRequest(final String endpoint) {
         LOGGER.info("=================== Account Delete When ==============================");
-        apiResponse = ApiRequestManager.delete(Endpoint.ACCOUNT, pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.getEndpoint(), pathParams);
     }
 
     @Then("the response status code should be {string} to delete account request")
-    public void theResponseStatusCodeShouldBeToDeleteAccountRequest(String status) {
+    public void theResponseStatusCodeShouldBeToDeleteAccountRequest(final String status) {
         LOGGER.info("=================== Account Delete Then ==============================");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
