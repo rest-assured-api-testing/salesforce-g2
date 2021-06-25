@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package scenarios.product;
 
 import api.ApiRequestManager;
@@ -7,7 +14,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.http.HttpStatus;
-import salesforce.endpointurl.ElementParam;
+import salesforce.endpointurl.Endpoints;
 import salesforce.entities.Product;
 import salesforce.entities.CreatedResponse;
 
@@ -27,7 +34,7 @@ public class UpdateProductSteps {
     @Given("I build update product request")
     public void iBuildAUpdateProductRequest() {
         pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, createdResponse.getId());
+        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
         product = new Product();
         product.setName("New name of product");
     }

@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package scenarios.hooks;
 
 import api.ApiRequestManager;
@@ -6,10 +13,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
+import salesforce.endpointurl.Endpoints;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import salesforce.endpointurl.ElementParam;
-import salesforce.endpointurl.Endpoint;
 import salesforce.entities.Product;
 import salesforce.entities.CreatedResponse;
 import java.util.HashMap;
@@ -30,7 +36,7 @@ public class ProductHooks {
         product.setName("The first product");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoint.PRODUCTS, pathParams, product);
+        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.getEndpoint(), pathParams, product);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -42,10 +48,10 @@ public class ProductHooks {
     @After(value = "@GetProducts or @GetProduct or @UpdateProduct or @CreateProduct")
     public void setLast() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, createdResponse.getId());
+        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoint.PRODUCT, pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.getEndpoint(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }

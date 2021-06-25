@@ -1,16 +1,24 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package scenarios.individual;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import salesforce.endpointurl.Endpoints;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import salesforce.endpointurl.ElementParam;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Person;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,10 +26,10 @@ public class IndividualStepsUpdate {
     public Logger LOGGER = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
-    private Map<String,String> pathParams;
-    Person person;
+    private Map<String, String> pathParams;
+    private Person person;
 
-    public IndividualStepsUpdate(CreatedResponse createdResponse) {
+    public IndividualStepsUpdate(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
@@ -29,20 +37,20 @@ public class IndividualStepsUpdate {
     public void iBuildAUpdateRequest() {
         LOGGER.info("================>>>>>>> Individual Patch Given <<<<<<<<=============");
         pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, createdResponse.getId());
+        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
         person = new Person();
         person.setFirstName("Pedrito");
         person.setLastName("Fantasy");
     }
 
     @When("I add this {string} endpoint and execute patch request")
-    public void iAddThisEndpointAndExecutePatchRequest(String endpoint) throws JsonProcessingException {
+    public void iAddThisEndpointAndExecutePatchRequest(final String endpoint) throws JsonProcessingException {
         LOGGER.info("================>>>>>>> Individual Patch When <<<<<<<<=============");
         apiResponse = ApiRequestManager.update(endpoint, pathParams, person);
     }
 
     @Then("the response status code should be {string} to patch request")
-    public void theResponseStatusCodeShouldBeToPatchRequest(String status) {
+    public void theResponseStatusCodeShouldBeToPatchRequest(final String status) {
         LOGGER.info("================>>>>>>> Individual Patch Then <<<<<<<<=============");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }

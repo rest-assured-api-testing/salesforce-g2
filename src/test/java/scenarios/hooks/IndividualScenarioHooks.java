@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package scenarios.hooks;
 
 import api.ApiRequestManager;
@@ -6,13 +13,13 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.endpointurl.ElementParam;
-import salesforce.endpointurl.Endpoint;
+import salesforce.endpointurl.Endpoints;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Person;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +27,7 @@ public class IndividualScenarioHooks {
     public Logger LOGGER = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
 
-    public IndividualScenarioHooks(CreatedResponse createdResponse) {
+    public IndividualScenarioHooks(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
@@ -38,7 +45,7 @@ public class IndividualScenarioHooks {
         person.setLastName("Flores");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoint.PEOPLE, pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.getEndpoint(), pathParams, person);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -51,10 +58,10 @@ public class IndividualScenarioHooks {
     public void setDown() {
         LOGGER.info("======================= A Individual After Hook");
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID, createdResponse.getId());
+        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoint.PERSON, pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.getEndpoint(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
