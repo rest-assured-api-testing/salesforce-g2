@@ -11,7 +11,7 @@ public enum ParamValue {
     PASSWORD("password");
     private String value;
 
-    ParamValue(String value) {
+    ParamValue(final String value) {
         this.value = value;
     }
 

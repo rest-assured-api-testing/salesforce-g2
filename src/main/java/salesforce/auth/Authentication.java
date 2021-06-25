@@ -8,7 +8,10 @@
 package salesforce.auth;
 
 import org.apache.http.HttpHeaders;
-import salesforce.config.*;
+import salesforce.config.Param;
+import salesforce.config.EnvVariable;
+import salesforce.config.ParamValue;
+import salesforce.config.HeaderValue;
 import salesforce.entities.Token;
 
 import static salesforce.config.EnvConfigurationFile.dotenv;
@@ -19,7 +22,7 @@ public class Authentication {
     public static Token getAuth() {
         return
                 given().urlEncodingEnabled(true)
-                        .param(Param.USERNAME.getParam(),dotenv.get(EnvVariable.USERNAME1.name()))
+                        .param(Param.USERNAME.getParam(), dotenv.get(EnvVariable.USERNAME1.name()))
                         .param(Param.PASSWORD.getParam(), dotenv.get(EnvVariable.PASSWORD.name()))
                         .param(Param.CLIENT_ID.getParam(), dotenv.get(EnvVariable.CLIENT_ID.name()))
                         .param(Param.CLIENT_SECRET.getParam(), dotenv.get(EnvVariable.CLIENT_SECRET.name()))

@@ -16,7 +16,7 @@ public enum Param {
 
     private String param;
 
-    Param(String param) {
+    Param(final String param) {
         this.param = param;
     }
 

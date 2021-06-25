@@ -1,151 +1,159 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Account {
 
-    public Attribute attributes;
+    private Attribute attributes;
     @JsonProperty("Id")
-    public String id;
+    private String id;
     @JsonProperty("IsDeleted")
-    public Boolean isDeleted;
+    private Boolean isDeleted;
     @JsonProperty("MasterRecordId")
-    public String masterRecordId;
+    private String masterRecordId;
     @JsonProperty("Name")
-    public String name;
+    private String name;
     @JsonProperty("Type")
-    public String type;
+    private String type;
     @JsonProperty("ParentId")
-    public String parentId;
+    private String parentId;
     @JsonProperty("BillingStreet")
-    public String billingStreet;
+    private String billingStreet;
     @JsonProperty("BillingCity")
-    public String billingCity;
+    private String billingCity;
     @JsonProperty("BillingState")
-    public String billingState;
+    private String billingState;
     @JsonProperty("BillingPostalCode")
-    public String billingPostalCode;
+    private String billingPostalCode;
     @JsonProperty("BillingCountry")
-    public String billingCountry;
+    private String billingCountry;
     @JsonProperty("BillingLatitude")
-    public String billingLatitude;
+    private String billingLatitude;
     @JsonProperty("BillingLongitude")
-    public String billingLongitude;
+    private String billingLongitude;
     @JsonProperty("BillingGeocodeAccuracy")
-    public String billingGeocodeAccuracy;
+    private String billingGeocodeAccuracy;
     @JsonProperty("BillingAddress")
-    public Address billingAddress;
+    private Address billingAddress;
     @JsonProperty("ShippingStreet")
-    public String shippingStreet;
+    private String shippingStreet;
     @JsonProperty("ShippingCity")
-    public String shippingCity;
+    private String shippingCity;
     @JsonProperty("ShippingState")
-    public String shippingState;
+    private String shippingState;
     @JsonProperty("ShippingPostalCode")
-    public String shippingPostalCode;
+    private String shippingPostalCode;
     @JsonProperty("ShippingCountry")
-    public String shippingCountry;
+    private String shippingCountry;
     @JsonProperty("ShippingLatitude")
-    public String shippingLatitude;
+    private String shippingLatitude;
     @JsonProperty("ShippingLongitude")
-    public String shippingLongitude;
+    private String shippingLongitude;
     @JsonProperty("ShippingGeocodeAccuracy")
-    public String shippingGeocodeAccuracy;
+    private String shippingGeocodeAccuracy;
     @JsonProperty("ShippingAddress")
-    public Address shippingAddress;
+    private Address shippingAddress;
     @JsonProperty("Phone")
-    public String phone;
+    private String phone;
     @JsonProperty("Fax")
-    public String fax;
+    private String fax;
     @JsonProperty("AccountNumber")
-    public String accountNumber;
+    private String accountNumber;
     @JsonProperty("Website")
-    public String website;
+    private String website;
     @JsonProperty("PhotoUrl")
-    public String photoUrl;
+    private String photoUrl;
     @JsonProperty("Sic")
-    public String sic;
+    private String sic;
     @JsonProperty("Industry")
-    public String industry;
+    private String industry;
     @JsonProperty("AnnualRevenue")
-    public String annualRevenue;
+    private String annualRevenue;
     @JsonProperty("NumberOfEmployees")
-    public String numberOfEmployees;
+    private String numberOfEmployees;
     @JsonProperty("Ownership")
-    public String ownership;
+    private String ownership;
     @JsonProperty("TickerSymbol")
-    public String tickerSymbol;
+    private String tickerSymbol;
     @JsonProperty("Description")
-    public String description;
+    private String description;
     @JsonProperty("Rating")
-    public String rating;
+    private String rating;
     @JsonProperty("Site")
-    public String site;
+    private String site;
     @JsonProperty("OwnerId")
-    public String ownerId;
+    private String ownerId;
     @JsonProperty("CreatedDate")
-    public Date createdDate;
+    private Date createdDate;
     @JsonProperty("CreatedById")
-    public String createdById;
+    private String createdById;
     @JsonProperty("LastModifiedDate")
-    public Date lastModifiedDate;
+    private Date lastModifiedDate;
     @JsonProperty("LastModifiedById")
-    public String lastModifiedById;
+    private String lastModifiedById;
     @JsonProperty("SystemModstamp")
-    public Date systemModstamp;
+    private Date systemModstamp;
     @JsonProperty("LastActivityDate")
-    public String lastActivityDate;
+    private String lastActivityDate;
     @JsonProperty("LastViewedDate")
-    public Date lastViewedDate;
+    private Date lastViewedDate;
     @JsonProperty("LastReferencedDate")
-    public Date lastReferencedDate;
+    private Date lastReferencedDate;
     @JsonProperty("Jigsaw")
-    public String jigsaw;
+    private String jigsaw;
     @JsonProperty("JigsawCompanyId")
-    public String jigsawCompanyId;
+    private String jigsawCompanyId;
     @JsonProperty("CleanStatus")
-    public String cleanStatus;
+    private String cleanStatus;
     @JsonProperty("AccountSource")
-    public String accountSource;
+    private String accountSource;
     @JsonProperty("DunsNumber")
-    public String dunsNumber;
+    private String dunsNumber;
     @JsonProperty("Tradestyle")
-    public String tradestyle;
+    private String tradestyle;
     @JsonProperty("NaicsCode")
-    public String naicsCode;
+    private String naicsCode;
     @JsonProperty("NaicsDesc")
-    public String naicsDesc;
+    private String naicsDesc;
     @JsonProperty("YearStarted")
-    public String yearStarted;
+    private String yearStarted;
     @JsonProperty("SicDesc")
-    public String sicDesc;
+    private String sicDesc;
     @JsonProperty("DandbCompanyId")
-    public String dandbCompanyId;
+    private String dandbCompanyId;
     @JsonProperty("OperatingHoursId")
-    public String operatingHoursId;
+    private String operatingHoursId;
     @JsonProperty("CustomerPriority__c")
-    public String customerPriority__c;
+    private String customerPriority__c;
     @JsonProperty("SLA__c")
-    public String sLA__c;
+    private String sLA__c;
     @JsonProperty("Active__c")
-    public String active__c;
+    private String active__c;
     @JsonProperty("NumberofLocations__c")
-    public String numberofLocations__c;
+    private String numberofLocations__c;
     @JsonProperty("UpsellOpportunity__c")
-    public String upsellOpportunity__c;
+    private String upsellOpportunity__c;
     @JsonProperty("SLASerialNumber__c")
-    public String sLASerialNumber__c;
+    private String sLASerialNumber__c;
     @JsonProperty("SLAExpirationDate__c")
-    public String sLAExpirationDate__c;
+    private String sLAExpirationDate__c;
 
     public Attribute getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Attribute attributes) {
+    public void setAttributes(final Attribute attributes) {
         this.attributes = attributes;
     }
 
@@ -153,7 +161,7 @@ public class Account {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -161,7 +169,7 @@ public class Account {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(final Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -169,7 +177,7 @@ public class Account {
         return masterRecordId;
     }
 
-    public void setMasterRecordId(String masterRecordId) {
+    public void setMasterRecordId(final String masterRecordId) {
         this.masterRecordId = masterRecordId;
     }
 
@@ -177,7 +185,7 @@ public class Account {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -185,7 +193,7 @@ public class Account {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(final String type) {
         this.type = type;
     }
 
@@ -193,7 +201,7 @@ public class Account {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(final String parentId) {
         this.parentId = parentId;
     }
 
@@ -201,7 +209,7 @@ public class Account {
         return billingStreet;
     }
 
-    public void setBillingStreet(String billingStreet) {
+    public void setBillingStreet(final String billingStreet) {
         this.billingStreet = billingStreet;
     }
 
@@ -209,7 +217,7 @@ public class Account {
         return billingCity;
     }
 
-    public void setBillingCity(String billingCity) {
+    public void setBillingCity(final String billingCity) {
         this.billingCity = billingCity;
     }
 
@@ -217,7 +225,7 @@ public class Account {
         return billingState;
     }
 
-    public void setBillingState(String billingState) {
+    public void setBillingState(final String billingState) {
         this.billingState = billingState;
     }
 
@@ -225,7 +233,7 @@ public class Account {
         return billingPostalCode;
     }
 
-    public void setBillingPostalCode(String billingPostalCode) {
+    public void setBillingPostalCode(final String billingPostalCode) {
         this.billingPostalCode = billingPostalCode;
     }
 
@@ -233,7 +241,7 @@ public class Account {
         return billingCountry;
     }
 
-    public void setBillingCountry(String billingCountry) {
+    public void setBillingCountry(final String billingCountry) {
         this.billingCountry = billingCountry;
     }
 
@@ -241,7 +249,7 @@ public class Account {
         return billingLatitude;
     }
 
-    public void setBillingLatitude(String billingLatitude) {
+    public void setBillingLatitude(final String billingLatitude) {
         this.billingLatitude = billingLatitude;
     }
 
@@ -249,7 +257,7 @@ public class Account {
         return billingLongitude;
     }
 
-    public void setBillingLongitude(String billingLongitude) {
+    public void setBillingLongitude(final String billingLongitude) {
         this.billingLongitude = billingLongitude;
     }
 
@@ -257,7 +265,7 @@ public class Account {
         return billingGeocodeAccuracy;
     }
 
-    public void setBillingGeocodeAccuracy(String billingGeocodeAccuracy) {
+    public void setBillingGeocodeAccuracy(final String billingGeocodeAccuracy) {
         this.billingGeocodeAccuracy = billingGeocodeAccuracy;
     }
 
@@ -265,7 +273,7 @@ public class Account {
         return billingAddress;
     }
 
-    public void setBillingAddress(Address billingAddress) {
+    public void setBillingAddress(final Address billingAddress) {
         this.billingAddress = billingAddress;
     }
 
@@ -273,7 +281,7 @@ public class Account {
         return shippingStreet;
     }
 
-    public void setShippingStreet(String shippingStreet) {
+    public void setShippingStreet(final String shippingStreet) {
         this.shippingStreet = shippingStreet;
     }
 
@@ -281,7 +289,7 @@ public class Account {
         return shippingCity;
     }
 
-    public void setShippingCity(String shippingCity) {
+    public void setShippingCity(final String shippingCity) {
         this.shippingCity = shippingCity;
     }
 
@@ -289,7 +297,7 @@ public class Account {
         return shippingState;
     }
 
-    public void setShippingState(String shippingState) {
+    public void setShippingState(final String shippingState) {
         this.shippingState = shippingState;
     }
 
@@ -297,7 +305,7 @@ public class Account {
         return shippingPostalCode;
     }
 
-    public void setShippingPostalCode(String shippingPostalCode) {
+    public void setShippingPostalCode(final String shippingPostalCode) {
         this.shippingPostalCode = shippingPostalCode;
     }
 
@@ -305,7 +313,7 @@ public class Account {
         return shippingCountry;
     }
 
-    public void setShippingCountry(String shippingCountry) {
+    public void setShippingCountry(final String shippingCountry) {
         this.shippingCountry = shippingCountry;
     }
 
@@ -313,7 +321,7 @@ public class Account {
         return shippingLatitude;
     }
 
-    public void setShippingLatitude(String shippingLatitude) {
+    public void setShippingLatitude(final String shippingLatitude) {
         this.shippingLatitude = shippingLatitude;
     }
 
@@ -321,7 +329,7 @@ public class Account {
         return shippingLongitude;
     }
 
-    public void setShippingLongitude(String shippingLongitude) {
+    public void setShippingLongitude(final String shippingLongitude) {
         this.shippingLongitude = shippingLongitude;
     }
 
@@ -329,7 +337,7 @@ public class Account {
         return shippingGeocodeAccuracy;
     }
 
-    public void setShippingGeocodeAccuracy(String shippingGeocodeAccuracy) {
+    public void setShippingGeocodeAccuracy(final String shippingGeocodeAccuracy) {
         this.shippingGeocodeAccuracy = shippingGeocodeAccuracy;
     }
 
@@ -337,7 +345,7 @@ public class Account {
         return shippingAddress;
     }
 
-    public void setShippingAddress(Address shippingAddress) {
+    public void setShippingAddress(final Address shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 
@@ -345,7 +353,7 @@ public class Account {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(final String phone) {
         this.phone = phone;
     }
 
@@ -353,7 +361,7 @@ public class Account {
         return fax;
     }
 
-    public void setFax(String fax) {
+    public void setFax(final String fax) {
         this.fax = fax;
     }
 
@@ -361,7 +369,7 @@ public class Account {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(final String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -369,7 +377,7 @@ public class Account {
         return website;
     }
 
-    public void setWebsite(String website) {
+    public void setWebsite(final String website) {
         this.website = website;
     }
 
@@ -377,7 +385,7 @@ public class Account {
         return photoUrl;
     }
 
-    public void setPhotoUrl(String photoUrl) {
+    public void setPhotoUrl(final String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
@@ -385,7 +393,7 @@ public class Account {
         return sic;
     }
 
-    public void setSic(String sic) {
+    public void setSic(final String sic) {
         this.sic = sic;
     }
 
@@ -393,7 +401,7 @@ public class Account {
         return industry;
     }
 
-    public void setIndustry(String industry) {
+    public void setIndustry(final String industry) {
         this.industry = industry;
     }
 
@@ -401,7 +409,7 @@ public class Account {
         return annualRevenue;
     }
 
-    public void setAnnualRevenue(String annualRevenue) {
+    public void setAnnualRevenue(final String annualRevenue) {
         this.annualRevenue = annualRevenue;
     }
 
@@ -409,7 +417,7 @@ public class Account {
         return numberOfEmployees;
     }
 
-    public void setNumberOfEmployees(String numberOfEmployees) {
+    public void setNumberOfEmployees(final String numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
     }
 
@@ -417,7 +425,7 @@ public class Account {
         return ownership;
     }
 
-    public void setOwnership(String ownership) {
+    public void setOwnership(final String ownership) {
         this.ownership = ownership;
     }
 
@@ -425,7 +433,7 @@ public class Account {
         return tickerSymbol;
     }
 
-    public void setTickerSymbol(String tickerSymbol) {
+    public void setTickerSymbol(final String tickerSymbol) {
         this.tickerSymbol = tickerSymbol;
     }
 
@@ -433,7 +441,7 @@ public class Account {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -441,7 +449,7 @@ public class Account {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(final String rating) {
         this.rating = rating;
     }
 
@@ -449,7 +457,7 @@ public class Account {
         return site;
     }
 
-    public void setSite(String site) {
+    public void setSite(final String site) {
         this.site = site;
     }
 
@@ -457,7 +465,7 @@ public class Account {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    public void setOwnerId(final String ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -465,7 +473,7 @@ public class Account {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(final Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -473,7 +481,7 @@ public class Account {
         return createdById;
     }
 
-    public void setCreatedById(String createdById) {
+    public void setCreatedById(final String createdById) {
         this.createdById = createdById;
     }
 
@@ -481,7 +489,7 @@ public class Account {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(final Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
@@ -489,7 +497,7 @@ public class Account {
         return lastModifiedById;
     }
 
-    public void setLastModifiedById(String lastModifiedById) {
+    public void setLastModifiedById(final String lastModifiedById) {
         this.lastModifiedById = lastModifiedById;
     }
 
@@ -497,7 +505,7 @@ public class Account {
         return systemModstamp;
     }
 
-    public void setSystemModstamp(Date systemModstamp) {
+    public void setSystemModstamp(final Date systemModstamp) {
         this.systemModstamp = systemModstamp;
     }
 
@@ -505,7 +513,7 @@ public class Account {
         return lastActivityDate;
     }
 
-    public void setLastActivityDate(String lastActivityDate) {
+    public void setLastActivityDate(final String lastActivityDate) {
         this.lastActivityDate = lastActivityDate;
     }
 
@@ -513,7 +521,7 @@ public class Account {
         return lastViewedDate;
     }
 
-    public void setLastViewedDate(Date lastViewedDate) {
+    public void setLastViewedDate(final Date lastViewedDate) {
         this.lastViewedDate = lastViewedDate;
     }
 
@@ -521,7 +529,7 @@ public class Account {
         return lastReferencedDate;
     }
 
-    public void setLastReferencedDate(Date lastReferencedDate) {
+    public void setLastReferencedDate(final Date lastReferencedDate) {
         this.lastReferencedDate = lastReferencedDate;
     }
 
@@ -529,7 +537,7 @@ public class Account {
         return jigsaw;
     }
 
-    public void setJigsaw(String jigsaw) {
+    public void setJigsaw(final String jigsaw) {
         this.jigsaw = jigsaw;
     }
 
@@ -537,7 +545,7 @@ public class Account {
         return jigsawCompanyId;
     }
 
-    public void setJigsawCompanyId(String jigsawCompanyId) {
+    public void setJigsawCompanyId(final String jigsawCompanyId) {
         this.jigsawCompanyId = jigsawCompanyId;
     }
 
@@ -545,7 +553,7 @@ public class Account {
         return cleanStatus;
     }
 
-    public void setCleanStatus(String cleanStatus) {
+    public void setCleanStatus(final String cleanStatus) {
         this.cleanStatus = cleanStatus;
     }
 
@@ -553,7 +561,7 @@ public class Account {
         return accountSource;
     }
 
-    public void setAccountSource(String accountSource) {
+    public void setAccountSource(final String accountSource) {
         this.accountSource = accountSource;
     }
 
@@ -561,7 +569,7 @@ public class Account {
         return dunsNumber;
     }
 
-    public void setDunsNumber(String dunsNumber) {
+    public void setDunsNumber(final String dunsNumber) {
         this.dunsNumber = dunsNumber;
     }
 
@@ -569,7 +577,7 @@ public class Account {
         return tradestyle;
     }
 
-    public void setTradestyle(String tradestyle) {
+    public void setTradestyle(final String tradestyle) {
         this.tradestyle = tradestyle;
     }
 
@@ -577,7 +585,7 @@ public class Account {
         return naicsCode;
     }
 
-    public void setNaicsCode(String naicsCode) {
+    public void setNaicsCode(final String naicsCode) {
         this.naicsCode = naicsCode;
     }
 
@@ -585,7 +593,7 @@ public class Account {
         return naicsDesc;
     }
 
-    public void setNaicsDesc(String naicsDesc) {
+    public void setNaicsDesc(final String naicsDesc) {
         this.naicsDesc = naicsDesc;
     }
 
@@ -593,7 +601,7 @@ public class Account {
         return yearStarted;
     }
 
-    public void setYearStarted(String yearStarted) {
+    public void setYearStarted(final String yearStarted) {
         this.yearStarted = yearStarted;
     }
 
@@ -601,7 +609,7 @@ public class Account {
         return sicDesc;
     }
 
-    public void setSicDesc(String sicDesc) {
+    public void setSicDesc(final String sicDesc) {
         this.sicDesc = sicDesc;
     }
 
@@ -609,7 +617,7 @@ public class Account {
         return dandbCompanyId;
     }
 
-    public void setDandbCompanyId(String dandbCompanyId) {
+    public void setDandbCompanyId(final String dandbCompanyId) {
         this.dandbCompanyId = dandbCompanyId;
     }
 
@@ -617,7 +625,7 @@ public class Account {
         return operatingHoursId;
     }
 
-    public void setOperatingHoursId(String operatingHoursId) {
+    public void setOperatingHoursId(final String operatingHoursId) {
         this.operatingHoursId = operatingHoursId;
     }
 
@@ -625,7 +633,7 @@ public class Account {
         return customerPriority__c;
     }
 
-    public void setCustomerPriority__c(String customerPriority__c) {
+    public void setCustomerPriority__c(final String customerPriority__c) {
         this.customerPriority__c = customerPriority__c;
     }
 
@@ -633,7 +641,7 @@ public class Account {
         return sLA__c;
     }
 
-    public void setsLA__c(String sLA__c) {
+    public void setsLA__c(final String sLA__c) {
         this.sLA__c = sLA__c;
     }
 
@@ -641,7 +649,7 @@ public class Account {
         return active__c;
     }
 
-    public void setActive__c(String active__c) {
+    public void setActive__c(final String active__c) {
         this.active__c = active__c;
     }
 
@@ -649,7 +657,7 @@ public class Account {
         return numberofLocations__c;
     }
 
-    public void setNumberofLocations__c(String numberofLocations__c) {
+    public void setNumberofLocations__c(final String numberofLocations__c) {
         this.numberofLocations__c = numberofLocations__c;
     }
 
@@ -657,7 +665,7 @@ public class Account {
         return upsellOpportunity__c;
     }
 
-    public void setUpsellOpportunity__c(String upsellOpportunity__c) {
+    public void setUpsellOpportunity__c(final String upsellOpportunity__c) {
         this.upsellOpportunity__c = upsellOpportunity__c;
     }
 
@@ -665,7 +673,7 @@ public class Account {
         return sLASerialNumber__c;
     }
 
-    public void setsLASerialNumber__c(String sLASerialNumber__c) {
+    public void setsLASerialNumber__c(final String sLASerialNumber__c) {
         this.sLASerialNumber__c = sLASerialNumber__c;
     }
 
@@ -673,7 +681,7 @@ public class Account {
         return sLAExpirationDate__c;
     }
 
-    public void setsLAExpirationDate__c(String sLAExpirationDate__c) {
+    public void setsLAExpirationDate__c(final String sLAExpirationDate__c) {
         this.sLAExpirationDate__c = sLAExpirationDate__c;
     }
 }

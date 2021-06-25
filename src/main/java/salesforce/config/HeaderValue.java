@@ -12,7 +12,7 @@ public enum HeaderValue {
     APP_X_FORM("application/x-www-form-urlencoded");
     private String value;
 
-    HeaderValue(String value) {
+    HeaderValue(final String value) {
         this.value = value;
     }
 

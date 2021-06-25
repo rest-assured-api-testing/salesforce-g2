@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,81 +15,81 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Individual {
 
-    public Attribute attributes;
+    private Attribute attributes;
     @JsonProperty("Id")
-    public String id;
+    private String id;
     @JsonProperty("OwnerId")
-    public String ownerId;
+    private String ownerId;
     @JsonProperty("IsDeleted")
-    public Boolean isDeleted;
+    private Boolean isDeleted;
     @JsonProperty("LastName")
-    public String lastName;
+    private String lastName;
     @JsonProperty("FirstName")
-    public String firstName;
+    private String firstName;
     @JsonProperty("Salutation")
-    public String salutation;
+    private String salutation;
     @JsonProperty("Name")
-    public String name;
+    private String name;
     @JsonProperty("HasOptedOutTracking")
-    public Boolean hasOptedOutTracking;
+    private Boolean hasOptedOutTracking;
     @JsonProperty("HasOptedOutProfiling")
-    public Boolean hasOptedOutProfiling;
+    private Boolean hasOptedOutProfiling;
     @JsonProperty("HasOptedOutProcessing")
-    public Boolean hasOptedOutProcessing;
+    private Boolean hasOptedOutProcessing;
     @JsonProperty("HasOptedOutSolicit")
-    public Boolean hasOptedOutSolicit;
+    private Boolean hasOptedOutSolicit;
     @JsonProperty("ShouldForget")
-    public Boolean shouldForget;
+    private Boolean shouldForget;
     @JsonProperty("SendIndividualData")
-    public Boolean sendIndividualData;
+    private Boolean sendIndividualData;
     @JsonProperty("CanStorePiiElsewhere")
-    public Boolean canStorePiiElsewhere;
+    private Boolean canStorePiiElsewhere;
     @JsonProperty("HasOptedOutGeoTracking")
-    public Boolean hasOptedOutGeoTracking;
+    private Boolean hasOptedOutGeoTracking;
     @JsonProperty("BirthDate")
-    public String birthDate;
+    private String birthDate;
     @JsonProperty("DeathDate")
-    public String deathDate;
+    private String deathDate;
     @JsonProperty("ConvictionsCount")
-    public String convictionsCount;
+    private String convictionsCount;
     @JsonProperty("ChildrenCount")
-    public String childrenCount;
+    private String childrenCount;
     @JsonProperty("MilitaryService")
-    public String militaryService;
+    private String militaryService;
     @JsonProperty("IsHomeOwner")
-    public Boolean isHomeOwner;
+    private Boolean isHomeOwner;
     @JsonProperty("Occupation")
-    public String occupation;
+    private String occupation;
     @JsonProperty("Website")
-    public String website;
+    private String website;
     @JsonProperty("IndividualsAge")
-    public String individualsAge;
+    private String individualsAge;
     @JsonProperty("LastViewedDate")
-    public Date lastViewedDate;
+    private Date lastViewedDate;
     @JsonProperty("MasterRecordId")
-    public String masterRecordId;
+    private String masterRecordId;
     @JsonProperty("ConsumerCreditScore")
-    public String consumerCreditScore;
+    private String consumerCreditScore;
     @JsonProperty("ConsumerCreditScoreProviderName")
-    public String consumerCreditScoreProviderName;
+    private String consumerCreditScoreProviderName;
     @JsonProperty("InfluencerRating")
-    public String influencerRating;
+    private String influencerRating;
     @JsonProperty("CreatedDate")
-    public Date createdDate;
+    private Date createdDate;
     @JsonProperty("CreatedById")
-    public String createdById;
+    private String createdById;
     @JsonProperty("LastModifiedDate")
-    public Date lastModifiedDate;
+    private Date lastModifiedDate;
     @JsonProperty("LastModifiedById")
-    public String lastModifiedById;
+    private String lastModifiedById;
     @JsonProperty("SystemModstamp")
-    public Date systemModstamp;
+    private Date systemModstamp;
 
     public Attribute getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Attribute attributes) {
+    public void setAttributes(final Attribute attributes) {
         this.attributes = attributes;
     }
 
@@ -90,7 +97,7 @@ public class Individual {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -98,7 +105,7 @@ public class Individual {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    public void setOwnerId(final String ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -106,7 +113,7 @@ public class Individual {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(final Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -114,7 +121,7 @@ public class Individual {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
@@ -122,7 +129,7 @@ public class Individual {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -130,7 +137,7 @@ public class Individual {
         return salutation;
     }
 
-    public void setSalutation(String salutation) {
+    public void setSalutation(final String salutation) {
         this.salutation = salutation;
     }
 
@@ -138,7 +145,7 @@ public class Individual {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -146,7 +153,7 @@ public class Individual {
         return hasOptedOutTracking;
     }
 
-    public void setHasOptedOutTracking(Boolean hasOptedOutTracking) {
+    public void setHasOptedOutTracking(final Boolean hasOptedOutTracking) {
         this.hasOptedOutTracking = hasOptedOutTracking;
     }
 
@@ -154,7 +161,7 @@ public class Individual {
         return hasOptedOutProfiling;
     }
 
-    public void setHasOptedOutProfiling(Boolean hasOptedOutProfiling) {
+    public void setHasOptedOutProfiling(final Boolean hasOptedOutProfiling) {
         this.hasOptedOutProfiling = hasOptedOutProfiling;
     }
 
@@ -162,7 +169,7 @@ public class Individual {
         return hasOptedOutProcessing;
     }
 
-    public void setHasOptedOutProcessing(Boolean hasOptedOutProcessing) {
+    public void setHasOptedOutProcessing(final Boolean hasOptedOutProcessing) {
         this.hasOptedOutProcessing = hasOptedOutProcessing;
     }
 
@@ -170,7 +177,7 @@ public class Individual {
         return hasOptedOutSolicit;
     }
 
-    public void setHasOptedOutSolicit(Boolean hasOptedOutSolicit) {
+    public void setHasOptedOutSolicit(final Boolean hasOptedOutSolicit) {
         this.hasOptedOutSolicit = hasOptedOutSolicit;
     }
 
@@ -178,7 +185,7 @@ public class Individual {
         return shouldForget;
     }
 
-    public void setShouldForget(Boolean shouldForget) {
+    public void setShouldForget(final Boolean shouldForget) {
         this.shouldForget = shouldForget;
     }
 
@@ -186,7 +193,7 @@ public class Individual {
         return sendIndividualData;
     }
 
-    public void setSendIndividualData(Boolean sendIndividualData) {
+    public void setSendIndividualData(final Boolean sendIndividualData) {
         this.sendIndividualData = sendIndividualData;
     }
 
@@ -194,7 +201,7 @@ public class Individual {
         return canStorePiiElsewhere;
     }
 
-    public void setCanStorePiiElsewhere(Boolean canStorePiiElsewhere) {
+    public void setCanStorePiiElsewhere(final Boolean canStorePiiElsewhere) {
         this.canStorePiiElsewhere = canStorePiiElsewhere;
     }
 
@@ -202,7 +209,7 @@ public class Individual {
         return hasOptedOutGeoTracking;
     }
 
-    public void setHasOptedOutGeoTracking(Boolean hasOptedOutGeoTracking) {
+    public void setHasOptedOutGeoTracking(final Boolean hasOptedOutGeoTracking) {
         this.hasOptedOutGeoTracking = hasOptedOutGeoTracking;
     }
 
@@ -210,7 +217,7 @@ public class Individual {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(final String birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -218,7 +225,7 @@ public class Individual {
         return deathDate;
     }
 
-    public void setDeathDate(String deathDate) {
+    public void setDeathDate(final String deathDate) {
         this.deathDate = deathDate;
     }
 
@@ -226,7 +233,7 @@ public class Individual {
         return convictionsCount;
     }
 
-    public void setConvictionsCount(String convictionsCount) {
+    public void setConvictionsCount(final String convictionsCount) {
         this.convictionsCount = convictionsCount;
     }
 
@@ -234,7 +241,7 @@ public class Individual {
         return childrenCount;
     }
 
-    public void setChildrenCount(String childrenCount) {
+    public void setChildrenCount(final String childrenCount) {
         this.childrenCount = childrenCount;
     }
 
@@ -242,7 +249,7 @@ public class Individual {
         return militaryService;
     }
 
-    public void setMilitaryService(String militaryService) {
+    public void setMilitaryService(final String militaryService) {
         this.militaryService = militaryService;
     }
 
@@ -250,7 +257,7 @@ public class Individual {
         return isHomeOwner;
     }
 
-    public void setHomeOwner(Boolean homeOwner) {
+    public void setHomeOwner(final Boolean homeOwner) {
         isHomeOwner = homeOwner;
     }
 
@@ -258,7 +265,7 @@ public class Individual {
         return occupation;
     }
 
-    public void setOccupation(String occupation) {
+    public void setOccupation(final String occupation) {
         this.occupation = occupation;
     }
 
@@ -266,7 +273,7 @@ public class Individual {
         return website;
     }
 
-    public void setWebsite(String website) {
+    public void setWebsite(final String website) {
         this.website = website;
     }
 
@@ -274,7 +281,7 @@ public class Individual {
         return individualsAge;
     }
 
-    public void setIndividualsAge(String individualsAge) {
+    public void setIndividualsAge(final String individualsAge) {
         this.individualsAge = individualsAge;
     }
 
@@ -282,7 +289,7 @@ public class Individual {
         return lastViewedDate;
     }
 
-    public void setLastViewedDate(Date lastViewedDate) {
+    public void setLastViewedDate(final Date lastViewedDate) {
         this.lastViewedDate = lastViewedDate;
     }
 
@@ -290,7 +297,7 @@ public class Individual {
         return masterRecordId;
     }
 
-    public void setMasterRecordId(String masterRecordId) {
+    public void setMasterRecordId(final String masterRecordId) {
         this.masterRecordId = masterRecordId;
     }
 
@@ -298,7 +305,7 @@ public class Individual {
         return consumerCreditScore;
     }
 
-    public void setConsumerCreditScore(String consumerCreditScore) {
+    public void setConsumerCreditScore(final String consumerCreditScore) {
         this.consumerCreditScore = consumerCreditScore;
     }
 
@@ -306,7 +313,7 @@ public class Individual {
         return consumerCreditScoreProviderName;
     }
 
-    public void setConsumerCreditScoreProviderName(String consumerCreditScoreProviderName) {
+    public void setConsumerCreditScoreProviderName(final String consumerCreditScoreProviderName) {
         this.consumerCreditScoreProviderName = consumerCreditScoreProviderName;
     }
 
@@ -314,7 +321,7 @@ public class Individual {
         return influencerRating;
     }
 
-    public void setInfluencerRating(String influencerRating) {
+    public void setInfluencerRating(final String influencerRating) {
         this.influencerRating = influencerRating;
     }
 
@@ -322,7 +329,7 @@ public class Individual {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(final Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -330,7 +337,7 @@ public class Individual {
         return createdById;
     }
 
-    public void setCreatedById(String createdById) {
+    public void setCreatedById(final String createdById) {
         this.createdById = createdById;
     }
 
@@ -338,7 +345,7 @@ public class Individual {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(final Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
@@ -346,7 +353,7 @@ public class Individual {
         return lastModifiedById;
     }
 
-    public void setLastModifiedById(String lastModifiedById) {
+    public void setLastModifiedById(final String lastModifiedById) {
         this.lastModifiedById = lastModifiedById;
     }
 
@@ -354,7 +361,7 @@ public class Individual {
         return systemModstamp;
     }
 
-    public void setSystemModstamp(Date systemModstamp) {
+    public void setSystemModstamp(final Date systemModstamp) {
         this.systemModstamp = systemModstamp;
     }
 }
