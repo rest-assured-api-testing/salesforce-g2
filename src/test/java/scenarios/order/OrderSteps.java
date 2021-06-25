@@ -12,40 +12,49 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Order;
-
+import static scenarios.hooks.OrderScenarioHooks.accountId;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OrderStepsCreate {
+public class OrderSteps {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
-    private Map<String,String> pathParams = new HashMap<>();
-    private String accountId;
-    private String orderId;
     private Order order;
+    private Map<String,String> pathParams = new HashMap<>();
 
-    public OrderStepsCreate(String accountId, String orderId) {
-        this.accountId = accountId;
-        this.orderId = orderId;
+    public OrderSteps(CreatedResponse createdResponse) {
+        this.createdResponse = createdResponse;
     }
 
     @Given("I create a body payload")
-    public void iCreateABodyPayload(DataTable jsonData) throws JsonProcessingException {
-
-        String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class,String.class));
-        ObjectMapper mapper = new ObjectMapper();
-        order = mapper.convertValue(body, Order.class);
+    public void iCreateABodyPayload() {
+        order = new Order();
+        order.setAccountId(accountId);
     }
 
-    @When("I add the {string} endpoint and execute a {string} request")
-    public void iAddThisEndpointAndExecuteTheRequest(String endpoint, String request) throws JsonProcessingException {
+    @And("I set the name value to {string}")
+    public void iSetProjectName(String name) {
+        order.setName(name);
+    }
+
+    @And("I set the effectiveDate value to {string}")
+    public void iSetTheEffectiveDateValueTo(String effectiveDate) {
+        order.setEffectiveDate(effectiveDate);
+    }
+    @And("I set the status to {string}")
+    public void iSetTheStatusTo(String status) {
+        order.setStatus(status);
+    }
+
+    @When("I execute a {string} request with the {string} endpoint")
+    public void iExecuteARequestWithTheEndpoint(String method, String endpoint) throws JsonProcessingException {
         apiResponse = ApiRequestManager.create(endpoint, pathParams, order);
-        createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
     }
 
     @Then("The response status code should be {int}")
