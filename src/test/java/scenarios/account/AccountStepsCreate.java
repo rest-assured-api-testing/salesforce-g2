@@ -3,6 +3,7 @@ package scenarios.account;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.cucumber.datatable.DataTable;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.entities.Account;
@@ -25,7 +26,7 @@ public class AccountStepsCreate {
     }
 
     @Given("I build a post account request")
-    public void iBuildAPostAccountRequest() {
+    public void iBuildAPostAccountRequest(DataTable jsonData) throws JsonProcessingException {
         LOGGER.info("=================== Account Create Given ==============================");
         pathParams = new HashMap<>();
         account = new Account();

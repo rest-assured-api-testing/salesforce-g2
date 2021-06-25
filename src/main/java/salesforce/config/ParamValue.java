@@ -7,6 +7,15 @@
  */
 package salesforce.config;
 
-public class ParamValue {
-    public static final String PASSWORD = "password";
+public enum ParamValue {
+    PASSWORD("password");
+    private String value;
+
+    ParamValue(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }

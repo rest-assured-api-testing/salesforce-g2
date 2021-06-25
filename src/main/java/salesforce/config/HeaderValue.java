@@ -7,7 +7,16 @@
  */
 package salesforce.config;
 
-public class HeaderValue {
-    public static final String APP_JSON = "application/json";
-    public static final String APP_X_FORM = "application/x-www-form-urlencoded";
+public enum HeaderValue {
+    APP_JSON("application/json"),
+    APP_X_FORM("application/x-www-form-urlencoded");
+    private String value;
+
+    HeaderValue(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }
