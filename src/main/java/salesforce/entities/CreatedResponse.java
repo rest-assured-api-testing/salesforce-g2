@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,13 +15,13 @@ import java.util.ArrayList;
 public class CreatedResponse {
     private String id;
     private boolean success;
-    ArrayList<String> errors = new ArrayList <>();
+    private ArrayList<String> errors = new ArrayList <>();
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -30,7 +37,7 @@ public class CreatedResponse {
         return errors;
     }
 
-    public void setErrors(ArrayList<String> errors) {
+    public void setErrors(final ArrayList<String> errors) {
         this.errors = errors;
     }
 }

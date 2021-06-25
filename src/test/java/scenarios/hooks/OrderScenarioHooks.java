@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
 package scenarios.hooks;
 
 import api.ApiRequestManager;
@@ -9,8 +16,7 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import salesforce.auth.Authentication;
-import salesforce.endpointurl.ElementParam;
-import salesforce.endpointurl.Endpoint;
+import salesforce.endpointurl.Endpoints;
 import salesforce.entities.Account;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Order;
@@ -39,7 +45,7 @@ public class OrderScenarioHooks {
         Map<String,String> pathParams = new HashMap<>();
         Account account = new Account();
         account.setName("testAccount01");
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoint.ACCOUNTS, pathParams, account);
+        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.getEndpoint(), pathParams, account);
         accountId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -54,23 +60,23 @@ public class OrderScenarioHooks {
         order.setAccountId(accountId);
         order.setEffectiveDate(date);
         order.setStatus("Draft");
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoint.ORDERS, pathParams, order);
+        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ORDERS.getEndpoint(), pathParams, order);
         orderId = apiResponse.getBody(CreatedResponse.class).getId();
     }
 
     @After(value = "@GetOrder or @UpdateOrder or @CreateOrder")
     public void setDownOrder() {
         Map<String,String> pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID,orderId);
-        ApiResponse apiResponse = ApiRequestManager.delete(Endpoint.ORDER, pathParams);
+        pathParams.put(Endpoints.ID.getEndpoint(),orderId);
+        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.ORDER.getEndpoint(), pathParams);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 
     @AfterClass
     public void setDownAccount() {
         Map<String,String> pathParams = new HashMap<>();
-        pathParams.put(ElementParam.ID,accountId);
-        ApiResponse apiResponse = ApiRequestManager.delete(Endpoint.ACCOUNT, pathParams);
+        pathParams.put(Endpoints.ID.getEndpoint(),accountId);
+        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.getEndpoint(), pathParams);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }

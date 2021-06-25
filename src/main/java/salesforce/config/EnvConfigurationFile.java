@@ -8,13 +8,10 @@
 package salesforce.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class EnvConfigurationFile {
     /**
      * Constant that refers path of environment variables file.
      */
     public static Dotenv dotenv = Dotenv.configure().filename(".env.develop").ignoreIfMalformed().ignoreIfMissing().load();
-    public static final Logger LOGGER = LogManager.getLogger();
 }

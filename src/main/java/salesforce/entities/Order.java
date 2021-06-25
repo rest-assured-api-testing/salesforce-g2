@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,119 +15,119 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Order {
 
-    public Attribute attributes;
+    private Attribute attributes;
     @JsonProperty("Id")
-    public String id;
+    private String id;
     @JsonProperty("OwnerId")
-    public String ownerId;
+    private String ownerId;
     @JsonProperty("ContractId")
-    public String contractId;
+    private String contractId;
     @JsonProperty("AccountId")
-    public String accountId;
+    private String accountId;
     @JsonProperty("Pricebook2Id")
-    public String pricebook2Id;
+    private String pricebook2Id;
     @JsonProperty("OriginalOrderId")
-    public String originalOrderId;
+    private String originalOrderId;
     @JsonProperty("EffectiveDate")
-    public String effectiveDate;
+    private String effectiveDate;
     @JsonProperty("EndDate")
-    public String endDate;
+    private String endDate;
     @JsonProperty("IsReductionOrder")
-    public Boolean isReductionOrder;
+    private Boolean isReductionOrder;
     @JsonProperty("Status")
-    public String status;
+    private String status;
     @JsonProperty("Description")
-    public String description;
+    private String description;
     @JsonProperty("CustomerAuthorizedById")
-    public String customerAuthorizedById;
+    private String customerAuthorizedById;
     @JsonProperty("CustomerAuthorizedDate")
-    public String customerAuthorizedDate;
+    private String customerAuthorizedDate;
     @JsonProperty("CompanyAuthorizedById")
-    public String companyAuthorizedById;
+    private String companyAuthorizedById;
     @JsonProperty("CompanyAuthorizedDate")
-    public String companyAuthorizedDate;
+    private String companyAuthorizedDate;
     @JsonProperty("Type")
-    public String type;
+    private String type;
     @JsonProperty("BillingStreet")
-    public String billingStreet;
+    private String billingStreet;
     @JsonProperty("BillingCity")
-    public String billingCity;
+    private String billingCity;
     @JsonProperty("BillingState")
-    public String billingState;
+    private String billingState;
     @JsonProperty("BillingPostalCode")
-    public String billingPostalCode;
+    private String billingPostalCode;
     @JsonProperty("BillingCountry")
-    public String billingCountry;
+    private String billingCountry;
     @JsonProperty("BillingLatitude")
-    public String billingLatitude;
+    private String billingLatitude;
     @JsonProperty("BillingLongitude")
-    public String billingLongitude;
+    private String billingLongitude;
     @JsonProperty("BillingGeocodeAccuracy")
-    public String billingGeocodeAccuracy;
+    private String billingGeocodeAccuracy;
     @JsonProperty("BillingAddress")
-    public String billingAddress;
+    private String billingAddress;
     @JsonProperty("ShippingStreet")
-    public String shippingStreet;
+    private String shippingStreet;
     @JsonProperty("ShippingCity")
-    public String shippingCity;
+    private String shippingCity;
     @JsonProperty("ShippingState")
-    public String shippingState;
+    private String shippingState;
     @JsonProperty("ShippingPostalCode")
-    public String shippingPostalCode;
+    private String shippingPostalCode;
     @JsonProperty("ShippingCountry")
-    public String shippingCountry;
+    private String shippingCountry;
     @JsonProperty("ShippingLatitude")
-    public String shippingLatitude;
+    private String shippingLatitude;
     @JsonProperty("ShippingLongitude")
-    public String shippingLongitude;
+    private String shippingLongitude;
     @JsonProperty("ShippingGeocodeAccuracy")
-    public String shippingGeocodeAccuracy;
+    private String shippingGeocodeAccuracy;
     @JsonProperty("ShippingAddress")
-    public String shippingAddress;
+    private String shippingAddress;
     @JsonProperty("Name")
-    public String name;
+    private String name;
     @JsonProperty("PoDate")
-    public String poDate;
+    private String poDate;
     @JsonProperty("PoNumber")
-    public String poNumber;
+    private String poNumber;
     @JsonProperty("OrderReferenceNumber")
-    public String orderReferenceNumber;
+    private String orderReferenceNumber;
     @JsonProperty("BillToContactId")
-    public String billToContactId;
+    private String billToContactId;
     @JsonProperty("ShipToContactId")
-    public String shipToContactId;
+    private String shipToContactId;
     @JsonProperty("ActivatedDate")
-    public String activatedDate;
+    private String activatedDate;
     @JsonProperty("ActivatedById")
-    public String activatedById;
+    private String activatedById;
     @JsonProperty("StatusCode")
-    public String statusCode;
+    private String statusCode;
     @JsonProperty("OrderNumber")
-    public String orderNumber;
+    private String orderNumber;
     @JsonProperty("TotalAmount")
-    public Double totalAmount;
+    private Double totalAmount;
     @JsonProperty("CreatedDate")
-    public Date createdDate;
+    private Date createdDate;
     @JsonProperty("CreatedById")
-    public String createdById;
+    private String createdById;
     @JsonProperty("LastModifiedDate")
-    public Date lastModifiedDate;
+    private Date lastModifiedDate;
     @JsonProperty("LastModifiedById")
-    public String lastModifiedById;
+    private String lastModifiedById;
     @JsonProperty("IsDeleted")
-    public Boolean isDeleted;
+    private Boolean isDeleted;
     @JsonProperty("SystemModstamp")
-    public Date systemModstamp;
+    private Date systemModstamp;
     @JsonProperty("LastViewedDate")
-    public Date lastViewedDate;
+    private Date lastViewedDate;
     @JsonProperty("LastReferencedDate")
-    public Date lastReferencedDate;
+    private Date lastReferencedDate;
 
     public Attribute getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Attribute attributes) {
+    public void setAttributes(final Attribute attributes) {
         this.attributes = attributes;
     }
 
@@ -128,7 +135,7 @@ public class Order {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -136,7 +143,7 @@ public class Order {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    public void setOwnerId(final String ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -144,7 +151,7 @@ public class Order {
         return contractId;
     }
 
-    public void setContractId(String contractId) {
+    public void setContractId(final String contractId) {
         this.contractId = contractId;
     }
 
@@ -152,7 +159,7 @@ public class Order {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(final String accountId) {
         this.accountId = accountId;
     }
 
@@ -160,7 +167,7 @@ public class Order {
         return pricebook2Id;
     }
 
-    public void setPricebook2Id(String pricebook2Id) {
+    public void setPricebook2Id(final String pricebook2Id) {
         this.pricebook2Id = pricebook2Id;
     }
 
@@ -168,7 +175,7 @@ public class Order {
         return originalOrderId;
     }
 
-    public void setOriginalOrderId(String originalOrderId) {
+    public void setOriginalOrderId(final String originalOrderId) {
         this.originalOrderId = originalOrderId;
     }
 
@@ -176,7 +183,7 @@ public class Order {
         return effectiveDate;
     }
 
-    public void setEffectiveDate(String effectiveDate) {
+    public void setEffectiveDate(final String effectiveDate) {
         this.effectiveDate = effectiveDate;
     }
 
@@ -184,7 +191,7 @@ public class Order {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(final String endDate) {
         this.endDate = endDate;
     }
 
@@ -192,7 +199,7 @@ public class Order {
         return isReductionOrder;
     }
 
-    public void setReductionOrder(Boolean reductionOrder) {
+    public void setReductionOrder(final Boolean reductionOrder) {
         isReductionOrder = reductionOrder;
     }
 
@@ -200,7 +207,7 @@ public class Order {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(final String status) {
         this.status = status;
     }
 
@@ -208,7 +215,7 @@ public class Order {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -216,7 +223,7 @@ public class Order {
         return customerAuthorizedById;
     }
 
-    public void setCustomerAuthorizedById(String customerAuthorizedById) {
+    public void setCustomerAuthorizedById(final String customerAuthorizedById) {
         this.customerAuthorizedById = customerAuthorizedById;
     }
 
@@ -224,7 +231,7 @@ public class Order {
         return customerAuthorizedDate;
     }
 
-    public void setCustomerAuthorizedDate(String customerAuthorizedDate) {
+    public void setCustomerAuthorizedDate(final String customerAuthorizedDate) {
         this.customerAuthorizedDate = customerAuthorizedDate;
     }
 
@@ -232,7 +239,7 @@ public class Order {
         return companyAuthorizedById;
     }
 
-    public void setCompanyAuthorizedById(String companyAuthorizedById) {
+    public void setCompanyAuthorizedById(final String companyAuthorizedById) {
         this.companyAuthorizedById = companyAuthorizedById;
     }
 
@@ -240,7 +247,7 @@ public class Order {
         return companyAuthorizedDate;
     }
 
-    public void setCompanyAuthorizedDate(String companyAuthorizedDate) {
+    public void setCompanyAuthorizedDate(final String companyAuthorizedDate) {
         this.companyAuthorizedDate = companyAuthorizedDate;
     }
 
@@ -248,7 +255,7 @@ public class Order {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(final String type) {
         this.type = type;
     }
 
@@ -256,7 +263,7 @@ public class Order {
         return billingStreet;
     }
 
-    public void setBillingStreet(String billingStreet) {
+    public void setBillingStreet(final String billingStreet) {
         this.billingStreet = billingStreet;
     }
 
@@ -264,7 +271,7 @@ public class Order {
         return billingCity;
     }
 
-    public void setBillingCity(String billingCity) {
+    public void setBillingCity(final String billingCity) {
         this.billingCity = billingCity;
     }
 
@@ -272,7 +279,7 @@ public class Order {
         return billingState;
     }
 
-    public void setBillingState(String billingState) {
+    public void setBillingState(final String billingState) {
         this.billingState = billingState;
     }
 
@@ -280,7 +287,7 @@ public class Order {
         return billingPostalCode;
     }
 
-    public void setBillingPostalCode(String billingPostalCode) {
+    public void setBillingPostalCode(final String billingPostalCode) {
         this.billingPostalCode = billingPostalCode;
     }
 
@@ -288,7 +295,7 @@ public class Order {
         return billingCountry;
     }
 
-    public void setBillingCountry(String billingCountry) {
+    public void setBillingCountry(final String billingCountry) {
         this.billingCountry = billingCountry;
     }
 
@@ -296,7 +303,7 @@ public class Order {
         return billingLatitude;
     }
 
-    public void setBillingLatitude(String billingLatitude) {
+    public void setBillingLatitude(final String billingLatitude) {
         this.billingLatitude = billingLatitude;
     }
 
@@ -304,7 +311,7 @@ public class Order {
         return billingLongitude;
     }
 
-    public void setBillingLongitude(String billingLongitude) {
+    public void setBillingLongitude(final String billingLongitude) {
         this.billingLongitude = billingLongitude;
     }
 
@@ -312,7 +319,7 @@ public class Order {
         return billingGeocodeAccuracy;
     }
 
-    public void setBillingGeocodeAccuracy(String billingGeocodeAccuracy) {
+    public void setBillingGeocodeAccuracy(final String billingGeocodeAccuracy) {
         this.billingGeocodeAccuracy = billingGeocodeAccuracy;
     }
 
@@ -320,7 +327,7 @@ public class Order {
         return billingAddress;
     }
 
-    public void setBillingAddress(String billingAddress) {
+    public void setBillingAddress(final String billingAddress) {
         this.billingAddress = billingAddress;
     }
 
@@ -328,7 +335,7 @@ public class Order {
         return shippingStreet;
     }
 
-    public void setShippingStreet(String shippingStreet) {
+    public void setShippingStreet(final String shippingStreet) {
         this.shippingStreet = shippingStreet;
     }
 
@@ -336,7 +343,7 @@ public class Order {
         return shippingCity;
     }
 
-    public void setShippingCity(String shippingCity) {
+    public void setShippingCity(final String shippingCity) {
         this.shippingCity = shippingCity;
     }
 
@@ -344,7 +351,7 @@ public class Order {
         return shippingState;
     }
 
-    public void setShippingState(String shippingState) {
+    public void setShippingState(final String shippingState) {
         this.shippingState = shippingState;
     }
 
@@ -352,7 +359,7 @@ public class Order {
         return shippingPostalCode;
     }
 
-    public void setShippingPostalCode(String shippingPostalCode) {
+    public void setShippingPostalCode(final String shippingPostalCode) {
         this.shippingPostalCode = shippingPostalCode;
     }
 
@@ -360,7 +367,7 @@ public class Order {
         return shippingCountry;
     }
 
-    public void setShippingCountry(String shippingCountry) {
+    public void setShippingCountry(final String shippingCountry) {
         this.shippingCountry = shippingCountry;
     }
 
@@ -368,7 +375,7 @@ public class Order {
         return shippingLatitude;
     }
 
-    public void setShippingLatitude(String shippingLatitude) {
+    public void setShippingLatitude(final String shippingLatitude) {
         this.shippingLatitude = shippingLatitude;
     }
 
@@ -376,7 +383,7 @@ public class Order {
         return shippingLongitude;
     }
 
-    public void setShippingLongitude(String shippingLongitude) {
+    public void setShippingLongitude(final String shippingLongitude) {
         this.shippingLongitude = shippingLongitude;
     }
 
@@ -384,7 +391,7 @@ public class Order {
         return shippingGeocodeAccuracy;
     }
 
-    public void setShippingGeocodeAccuracy(String shippingGeocodeAccuracy) {
+    public void setShippingGeocodeAccuracy(final String shippingGeocodeAccuracy) {
         this.shippingGeocodeAccuracy = shippingGeocodeAccuracy;
     }
 
@@ -392,7 +399,7 @@ public class Order {
         return shippingAddress;
     }
 
-    public void setShippingAddress(String shippingAddress) {
+    public void setShippingAddress(final String shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 
@@ -400,7 +407,7 @@ public class Order {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -408,7 +415,7 @@ public class Order {
         return poDate;
     }
 
-    public void setPoDate(String poDate) {
+    public void setPoDate(final String poDate) {
         this.poDate = poDate;
     }
 
@@ -416,7 +423,7 @@ public class Order {
         return poNumber;
     }
 
-    public void setPoNumber(String poNumber) {
+    public void setPoNumber(final String poNumber) {
         this.poNumber = poNumber;
     }
 
@@ -424,7 +431,7 @@ public class Order {
         return orderReferenceNumber;
     }
 
-    public void setOrderReferenceNumber(String orderReferenceNumber) {
+    public void setOrderReferenceNumber(final String orderReferenceNumber) {
         this.orderReferenceNumber = orderReferenceNumber;
     }
 
@@ -432,7 +439,7 @@ public class Order {
         return billToContactId;
     }
 
-    public void setBillToContactId(String billToContactId) {
+    public void setBillToContactId(final String billToContactId) {
         this.billToContactId = billToContactId;
     }
 
@@ -440,7 +447,7 @@ public class Order {
         return shipToContactId;
     }
 
-    public void setShipToContactId(String shipToContactId) {
+    public void setShipToContactId(final String shipToContactId) {
         this.shipToContactId = shipToContactId;
     }
 
@@ -448,7 +455,7 @@ public class Order {
         return activatedDate;
     }
 
-    public void setActivatedDate(String activatedDate) {
+    public void setActivatedDate(final String activatedDate) {
         this.activatedDate = activatedDate;
     }
 
@@ -456,7 +463,7 @@ public class Order {
         return activatedById;
     }
 
-    public void setActivatedById(String activatedById) {
+    public void setActivatedById(final String activatedById) {
         this.activatedById = activatedById;
     }
 
@@ -464,7 +471,7 @@ public class Order {
         return statusCode;
     }
 
-    public void setStatusCode(String statusCode) {
+    public void setStatusCode(final String statusCode) {
         this.statusCode = statusCode;
     }
 
@@ -472,7 +479,7 @@ public class Order {
         return orderNumber;
     }
 
-    public void setOrderNumber(String orderNumber) {
+    public void setOrderNumber(final String orderNumber) {
         this.orderNumber = orderNumber;
     }
 
@@ -480,7 +487,7 @@ public class Order {
         return totalAmount;
     }
 
-    public void setTotalAmount(Double totalAmount) {
+    public void setTotalAmount(final Double totalAmount) {
         this.totalAmount = totalAmount;
     }
 
@@ -488,7 +495,7 @@ public class Order {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(final Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -496,7 +503,7 @@ public class Order {
         return createdById;
     }
 
-    public void setCreatedById(String createdById) {
+    public void setCreatedById(final String createdById) {
         this.createdById = createdById;
     }
 
@@ -504,7 +511,7 @@ public class Order {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(final Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
@@ -512,7 +519,7 @@ public class Order {
         return lastModifiedById;
     }
 
-    public void setLastModifiedById(String lastModifiedById) {
+    public void setLastModifiedById(final String lastModifiedById) {
         this.lastModifiedById = lastModifiedById;
     }
 
@@ -520,7 +527,7 @@ public class Order {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(final Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -528,7 +535,7 @@ public class Order {
         return systemModstamp;
     }
 
-    public void setSystemModstamp(Date systemModstamp) {
+    public void setSystemModstamp(final Date systemModstamp) {
         this.systemModstamp = systemModstamp;
     }
 
@@ -536,7 +543,7 @@ public class Order {
         return lastViewedDate;
     }
 
-    public void setLastViewedDate(Date lastViewedDate) {
+    public void setLastViewedDate(final Date lastViewedDate) {
         this.lastViewedDate = lastViewedDate;
     }
 
@@ -544,7 +551,7 @@ public class Order {
         return lastReferencedDate;
     }
 
-    public void setLastReferencedDate(Date lastReferencedDate) {
+    public void setLastReferencedDate(final Date lastReferencedDate) {
         this.lastReferencedDate = lastReferencedDate;
     }
 }

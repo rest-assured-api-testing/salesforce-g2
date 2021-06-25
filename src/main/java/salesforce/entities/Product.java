@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,53 +15,53 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Product {
 
-    public Attribute attributes;
+    private Attribute attributes;
     @JsonProperty("Id")
-    public String id;
+    private String id;
     @JsonProperty("Name")
-    public String name;
+    private String name;
     @JsonProperty("ProductCode")
-    public String productCode;
+    private String productCode;
     @JsonProperty("Description")
-    public String description;
+    private String description;
     @JsonProperty("IsActive")
-    public Boolean isActive;
+    private Boolean isActive;
     @JsonProperty("CreatedDate")
-    public Date createdDate;
+    private Date createdDate;
     @JsonProperty("CreatedById")
-    public String createdById;
+    private String createdById;
     @JsonProperty("LastModifiedDate")
-    public Date lastModifiedDate;
+    private Date lastModifiedDate;
     @JsonProperty("LastModifiedById")
-    public String lastModifiedById;
+    private String lastModifiedById;
     @JsonProperty("SystemModstamp")
-    public Date systemModstamp;
+    private Date systemModstamp;
     @JsonProperty("Family")
-    public String family;
+    private String family;
     @JsonProperty("ExternalDataSourceId")
-    public String externalDataSourceId;
+    private String externalDataSourceId;
     @JsonProperty("ExternalId")
-    public String externalId;
+    private String externalId;
     @JsonProperty("DisplayUrl")
-    public String displayUrl;
+    private String displayUrl;
     @JsonProperty("QuantityUnitOfMeasure")
-    public String quantityUnitOfMeasure;
+    private String quantityUnitOfMeasure;
     @JsonProperty("IsDeleted")
-    public Boolean isDeleted;
+    private Boolean isDeleted;
     @JsonProperty("IsArchived")
-    public Boolean isArchived;
+    private Boolean isArchived;
     @JsonProperty("LastViewedDate")
-    public Date lastViewedDate;
+    private Date lastViewedDate;
     @JsonProperty("LastReferencedDate")
-    public Date lastReferencedDate;
+    private Date lastReferencedDate;
     @JsonProperty("StockKeepingUnit")
-    public String stockKeepingUnit;
+    private String stockKeepingUnit;
 
     public Attribute getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Attribute attributes) {
+    public void setAttributes(final Attribute attributes) {
         this.attributes = attributes;
     }
 
@@ -62,7 +69,7 @@ public class Product {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -70,7 +77,7 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -78,7 +85,7 @@ public class Product {
         return productCode;
     }
 
-    public void setProductCode(String productCode) {
+    public void setProductCode(final String productCode) {
         this.productCode = productCode;
     }
 
@@ -86,7 +93,7 @@ public class Product {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -94,7 +101,7 @@ public class Product {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(final Boolean active) {
         isActive = active;
     }
 
@@ -102,7 +109,7 @@ public class Product {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(final Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -110,7 +117,7 @@ public class Product {
         return createdById;
     }
 
-    public void setCreatedById(String createdById) {
+    public void setCreatedById(final String createdById) {
         this.createdById = createdById;
     }
 
@@ -118,7 +125,7 @@ public class Product {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(final Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
@@ -126,7 +133,7 @@ public class Product {
         return lastModifiedById;
     }
 
-    public void setLastModifiedById(String lastModifiedById) {
+    public void setLastModifiedById(final String lastModifiedById) {
         this.lastModifiedById = lastModifiedById;
     }
 
@@ -134,7 +141,7 @@ public class Product {
         return systemModstamp;
     }
 
-    public void setSystemModstamp(Date systemModstamp) {
+    public void setSystemModstamp(final Date systemModstamp) {
         this.systemModstamp = systemModstamp;
     }
 
@@ -142,7 +149,7 @@ public class Product {
         return family;
     }
 
-    public void setFamily(String family) {
+    public void setFamily(final String family) {
         this.family = family;
     }
 
@@ -150,7 +157,7 @@ public class Product {
         return externalDataSourceId;
     }
 
-    public void setExternalDataSourceId(String externalDataSourceId) {
+    public void setExternalDataSourceId(final String externalDataSourceId) {
         this.externalDataSourceId = externalDataSourceId;
     }
 
@@ -158,7 +165,7 @@ public class Product {
         return externalId;
     }
 
-    public void setExternalId(String externalId) {
+    public void setExternalId(final String externalId) {
         this.externalId = externalId;
     }
 
@@ -166,7 +173,7 @@ public class Product {
         return displayUrl;
     }
 
-    public void setDisplayUrl(String displayUrl) {
+    public void setDisplayUrl(final String displayUrl) {
         this.displayUrl = displayUrl;
     }
 
@@ -174,7 +181,7 @@ public class Product {
         return quantityUnitOfMeasure;
     }
 
-    public void setQuantityUnitOfMeasure(String quantityUnitOfMeasure) {
+    public void setQuantityUnitOfMeasure(final String quantityUnitOfMeasure) {
         this.quantityUnitOfMeasure = quantityUnitOfMeasure;
     }
 
@@ -182,7 +189,7 @@ public class Product {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(final Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -190,7 +197,7 @@ public class Product {
         return isArchived;
     }
 
-    public void setArchived(Boolean archived) {
+    public void setArchived(final Boolean archived) {
         isArchived = archived;
     }
 
@@ -198,7 +205,7 @@ public class Product {
         return lastViewedDate;
     }
 
-    public void setLastViewedDate(Date lastViewedDate) {
+    public void setLastViewedDate(final Date lastViewedDate) {
         this.lastViewedDate = lastViewedDate;
     }
 
@@ -206,7 +213,7 @@ public class Product {
         return lastReferencedDate;
     }
 
-    public void setLastReferencedDate(Date lastReferencedDate) {
+    public void setLastReferencedDate(final Date lastReferencedDate) {
         this.lastReferencedDate = lastReferencedDate;
     }
 
@@ -214,7 +221,7 @@ public class Product {
         return stockKeepingUnit;
     }
 
-    public void setStockKeepingUnit(String stockKeepingUnit) {
+    public void setStockKeepingUnit(final String stockKeepingUnit) {
         this.stockKeepingUnit = stockKeepingUnit;
     }
 }

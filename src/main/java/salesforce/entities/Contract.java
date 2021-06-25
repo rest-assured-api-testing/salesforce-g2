@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,91 +15,91 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Contract {
 
-    public Attribute attributes;
+    private Attribute attributes;
     @JsonProperty("Id")
-    public String id;
+    private String id;
     @JsonProperty("AccountId")
-    public String accountId;
+    private String accountId;
     @JsonProperty("Pricebook2Id")
-    public String pricebook2Id;
+    private String pricebook2Id;
     @JsonProperty("OwnerExpirationNotice")
-    public String ownerExpirationNotice;
+    private String ownerExpirationNotice;
     @JsonProperty("StartDate")
-    public String startDate;
+    private String startDate;
     @JsonProperty("EndDate")
-    public String endDate;
+    private String endDate;
     @JsonProperty("BillingStreet")
-    public String billingStreet;
+    private String billingStreet;
     @JsonProperty("BillingCity")
-    public String billingCity;
+    private String billingCity;
     @JsonProperty("BillingState")
-    public String billingState;
+    private String billingState;
     @JsonProperty("BillingPostalCode")
-    public String billingPostalCode;
+    private String billingPostalCode;
     @JsonProperty("BillingCountry")
-    public String billingCountry;
+    private String billingCountry;
     @JsonProperty("BillingLatitude")
-    public String billingLatitude;
+    private String billingLatitude;
     @JsonProperty("BillingLongitude")
-    public String billingLongitude;
+    private String billingLongitude;
     @JsonProperty("BillingGeocodeAccuracy")
-    public String billingGeocodeAccuracy;
+    private String billingGeocodeAccuracy;
     @JsonProperty("BillingAddress")
-    public String billingAddress;
+    private String billingAddress;
     @JsonProperty("ContractTerm")
-    public Integer contractTerm;
+    private Integer contractTerm;
     @JsonProperty("OwnerId")
-    public String ownerId;
+    private String ownerId;
     @JsonProperty("Status")
-    public String status;
+    private String status;
     @JsonProperty("CompanySignedId")
-    public String companySignedId;
+    private String companySignedId;
     @JsonProperty("CompanySignedDate")
-    public String companySignedDate;
+    private String companySignedDate;
     @JsonProperty("CustomerSignedId")
-    public String customerSignedId;
+    private String customerSignedId;
     @JsonProperty("CustomerSignedTitle")
-    public String customerSignedTitle;
+    private String customerSignedTitle;
     @JsonProperty("CustomerSignedDate")
-    public String customerSignedDate;
+    private String customerSignedDate;
     @JsonProperty("SpecialTerms")
-    public String specialTerms;
+    private String specialTerms;
     @JsonProperty("ActivatedById")
-    public String activatedById;
+    private String activatedById;
     @JsonProperty("ActivatedDate")
-    public String activatedDate;
+    private String activatedDate;
     @JsonProperty("StatusCode")
-    public String statusCode;
+    private String statusCode;
     @JsonProperty("Description")
-    public String description;
+    private String description;
     @JsonProperty("IsDeleted")
-    public Boolean isDeleted;
+    private Boolean isDeleted;
     @JsonProperty("ContractNumber")
-    public String contractNumber;
+    private String contractNumber;
     @JsonProperty("LastApprovedDate")
-    public String lastApprovedDate;
+    private String lastApprovedDate;
     @JsonProperty("CreatedDate")
-    public Date createdDate;
+    private Date createdDate;
     @JsonProperty("CreatedById")
-    public String createdById;
+    private String createdById;
     @JsonProperty("LastModifiedDate")
-    public Date lastModifiedDate;
+    private Date lastModifiedDate;
     @JsonProperty("LastModifiedById")
-    public String lastModifiedById;
+    private String lastModifiedById;
     @JsonProperty("SystemModstamp")
-    public Date systemModstamp;
+    private Date systemModstamp;
     @JsonProperty("LastActivityDate")
-    public String lastActivityDate;
+    private String lastActivityDate;
     @JsonProperty("LastViewedDate")
-    public Date lastViewedDate;
+    private Date lastViewedDate;
     @JsonProperty("LastReferencedDate")
-    public Date lastReferencedDate;
+    private Date lastReferencedDate;
 
     public Attribute getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Attribute attributes) {
+    public void setAttributes(final Attribute attributes) {
         this.attributes = attributes;
     }
 
@@ -100,7 +107,7 @@ public class Contract {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -108,7 +115,7 @@ public class Contract {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(final String accountId) {
         this.accountId = accountId;
     }
 
@@ -116,7 +123,7 @@ public class Contract {
         return pricebook2Id;
     }
 
-    public void setPricebook2Id(String pricebook2Id) {
+    public void setPricebook2Id(final String pricebook2Id) {
         this.pricebook2Id = pricebook2Id;
     }
 
@@ -124,7 +131,7 @@ public class Contract {
         return ownerExpirationNotice;
     }
 
-    public void setOwnerExpirationNotice(String ownerExpirationNotice) {
+    public void setOwnerExpirationNotice(final String ownerExpirationNotice) {
         this.ownerExpirationNotice = ownerExpirationNotice;
     }
 
@@ -132,7 +139,7 @@ public class Contract {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(final String startDate) {
         this.startDate = startDate;
     }
 
@@ -140,7 +147,7 @@ public class Contract {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(final String endDate) {
         this.endDate = endDate;
     }
 
@@ -148,7 +155,7 @@ public class Contract {
         return billingStreet;
     }
 
-    public void setBillingStreet(String billingStreet) {
+    public void setBillingStreet(final String billingStreet) {
         this.billingStreet = billingStreet;
     }
 
@@ -156,7 +163,7 @@ public class Contract {
         return billingCity;
     }
 
-    public void setBillingCity(String billingCity) {
+    public void setBillingCity(final String billingCity) {
         this.billingCity = billingCity;
     }
 
@@ -164,7 +171,7 @@ public class Contract {
         return billingState;
     }
 
-    public void setBillingState(String billingState) {
+    public void setBillingState(final String billingState) {
         this.billingState = billingState;
     }
 
@@ -172,7 +179,7 @@ public class Contract {
         return billingPostalCode;
     }
 
-    public void setBillingPostalCode(String billingPostalCode) {
+    public void setBillingPostalCode(final String billingPostalCode) {
         this.billingPostalCode = billingPostalCode;
     }
 
@@ -180,7 +187,7 @@ public class Contract {
         return billingCountry;
     }
 
-    public void setBillingCountry(String billingCountry) {
+    public void setBillingCountry(final String billingCountry) {
         this.billingCountry = billingCountry;
     }
 
@@ -188,7 +195,7 @@ public class Contract {
         return billingLatitude;
     }
 
-    public void setBillingLatitude(String billingLatitude) {
+    public void setBillingLatitude(final String billingLatitude) {
         this.billingLatitude = billingLatitude;
     }
 
@@ -196,7 +203,7 @@ public class Contract {
         return billingLongitude;
     }
 
-    public void setBillingLongitude(String billingLongitude) {
+    public void setBillingLongitude(final String billingLongitude) {
         this.billingLongitude = billingLongitude;
     }
 
@@ -204,7 +211,7 @@ public class Contract {
         return billingGeocodeAccuracy;
     }
 
-    public void setBillingGeocodeAccuracy(String billingGeocodeAccuracy) {
+    public void setBillingGeocodeAccuracy(final String billingGeocodeAccuracy) {
         this.billingGeocodeAccuracy = billingGeocodeAccuracy;
     }
 
@@ -212,7 +219,7 @@ public class Contract {
         return billingAddress;
     }
 
-    public void setBillingAddress(String billingAddress) {
+    public void setBillingAddress(final String billingAddress) {
         this.billingAddress = billingAddress;
     }
 
@@ -228,7 +235,7 @@ public class Contract {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    public void setOwnerId(final String ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -236,7 +243,7 @@ public class Contract {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(final String status) {
         this.status = status;
     }
 
@@ -244,7 +251,7 @@ public class Contract {
         return companySignedId;
     }
 
-    public void setCompanySignedId(String companySignedId) {
+    public void setCompanySignedId(final String companySignedId) {
         this.companySignedId = companySignedId;
     }
 
@@ -252,7 +259,7 @@ public class Contract {
         return companySignedDate;
     }
 
-    public void setCompanySignedDate(String companySignedDate) {
+    public void setCompanySignedDate(final String companySignedDate) {
         this.companySignedDate = companySignedDate;
     }
 
@@ -260,7 +267,7 @@ public class Contract {
         return customerSignedId;
     }
 
-    public void setCustomerSignedId(String customerSignedId) {
+    public void setCustomerSignedId(final String customerSignedId) {
         this.customerSignedId = customerSignedId;
     }
 
@@ -268,7 +275,7 @@ public class Contract {
         return customerSignedTitle;
     }
 
-    public void setCustomerSignedTitle(String customerSignedTitle) {
+    public void setCustomerSignedTitle(final String customerSignedTitle) {
         this.customerSignedTitle = customerSignedTitle;
     }
 
@@ -276,7 +283,7 @@ public class Contract {
         return customerSignedDate;
     }
 
-    public void setCustomerSignedDate(String customerSignedDate) {
+    public void setCustomerSignedDate(final String customerSignedDate) {
         this.customerSignedDate = customerSignedDate;
     }
 
@@ -284,7 +291,7 @@ public class Contract {
         return specialTerms;
     }
 
-    public void setSpecialTerms(String specialTerms) {
+    public void setSpecialTerms(final String specialTerms) {
         this.specialTerms = specialTerms;
     }
 
@@ -292,7 +299,7 @@ public class Contract {
         return activatedById;
     }
 
-    public void setActivatedById(String activatedById) {
+    public void setActivatedById(final String activatedById) {
         this.activatedById = activatedById;
     }
 
@@ -300,7 +307,7 @@ public class Contract {
         return activatedDate;
     }
 
-    public void setActivatedDate(String activatedDate) {
+    public void setActivatedDate(final String activatedDate) {
         this.activatedDate = activatedDate;
     }
 
@@ -308,7 +315,7 @@ public class Contract {
         return statusCode;
     }
 
-    public void setStatusCode(String statusCode) {
+    public void setStatusCode(final String statusCode) {
         this.statusCode = statusCode;
     }
 
@@ -316,7 +323,7 @@ public class Contract {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -324,7 +331,7 @@ public class Contract {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(final Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -332,7 +339,7 @@ public class Contract {
         return contractNumber;
     }
 
-    public void setContractNumber(String contractNumber) {
+    public void setContractNumber(final String contractNumber) {
         this.contractNumber = contractNumber;
     }
 
@@ -340,7 +347,7 @@ public class Contract {
         return lastApprovedDate;
     }
 
-    public void setLastApprovedDate(String lastApprovedDate) {
+    public void setLastApprovedDate(final String lastApprovedDate) {
         this.lastApprovedDate = lastApprovedDate;
     }
 
@@ -348,7 +355,7 @@ public class Contract {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(final Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -356,7 +363,7 @@ public class Contract {
         return createdById;
     }
 
-    public void setCreatedById(String createdById) {
+    public void setCreatedById(final String createdById) {
         this.createdById = createdById;
     }
 
@@ -364,7 +371,7 @@ public class Contract {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(final Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
@@ -372,7 +379,7 @@ public class Contract {
         return lastModifiedById;
     }
 
-    public void setLastModifiedById(String lastModifiedById) {
+    public void setLastModifiedById(final String lastModifiedById) {
         this.lastModifiedById = lastModifiedById;
     }
 
@@ -380,7 +387,7 @@ public class Contract {
         return systemModstamp;
     }
 
-    public void setSystemModstamp(Date systemModstamp) {
+    public void setSystemModstamp(final Date systemModstamp) {
         this.systemModstamp = systemModstamp;
     }
 
@@ -388,7 +395,7 @@ public class Contract {
         return lastActivityDate;
     }
 
-    public void setLastActivityDate(String lastActivityDate) {
+    public void setLastActivityDate(final String lastActivityDate) {
         this.lastActivityDate = lastActivityDate;
     }
 
@@ -396,7 +403,7 @@ public class Contract {
         return lastViewedDate;
     }
 
-    public void setLastViewedDate(Date lastViewedDate) {
+    public void setLastViewedDate(final Date lastViewedDate) {
         this.lastViewedDate = lastViewedDate;
     }
 
@@ -404,7 +411,7 @@ public class Contract {
         return lastReferencedDate;
     }
 
-    public void setLastReferencedDate(Date lastReferencedDate) {
+    public void setLastReferencedDate(final Date lastReferencedDate) {
         this.lastReferencedDate = lastReferencedDate;
     }
 }

@@ -1,23 +1,30 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address {
-    public String city;
-    public String country;
-    public Object geocodeAccuracy;
-    public Object latitude;
-    public Object longitude;
-    public String postalCode;
-    public String state;
-    public String street;
+    private String city;
+    private String country;
+    private Object geocodeAccuracy;
+    private Object latitude;
+    private Object longitude;
+    private String postalCode;
+    private String state;
+    private String street;
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(final String city) {
         this.city = city;
     }
 
@@ -25,7 +32,7 @@ public class Address {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(final String country) {
         this.country = country;
     }
 
@@ -33,7 +40,7 @@ public class Address {
         return geocodeAccuracy;
     }
 
-    public void setGeocodeAccuracy(Object geocodeAccuracy) {
+    public void setGeocodeAccuracy(final Object geocodeAccuracy) {
         this.geocodeAccuracy = geocodeAccuracy;
     }
 
@@ -41,7 +48,7 @@ public class Address {
         return latitude;
     }
 
-    public void setLatitude(Object latitude) {
+    public void setLatitude(final Object latitude) {
         this.latitude = latitude;
     }
 
@@ -49,7 +56,7 @@ public class Address {
         return longitude;
     }
 
-    public void setLongitude(Object longitude) {
+    public void setLongitude(final Object longitude) {
         this.longitude = longitude;
     }
 
@@ -57,7 +64,7 @@ public class Address {
         return postalCode;
     }
 
-    public void setPostalCode(String postalCode) {
+    public void setPostalCode(final String postalCode) {
         this.postalCode = postalCode;
     }
 
@@ -65,7 +72,7 @@ public class Address {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(final String state) {
         this.state = state;
     }
 
@@ -73,7 +80,7 @@ public class Address {
         return street;
     }
 
-    public void setStreet(String street) {
+    public void setStreet(final String street) {
         this.street = street;
     }
 }

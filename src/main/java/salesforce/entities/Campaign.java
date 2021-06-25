@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala.
+ */
 package salesforce.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,79 +15,79 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Campaign {
 
-    public Attribute attributes;
+    private Attribute attributes;
     @JsonProperty("Id")
-    public String id;
+    private String id;
     @JsonProperty("IsDeleted")
-    public Boolean isDeleted;
+    private Boolean isDeleted;
     @JsonProperty("Name")
-    public String name;
+    private String name;
     @JsonProperty("ParentId")
-    public String parentId;
+    private String parentId;
     @JsonProperty("Type")
-    public String type;
+    private String type;
     @JsonProperty("Status")
-    public String status;
+    private String status;
     @JsonProperty("StartDate")
-    public String startDate;
+    private String startDate;
     @JsonProperty("EndDate")
-    public String endDate;
+    private String endDate;
     @JsonProperty("ExpectedRevenue")
-    public String expectedRevenue;
+    private String expectedRevenue;
     @JsonProperty("BudgetedCost")
-    public String budgetedCost;
+    private String budgetedCost;
     @JsonProperty("ActualCost")
-    public String actualCost;
+    private String actualCost;
     @JsonProperty("ExpectedResponse")
-    public Double expectedResponse;
+    private Double expectedResponse;
     @JsonProperty("NumberSent")
-    public Double numberSent;
+    private Double numberSent;
     @JsonProperty("IsActive")
-    public Boolean isActive;
+    private Boolean isActive;
     @JsonProperty("Description")
-    public String description;
+    private String description;
     @JsonProperty("NumberOfLeads")
-    public Integer numberOfLeads;
+    private Integer numberOfLeads;
     @JsonProperty("NumberOfConvertedLeads")
-    public Integer numberOfConvertedLeads;
+    private Integer numberOfConvertedLeads;
     @JsonProperty("NumberOfContacts")
-    public Integer numberOfContacts;
+    private Integer numberOfContacts;
     @JsonProperty("NumberOfResponses")
-    public Integer numberOfResponses;
+    private Integer numberOfResponses;
     @JsonProperty("NumberOfOpportunities")
-    public Integer numberOfOpportunities;
+    private Integer numberOfOpportunities;
     @JsonProperty("NumberOfWonOpportunities")
-    public Integer numberOfWonOpportunities;
+    private Integer numberOfWonOpportunities;
     @JsonProperty("AmountAllOpportunities")
-    public Double amountAllOpportunities;
+    private Double amountAllOpportunities;
     @JsonProperty("AmountWonOpportunities")
-    public Double amountWonOpportunities;
+    private Double amountWonOpportunities;
     @JsonProperty("OwnerId")
-    public String ownerId;
+    private String ownerId;
     @JsonProperty("CreatedDate")
-    public Date createdDate;
+    private Date createdDate;
     @JsonProperty("CreatedById")
-    public String createdById;
+    private String createdById;
     @JsonProperty("LastModifiedDate")
-    public Date lastModifiedDate;
+    private Date lastModifiedDate;
     @JsonProperty("LastModifiedById")
-    public String lastModifiedById;
+    private String lastModifiedById;
     @JsonProperty("SystemModstamp")
-    public Date systemModstamp;
+    private Date systemModstamp;
     @JsonProperty("LastActivityDate")
-    public String lastActivityDate;
+    private String lastActivityDate;
     @JsonProperty("LastViewedDate")
-    public Date lastViewedDate;
+    private Date lastViewedDate;
     @JsonProperty("LastReferencedDate")
-    public Date lastReferencedDate;
+    private Date lastReferencedDate;
     @JsonProperty("CampaignMemberRecordTypeId")
-    public String campaignMemberRecordTypeId;
+    private String campaignMemberRecordTypeId;
 
     public Attribute getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Attribute attributes) {
+    public void setAttributes(final Attribute attributes) {
         this.attributes = attributes;
     }
 
@@ -88,7 +95,7 @@ public class Campaign {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -96,7 +103,7 @@ public class Campaign {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(final Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -104,7 +111,7 @@ public class Campaign {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -112,7 +119,7 @@ public class Campaign {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(final String parentId) {
         this.parentId = parentId;
     }
 
@@ -120,7 +127,7 @@ public class Campaign {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(final String type) {
         this.type = type;
     }
 
@@ -128,7 +135,7 @@ public class Campaign {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(final String status) {
         this.status = status;
     }
 
@@ -136,7 +143,7 @@ public class Campaign {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(final String startDate) {
         this.startDate = startDate;
     }
 
@@ -144,7 +151,7 @@ public class Campaign {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(final String endDate) {
         this.endDate = endDate;
     }
 
@@ -152,7 +159,7 @@ public class Campaign {
         return expectedRevenue;
     }
 
-    public void setExpectedRevenue(String expectedRevenue) {
+    public void setExpectedRevenue(final String expectedRevenue) {
         this.expectedRevenue = expectedRevenue;
     }
 
@@ -160,7 +167,7 @@ public class Campaign {
         return budgetedCost;
     }
 
-    public void setBudgetedCost(String budgetedCost) {
+    public void setBudgetedCost(final String budgetedCost) {
         this.budgetedCost = budgetedCost;
     }
 
@@ -168,7 +175,7 @@ public class Campaign {
         return actualCost;
     }
 
-    public void setActualCost(String actualCost) {
+    public void setActualCost(final String actualCost) {
         this.actualCost = actualCost;
     }
 
@@ -176,7 +183,7 @@ public class Campaign {
         return expectedResponse;
     }
 
-    public void setExpectedResponse(Double expectedResponse) {
+    public void setExpectedResponse(final Double expectedResponse) {
         this.expectedResponse = expectedResponse;
     }
 
@@ -184,7 +191,7 @@ public class Campaign {
         return numberSent;
     }
 
-    public void setNumberSent(Double numberSent) {
+    public void setNumberSent(final Double numberSent) {
         this.numberSent = numberSent;
     }
 
@@ -192,7 +199,7 @@ public class Campaign {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(final Boolean active) {
         isActive = active;
     }
 
@@ -200,7 +207,7 @@ public class Campaign {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -208,7 +215,7 @@ public class Campaign {
         return numberOfLeads;
     }
 
-    public void setNumberOfLeads(Integer numberOfLeads) {
+    public void setNumberOfLeads(final Integer numberOfLeads) {
         this.numberOfLeads = numberOfLeads;
     }
 
@@ -216,7 +223,7 @@ public class Campaign {
         return numberOfConvertedLeads;
     }
 
-    public void setNumberOfConvertedLeads(Integer numberOfConvertedLeads) {
+    public void setNumberOfConvertedLeads(final Integer numberOfConvertedLeads) {
         this.numberOfConvertedLeads = numberOfConvertedLeads;
     }
 
@@ -224,7 +231,7 @@ public class Campaign {
         return numberOfContacts;
     }
 
-    public void setNumberOfContacts(Integer numberOfContacts) {
+    public void setNumberOfContacts(final Integer numberOfContacts) {
         this.numberOfContacts = numberOfContacts;
     }
 
@@ -232,7 +239,7 @@ public class Campaign {
         return numberOfResponses;
     }
 
-    public void setNumberOfResponses(Integer numberOfResponses) {
+    public void setNumberOfResponses(final Integer numberOfResponses) {
         this.numberOfResponses = numberOfResponses;
     }
 
@@ -240,7 +247,7 @@ public class Campaign {
         return numberOfOpportunities;
     }
 
-    public void setNumberOfOpportunities(Integer numberOfOpportunities) {
+    public void setNumberOfOpportunities(final Integer numberOfOpportunities) {
         this.numberOfOpportunities = numberOfOpportunities;
     }
 
@@ -248,7 +255,7 @@ public class Campaign {
         return numberOfWonOpportunities;
     }
 
-    public void setNumberOfWonOpportunities(Integer numberOfWonOpportunities) {
+    public void setNumberOfWonOpportunities(final Integer numberOfWonOpportunities) {
         this.numberOfWonOpportunities = numberOfWonOpportunities;
     }
 
@@ -256,7 +263,7 @@ public class Campaign {
         return amountAllOpportunities;
     }
 
-    public void setAmountAllOpportunities(Double amountAllOpportunities) {
+    public void setAmountAllOpportunities(final Double amountAllOpportunities) {
         this.amountAllOpportunities = amountAllOpportunities;
     }
 
@@ -264,7 +271,7 @@ public class Campaign {
         return amountWonOpportunities;
     }
 
-    public void setAmountWonOpportunities(Double amountWonOpportunities) {
+    public void setAmountWonOpportunities(final Double amountWonOpportunities) {
         this.amountWonOpportunities = amountWonOpportunities;
     }
 
@@ -272,7 +279,7 @@ public class Campaign {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    public void setOwnerId(final String ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -280,7 +287,7 @@ public class Campaign {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(final Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -288,7 +295,7 @@ public class Campaign {
         return createdById;
     }
 
-    public void setCreatedById(String createdById) {
+    public void setCreatedById(final String createdById) {
         this.createdById = createdById;
     }
 
@@ -296,7 +303,7 @@ public class Campaign {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(final Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
@@ -304,7 +311,7 @@ public class Campaign {
         return lastModifiedById;
     }
 
-    public void setLastModifiedById(String lastModifiedById) {
+    public void setLastModifiedById(final String lastModifiedById) {
         this.lastModifiedById = lastModifiedById;
     }
 
@@ -312,7 +319,7 @@ public class Campaign {
         return systemModstamp;
     }
 
-    public void setSystemModstamp(Date systemModstamp) {
+    public void setSystemModstamp(final Date systemModstamp) {
         this.systemModstamp = systemModstamp;
     }
 
@@ -320,7 +327,7 @@ public class Campaign {
         return lastActivityDate;
     }
 
-    public void setLastActivityDate(String lastActivityDate) {
+    public void setLastActivityDate(final String lastActivityDate) {
         this.lastActivityDate = lastActivityDate;
     }
 
@@ -328,7 +335,7 @@ public class Campaign {
         return lastViewedDate;
     }
 
-    public void setLastViewedDate(Date lastViewedDate) {
+    public void setLastViewedDate(final Date lastViewedDate) {
         this.lastViewedDate = lastViewedDate;
     }
 
@@ -336,7 +343,7 @@ public class Campaign {
         return lastReferencedDate;
     }
 
-    public void setLastReferencedDate(Date lastReferencedDate) {
+    public void setLastReferencedDate(final Date lastReferencedDate) {
         this.lastReferencedDate = lastReferencedDate;
     }
 
@@ -344,7 +351,7 @@ public class Campaign {
         return campaignMemberRecordTypeId;
     }
 
-    public void setCampaignMemberRecordTypeId(String campaignMemberRecordTypeId) {
+    public void setCampaignMemberRecordTypeId(final String campaignMemberRecordTypeId) {
         this.campaignMemberRecordTypeId = campaignMemberRecordTypeId;
     }
 }

@@ -16,7 +16,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.http.HttpStatus;
 import salesforce.entities.Product;
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Person {
 
-    Attribute attributes;
+    private Attribute attributes;
     private String id;
     private String ownerId;
     private Boolean isDeleted;
@@ -53,7 +53,7 @@ public class Person {
         return attributes;
     }
 
-    public void setAttributes(Attribute attributes) {
+    public void setAttributes(final Attribute attributes) {
         this.attributes = attributes;
     }
 
@@ -63,7 +63,7 @@ public class Person {
     }
 
     @JsonProperty("Id")
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -73,7 +73,7 @@ public class Person {
     }
 
     @JsonProperty("OwnerId")
-    public void setOwnerId(String ownerId) {
+    public void setOwnerId(final String ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -93,7 +93,7 @@ public class Person {
     }
 
     @JsonProperty("LastName")
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
@@ -103,7 +103,7 @@ public class Person {
     }
 
     @JsonProperty("FirstName")
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -113,7 +113,7 @@ public class Person {
     }
 
     @JsonProperty("Salutation")
-    public void setSalutation(String salutation) {
+    public void setSalutation(final String salutation) {
         this.salutation = salutation;
     }
 
@@ -123,7 +123,7 @@ public class Person {
     }
 
     @JsonProperty("Name")
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -213,7 +213,7 @@ public class Person {
     }
 
     @JsonProperty("BirthDate")
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(final String birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -223,7 +223,7 @@ public class Person {
     }
 
     @JsonProperty("DeathDate")
-    public void setDeathDate(String deathDate) {
+    public void setDeathDate(final String deathDate) {
         this.deathDate = deathDate;
     }
 
@@ -233,7 +233,7 @@ public class Person {
     }
 
     @JsonProperty("ConvictionsCount")
-    public void setConvictionsCount(String convictionsCount) {
+    public void setConvictionsCount(final String convictionsCount) {
         this.convictionsCount = convictionsCount;
     }
 
@@ -243,7 +243,7 @@ public class Person {
     }
 
     @JsonProperty("ChildrenCount")
-    public void setChildrenCount(String childrenCount) {
+    public void setChildrenCount(final String childrenCount) {
         this.childrenCount = childrenCount;
     }
 
@@ -253,7 +253,7 @@ public class Person {
     }
 
     @JsonProperty("MilitaryService")
-    public void setMilitaryService(String militaryService) {
+    public void setMilitaryService(final String militaryService) {
         this.militaryService = militaryService;
     }
 
@@ -273,7 +273,7 @@ public class Person {
     }
 
     @JsonProperty("Occupation")
-    public void setOccupation(String occupation) {
+    public void setOccupation(final String occupation) {
         this.occupation = occupation;
     }
 
@@ -283,7 +283,7 @@ public class Person {
     }
 
     @JsonProperty("Website")
-    public void setWebsite(String website) {
+    public void setWebsite(final String website) {
         this.website = website;
     }
 
@@ -293,7 +293,7 @@ public class Person {
     }
 
     @JsonProperty("IndividualsAge")
-    public void setIndividualsAge(String individualsAge) {
+    public void setIndividualsAge(final String individualsAge) {
         this.individualsAge = individualsAge;
     }
 
@@ -303,7 +303,7 @@ public class Person {
     }
 
     @JsonProperty("LastViewedDate")
-    public void setLastViewedDate(String lastViewedDate) {
+    public void setLastViewedDate(final String lastViewedDate) {
         this.lastViewedDate = lastViewedDate;
     }
 
@@ -313,7 +313,7 @@ public class Person {
     }
 
     @JsonProperty("MasterRecordId")
-    public void setMasterRecordId(String masterRecordId) {
+    public void setMasterRecordId(final String masterRecordId) {
         this.masterRecordId = masterRecordId;
     }
 
@@ -323,7 +323,7 @@ public class Person {
     }
 
     @JsonProperty("ConsumerCreditScore")
-    public void setConsumerCreditScore(String consumerCreditScore) {
+    public void setConsumerCreditScore(final String consumerCreditScore) {
         this.consumerCreditScore = consumerCreditScore;
     }
 
@@ -333,7 +333,7 @@ public class Person {
     }
 
     @JsonProperty("ConsumerCreditScoreProviderName")
-    public void setConsumerCreditScoreProviderName(String consumerCreditScoreProviderName) {
+    public void setConsumerCreditScoreProviderName(final String consumerCreditScoreProviderName) {
         this.consumerCreditScoreProviderName = consumerCreditScoreProviderName;
     }
 
@@ -343,7 +343,7 @@ public class Person {
     }
 
     @JsonProperty("InfluencerRating")
-    public void setInfluencerRating(String influencerRating) {
+    public void setInfluencerRating(final String influencerRating) {
         this.influencerRating = influencerRating;
     }
 
@@ -353,7 +353,7 @@ public class Person {
     }
 
     @JsonProperty("CreatedDate")
-    public void setCreatedDate(String createdDate) {
+    public void setCreatedDate(final String createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -363,7 +363,7 @@ public class Person {
     }
 
     @JsonProperty("CreatedById")
-    public void setCreatedById(String createdById) {
+    public void setCreatedById(final String createdById) {
         this.createdById = createdById;
     }
 
@@ -373,7 +373,7 @@ public class Person {
     }
 
     @JsonProperty("LastModifiedDate")
-    public void setLastModifiedDate(String lastModifiedDate) {
+    public void setLastModifiedDate(final String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
@@ -383,7 +383,7 @@ public class Person {
     }
 
     @JsonProperty("LastModifiedById")
-    public void setLastModifiedById(String lastModifiedById) {
+    public void setLastModifiedById(final String lastModifiedById) {
         this.lastModifiedById = lastModifiedById;
     }
 
@@ -393,7 +393,7 @@ public class Person {
     }
 
     @JsonProperty("SystemModstamp")
-    public void setSystemModstamp(String systemModstamp) {
+    public void setSystemModstamp(final String systemModstamp) {
         this.systemModstamp = systemModstamp;
     }
 }

@@ -17,7 +17,6 @@ import org.apache.http.HttpStatus;
 import salesforce.endpointurl.Endpoints;
 import salesforce.entities.Product;
 import salesforce.entities.CreatedResponse;
-
 import java.util.HashMap;
 import java.util.Map;
 

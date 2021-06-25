@@ -9,14 +9,12 @@ package scenarios.account;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
-import salesforce.endpointurl.Endpoints;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.entities.CreatedResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import java.util.HashMap;
 import java.util.Map;
 
