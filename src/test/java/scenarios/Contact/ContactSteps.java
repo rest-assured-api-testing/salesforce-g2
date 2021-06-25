@@ -16,12 +16,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
-import salesforce.entities.Order;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import static scenarios.hooks.OrderScenarioHooks.accountId;
+import static scenarios.hooks.ContactScenarioHooks.contactId;
 
 public class ContactSteps {
     private CreatedResponse createdResponse;
@@ -78,9 +75,15 @@ public class ContactSteps {
         contact.setPhone(phone);
     }
 
-    @When("I execute a {string} request with the {string} endpoint")
-    public void iExecuteARequestWithTheEndpoint(String method, String endpoint) throws JsonProcessingException {
+    @When("I execute a {string} request with the {string} contact endpoint")
+    public void iExecuteARequestWithTheContactEndpoint(String method, String endpoint) throws JsonProcessingException {
         apiResponse = ApiRequestManager.create(endpoint, pathParams, contact);
+        try {
+            createdResponse = apiResponse.getBody(CreatedResponse.class);
+            contactId = createdResponse.getId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Then("The response status code should be {int}")

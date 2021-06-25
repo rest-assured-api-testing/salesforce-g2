@@ -24,20 +24,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ContactScenarioHooks {
-    public Logger LOGGER = LogManager.getLogger(getClass());
+
     private CreatedResponse createdResponse;
+    public Logger LOGGER = LogManager.getLogger(getClass());
     public static String contactId;
 
     public ContactScenarioHooks(CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
-    @Before(order = 1)
+    @Before()
     public  void setUp() {
         Authentication.getAuth();
     }
 
-    @Before(value = "@GetContact or @UpdateContact or @DeleteContact", order = 2)
+    @Before(value = "@GetContact or @UpdateContact or @DeleteContact")
     public void createContact() throws JsonProcessingException {
         LOGGER.info("*** Create a Contact to test operations ***");
         Map<String,String> pathParams = new HashMap<>();
