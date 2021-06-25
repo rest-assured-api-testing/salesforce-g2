@@ -9,6 +9,8 @@ package scenarios.hooks;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import salesforce.auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import salesforce.endpointurl.Endpoints;
@@ -21,10 +23,8 @@ import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
-import static salesforce.config.EnvConfigurationFile.LOGGER;
-
 public class IndividualScenarioHooks {
-
+    public Logger LOGGER = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
 
     public IndividualScenarioHooks(final CreatedResponse createdResponse) {

@@ -10,6 +10,8 @@ package scenarios.account;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import salesforce.endpointurl.Endpoints;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import salesforce.entities.CreatedResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -18,9 +20,8 @@ import io.cucumber.java.en.When;
 import java.util.HashMap;
 import java.util.Map;
 
-import static salesforce.config.EnvConfigurationFile.LOGGER;
-
 public class AccountStepsGet {
+    public Logger LOGGER = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
     private Map<String, String> pathParams;
@@ -39,7 +40,7 @@ public class AccountStepsGet {
     @When("I add this {string} endpoint and execute get account request")
     public void iAddThisEndpointAndExecuteGetAccountRequest(final String endpoint) {
         LOGGER.info("=================== Account Get When ==============================");
-        apiResponse = ApiRequestManager.get(Endpoints.ACCOUNT.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.get(endpoint, pathParams);
     }
 
     @Then("the response status code should be {string} to get account request")

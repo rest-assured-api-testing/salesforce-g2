@@ -14,13 +14,15 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
 import salesforce.endpointurl.Endpoints;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import salesforce.entities.Product;
 import salesforce.entities.CreatedResponse;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProductHooks {
+    public Logger LOGGER = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
 
     public ProductHooks(final CreatedResponse createdResponse) {
