@@ -3,6 +3,8 @@ package scenarios.individual;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import salesforce.endpointurl.ElementParam;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Person;
@@ -12,9 +14,8 @@ import io.cucumber.java.en.When;
 import java.util.HashMap;
 import java.util.Map;
 
-import static salesforce.config.EnvConfigurationFile.LOGGER;
-
 public class IndividualStepsUpdate {
+    public Logger LOGGER = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
     private Map<String,String> pathParams;

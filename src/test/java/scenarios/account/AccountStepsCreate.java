@@ -3,7 +3,8 @@ package scenarios.account;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.endpointurl.Endpoint;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import salesforce.entities.Account;
 import salesforce.entities.CreatedResponse;
 import io.cucumber.java.en.Given;
@@ -12,9 +13,8 @@ import io.cucumber.java.en.When;
 import java.util.HashMap;
 import java.util.Map;
 
-import static salesforce.config.EnvConfigurationFile.LOGGER;
-
 public class AccountStepsCreate {
+    public Logger LOGGER = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
     private Map<String,String> pathParams;
@@ -35,7 +35,7 @@ public class AccountStepsCreate {
     @When("I add this {string} endpoint and execute post account request")
     public void iAddThisEndpointAndExecutePostAccountRequest(String endpoint) throws JsonProcessingException {
         LOGGER.info("=================== Account Create When ==============================");
-        apiResponse = ApiRequestManager.create(Endpoint.ACCOUNTS, pathParams, account);
+        apiResponse = ApiRequestManager.create(endpoint, pathParams, account);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());

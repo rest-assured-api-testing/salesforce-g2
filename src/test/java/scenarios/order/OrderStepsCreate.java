@@ -1,6 +1,5 @@
 package scenarios.order;
 
-import api.ApiRequest;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
