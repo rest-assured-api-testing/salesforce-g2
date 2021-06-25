@@ -18,9 +18,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Order;
-
 import static scenarios.hooks.OrderScenarioHooks.accountId;
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -34,6 +34,7 @@ public class OrderScenarioHooks {
     public Logger LOGGER = LogManager.getLogger(getClass());
     public static final String DATE_FORMAT = "yyyy-mm-dd";
     private CreatedResponse createdResponse;
+    private ApiResponse apiResponse;
     public static String accountId;
     public static String orderId;
 
@@ -56,6 +57,7 @@ public class OrderScenarioHooks {
         accountId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
+
     @Before(value = "@GetOrder or @UpdateOrder or @DeleteOrder", order = 3)
     public void createOrder() throws JsonProcessingException {
         LOGGER.info("*** Create an Order to test operations ***");
@@ -67,25 +69,16 @@ public class OrderScenarioHooks {
         order.setAccountId(accountId);
         order.setEffectiveDate(date);
         order.setStatus("Draft");
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ORDERS.getEndpoint(), pathParams, order);
+        apiResponse = ApiRequestManager.create(Endpoints.ORDERS.getEndpoint(), pathParams, order);
         orderId = apiResponse.getBody(CreatedResponse.class).getId();
     }
-
-//    @After(value = "@GetOrder or @UpdateOrder or @CreateOrder")
-//    public void setDownOrder() {
-//        LOGGER.info("*** Delete created Order ***");
-//        Map<String,String> pathParams = new HashMap<>();
-//        pathParams.put(Endpoints.ID.getEndpoint(),orderId);
-//        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.ORDER.getEndpoint(), pathParams);
-//        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
-//    }
 
     @After(value = "@GetOrder or @UpdateOrder or @CreateOrder")
     public void setDownAccount() {
         LOGGER.info("*** Delete created Account ***");
         Map<String,String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.getEndpoint(),accountId);
-        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.getEndpoint(), pathParams);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }
