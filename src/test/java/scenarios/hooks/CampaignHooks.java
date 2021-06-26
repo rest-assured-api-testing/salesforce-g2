@@ -36,7 +36,7 @@ public class CampaignHooks {
         Campaign campaign = new Campaign();
         campaign.setName("The first campaign");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.CAMPAIGNS.getEndpoint(), pathParams, campaign);
+        apiResponse = ApiRequestManager.create(Endpoints.CAMPAIGNS.get(), pathParams, campaign);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -47,9 +47,9 @@ public class CampaignHooks {
     @After(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @CreateCampaign")
     public void setLast() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoints.CAMPAIGN.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.CAMPAIGN.get(), pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 }
