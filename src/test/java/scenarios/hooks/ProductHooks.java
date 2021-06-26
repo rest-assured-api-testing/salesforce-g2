@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductHooks {
-    public Logger LOGGER = LogManager.getLogger(getClass());
+    public Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
 
     public ProductHooks(final CreatedResponse createdResponse) {

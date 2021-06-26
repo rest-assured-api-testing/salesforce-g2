@@ -26,22 +26,22 @@ import java.util.Map;
 public class ContactScenarioHooks {
 
     private CreatedResponse createdResponse;
-    public Logger LOGGER = LogManager.getLogger(getClass());
+    private Logger logger = LogManager.getLogger(getClass());
     public static String contactId;
 
-    public ContactScenarioHooks(CreatedResponse createdResponse) {
+    public ContactScenarioHooks(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
-    @Before()
+    @Before(order = 1)
     public  void setUp() {
         Authentication.getAuth();
     }
 
     @Before(value = "@GetContact or @UpdateContact or @DeleteContact")
     public void createContact() throws JsonProcessingException {
-        LOGGER.info("*** Create a Contact to test operations ***");
-        Map<String,String> pathParams = new HashMap<>();
+        logger.info("*** Create a Contact to test operations ***");
+        Map<String, String> pathParams = new HashMap<>();
         Contact contact = new Contact();
         contact.setFirstName("firstname");
         contact.setLastName("lastname");
@@ -51,8 +51,8 @@ public class ContactScenarioHooks {
 
     @After(value = "@GetContact or @UpdateContact or @CreateContact")
     public void setDownContact() {
-        LOGGER.info("*** Delete created Contact ***");
-        Map<String,String> pathParams = new HashMap<>();
+        logger.info("*** Delete created Contact ***");
+        Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.getEndpoint(), contactId);
         ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.getEndpoint(), pathParams);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);

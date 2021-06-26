@@ -1,30 +1,40 @@
-Feature: Requests for Individual endpoint
+Feature: Requests for Account endpoint
   @GetIndividuals
   Scenario: Get all Individuals
-    Given I build a all get request
-    When I add this "/Individual" endpoint and execute all get request
-    Then the response status code should be "200" to all get request
+    Given
+    When I add this "/Individual" endpoint and send the request
+    Then the response status code should be "200"
 
   @CreateIndividual
-  Scenario: Create a Individual
-    Given I build a post request
-    When I add this "/Individual" endpoint and execute post request
-    Then the response status code should be "201" to post request
+  Scenario Outline: Create a Individual
+    Given I build the pathParams and body to request
+      | firstName  | <firsNameIndividual> |
+      | lastName   | <lastNameIndividual> |
+    When I add this "/Individual" endpoint and send the request with body
+    Then the response status code should be "201"
+    Examples:
+      | firsNameIndividual | lastNameIndividual |
+      | Pepito             | Ramirez            |
 
   @GetIndividual
   Scenario: Get a Individual
-    Given I build a get request
-    When I add this "/Individual/{id}" endpoint and execute get request
-    Then the response status code should be "200" to get request
+    Given I build the pathParams to request
+    When I add this "/Individual/{id}" endpoint and send the request
+    Then the response status code should be "200"
 
   @UpdateIndividual
-  Scenario: Update a Individual
-    Given I build a update request
-    When I add this "/Individual/{id}" endpoint and execute patch request
-    Then the response status code should be "204" to patch request
+  Scenario Outline: Update a Individual
+    Given I build the pathParams and updated body to request
+      | firstName  | <firsNameIndividual> |
+      | lastName   | <lastNameIndividual> |
+    When I add this "/Individual/{id}" endpoint and send the request with updated body
+    Then the response status code should be "204"
+    Examples:
+      | firsNameIndividual | lastNameIndividual |
+      | Pedro Luis         | Ramirez            |
 
   @DeleteIndividual
   Scenario: Delete a Individual
-    Given I build a delete request
-    When I add this "/Individual/{id}" endpoint and execute delete request
-    Then the response status code should be "204" to delete request
+    Given I build the pathParams to request
+    When I add this "/Individual/{id}" endpoint and send the delete request
+    Then the response status code should be "204"

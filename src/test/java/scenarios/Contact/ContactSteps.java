@@ -24,9 +24,9 @@ public class ContactSteps {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
     private Contact contact;
-    private Map<String,String> pathParams = new HashMap<>();
+    private Map<String, String> pathParams = new HashMap<>();
 
-    public ContactSteps(CreatedResponse createdResponse) {
+    public ContactSteps(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
@@ -36,47 +36,47 @@ public class ContactSteps {
     }
 
     @And("I set the firstname value to {string}")
-    public void iSetFirstnameValueTo(String firstname) {
+    public void iSetFirstnameValueTo(final String firstname) {
         contact.setFirstName(firstname);
     }
 
     @And("I set the lastname value to {string}")
-    public void iSetTheLastnameValueTo(String lastname) {
+    public void iSetTheLastnameValueTo(final String lastname) {
         contact.setLastName(lastname);
     }
 
     @And("I set the birthdate value to {string}")
-    public void iSetTheBirthdateValueTo(String birthdate) {
+    public void iSetTheBirthdateValueTo(final String birthdate) {
         contact.setBirthdate(birthdate);
     }
 
     @And("I set the department value to {string}")
-    public void iSetTheDepartmentValueTo(String deparment) {
+    public void iSetTheDepartmentValueTo(final String deparment) {
         contact.setDepartment(deparment);
     }
 
     @And("I set the description value to {string}")
-    public void iSetTheDescriptionValueTo(String description) {
+    public void iSetTheDescriptionValueTo(final String description) {
         contact.setDescription(description);
     }
 
     @And("I set the email value to {string}")
-    public void iSetTheEmailValueTo(String email) {
+    public void iSetTheEmailValueTo(final String email) {
         contact.setEmail(email);
     }
 
     @And("I set the homephone value to {string}")
-    public void iSetTheHomePhoneValueTo(String homephone) {
+    public void iSetTheHomePhoneValueTo(final String homephone) {
         contact.setHomePhone(homephone);
     }
 
     @And("I set the phone value to {string}")
-    public void iSetThePhoneValueTo(String phone) {
+    public void iSetThePhoneValueTo(final String phone) {
         contact.setPhone(phone);
     }
 
     @When("I execute a {string} request with the {string} contact endpoint")
-    public void iExecuteARequestWithTheContactEndpoint(String method, String endpoint) throws JsonProcessingException {
+    public void iExecuteARequestWithTheContactEndpoint(final String method, final String endpoint) throws JsonProcessingException {
         apiResponse = ApiRequestManager.create(endpoint, pathParams, contact);
         try {
             createdResponse = apiResponse.getBody(CreatedResponse.class);

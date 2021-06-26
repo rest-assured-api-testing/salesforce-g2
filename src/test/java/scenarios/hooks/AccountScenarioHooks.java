@@ -18,12 +18,11 @@ import salesforce.entities.Account;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class AccountScenarioHooks {
-    public Logger LOGGER = LogManager.getLogger(getClass());
+    private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
 
     public AccountScenarioHooks(final CreatedResponse createdResponse) {
@@ -32,7 +31,7 @@ public class AccountScenarioHooks {
 
     @Before(value = "@GetAccounts or @GetAccount or @UpdateAccount or @DeleteAccount", order = 2)
     public void setUp() throws JsonProcessingException {
-        LOGGER.info("======================= A Account Before Hook");
+        logger.info("======================= A Account Before Hook");
         Map<String, String> pathParams = new HashMap<>();
         Account account = new Account();
         account.setName("First Account");
@@ -49,7 +48,7 @@ public class AccountScenarioHooks {
 
     @After(value = "@GetAccounts or @GetAccount or @UpdateAccount or @CreateAccount")
     public void setDown() {
-        LOGGER.info("======================= A Account After Hook");
+        logger.info("======================= A Account After Hook");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
         ApiResponse apiResponse;
