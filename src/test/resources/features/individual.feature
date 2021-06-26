@@ -8,13 +8,20 @@ Feature: Requests for Account endpoint
   @CreateIndividual
   Scenario Outline: Create a Individual
     Given I build the pathParams and body to request
-      | firstName  | <firsNameIndividual> |
-      | lastName   | <lastNameIndividual> |
+      | firstName  | <firsNameIndividual>   |
+      | lastName   | <lastNameIndividual>   |
+      | Salutation | <salutationIndividual> |
+      | BirthDate  | <birthdateIndividual> |
     When I add this "/Individual" endpoint and send the request with body
-    Then the response status code should be "201"
+    Then the response status code should be "<status>"
     Examples:
-      | firsNameIndividual | lastNameIndividual |
-      | Pepito             | Ramirez            |
+      | firsNameIndividual | lastNameIndividual | salutationIndividual | birthdateIndividual | status |
+      | Pepito             | Ramirez            | Mr.                  | 1988-06-09          | 201    |
+      | Rodrigo            | Caceres            | Mister               | 1985-07-09          | 201    |
+      | Marta              | Cespedes           | Miss                 | 1990-05-10          | 201    |
+      | Maria              | Manzalba           |                      | 1990-03-20          | 201    |
+      |                    | Aranjuez           |                      | 1990-04-23          | 201    |
+      |                    | Perales            |                      |                     | 201    |
 
   @GetIndividual
   Scenario: Get a Individual

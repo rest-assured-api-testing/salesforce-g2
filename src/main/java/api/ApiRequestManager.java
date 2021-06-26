@@ -52,11 +52,6 @@ public class ApiRequestManager {
         return executeWithBody(endpoint, pathParams, entity, ApiMethod.POST);
     }
 
-    public static <T> ApiResponse create(final String endpoint, final Map<String, String> pathParams, final String entity)
-            throws JsonProcessingException {
-        return executeWithBody(endpoint, pathParams, entity, ApiMethod.POST);
-    }
-
     /**
      * Executes a request to update an entity.
      *
@@ -68,11 +63,6 @@ public class ApiRequestManager {
      * @throws JsonProcessingException due to method execution.
      */
     public static <T> ApiResponse update(final String endpoint, final Map<String, String> pathParams, final T entity)
-            throws JsonProcessingException {
-        return executeWithBody(endpoint, pathParams, entity, ApiMethod.PATCH);
-    }
-
-    public static <T> ApiResponse update(final String endpoint, final Map<String, String> pathParams, final String entity)
             throws JsonProcessingException {
         return executeWithBody(endpoint, pathParams, entity, ApiMethod.PATCH);
     }
@@ -115,14 +105,14 @@ public class ApiRequestManager {
     public static <T> ApiResponse executeWithBody(final String endpoint, final Map<String, String> pathParams,
                                                   final T entity, final Enum<ApiMethod> type)
             throws JsonProcessingException {
+        String convertedEntity;
+        if (entity instanceof String) {
+            convertedEntity = (String) entity;
+        } else  {
+            convertedEntity = new ObjectMapper().writeValueAsString(entity);
+        }
         return ApiManager.executeWithBody(buildRequest(endpoint, pathParams, type)
-                .body(new ObjectMapper().writeValueAsString(entity)).build());
-    }
-
-    public static <T> ApiResponse executeWithBody(final String endpoint, final Map<String, String> pathParams,
-                                                  final String entity, final Enum<ApiMethod> type) {
-        return ApiManager.executeWithBody(buildRequest(endpoint, pathParams, type)
-                .body(entity).build());
+                .body(convertedEntity).build());
     }
 
     /**

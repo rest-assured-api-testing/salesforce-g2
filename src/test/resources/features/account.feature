@@ -10,10 +10,10 @@ Feature: Requests for Account endpoint
     Given I build the pathParams and body to request
       | name  | <nameAccount> |
     When I add this "/Account" endpoint and send the request with body
-    Then the response status code should be "201"
+    Then the response status code should be "<status>"
     Examples:
-      | nameAccount |
-      | New Account |
+      | nameAccount | status |
+      | New Account | 201    |
 
   @GetAccount
   Scenario: Get a Account
