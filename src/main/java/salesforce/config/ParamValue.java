@@ -15,7 +15,7 @@ public enum ParamValue {
         this.value = value;
     }
 
-    public String getValue() {
+    public String get() {
         return value;
     }
 }

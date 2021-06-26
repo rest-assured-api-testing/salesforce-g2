@@ -37,7 +37,7 @@ public class AccountScenarioHooks {
         account.setName("First Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.getEndpoint(), pathParams, account);
+        apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -50,10 +50,10 @@ public class AccountScenarioHooks {
     public void setDown() {
         logger.info("======================= A Account After Hook");
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }

@@ -33,7 +33,7 @@ public class OrdersTest extends CommonTest {
         Account account = new Account();
         account.setName("testAccount01");
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.getEndpoint(), pathParams, account);
+        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
         accountId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -48,7 +48,7 @@ public class OrdersTest extends CommonTest {
         order.setEffectiveDate(date);
         order.setStatus("Draft");
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ORDERS.getEndpoint(), pathParams, order);
+        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ORDERS.get(), pathParams, order);
         orderId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -63,7 +63,7 @@ public class OrdersTest extends CommonTest {
         order.setEffectiveDate(date);
         order.setStatus("Draft");
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ORDERS.getEndpoint(), pathParams, order);
+        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ORDERS.get(), pathParams, order);
         orderId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -78,24 +78,24 @@ public class OrdersTest extends CommonTest {
         order.setEffectiveDate(date);
         order.setStatus("Draft");
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), orderId);
-        ApiResponse apiResponse = ApiRequestManager.update(Endpoints.ORDER.getEndpoint(), pathParams, order);
+        pathParams.put(Endpoints.ID.get(), orderId);
+        ApiResponse apiResponse = ApiRequestManager.update(Endpoints.ORDER.get(), pathParams, order);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 
     @AfterMethod(onlyForGroups = {"createOrder", "updateOrder"})
     public void deleteOrder() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), orderId);
-        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.ORDER.getEndpoint(), pathParams);
+        pathParams.put(Endpoints.ID.get(), orderId);
+        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.ORDER.get(), pathParams);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 
     @AfterClass
     public void deleteAccount() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), accountId);
-        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.getEndpoint(), pathParams);
+        pathParams.put(Endpoints.ID.get(), accountId);
+        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }

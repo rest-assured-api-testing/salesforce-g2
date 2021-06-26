@@ -45,7 +45,7 @@ public class OrderScenarioHooks {
         Map<String, String> pathParams = new HashMap<>();
         Account account = new Account();
         account.setName("testAccount01");
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.getEndpoint(), pathParams, account);
+        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
         accountId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -61,7 +61,7 @@ public class OrderScenarioHooks {
         order.setAccountId(accountId);
         order.setEffectiveDate(date);
         order.setStatus("Draft");
-        apiResponse = ApiRequestManager.create(Endpoints.ORDERS.getEndpoint(), pathParams, order);
+        apiResponse = ApiRequestManager.create(Endpoints.ORDERS.get(), pathParams, order);
         orderId = apiResponse.getBody(CreatedResponse.class).getId();
     }
 
@@ -69,8 +69,8 @@ public class OrderScenarioHooks {
     public void setDownAccount() {
         logger.info("*** Delete created Account ***");
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), accountId);
-        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.getEndpoint(), pathParams);
+        pathParams.put(Endpoints.ID.get(), accountId);
+        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }

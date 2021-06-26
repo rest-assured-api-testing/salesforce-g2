@@ -38,7 +38,7 @@ public class IndividualScenarioHooks {
         person.setLastName("Flores");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.getEndpoint(), pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -51,10 +51,10 @@ public class IndividualScenarioHooks {
     public void setDown() {
         logger.info("======================= A Individual After Hook");
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }

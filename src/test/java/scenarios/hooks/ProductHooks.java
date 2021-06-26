@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductHooks {
-    public Logger logger = LogManager.getLogger(getClass());
+    private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
 
     public ProductHooks(final CreatedResponse createdResponse) {
@@ -31,12 +31,13 @@ public class ProductHooks {
 
     @Before(value = "@GetProducts or @GetProduct or @UpdateProduct or @DeleteProduct", order = 2)
     public void setUp() throws JsonProcessingException {
+        logger.info("======================= A Product Before Hook");
         Map<String, String> pathParams = new HashMap<>();
         Product product = new Product();
         product.setName("The first product");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.getEndpoint(), pathParams, product);
+        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -45,13 +46,14 @@ public class ProductHooks {
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
-    @After(value = "@GetProducts or @GetProduct or @UpdateProduct or @CreateProduct")
+    @After(value = "@GetProducts or @GetProduct or @UpdateProduct or @CreateProduct", order = 2)
     public void setLast() {
+        logger.info("======================= A Product After Hook");
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }

@@ -45,7 +45,7 @@ public class ContactScenarioHooks {
         Contact contact = new Contact();
         contact.setFirstName("firstname");
         contact.setLastName("lastname");
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.CONTACTS.getEndpoint(), pathParams, contact);
+        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.CONTACTS.get(), pathParams, contact);
         contactId = apiResponse.getBody(CreatedResponse.class).getId();
     }
 
@@ -53,8 +53,8 @@ public class ContactScenarioHooks {
     public void setDownContact() {
         logger.info("*** Delete created Contact ***");
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), contactId);
-        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.getEndpoint(), pathParams);
+        pathParams.put(Endpoints.ID.get(), contactId);
+        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.get(), pathParams);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }

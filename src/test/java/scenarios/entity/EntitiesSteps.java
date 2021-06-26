@@ -35,27 +35,27 @@ public class EntitiesSteps {
 
     @Given("I build the pathParams and body to request")
     public void iBuildThePathParamsAndBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
-        logger.info("=================== Account Create Given ==============================");
+        logger.info("=================== Create Given ==============================");
         body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         logger.info(body);
     }
     @Given("I build the pathParams to request")
     public void iBuildThePathParamsToRequest() {
-        logger.info("=================== Account Delete Given ==============================");
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        logger.info("=================== Delete Given ==============================");
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
     }
     @Given("I build the pathParams and updated body to request")
     public void iBuildThePathParamsAndUpdatedBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
-        logger.info("=================== Account Update Given ==============================");
+        logger.info("=================== Update Given ==============================");
         pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         logger.info(body);
     }
 
     @When("I add this {string} endpoint and send the request with body")
     public void iAddThisEndpointAndSendTheRequestWithBody(final String endpoint) throws JsonProcessingException {
-        logger.info("=================== Account Create When ==============================");
+        logger.info("=================== Create When ==============================");
         logger.info(body);
         apiResponse = ApiRequestManager.create(endpoint, pathParams, body);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
@@ -66,26 +66,26 @@ public class EntitiesSteps {
 
     @When("I add this {string} endpoint and send the delete request")
     public void iAddThisEndpointAndSendTheDeleteRequest(final String endpoint) {
-        logger.info("=================== Account Delete When ==============================");
+        logger.info("=================== Delete When ==============================");
         apiResponse = ApiRequestManager.delete(endpoint, pathParams);
     }
 
     @When("I add this {string} endpoint and send the request")
     public void iAddThisEndpointAndSendTheRequest(final String endpoint) {
-        logger.info("=================== Account Get When ==============================");
+        logger.info("=================== Get When ==============================");
         apiResponse = ApiRequestManager.get(endpoint, pathParams);
     }
 
     @When("I add this {string} endpoint and send the request with updated body")
     public void iAddThisEndpointAndSendTheRequestWithUpdatedBody(final String endpoint) throws JsonProcessingException {
-        logger.info("=================== Account Update When ==============================");
+        logger.info("=================== Update When ==============================");
         apiResponse = ApiRequestManager.update(endpoint, pathParams, body);
 
     }
 
     @Then("the response status code should be {string}")
     public void theResponseStatusCodeShouldBe(final String status) {
-        logger.info("=================== Account Create Then ==============================");
+        logger.info("=================== Create Then ==============================");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 }
