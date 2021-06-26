@@ -10,8 +10,6 @@ package scenarios.order;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -26,9 +24,9 @@ public class OrderSteps {
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
     private Order order;
-    private Map<String,String> pathParams = new HashMap<>();
+    private Map<String, String> pathParams = new HashMap<>();
 
-    public OrderSteps(CreatedResponse createdResponse) {
+    public OrderSteps(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
@@ -39,21 +37,21 @@ public class OrderSteps {
     }
 
     @And("I set the name value to {string}")
-    public void iSetProjectName(String name) {
+    public void iSetProjectName(final String name) {
         order.setName(name);
     }
 
     @And("I set the effectiveDate value to {string}")
-    public void iSetTheEffectiveDateValueTo(String effectiveDate) {
+    public void iSetTheEffectiveDateValueTo(final String effectiveDate) {
         order.setEffectiveDate(effectiveDate);
     }
     @And("I set the status to {string}")
-    public void iSetTheStatusTo(String status) {
+    public void iSetTheStatusTo(final String status) {
         order.setStatus(status);
     }
 
     @When("I execute a {string} request with the {string} endpoint")
-    public void iExecuteARequestWithTheEndpoint(String method, String endpoint) throws JsonProcessingException {
+    public void iExecuteARequestWithTheEndpoint(final String method, final String endpoint) throws JsonProcessingException {
         apiResponse = ApiRequestManager.create(endpoint, pathParams, order);
     }
 

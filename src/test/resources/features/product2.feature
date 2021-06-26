@@ -1,31 +1,38 @@
 Feature: Requests for Product endpoint
-  
   @GetProducts
   Scenario: Get all Products
-    Given 
-    When I add this "/Product2" endpoint and execute "GETPRODUCTS" request
-    Then the response status code should be "200" to "THENPRODUCTS" request
+    Given
+    When I add this "/Product2" endpoint and send the request
+    Then the response status code should be "200"
+
+  @CreateProduct
+  Scenario Outline: Create a Product
+    Given I build the pathParams and body to request
+      | name  | <nameProduct> |
+    When I add this "/Product2" endpoint and send the request with body
+    Then the response status code should be "201"
+    Examples:
+      | nameProduct          |
+      | New incoming product |
 
   @GetProduct
   Scenario: Get a Product
-    Given I build "GIVENGETDELETEPRODUCT" request
-    When I add this "/Product2/{id}" endpoint and execute "GETPRODUCTS" request
-    Then the response status code should be "200" to "THENPRODUCTS" request
-
-  @CreateProduct
-  Scenario: Create a Product
-    Given I build "GIVENCREATEPRODUCT" request
-    When I add this "/Product2" endpoint and execute "POSTPRODUCT" request
-    Then the response status code should be "201" to "THENPRODUCTS" request
+    Given I build the pathParams to request
+    When I add this "/Product2/{id}" endpoint and send the request
+    Then the response status code should be "200"
 
   @UpdateProduct
-  Scenario: Update a Product
-    Given I build "GIVENUPDATEPRODUCT" request
-    When I add this "/Product2/{id}" endpoint and execute "PATCHPRODUCT" request
-    Then the response status code should be "204" to "THENPRODUCTS" request
+  Scenario Outline: Update a Product
+    Given I build the pathParams and updated body to request
+      | name  | <nameProduct> |
+    When I add this "/Product2/{id}" endpoint and send the request with updated body
+    Then the response status code should be "204"
+    Examples:
+      | nameProduct         |
+      | New name of product |
 
   @DeleteProduct
   Scenario: Delete a Product
-    Given I build "GIVENGETDELETEPRODUCT" request
-    When I add this "/Product2/{id}" endpoint and execute "DELETEPRODUCT" request
-    Then the response status code should be "204" to "THENPRODUCTS" request
+    Given I build the pathParams to request
+    When I add this "/Product2/{id}" endpoint and send the delete request
+    Then the response status code should be "204"

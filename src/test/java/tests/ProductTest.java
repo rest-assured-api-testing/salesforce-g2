@@ -30,7 +30,7 @@ public class ProductTest extends CommonTest {
         product.setProductCode("FP1");
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.getEndpoint(), pathParams, product);
+        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
@@ -38,15 +38,15 @@ public class ProductTest extends CommonTest {
     @AfterMethod(onlyForGroups = {"post", "patch"})
     public void deleteAProduct() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test
     public void getProducts() {
-        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.PRODUCTS.getEndpoint(), new HashMap<>());
+        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.PRODUCTS.get(), new HashMap<>());
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
@@ -58,7 +58,7 @@ public class ProductTest extends CommonTest {
         product.setProductCode("FP1");
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.getEndpoint(), pathParams, product);
+        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
@@ -66,29 +66,29 @@ public class ProductTest extends CommonTest {
     @Test(groups = "post")
     public void getAProduct() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
-        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.PRODUCT.getEndpoint(), pathParams);
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
+        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.PRODUCT.get(), pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
     @Test(groups = "patch")
     public void updateProduct() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         Product product = new Product();
         product.setProductCode("FP1-1");
         product.setDescription("The description of the product with the description changed");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.update(Endpoints.PRODUCT.getEndpoint(), pathParams, product);
+        apiResponse = ApiRequestManager.update(Endpoints.PRODUCT.get(), pathParams, product);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test(groups = "delete")
     public void deleteProduct() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 }
