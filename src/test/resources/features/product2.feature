@@ -2,30 +2,30 @@ Feature: Requests for Product endpoint
   
   @GetProducts
   Scenario: Get all Products
-    Given I build get products request
-    When I add this "/Product2" endpoint and execute get products request
-    Then the response status code should be "200" to get products request
-
-  @CreateProduct
-  Scenario: Create a Product
-    Given I build post product request
-    When I add this "/Product2" endpoint and execute post product request
-    Then the response status code should be "201" to post product request
+    Given 
+    When I add this "/Product2" endpoint and execute "GETPRODUCTS" request
+    Then the response status code should be "200" to "THENPRODUCTS" request
 
   @GetProduct
   Scenario: Get a Product
-    Given I build get a product request
-    When I add this "/Product2/{id}" endpoint and execute get a product request
-    Then the response status code should be "200" to get a product request
+    Given I build "GIVENGETDELETEPRODUCT" request
+    When I add this "/Product2/{id}" endpoint and execute "GETPRODUCTS" request
+    Then the response status code should be "200" to "THENPRODUCTS" request
+
+  @CreateProduct
+  Scenario: Create a Product
+    Given I build "GIVENCREATEPRODUCT" request
+    When I add this "/Product2" endpoint and execute "POSTPRODUCT" request
+    Then the response status code should be "201" to "THENPRODUCTS" request
 
   @UpdateProduct
   Scenario: Update a Product
-    Given I build update product request
-    When I add this "/Product2/{id}" endpoint and execute patch product request
-    Then the response status code should be "204" to patch product request
+    Given I build "GIVENUPDATEPRODUCT" request
+    When I add this "/Product2/{id}" endpoint and execute "PATCHPRODUCT" request
+    Then the response status code should be "204" to "THENPRODUCTS" request
 
   @DeleteProduct
   Scenario: Delete a Product
-    Given I build delete a product request
-    When I add this "/Product2/{id}" endpoint and execute delete a product request
-    Then the response status code should be "204" to delete a product request
+    Given I build "GIVENGETDELETEPRODUCT" request
+    When I add this "/Product2/{id}" endpoint and execute "DELETEPRODUCT" request
+    Then the response status code should be "204" to "THENPRODUCTS" request
