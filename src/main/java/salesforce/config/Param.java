@@ -20,7 +20,7 @@ public enum Param {
         this.param = param;
     }
 
-    public String getParam() {
+    public String get() {
         return param;
     }
 }

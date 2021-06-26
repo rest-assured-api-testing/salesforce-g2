@@ -11,7 +11,6 @@ import api.ApiRequestManager;
 import api.ApiResponse;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import salesforce.auth.Authentication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import salesforce.endpointurl.Endpoints;
 import salesforce.entities.CreatedResponse;
@@ -19,33 +18,27 @@ import salesforce.entities.Person;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class IndividualScenarioHooks {
-    public Logger LOGGER = LogManager.getLogger(getClass());
+    private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
 
     public IndividualScenarioHooks(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
-    @Before(order = 1)
-    public void getToken() {
-        Authentication.getAuth();
-    }
-
     @Before(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @DeleteIndividual", order = 2)
     public void setUp() throws JsonProcessingException {
-        LOGGER.info("======================= A Individual Before Hook");
+        logger.info("======================= A Individual Before Hook");
         Map<String, String> pathParams = new HashMap<>();
         Person person = new Person();
         person.setFirstName("Pepito");
         person.setLastName("Flores");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.getEndpoint(), pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -56,12 +49,12 @@ public class IndividualScenarioHooks {
 
     @After(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @CreateIndividual")
     public void setDown() {
-        LOGGER.info("======================= A Individual After Hook");
+        logger.info("======================= A Individual After Hook");
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }

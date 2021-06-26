@@ -11,17 +11,17 @@ public enum Endpoints {
 
     ID("id"),
     PEOPLE("/Individual"),
-    PERSON("/Individual/{" + Endpoints.ID.getEndpoint() + "}"),
+    PERSON("/Individual/{" + Endpoints.ID.get() + "}"),
     ACCOUNTS("/Account"),
-    ACCOUNT("/Account/{" + Endpoints.ID.getEndpoint() + "}"),
+    ACCOUNT("/Account/{" + Endpoints.ID.get() + "}"),
     ORDERS("/Order"),
-    ORDER("/Order/{" + Endpoints.ID.getEndpoint() + "}"),
+    ORDER("/Order/{" + Endpoints.ID.get() + "}"),
     CONTACTS("/Contact"),
-    CONTACT("/Contact/{" + Endpoints.ID.getEndpoint() + "}"),
+    CONTACT("/Contact/{" + Endpoints.ID.get() + "}"),
     CAMPAIGNS("/Campaign"),
-    CAMPAIGN("/Campaign/{" + Endpoints.ID.getEndpoint() + "}"),
+    CAMPAIGN("/Campaign/{" + Endpoints.ID.get() + "}"),
     PRODUCTS("/Product2"),
-    PRODUCT("/Product2/{" + Endpoints.ID.getEndpoint() + "}");
+    PRODUCT("/Product2/{" + Endpoints.ID.get() + "}");
 
     private String endpoint;
 
@@ -29,7 +29,7 @@ public enum Endpoints {
         this.endpoint = endpoint;
     }
 
-    public String getEndpoint() {
+    public String get() {
         return endpoint;
     }
 }

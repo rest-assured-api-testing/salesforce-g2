@@ -28,7 +28,7 @@ public class IndividualTest extends CommonTest {
         person.setLastName("Flores");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.getEndpoint(), pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
@@ -38,7 +38,7 @@ public class IndividualTest extends CommonTest {
     public void getAllIndividualTest() {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get(Endpoints.PEOPLE.getEndpoint(), new HashMap<String, String>());
+        apiResponse = ApiRequestManager.get(Endpoints.PEOPLE.get(), new HashMap<String, String>());
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
@@ -51,7 +51,7 @@ public class IndividualTest extends CommonTest {
         person.setLastName("Flores");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.getEndpoint(), pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
@@ -60,10 +60,10 @@ public class IndividualTest extends CommonTest {
     @Test(groups = "get")
     public void getAIndividualTest() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get(Endpoints.PERSON.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.get(Endpoints.PERSON.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
@@ -71,13 +71,13 @@ public class IndividualTest extends CommonTest {
     @Test(groups = "update")
     public void updateAIndividualTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         Person person = new Person();
         person.setFirstName("Pedrito");
         person.setLastName("Fantasy");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.update(Endpoints.PERSON.getEndpoint(), pathParams, person);
+        apiResponse = ApiRequestManager.update(Endpoints.PERSON.get(), pathParams, person);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -85,10 +85,10 @@ public class IndividualTest extends CommonTest {
     @Test(groups = "delete")
     public void deleteAIndividualTest() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -96,10 +96,10 @@ public class IndividualTest extends CommonTest {
     @AfterMethod(onlyForGroups = {"get", "post", "update", "badDelete"})
     public void deleteCreatedOnes() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), createdResponse.getId());
+        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -119,7 +119,7 @@ public class IndividualTest extends CommonTest {
         Person person = new Person();
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.getEndpoint(), pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST).log().body();
     }
@@ -127,10 +127,10 @@ public class IndividualTest extends CommonTest {
     @Test(groups = "get")
     public void doNotGetAIndividualTest() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), " ");
+        pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get(Endpoints.PERSON.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.get(Endpoints.PERSON.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
@@ -138,13 +138,13 @@ public class IndividualTest extends CommonTest {
     @Test(groups = "update")
     public void doNotUpdateAIndividualTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), " ");
+        pathParams.put(Endpoints.ID.get(), " ");
         Person person = new Person();
         person.setFirstName("Pedrito");
         person.setLastName("Fantasy 2");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.update(Endpoints.PERSON.getEndpoint(), pathParams, person);
+        apiResponse = ApiRequestManager.update(Endpoints.PERSON.get(), pathParams, person);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
@@ -152,10 +152,10 @@ public class IndividualTest extends CommonTest {
     @Test(groups = {"delete", "badDelete"})
     public void doNotDeleteAIndividualTest() {
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(), " ");
+        pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.getEndpoint(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }

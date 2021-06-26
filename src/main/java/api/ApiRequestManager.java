@@ -105,8 +105,14 @@ public class ApiRequestManager {
     public static <T> ApiResponse executeWithBody(final String endpoint, final Map<String, String> pathParams,
                                                   final T entity, final Enum<ApiMethod> type)
             throws JsonProcessingException {
+        String convertedEntity;
+        if (entity instanceof String) {
+            convertedEntity = (String) entity;
+        } else  {
+            convertedEntity = new ObjectMapper().writeValueAsString(entity);
+        }
         return ApiManager.executeWithBody(buildRequest(endpoint, pathParams, type)
-                .body(new ObjectMapper().writeValueAsString(entity)).build());
+                .body(convertedEntity).build());
     }
 
     /**

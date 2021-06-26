@@ -16,7 +16,7 @@ public enum HeaderValue {
         this.value = value;
     }
 
-    public String getValue() {
+    public String get() {
         return value;
     }
 }

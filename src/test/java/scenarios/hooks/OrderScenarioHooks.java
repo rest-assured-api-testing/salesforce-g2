@@ -16,9 +16,6 @@ import org.apache.http.HttpStatus;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import salesforce.auth.Authentication;
 import salesforce.endpointurl.Endpoints;
 import salesforce.entities.Account;
 import salesforce.entities.CreatedResponse;
@@ -31,37 +28,32 @@ import java.util.Map;
 
 public class OrderScenarioHooks {
 
-    public Logger LOGGER = LogManager.getLogger(getClass());
+    private Logger logger = LogManager.getLogger(getClass());
     public static final String DATE_FORMAT = "yyyy-mm-dd";
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
     public static String accountId;
     public static String orderId;
 
-    public OrderScenarioHooks(CreatedResponse createdResponse) {
+    public OrderScenarioHooks(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
-    @Before(order = 1)
-    public  void setUp() {
-        Authentication.getAuth();
-    }
-
-    @Before(order = 2)
+    @Before(value = "@CreateOrder", order = 2)
     public void createAccount() throws JsonProcessingException {
-        LOGGER.info("*** Create Account to test Orders ***");
-        Map<String,String> pathParams = new HashMap<>();
+        logger.info("*** Create Account to test Orders ***");
+        Map<String, String> pathParams = new HashMap<>();
         Account account = new Account();
         account.setName("testAccount01");
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.getEndpoint(), pathParams, account);
+        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
         accountId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
 
     @Before(value = "@GetOrder or @UpdateOrder or @DeleteOrder", order = 3)
     public void createOrder() throws JsonProcessingException {
-        LOGGER.info("*** Create an Order to test operations ***");
-        Map<String,String> pathParams = new HashMap<>();
+        logger.info("*** Create an Order to test operations ***");
+        Map<String, String> pathParams = new HashMap<>();
         LocalDateTime ldt = LocalDateTime.now();
         String date = DateTimeFormatter.ofPattern(DATE_FORMAT, Locale.getDefault()).format(ldt);
         Order order = new Order();
@@ -69,16 +61,16 @@ public class OrderScenarioHooks {
         order.setAccountId(accountId);
         order.setEffectiveDate(date);
         order.setStatus("Draft");
-        apiResponse = ApiRequestManager.create(Endpoints.ORDERS.getEndpoint(), pathParams, order);
+        apiResponse = ApiRequestManager.create(Endpoints.ORDERS.get(), pathParams, order);
         orderId = apiResponse.getBody(CreatedResponse.class).getId();
     }
 
     @After(value = "@GetOrder or @UpdateOrder or @CreateOrder")
     public void setDownAccount() {
-        LOGGER.info("*** Delete created Account ***");
-        Map<String,String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.getEndpoint(),accountId);
-        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.getEndpoint(), pathParams);
+        logger.info("*** Delete created Account ***");
+        Map<String, String> pathParams = new HashMap<>();
+        pathParams.put(Endpoints.ID.get(), accountId);
+        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }
