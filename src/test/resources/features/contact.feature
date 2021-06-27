@@ -8,7 +8,6 @@ Feature: Contact endpoint tests
       | lastname  | <lastname>  |
     When I add this "/Contact" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
-    Examples:
 
     Examples:
       | firstname                                           | lastname                                            | expectedStatus |

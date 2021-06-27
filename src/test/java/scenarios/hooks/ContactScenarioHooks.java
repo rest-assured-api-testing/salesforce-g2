@@ -29,7 +29,6 @@ public class ContactScenarioHooks {
 
     private CreatedResponse createdResponse;
     private Logger logger = LogManager.getLogger(getClass());
-    //public static String contactId;
 
     public ContactScenarioHooks(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
@@ -50,7 +49,6 @@ public class ContactScenarioHooks {
         contact.setFirstName("firstname");
         contact.setLastName("lastname");
         ApiResponse apiResponse = ApiRequestManager.create(Endpoints.CONTACTS.get(), pathParams, contact);
-        //contactId = apiResponse.getBody(CreatedResponse.class).getId();
         createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
