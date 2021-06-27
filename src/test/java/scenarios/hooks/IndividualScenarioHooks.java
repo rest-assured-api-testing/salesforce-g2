@@ -50,12 +50,14 @@ public class IndividualScenarioHooks {
     @After(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @CreateIndividual")
     public void setDown() {
         logger.info("======================= A Individual After Hook");
-        Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        ApiResponse apiResponse;
+        if (createdResponse.getId() != null) {
+            Map<String, String> pathParams = new HashMap<>();
+            pathParams.put(Endpoints.ID.get(), createdResponse.getId());
+            ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
+            apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
 
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
+            apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
+        }
     }
 }
