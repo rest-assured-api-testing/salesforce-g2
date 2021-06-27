@@ -13,48 +13,45 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
-import salesforce.endpointurl.Endpoints;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import salesforce.entities.Product;
+import salesforce.endpointurl.Endpoints;
 import salesforce.entities.CreatedResponse;
+import salesforce.entities.Campaign;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductHooks {
+public class CampaignHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
 
-    public ProductHooks(final CreatedResponse createdResponse) {
+    public CampaignHooks(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
     }
 
-    @Before(value = "@GetProducts or @GetProduct or @UpdateProduct or @DeleteProduct", order = 2)
+    @Before(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @DeleteCampaign", order = 2)
     public void setUp() throws JsonProcessingException {
-        logger.info("~~~~~~~~~~~~~~~~~~~~~~ BeforeHook: Create a Product ~~~~~~~~~~~~~~~~~~~~~~~");
+        logger.info("~~~~~~~~~~~~~~~~~~ BeforeHook: Create a Campaign ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
-        Product product = new Product();
-        product.setName("The first product");
+        Campaign campaign = new Campaign();
+        campaign.setName("The first campaign");
         ApiResponse apiResponse;
-
-        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
+        apiResponse = ApiRequestManager.create(Endpoints.CAMPAIGNS.get(), pathParams, campaign);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
         createdResponse.setErrors(createdResponseHelper.getErrors());
-
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
-    @After(value = "@GetProducts or @GetProduct or @UpdateProduct or @CreateProduct", order = 2)
+    @After(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @CreateCampaign")
     public void setLast() {
-        logger.info("~~~~~~~~~~~~~~~~~~~~~~ AfterHook: Delete the Product ~~~~~~~~~~~~~~~~~~~~~~~");
+        logger.info("~~~~~~~~~~~~~~~~~~ AfterHook: Delete the Campaign ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-
-        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
-
+        apiResponse = ApiRequestManager.delete(Endpoints.CAMPAIGN.get(), pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 }
