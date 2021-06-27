@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CampaignHooks {
-    public Logger LOGGER = LogManager.getLogger(getClass());
+    private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
 
     public CampaignHooks(final CreatedResponse createdResponse) {
@@ -32,6 +32,7 @@ public class CampaignHooks {
 
     @Before(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @DeleteCampaign", order = 2)
     public void setUp() throws JsonProcessingException {
+        logger.info("~~~~~~~~~~~~~~~~~~ BeforeHook: Create a Campaign ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
         Campaign campaign = new Campaign();
         campaign.setName("The first campaign");
@@ -46,6 +47,7 @@ public class CampaignHooks {
 
     @After(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @CreateCampaign")
     public void setLast() {
+        logger.info("~~~~~~~~~~~~~~~~~~ AfterHook: Delete the Campaign ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;

@@ -31,7 +31,7 @@ public class ProductHooks {
 
     @Before(value = "@GetProducts or @GetProduct or @UpdateProduct or @DeleteProduct", order = 2)
     public void setUp() throws JsonProcessingException {
-        logger.info("======================= A Product Before Hook");
+        logger.info("~~~~~~~~~~~~~~~~~~~~~~ BeforeHook: Create a Product ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
         Product product = new Product();
         product.setName("The first product");
@@ -48,7 +48,7 @@ public class ProductHooks {
 
     @After(value = "@GetProducts or @GetProduct or @UpdateProduct or @CreateProduct", order = 2)
     public void setLast() {
-        logger.info("======================= A Product After Hook");
+        logger.info("~~~~~~~~~~~~~~~~~~~~~~ AfterHook: Delete the Product ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
