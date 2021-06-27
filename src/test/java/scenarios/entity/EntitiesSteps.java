@@ -15,6 +15,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.http.HttpStatus;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.endpointurl.Endpoints;
@@ -33,59 +34,59 @@ public class EntitiesSteps {
         this.createdResponse = createdResponse;
     }
 
-    @Given("I build the pathParams and body to request")
-    public void iBuildThePathParamsAndBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
-        logger.info("=================== Create Given ==============================");
+    @Given("I set the pathParams and body to request")
+    public void iSetThePathParamsAndBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
+        logger.info("=================== Create Given ==========================");
         body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         logger.info(body);
     }
-    @Given("I build the pathParams to request")
-    public void iBuildThePathParamsToRequest() {
-        logger.info("=================== Delete Given ==============================");
+    @Given("I set the pathParams to request")
+    public void iSetThePathParamsToRequest() {
+        logger.info("=================== Delete and Get Given ==================");
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
     }
-    @Given("I build the pathParams and updated body to request")
-    public void iBuildThePathParamsAndUpdatedBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
-        logger.info("=================== Update Given ==============================");
+    @Given("I set the pathParams and updated body to request")
+    public void iSetThePathParamsAndUpdatedBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
+        logger.info("=================== Update Given ==========================");
         pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         logger.info(body);
     }
 
-    @When("I add this {string} endpoint and send the request with body")
-    public void iAddThisEndpointAndSendTheRequestWithBody(final String endpoint) throws JsonProcessingException {
-        logger.info("=================== Create When ==============================");
+    @When("I set the {string} endpoint and send the request with body")
+    public void iSetTheEndpointAndSendTheRequestWithBody(final String endpoint) throws JsonProcessingException {
+        logger.info("=================== Create When ===========================");
         logger.info(body);
         apiResponse = ApiRequestManager.create(endpoint, pathParams, body);
-        CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
-        createdResponse.setId(createdResponseHelper.getId());
-        createdResponse.setSuccess(createdResponseHelper.isSuccess());
-        createdResponse.setErrors(createdResponseHelper.getErrors());
+        if (apiResponse.getStatusCode() == HttpStatus.SC_CREATED) {
+            CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
+            createdResponse.setId(createdResponseHelper.getId());
+        }
     }
 
-    @When("I add this {string} endpoint and send the delete request")
-    public void iAddThisEndpointAndSendTheDeleteRequest(final String endpoint) {
-        logger.info("=================== Delete When ==============================");
+    @When("I set the {string} endpoint and send the delete request")
+    public void iSetTheEndpointAndSendTheDeleteRequest(final String endpoint) {
+        logger.info("=================== Delete When ===========================");
         apiResponse = ApiRequestManager.delete(endpoint, pathParams);
     }
 
-    @When("I add this {string} endpoint and send the request")
-    public void iAddThisEndpointAndSendTheRequest(final String endpoint) {
+    @When("I set the {string} endpoint and send the request")
+    public void iSetTheEndpointAndSendTheRequest(final String endpoint) {
         logger.info("=================== Get When ==============================");
         apiResponse = ApiRequestManager.get(endpoint, pathParams);
     }
 
-    @When("I add this {string} endpoint and send the request with updated body")
-    public void iAddThisEndpointAndSendTheRequestWithUpdatedBody(final String endpoint) throws JsonProcessingException {
-        logger.info("=================== Update When ==============================");
+    @When("I set the {string} endpoint and send the request with updated body")
+    public void iSetTheEndpointAndSendTheRequestWithUpdatedBody(final String endpoint) throws JsonProcessingException {
+        logger.info("=================== Update When ===========================");
         apiResponse = ApiRequestManager.update(endpoint, pathParams, body);
 
     }
 
     @Then("the response status code should be {string}")
     public void theResponseStatusCodeShouldBe(final String status) {
-        logger.info("=================== Create Then ==============================");
+        logger.info("=================== Common Then ===========================");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 }

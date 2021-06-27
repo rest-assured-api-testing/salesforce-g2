@@ -49,12 +49,17 @@ public class AccountScenarioHooks {
     @After(value = "@GetAccounts or @GetAccount or @UpdateAccount or @CreateAccount")
     public void setDown() {
         logger.info("======================= A Account After Hook");
-        Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        ApiResponse apiResponse;
+        if (createdResponse.getId() != null) {
+            logger.info("======================= Inside After Hook");
+            logger.info("======================= " + createdResponse.getId());
+            Map<String, String> pathParams = new HashMap<>();
+            pathParams.put(Endpoints.ID.get(), createdResponse.getId());
+            ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
+            apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
 
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
+            apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
+        }
+        logger.info("======================= Passed if After Hook");
     }
 }
