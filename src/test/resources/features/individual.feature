@@ -2,17 +2,17 @@ Feature: Requests for Account endpoint
   @GetIndividuals
   Scenario: Get all Individuals
     Given
-    When I add this "/Individual" endpoint and send the request
+    When I set the "/Individual" endpoint and send the request
     Then the response status code should be "200"
 
   @CreateIndividual
   Scenario Outline: Create a Individual
-    Given I build the pathParams and body to request
+    Given I set the pathParams and body to request
       | firstName  | <firsNameIndividual>   |
       | lastName   | <lastNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
-    When I add this "/Individual" endpoint and send the request with body
+    When I set the "/Individual" endpoint and send the request with body
     Then the response status code should be "<status>"
     Examples:
       | firsNameIndividual | lastNameIndividual | salutationIndividual | birthdateIndividual | status |
@@ -32,11 +32,11 @@ Feature: Requests for Account endpoint
 
   @CreateIndividual
   Scenario Outline: Create a Individual
-    Given I build the pathParams and body to request
+    Given I set the pathParams and body to request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
-    When I add this "/Individual" endpoint and send the request with body
+    When I set the "/Individual" endpoint and send the request with body
     Then the response status code should be "<status>"
     Examples:
       | firsNameIndividual | salutationIndividual | birthdateIndividual | status |
@@ -46,16 +46,16 @@ Feature: Requests for Account endpoint
 
   @GetIndividual
   Scenario: Get a Individual
-    Given I build the pathParams to request
-    When I add this "/Individual/{id}" endpoint and send the request
+    Given I set the pathParams to request
+    When I set the "/Individual/{id}" endpoint and send the request
     Then the response status code should be "200"
 
   @UpdateIndividual
   Scenario Outline: Update a Individual
-    Given I build the pathParams and updated body to request
+    Given I set the pathParams and updated body to request
       | firstName  | <firsNameIndividual> |
       | lastName   | <lastNameIndividual> |
-    When I add this "/Individual/{id}" endpoint and send the request with updated body
+    When I set the "/Individual/{id}" endpoint and send the request with updated body
     Then the response status code should be "<status>"
     Examples:
       | firsNameIndividual | lastNameIndividual | status |
@@ -65,11 +65,11 @@ Feature: Requests for Account endpoint
 
   @UpdateIndividual
   Scenario Outline: Update a Individual
-    Given I build the pathParams and updated body to request
+    Given I set the pathParams and updated body to request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
-    When I add this "/Individual/{id}" endpoint and send the request with updated body
+    When I set the "/Individual/{id}" endpoint and send the request with updated body
     Then the response status code should be "<status>"
     Examples:
       | firsNameIndividual | salutationIndividual | birthdateIndividual | status |
@@ -85,6 +85,6 @@ Feature: Requests for Account endpoint
 
   @DeleteIndividual
   Scenario: Delete a Individual
-    Given I build the pathParams to request
-    When I add this "/Individual/{id}" endpoint and send the delete request
+    Given I set the pathParams to request
+    When I set the "/Individual/{id}" endpoint and send the delete request
     Then the response status code should be "204"
