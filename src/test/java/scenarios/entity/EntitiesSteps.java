@@ -15,6 +15,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.http.HttpStatus;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.endpointurl.Endpoints;
@@ -58,10 +59,12 @@ public class EntitiesSteps {
         logger.info("=================== Create When ==============================");
         logger.info(body);
         apiResponse = ApiRequestManager.create(endpoint, pathParams, body);
-        CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
-        createdResponse.setId(createdResponseHelper.getId());
-        createdResponse.setSuccess(createdResponseHelper.isSuccess());
-        createdResponse.setErrors(createdResponseHelper.getErrors());
+        if (apiResponse.getStatusCode() == HttpStatus.SC_CREATED) {
+            CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
+            createdResponse.setId(createdResponseHelper.getId());
+            createdResponse.setSuccess(createdResponseHelper.isSuccess());
+            createdResponse.setErrors(createdResponseHelper.getErrors());
+        }
     }
 
     @When("I add this {string} endpoint and send the delete request")
