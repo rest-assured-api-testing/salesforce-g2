@@ -12,6 +12,7 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -90,5 +91,10 @@ public class EntitiesSteps {
     public void theResponseStatusCodeShouldBe(final String status) {
         logger.info("=================== Create Then ==============================");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
+    }
+
+    @And("The element updated values matches the given ones")
+    public void TheCreatedElementValuesMatchesTheGivenOnes() {
+
     }
 }

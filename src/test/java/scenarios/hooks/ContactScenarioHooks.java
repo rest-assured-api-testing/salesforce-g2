@@ -20,6 +20,8 @@ import salesforce.auth.Authentication;
 import salesforce.endpointurl.Endpoints;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
+import salesforce.entities.Token;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +29,7 @@ public class ContactScenarioHooks {
 
     private CreatedResponse createdResponse;
     private Logger logger = LogManager.getLogger(getClass());
-    public static String contactId;
+    //public static String contactId;
 
     public ContactScenarioHooks(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
@@ -35,7 +37,9 @@ public class ContactScenarioHooks {
 
     @Before(order = 1)
     public  void setUp() {
-        Authentication.getAuth();
+        if(Token.accessToken == null) {
+            Authentication.getAuth();
+        }
     }
 
     @Before(value = "@GetContact or @UpdateContact or @DeleteContact")
@@ -46,15 +50,20 @@ public class ContactScenarioHooks {
         contact.setFirstName("firstname");
         contact.setLastName("lastname");
         ApiResponse apiResponse = ApiRequestManager.create(Endpoints.CONTACTS.get(), pathParams, contact);
-        contactId = apiResponse.getBody(CreatedResponse.class).getId();
+        //contactId = apiResponse.getBody(CreatedResponse.class).getId();
+        createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
+        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @After(value = "@GetContact or @UpdateContact or @CreateContact")
     public void setDownContact() {
         logger.info("*** Delete created Contact ***");
-        Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.get(), contactId);
-        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.get(), pathParams);
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
+        if (createdResponse.getId() != null) {
+            Map<String, String> pathParams = new HashMap<>();
+            pathParams.put(Endpoints.ID.get(), createdResponse.getId());
+            ApiResponse apiResponse;
+            apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.get(), pathParams);
+            apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
+        }
     }
 }
