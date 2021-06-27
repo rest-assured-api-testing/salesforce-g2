@@ -3,17 +3,17 @@ Feature: Requests for Campaign endpoint
   @GetCampaigns
   Scenario: Get all Campaigns
   Given
-    When I add this "/Campaign" endpoint and send the request
+    When I set the "/Campaign" endpoint and send the request
     Then the response status code should be "200"
 
   @CreateCampaign
   Scenario Outline: Create a Campaign
-    Given I build the pathParams and body to request
+    Given I set the pathParams and body to request
       | name     | <nameCampaign>     |
       | isActive | <isActiveCampaign> |
       | type     | <typeCampaign>     |
       | status   | <statusCampaign>   |
-    When I add this "/Campaign" endpoint and send the request with body
+    When I set the "/Campaign" endpoint and send the request with body
     Then the response status code should be "<status>"
     Examples:
       | nameCampaign          | isActiveCampaign | typeCampaign            | statusCampaign | status |
@@ -26,18 +26,18 @@ Feature: Requests for Campaign endpoint
 
   @GetCampaign
   Scenario: Get a Campaign
-    Given I build the pathParams to request
-    When I add this "/Campaign/{id}" endpoint and send the request
+    Given I set the pathParams to request
+    When I set the "/Campaign/{id}" endpoint and send the request
     Then the response status code should be "200"
 
   @UpdateCampaign
   Scenario Outline: Update a Product
-    Given I build the pathParams and updated body to request
+    Given I set the pathParams and updated body to request
       | name     | <nameCampaign>     |
       | isActive | <isActiveCampaign> |
       | type     | <typeCampaign>     |
       | status   | <statusCampaign>   |
-    When I add this "/Campaign/{id}" endpoint and send the request with updated body
+    When I set the "/Campaign/{id}" endpoint and send the request with updated body
     Then the response status code should be "<status>"
     Examples:
       | nameCampaign      | isActiveCampaign | typeCampaign            | statusCampaign | status |
@@ -50,6 +50,6 @@ Feature: Requests for Campaign endpoint
 
   @DeleteCampaign
   Scenario: Delete a Campaign
-    Given I build the pathParams to request
-    When I add this "/Campaign/{id}" endpoint and send the delete request
+    Given I set the pathParams to request
+    When I set the "/Campaign/{id}" endpoint and send the delete request
     Then the response status code should be "204"
