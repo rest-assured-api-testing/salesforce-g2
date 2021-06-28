@@ -12,6 +12,7 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -38,6 +39,15 @@ public class EntitiesSteps {
     public void iSetThePathParamsAndBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
         logger.info("=================== Create Given ==========================");
         body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
+        logger.info(body);
+    }
+    @Given("I set the pathParams and body with the requisite key {string} for the request")
+    public void iSetThePathParamsAndBodyWithTheRequisiteKeyForTheRequest(final String key, final DataTable jsonData) throws JsonProcessingException {
+        logger.info("=================== Create Given ==========================");
+        Map<String, String> json = jsonData.asMap(String.class, String.class);
+        Map<String, String> jsonMap = new HashMap<>(json);
+        jsonMap.put(key, createdResponse.getId());
+        body = new ObjectMapper().writeValueAsString(jsonMap);
         logger.info(body);
     }
     @Given("I set the pathParams to request")
@@ -88,5 +98,10 @@ public class EntitiesSteps {
     public void theResponseStatusCodeShouldBe(final String status) {
         logger.info("=================== Common Then ===========================");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
+    }
+
+    @And("The element updated values matches the given ones")
+    public void TheCreatedElementValuesMatchesTheGivenOnes() {
+
     }
 }

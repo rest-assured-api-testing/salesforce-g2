@@ -32,8 +32,7 @@ public class OrderScenarioHooks {
     public static final String DATE_FORMAT = "yyyy-mm-dd";
     private CreatedResponse createdResponse;
     private ApiResponse apiResponse;
-    public static String accountId;
-    public static String orderId;
+    private String accountId;
 
     public OrderScenarioHooks(final CreatedResponse createdResponse) {
         this.createdResponse = createdResponse;
@@ -46,8 +45,8 @@ public class OrderScenarioHooks {
         Account account = new Account();
         account.setName("testAccount01");
         ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
-        accountId = apiResponse.getBody(CreatedResponse.class).getId();
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
+        createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
+        accountId = createdResponse.getId();
     }
 
     @Before(value = "@GetOrder or @UpdateOrder or @DeleteOrder", order = 3)
@@ -61,8 +60,8 @@ public class OrderScenarioHooks {
         order.setAccountId(accountId);
         order.setEffectiveDate(date);
         order.setStatus("Draft");
-        apiResponse = ApiRequestManager.create(Endpoints.ORDERS.get(), pathParams, order);
-        orderId = apiResponse.getBody(CreatedResponse.class).getId();
+        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ORDERS.get(), pathParams, order);
+        createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
     }
 
     @After(value = "@GetOrder or @UpdateOrder or @CreateOrder")
