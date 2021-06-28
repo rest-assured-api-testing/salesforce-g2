@@ -2,7 +2,7 @@ Feature: Requests for Product endpoint
 
   @GetProducts
   Scenario: Get all Products
-  Given
+    Given
     When I set the "/Product2" endpoint and send the request
     Then the response status code should be "200"
 
