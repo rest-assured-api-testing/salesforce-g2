@@ -17,7 +17,6 @@ import salesforce.entities.CreatedResponse;
 import salesforce.entities.Account;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,14 +35,12 @@ public class AccountScenarioHooks {
         Account account = new Account();
         account.setName("First Account");
         ApiResponse apiResponse;
-
         apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
         createdResponse.setErrors(createdResponseHelper.getErrors());
 
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @After(value = "@GetAccounts or @GetAccount or @UpdateAccount or @CreateAccount")
@@ -55,10 +52,7 @@ public class AccountScenarioHooks {
             Map<String, String> pathParams = new HashMap<>();
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
-
             apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
-
-            apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
         }
         logger.info("======================= Passed if After Hook");
     }

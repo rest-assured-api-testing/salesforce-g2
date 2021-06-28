@@ -12,10 +12,8 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.apache.http.HttpStatus;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import salesforce.endpointurl.Endpoints;
 import salesforce.entities.Account;
 import salesforce.entities.CreatedResponse;
@@ -70,6 +68,5 @@ public class OrderScenarioHooks {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), accountId);
         apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }

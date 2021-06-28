@@ -23,5 +23,32 @@ dependencies {
 }
 
 test {
+    ignoreFailures = true
+    scanForTestClasses = false
+    testLogging.showStandardStreams = true
     useTestNG()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumberCli() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:build/cucumber/cucumber-report.html',
+                    '--plugin', 'json:build/cucumber/cucumber.json',
+                    '--plugin', 'rerun:build/cucumber/rerun.txt',
+                    '--glue', 'scenarios',
+                    'src/test/resources/features']
+            ignoreExitValue = true
+        }
+    }
 }

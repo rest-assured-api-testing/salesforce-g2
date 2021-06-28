@@ -8,9 +8,7 @@
 package salesforce.auth;
 
 import org.apache.http.HttpHeaders;
-import salesforce.config.Param;
-import salesforce.config.EnvVariable;
-import salesforce.config.ParamValue;
+import salesforce.config.CredentialsConfig;
 import salesforce.config.HeaderValue;
 import salesforce.entities.Token;
 
@@ -22,16 +20,16 @@ public class Authentication {
     public static Token getAuth() {
         return
                 given().urlEncodingEnabled(true)
-                        .param(Param.USERNAME.get(), dotenv.get(EnvVariable.USERNAME1.name()))
-                        .param(Param.PASSWORD.get(), dotenv.get(EnvVariable.PASSWORD.name()))
-                        .param(Param.CLIENT_ID.get(), dotenv.get(EnvVariable.CLIENT_ID.name()))
-                        .param(Param.CLIENT_SECRET.get(), dotenv.get(EnvVariable.CLIENT_SECRET.name()))
-                        .param(Param.GRANT_TYPE.get(), ParamValue.PASSWORD.get())
+                        .param(CredentialsConfig.USERNAME1.getEnumValue(), dotenv.get(CredentialsConfig.USERNAME1.getEnumName()))
+                        .param(CredentialsConfig.PASSWORD.getEnumValue(), dotenv.get(CredentialsConfig.PASSWORD.getEnumName()))
+                        .param(CredentialsConfig.CLIENT_ID.getEnumValue(), dotenv.get(CredentialsConfig.CLIENT_ID.getEnumName()))
+                        .param(CredentialsConfig.CLIENT_SECRET.getEnumValue(), dotenv.get(CredentialsConfig.CLIENT_SECRET.getEnumName()))
+                        .param(CredentialsConfig.GRANT_TYPE.getEnumValue(), CredentialsConfig.PASSWORD.getEnumValue())
                         .header(HttpHeaders.ACCEPT, HeaderValue.APP_JSON.get())
                         .header(HttpHeaders.CONTENT_TYPE, HeaderValue.APP_X_FORM.get())
                         .log().all()
                         .when().
-                        post(dotenv.get(EnvVariable.TOKEN_URL.name()))
+                        post(dotenv.get(CredentialsConfig.TOKEN_URL.getEnumName()))
                         .as(Token.class);
     }
 }
