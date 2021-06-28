@@ -70,6 +70,5 @@ public class OrderScenarioHooks {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), accountId);
         apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }

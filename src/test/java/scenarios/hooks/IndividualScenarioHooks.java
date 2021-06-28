@@ -37,14 +37,12 @@ public class IndividualScenarioHooks {
         person.setFirstName("Pepito");
         person.setLastName("Flores");
         ApiResponse apiResponse;
-
         apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
         createdResponse.setErrors(createdResponseHelper.getErrors());
 
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @After(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @CreateIndividual")
@@ -54,10 +52,7 @@ public class IndividualScenarioHooks {
             Map<String, String> pathParams = new HashMap<>();
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
-
             apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
-
-            apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
         }
     }
 }

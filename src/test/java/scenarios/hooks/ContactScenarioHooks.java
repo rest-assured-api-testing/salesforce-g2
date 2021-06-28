@@ -21,7 +21,6 @@ import salesforce.endpointurl.Endpoints;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Token;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +49,6 @@ public class ContactScenarioHooks {
         contact.setLastName("lastname");
         ApiResponse apiResponse = ApiRequestManager.create(Endpoints.CONTACTS.get(), pathParams, contact);
         createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @After(value = "@GetContact or @UpdateContact or @CreateContact")
@@ -61,7 +59,6 @@ public class ContactScenarioHooks {
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
             apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.get(), pathParams);
-            apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
         }
     }
 }

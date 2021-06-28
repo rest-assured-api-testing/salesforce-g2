@@ -36,14 +36,11 @@ public class ProductHooks {
         Product product = new Product();
         product.setName("The first product");
         ApiResponse apiResponse;
-
         apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
         createdResponse.setErrors(createdResponseHelper.getErrors());
-
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @After(value = "@GetProducts or @GetProduct or @UpdateProduct or @CreateProduct", order = 2)
@@ -52,9 +49,6 @@ public class ProductHooks {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-
         apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
-
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 }
