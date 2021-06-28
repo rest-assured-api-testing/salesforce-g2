@@ -17,7 +17,6 @@ import salesforce.entities.CreatedResponse;
 import salesforce.entities.Account;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.apache.http.HttpStatus;
 import java.util.HashMap;
 import java.util.Map;
 
