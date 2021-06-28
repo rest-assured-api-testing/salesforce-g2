@@ -17,8 +17,8 @@ Feature: Requests for Account endpoint
     Examples:
       | firsNameIndividual | lastNameIndividual | salutationIndividual | birthdateIndividual | status |
       | Pepito             | Ramirez            | Mr.                  | 1988-06-09          | 201    |
-      | Rodrigo            | Caceres            | Mister               | 1985-07-09          | 201    |
-      | Marta              | Cespedes           | Miss                 | 1990-05-10          | 201    |
+      | Rodrigo            | Caceres            | Dr.                  | 1985-07-09          | 201    |
+      | Marta              | Cespedes           | Ms.                  | 1990-05-10          | 201    |
       | Maria              | Manzalba           |                      | 1990-03-20          | 201    |
       |                    | Aranjuez           |                      | 1990-04-23          | 201    |
       |                    | Perales            |                      |                     | 201    |
@@ -29,6 +29,9 @@ Feature: Requests for Account endpoint
       |                    | Salazar            |                      | 2000-12-50          | 400    |
       |                    | null               |                      |                     | 400    |
       |                    |                    |                      |                     | 400    |
+      | Erika              | Ramirez            | Professor            | 1985-06-09          | 400    |
+      | Pool               | Caceres            | Sir                  | 1986-07-25          | 400    |
+      | Santiago           | Cespedes           | Master               | 1997-05-03          | 400    |
 
   @CreateIndividual
   Scenario Outline: Create a Individual

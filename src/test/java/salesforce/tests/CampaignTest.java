@@ -5,14 +5,14 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package tests;
+package salesforce.tests;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import salesforce.config.Endpoints;
+import salesforce.entities.Campaign;
 import salesforce.entities.CreatedResponse;
-import salesforce.entities.Product;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -20,17 +20,15 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductTest extends CommonTest {
+public class CampaignTest extends CommonTest {
 
     @BeforeMethod(onlyForGroups = {"post", "patch", "delete"})
-    public void createAProduct() throws JsonProcessingException {
+    public void createACampaign() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Product product = new Product();
-        product.setName("First Product");
-        product.setProductCode("FP1");
-        product.setDescription("The description of the product");
+        Campaign campaign = new Campaign();
+        campaign.setName("First campaign");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
+        apiResponse = ApiRequestManager.create(Endpoints.CAMPAIGNS.get(), pathParams, campaign);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
@@ -40,55 +38,52 @@ public class ProductTest extends CommonTest {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.CAMPAIGN.get(), pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test
-    public void getProducts() {
-        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.PRODUCTS.get(), new HashMap<>());
+    public void getCampaign() {
+        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.CAMPAIGNS.get(), new HashMap<>());
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
     @Test(groups = "post")
-    public void createProduct() throws JsonProcessingException {
+    public void createCampaign() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Product product = new Product();
-        product.setName("First Product");
-        product.setProductCode("FP1");
-        product.setDescription("The description of the product");
+        Campaign campaign = new Campaign();
+        campaign.setName("New campaign");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
+        apiResponse = ApiRequestManager.create(Endpoints.CAMPAIGNS.get(), pathParams, campaign);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
 
     @Test(groups = "post")
-    public void getAProduct() {
+    public void getACampaign() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.PRODUCT.get(), pathParams);
+        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.CAMPAIGN.get(), pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
     @Test(groups = "patch")
-    public void updateProduct() throws JsonProcessingException {
+    public void updateCampaign() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        Product product = new Product();
-        product.setProductCode("FP1-1");
-        product.setDescription("The description of the product with the description changed");
+        Campaign campaign = new Campaign();
+        campaign.setDescription("This the updated description of the campaign");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.update(Endpoints.PRODUCT.get(), pathParams, product);
+        apiResponse = ApiRequestManager.update(Endpoints.CAMPAIGN.get(), pathParams, campaign);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test(groups = "delete")
-    public void deleteProduct() {
+    public void deleteCampaign() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.CAMPAIGN.get(), pathParams);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 }

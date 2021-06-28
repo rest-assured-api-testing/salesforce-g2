@@ -47,7 +47,7 @@ task cucumberCli() {
                     '--plugin', 'html:build/cucumber/cucumber-report.html',
                     '--plugin', 'json:build/cucumber/cucumber.json',
                     '--plugin', 'rerun:build/cucumber/rerun.txt',
-                    '--glue', 'scenarios',
+                    '--glue', 'salesforce.scenarios',
                     'src/test/resources/features']
             ignoreExitValue = true
         }
