@@ -42,7 +42,6 @@ public class CampaignHooks {
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
         createdResponse.setErrors(createdResponseHelper.getErrors());
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @After(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @CreateCampaign")
@@ -52,6 +51,5 @@ public class CampaignHooks {
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
         apiResponse = ApiRequestManager.delete(Endpoints.CAMPAIGN.get(), pathParams);
-        apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 }

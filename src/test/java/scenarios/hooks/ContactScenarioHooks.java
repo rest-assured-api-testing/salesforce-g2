@@ -55,6 +55,5 @@ public class ContactScenarioHooks {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), contactId);
         ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.get(), pathParams);
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }

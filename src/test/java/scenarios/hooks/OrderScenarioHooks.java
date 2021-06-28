@@ -47,7 +47,6 @@ public class OrderScenarioHooks {
         account.setName("testAccount01");
         ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
         accountId = apiResponse.getBody(CreatedResponse.class).getId();
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
 
     @Before(value = "@GetOrder or @UpdateOrder or @DeleteOrder", order = 3)
@@ -71,6 +70,5 @@ public class OrderScenarioHooks {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), accountId);
         apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }

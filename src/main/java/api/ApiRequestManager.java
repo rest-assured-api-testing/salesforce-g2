@@ -10,7 +10,7 @@ package api;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpHeaders;
-import salesforce.config.EnvVariable;
+import salesforce.config.CredentialsConfig;
 
 import java.util.Map;
 
@@ -31,7 +31,7 @@ public class ApiRequestManager {
     public static <T> ApiRequestBuilder buildRequest(final String endpoint, final Map<String, String> pathParams,
                                                      final Enum<ApiMethod> type) {
         return new ApiRequestBuilder().header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", accessToken))
-                .baseUri(dotenv.get(EnvVariable.BASE_URL.name()))
+                .baseUri(dotenv.get(CredentialsConfig.BASE_URL.getEnumValue()))
                 .method(type)
                 .endpoint(endpoint)
                 .pathParams(pathParams);
