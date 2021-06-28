@@ -13,7 +13,7 @@ import java.util.Map;
  * Helps to build an ApiRequest entity.
  */
 public class ApiRequestBuilder {
-    ApiRequest apiRequest = new ApiRequest();
+    private ApiRequest apiRequest = new ApiRequest();
 
     public ApiRequestBuilder baseUri(final String baseUri) {
         apiRequest.setBaseUri(baseUri);

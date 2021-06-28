@@ -12,7 +12,7 @@ import api.ApiResponse;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.endpointurl.Endpoints;
+import salesforce.config.Endpoints;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Person;
 import io.cucumber.java.After;

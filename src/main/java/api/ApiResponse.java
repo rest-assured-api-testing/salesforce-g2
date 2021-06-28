@@ -9,8 +9,6 @@ package api;
 
 import io.restassured.response.Response;
 
-import java.util.List;
-
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 /**
@@ -18,7 +16,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
  */
 public class ApiResponse {
     private Response response;
-    public ApiResponse(Response response) {
+    public ApiResponse(final Response response) {
         this.response = response;
     }
 
@@ -44,7 +42,7 @@ public class ApiResponse {
      * @param <T> is type of entity.
      * @return a T entity.
      */
-    public <T> T getBody(Class<T> cls) {
+    public <T> T getBody(final Class<T> cls) {
         return response.getBody().as(cls);
     }
 
@@ -52,7 +50,7 @@ public class ApiResponse {
      * Validates the schema of a respond body.
      * @param schema is the path where is schema
      */
-    public void validateBodySchema(String schema) {
+    public void validateBodySchema(final String schema) {
       response.then().log().body().assertThat().body(matchesJsonSchemaInClasspath(schema));
     }
 
