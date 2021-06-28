@@ -10,7 +10,7 @@ package tests;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.endpointurl.Endpoints;
+import salesforce.config.Endpoints;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Product;
 import org.apache.http.HttpStatus;

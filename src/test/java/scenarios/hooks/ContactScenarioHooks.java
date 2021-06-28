@@ -15,7 +15,7 @@ import io.cucumber.java.Before;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.auth.Authentication;
-import salesforce.endpointurl.Endpoints;
+import salesforce.config.Endpoints;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Token;

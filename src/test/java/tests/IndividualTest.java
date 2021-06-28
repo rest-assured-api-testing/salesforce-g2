@@ -10,11 +10,13 @@ package tests;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.endpointurl.Endpoints;
+import salesforce.config.Endpoints;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Person;
 import org.apache.http.HttpStatus;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.testng.annotations.AfterMethod;
 import java.util.HashMap;
 import java.util.Map;
 
