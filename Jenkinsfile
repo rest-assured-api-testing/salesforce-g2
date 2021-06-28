@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Commit') {
+    stage('commit') {
       steps {
         sh 'echo hi'
       }
