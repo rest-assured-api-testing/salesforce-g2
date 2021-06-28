@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.http.HttpStatus;
-import salesforce.endpointurl.Endpoints;
+import salesforce.config.Endpoints;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.entities.Product;

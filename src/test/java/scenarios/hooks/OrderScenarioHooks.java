@@ -16,7 +16,7 @@ import org.apache.http.HttpStatus;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import salesforce.endpointurl.Endpoints;
+import salesforce.config.Endpoints;
 import salesforce.entities.Account;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Order;
@@ -68,9 +68,11 @@ public class OrderScenarioHooks {
     @After(value = "@GetOrder or @UpdateOrder or @CreateOrder")
     public void setDownAccount() {
         logger.info("*** Delete created Account ***");
-        Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.get(), accountId);
-        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
+        if (accountId != null) {
+            Map<String, String> pathParams = new HashMap<>();
+            pathParams.put(Endpoints.ID.get(), accountId);
+            apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
+            Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
+        }
     }
 }

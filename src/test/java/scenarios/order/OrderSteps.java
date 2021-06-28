@@ -10,6 +10,8 @@ package scenarios.order;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -31,24 +33,29 @@ public class OrderSteps {
     }
 
     @Given("I create a body payload")
-    public void iCreateABodyPayload() {
+    public void iCreateABodyPayload(final DataTable jsonData) throws JsonProcessingException {
         order = new Order();
         order.setAccountId(accountId);
+        String body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
+        Order orderAssistant = new ObjectMapper().readValue(body, Order.class);
+        order.setName(orderAssistant.getName());
+        order.setEffectiveDate(orderAssistant.getEffectiveDate());
+        order.setStatus(orderAssistant.getStatus());
     }
 
-    @And("I set the name value to {string}")
-    public void iSetProjectName(final String name) {
-        order.setName(name);
-    }
-
-    @And("I set the effectiveDate value to {string}")
-    public void iSetTheEffectiveDateValueTo(final String effectiveDate) {
-        order.setEffectiveDate(effectiveDate);
-    }
-    @And("I set the status to {string}")
-    public void iSetTheStatusTo(final String status) {
-        order.setStatus(status);
-    }
+//    @And("I set the name value to {string}")
+//    public void iSetProjectName(final String name) {
+//        order.setName(name);
+//    }
+//
+//    @And("I set the effectiveDate value to {string}")
+//    public void iSetTheEffectiveDateValueTo(final String effectiveDate) {
+//        order.setEffectiveDate(effectiveDate);
+//    }
+//    @And("I set the status to {string}")
+//    public void iSetTheStatusTo(final String status) {
+//        order.setStatus(status);
+//    }
 
     @When("I execute a {string} request with the {string} endpoint")
     public void iExecuteARequestWithTheEndpoint(final String method, final String endpoint) throws JsonProcessingException {

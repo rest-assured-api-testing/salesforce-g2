@@ -17,9 +17,11 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import salesforce.auth.Authentication;
-import salesforce.endpointurl.Endpoints;
+import salesforce.config.Endpoints;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
+import salesforce.entities.Token;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +37,9 @@ public class ContactScenarioHooks {
 
     @Before(order = 1)
     public  void setUp() {
-        Authentication.getAuth();
+        if (Token.accessToken == null) {
+            Authentication.getAuth();
+        }
     }
 
     @Before(value = "@GetContact or @UpdateContact or @DeleteContact")
@@ -52,9 +56,11 @@ public class ContactScenarioHooks {
     @After(value = "@GetContact or @UpdateContact or @CreateContact")
     public void setDownContact() {
         logger.info("*** Delete created Contact ***");
-        Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.get(), contactId);
-        ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.get(), pathParams);
-        Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
+        if (createdResponse.getId() != null) {
+            Map<String, String> pathParams = new HashMap<>();
+            pathParams.put(Endpoints.ID.get(), contactId);
+            ApiResponse apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.get(), pathParams);
+            Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
+        }
     }
 }

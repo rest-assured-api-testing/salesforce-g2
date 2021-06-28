@@ -1,12 +1,20 @@
 Feature: Order endpoint tests
   description
 
+#  @CreateOrder
+#  Scenario Outline: Create an Order
+#    Given I create a body payload
+#    And I set the name value to "<name>"
+#    And I set the effectiveDate value to "<effectiveDate>"
+#    And I set the status to "<status>"
+#    When I execute a "POST" request with the "/Order" endpoint
+#    Then The response status code should be <expectedStatus>
   @CreateOrder
   Scenario Outline: Create an Order
     Given I create a body payload
-    And I set the name value to "<name>"
-    And I set the effectiveDate value to "<effectiveDate>"
-    And I set the status to "<status>"
+    | Name          | "<name>"          |
+    | EffectiveDate | "<effectiveDate>" |
+    | Status        | "<status>"        |
     When I execute a "POST" request with the "/Order" endpoint
     Then The response status code should be <expectedStatus>
 

@@ -9,7 +9,7 @@ package tests;
 
 import api.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.endpointurl.Endpoints;
+import salesforce.config.Endpoints;
 import salesforce.entities.Account;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Order;

@@ -18,7 +18,7 @@ import io.cucumber.java.en.When;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import salesforce.endpointurl.Endpoints;
+import salesforce.config.Endpoints;
 import salesforce.entities.CreatedResponse;
 import java.util.HashMap;
 import java.util.Map;

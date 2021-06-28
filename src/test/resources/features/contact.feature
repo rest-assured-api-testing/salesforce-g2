@@ -1,13 +1,20 @@
 Feature: Contact endpoint tests
   description
 
+#  @CreateContact
+#  Scenario Outline: Create contact with firstname and lastname values
+#    Given I create a contact body payload
+#    And I set the firstname value to "<firstname>"
+#    And I set the lastname value to "<lastname>"
+#    When I execute a "POST" request with the "/contact" contact endpoint
+#    Then The response status code must be <expectedStatus>
   @CreateContact
   Scenario Outline: Create contact with firstname and lastname values
-    Given I create a body payload
-    And I set the firstname value to "<firstname>"
-    And I set the lastname value to "<lastname>"
+    Given I create a contact body payload
+      | FirstName | "<firstname>" |
+      | LastName  | "<lastname>"  |
     When I execute a "POST" request with the "/contact" contact endpoint
-    Then The response status code should be <expectedStatus>
+    Then The response status code must be <expectedStatus>
 
     Examples:
       | firstname                                           | lastname                                            | expectedStatus |
@@ -23,14 +30,22 @@ Feature: Contact endpoint tests
       | firstname                                           | !#$%%                                               | 400            |
 
 
+#  @CreateContact
+#  Scenario Outline: Create contact with firstname, lastname and birthdate values
+#    Given I create a contact body payload
+#    And I set the firstname value to "<firstname>"
+#    And I set the lastname value to "<lastname>"
+#    And I set the birthdate value to "<birthdate>"
+#    When I execute a "POST" request with the "/contact" endpoint
+#    Then The response status code must be <expectedStatus>
   @CreateContact
   Scenario Outline: Create contact with firstname, lastname and birthdate values
-    Given I create a body payload
-    And I set the firstname value to "<firstname>"
-    And I set the lastname value to "<lastname>"
-    And I set the birthdate value to "<birthdate>"
+    Given I create a contact body payload
+      | FirstName  | "<firstname>" |
+      | LastName   | "<lastname>"  |
+      | BirthDate  | "<birthdate>" |
     When I execute a "POST" request with the "/contact" endpoint
-    Then The response status code should be <expectedStatus>
+    Then The response status code must be <expectedStatus>
 
     Examples:
       | firstname | lastname | birthdate  | expectedStatus |
@@ -40,15 +55,23 @@ Feature: Contact endpoint tests
       | firstname | lastname | 1999-33-01 | 400            |
       | firstname | lastname | 1999-01-33 | 400            |
       | firstname | lastname |            | 400            |
-
+#
+#  @CreateContact
+#  Scenario Outline: Create contact with firstname, lastname and department values
+#    Given I create a contact body payload
+#    And I set the firstname value to "<firstname>"
+#    And I set the lastname value to "<lastname>"
+#    And I set the department value to "<department>"
+#    When I execute a "POST" request with the "/contact" contact endpoint
+#    Then The response status code must be <expectedStatus>
   @CreateContact
   Scenario Outline: Create contact with firstname, lastname and department values
-    Given I create a body payload
-    And I set the firstname value to "<firstname>"
-    And I set the lastname value to "<lastname>"
-    And I set the department value to "<department>"
+    Given I create a contact body payload
+      | FirstName   | "<firstname>"  |
+      | LastName    | "<lastname>"   |
+      | Department  | "<department>" |
     When I execute a "POST" request with the "/contact" contact endpoint
-    Then The response status code should be <expectedStatus>
+    Then The response status code must be <expectedStatus>
 
     Examples:
       | firstname | lastname | department                                          | expectedStatus |
@@ -59,15 +82,23 @@ Feature: Contact endpoint tests
       | firstname | lastname | 50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklm  | 201            |
       | firstname | lastname | 51charlongnameghjklmasdfghjklmasdfghjklmasdfghjklma | 400            |
       | firstname | lastname | !^#$%^                                              | 400            |
-
+#
+#  @CreateContact
+#  Scenario Outline: Create contact with firstname, lastname and phone values
+#    Given I create a contact body payload
+#    And I set the firstname value to "<firstname>"
+#    And I set the lastname value to "<lastname>"
+#    And I set the department value to "<phone>"
+#    When I execute a "POST" request with the "/contact" endpoint
+#    Then The response status code must be <expectedStatus>
   @CreateContact
   Scenario Outline: Create contact with firstname, lastname and phone values
-    Given I create a body payload
-    And I set the firstname value to "<firstname>"
-    And I set the lastname value to "<lastname>"
-    And I set the department value to "<phone>"
+    Given I create a contact body payload
+      | FirstName | "<firstname>" |
+      | LastName  | "<lastname>"  |
+      | Phone     | "<phone>"     |
     When I execute a "POST" request with the "/contact" endpoint
-    Then The response status code should be <expectedStatus>
+    Then The response status code must be <expectedStatus>
 
     Examples:
       | firstname | lastname | phone                | expectedStatus |
