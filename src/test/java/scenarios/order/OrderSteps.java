@@ -12,7 +12,6 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -42,20 +41,6 @@ public class OrderSteps {
         order.setEffectiveDate(orderAssistant.getEffectiveDate());
         order.setStatus(orderAssistant.getStatus());
     }
-
-//    @And("I set the name value to {string}")
-//    public void iSetProjectName(final String name) {
-//        order.setName(name);
-//    }
-//
-//    @And("I set the effectiveDate value to {string}")
-//    public void iSetTheEffectiveDateValueTo(final String effectiveDate) {
-//        order.setEffectiveDate(effectiveDate);
-//    }
-//    @And("I set the status to {string}")
-//    public void iSetTheStatusTo(final String status) {
-//        order.setStatus(status);
-//    }
 
     @When("I execute a {string} request with the {string} endpoint")
     public void iExecuteARequestWithTheEndpoint(final String method, final String endpoint) throws JsonProcessingException {

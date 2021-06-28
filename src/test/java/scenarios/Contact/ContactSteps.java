@@ -12,14 +12,11 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
-import salesforce.entities.Order;
-
 import java.util.HashMap;
 import java.util.Map;
 import static scenarios.hooks.ContactScenarioHooks.contactId;
@@ -48,46 +45,6 @@ public class ContactSteps {
         contact.setHomePhone(contactAssistant.getHomePhone());
         contact.setPhone(contactAssistant.getPhone());
     }
-
-//    @And("I set the firstname value to {string}")
-//    public void iSetFirstnameValueTo(final String firstname) {
-//        contact.setFirstName(firstname);
-//    }
-//
-//    @And("I set the lastname value to {string}")
-//    public void iSetTheLastnameValueTo(final String lastname) {
-//        contact.setLastName(lastname);
-//    }
-//
-//    @And("I set the birthdate value to {string}")
-//    public void iSetTheBirthdateValueTo(final String birthdate) {
-//        contact.setBirthdate(birthdate);
-//    }
-//
-//    @And("I set the department value to {string}")
-//    public void iSetTheDepartmentValueTo(final String deparment) {
-//        contact.setDepartment(deparment);
-//    }
-//
-//    @And("I set the description value to {string}")
-//    public void iSetTheDescriptionValueTo(final String description) {
-//        contact.setDescription(description);
-//    }
-//
-//    @And("I set the email value to {string}")
-//    public void iSetTheEmailValueTo(final String email) {
-//        contact.setEmail(email);
-//    }
-//
-//    @And("I set the homephone value to {string}")
-//    public void iSetTheHomePhoneValueTo(final String homephone) {
-//        contact.setHomePhone(homephone);
-//    }
-//
-//    @And("I set the phone value to {string}")
-//    public void iSetThePhoneValueTo(final String phone) {
-//        contact.setPhone(phone);
-//    }
 
     @When("I execute a {string} request with the {string} contact endpoint")
     public void iExecuteARequestWithTheContactEndpoint(final String method, final String endpoint) throws JsonProcessingException {
