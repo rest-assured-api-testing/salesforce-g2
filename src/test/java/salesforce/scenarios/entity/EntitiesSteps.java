@@ -5,7 +5,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package scenarios.entity;
+package salesforce.scenarios.entity;
 
 import api.ApiRequestManager;
 import api.ApiResponse;

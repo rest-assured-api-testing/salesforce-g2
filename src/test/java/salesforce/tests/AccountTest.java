@@ -5,92 +5,89 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package tests;
+package salesforce.tests;
 
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import salesforce.config.Endpoints;
 import salesforce.entities.CreatedResponse;
-import salesforce.entities.Person;
+import salesforce.entities.Account;
 import org.apache.http.HttpStatus;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IndividualTest extends CommonTest {
+public class AccountTest extends CommonTest {
 
     @BeforeMethod(onlyForGroups = {"get", "update", "delete"})
     public void create() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
-        person.setFirstName("Pepito");
-        person.setLastName("Flores");
+        Account account = new Account();
+        account.setName("First Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @Test(groups = "get")
-    public void getAllIndividualTest() {
+    public void getAllAccountTest() {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get(Endpoints.PEOPLE.get(), new HashMap<String, String>());
+        apiResponse = ApiRequestManager.get(Endpoints.ACCOUNTS.get(), new HashMap<String, String>());
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
 
     @Test(groups = "post")
-    public void createAIndividualTest() throws JsonProcessingException {
+    public void createAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
-        person.setFirstName("Pepito");
-        person.setLastName("Flores");
+        Account account = new Account();
+        account.setName("Created Account ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @Test(groups = "get")
-    public void getAIndividualTest() {
+    public void getAAccountTest() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get(Endpoints.PERSON.get(), pathParams);
+        apiResponse = ApiRequestManager.get(Endpoints.ACCOUNT.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
 
     @Test(groups = "update")
-    public void updateAIndividualTest() throws JsonProcessingException {
+    public void updateAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        Person person = new Person();
-        person.setFirstName("Pedrito");
-        person.setLastName("Fantasy");
+        Account account = new Account();
+        account.setName("Updated Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.update(Endpoints.PERSON.get(), pathParams, person);
+        apiResponse = ApiRequestManager.update(Endpoints.ACCOUNT.get(), pathParams, account);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 
     @Test(groups = "delete")
-    public void deleteAIndividualTest() {
+    public void deleteAAccountTest() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -101,63 +98,62 @@ public class IndividualTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 
     @Test(groups = "get")
-    public void doNotGetAllIndividualTest() {
+    public void doNotGetAllAccountTest() {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get("/Inidivua", new HashMap<String, String>());
+        apiResponse = ApiRequestManager.get("/Accoun", new HashMap<String, String>());
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
 
     @Test
-    public void doNotCreateAIndividualTest() throws JsonProcessingException {
+    public void doNotCreateAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
+        Account account = new Account();
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
+        apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST).log().body();
     }
 
     @Test(groups = "get")
-    public void doNotGetAIndividualTest() {
+    public void doNotGetAAccountTest() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.get(Endpoints.PERSON.get(), pathParams);
+        apiResponse = ApiRequestManager.get(Endpoints.ACCOUNT.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
 
     @Test(groups = "update")
-    public void doNotUpdateAIndividualTest() throws JsonProcessingException {
+    public void doNotUpdateAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), " ");
-        Person person = new Person();
-        person.setFirstName("Pedrito");
-        person.setLastName("Fantasy 2");
+        Account account = new Account();
+        account.setName("Updated Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.update(Endpoints.PERSON.get(), pathParams, person);
+        apiResponse = ApiRequestManager.update(Endpoints.ACCOUNT.get(), pathParams, account);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
 
     @Test(groups = {"delete", "badDelete"})
-    public void doNotDeleteAIndividualTest() {
+    public void doNotDeleteAAccountTest() {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
+        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
