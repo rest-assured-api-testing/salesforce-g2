@@ -18,15 +18,19 @@ import org.apache.log4j.Logger;
 import salesforce.config.Endpoints;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Campaign;
+import salesforce.entities.RequisiteElement;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class CampaignHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
+    private RequisiteElement requisiteElement;
 
-    public CampaignHooks(final CreatedResponse createdResponse) {
+    public CampaignHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
         this.createdResponse = createdResponse;
+        this.requisiteElement = requisiteElement;
     }
 
     @Before(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @DeleteCampaign", order = 2)

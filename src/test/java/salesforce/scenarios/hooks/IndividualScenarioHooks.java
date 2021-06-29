@@ -18,15 +18,19 @@ import salesforce.entities.CreatedResponse;
 import salesforce.entities.Person;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import salesforce.entities.RequisiteElement;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class IndividualScenarioHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
+    private RequisiteElement requisiteElement;
 
-    public IndividualScenarioHooks(final CreatedResponse createdResponse) {
+    public IndividualScenarioHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
         this.createdResponse = createdResponse;
+        this.requisiteElement = requisiteElement;
     }
 
     @Before(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @DeleteIndividual", order = 2)

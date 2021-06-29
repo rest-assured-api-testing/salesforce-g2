@@ -18,15 +18,19 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.entities.Product;
 import salesforce.entities.CreatedResponse;
+import salesforce.entities.RequisiteElement;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProductHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
+    private RequisiteElement requisiteElement;
 
-    public ProductHooks(final CreatedResponse createdResponse) {
+    public ProductHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
         this.createdResponse = createdResponse;
+        this.requisiteElement = requisiteElement;
     }
 
     @Before(value = "@GetProducts or @GetProduct or @UpdateProduct or @DeleteProduct", order = 2)
