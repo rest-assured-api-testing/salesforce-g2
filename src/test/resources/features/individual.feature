@@ -1,4 +1,4 @@
-Feature: Requests for Account endpoint
+Feature: Individual
   @GetIndividuals
   Scenario: Get all Individuals
     Given
@@ -6,7 +6,7 @@ Feature: Requests for Account endpoint
     Then the response status code should be "200"
 
   @CreateIndividual
-  Scenario Outline: Create a Individual
+  Scenario Outline: Create an Individual with firstname, lastname, salutation and birthday
     Given I set the pathParams and body to request
       | firstName  | <firsNameIndividual>   |
       | lastName   | <lastNameIndividual>   |
@@ -17,8 +17,8 @@ Feature: Requests for Account endpoint
     Examples:
       | firsNameIndividual | lastNameIndividual | salutationIndividual | birthdateIndividual | status |
       | Pepito             | Ramirez            | Mr.                  | 1988-06-09          | 201    |
-      | Rodrigo            | Caceres            | Mister               | 1985-07-09          | 201    |
-      | Marta              | Cespedes           | Miss                 | 1990-05-10          | 201    |
+      | Rodrigo            | Caceres            | Dr.                  | 1985-07-09          | 201    |
+      | Marta              | Cespedes           | Ms.                  | 1990-05-10          | 201    |
       | Maria              | Manzalba           |                      | 1990-03-20          | 201    |
       |                    | Aranjuez           |                      | 1990-04-23          | 201    |
       |                    | Perales            |                      |                     | 201    |
@@ -29,9 +29,12 @@ Feature: Requests for Account endpoint
       |                    | Salazar            |                      | 2000-12-50          | 400    |
       |                    | null               |                      |                     | 400    |
       |                    |                    |                      |                     | 400    |
+      | Erika              | Ramirez            | Professor            | 1985-06-09          | 400    |
+      | Pool               | Caceres            | Sir                  | 1986-07-25          | 400    |
+      | Santiago           | Cespedes           | Master               | 1997-05-03          | 400    |
 
   @CreateIndividual
-  Scenario Outline: Create a Individual
+  Scenario Outline: Create an Individual with firstname, salutation and birthday
     Given I set the pathParams and body to request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
@@ -45,13 +48,13 @@ Feature: Requests for Account endpoint
       |                    |                      | 1990-05-10          | 400    |
 
   @GetIndividual
-  Scenario: Get a Individual
+  Scenario: Get an Individual
     Given I set the pathParams to request
     When I set the "/Individual/{id}" endpoint and send the request
     Then the response status code should be "200"
 
   @UpdateIndividual
-  Scenario Outline: Update a Individual
+  Scenario Outline: Update firstname and lastname of an Individual
     Given I set the pathParams and updated body to request
       | firstName  | <firsNameIndividual> |
       | lastName   | <lastNameIndividual> |
@@ -64,7 +67,7 @@ Feature: Requests for Account endpoint
       | Marisol            |                    | 400    |
 
   @UpdateIndividual
-  Scenario Outline: Update a Individual
+  Scenario Outline: Update firstname, salutation and birthday of an Individual
     Given I set the pathParams and updated body to request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
@@ -84,7 +87,7 @@ Feature: Requests for Account endpoint
       | Person 5           |                      | 2000-12-40          | 400    |
 
   @DeleteIndividual
-  Scenario: Delete a Individual
+  Scenario: Delete an Individual
     Given I set the pathParams to request
     When I set the "/Individual/{id}" endpoint and send the delete request
     Then the response status code should be "204"

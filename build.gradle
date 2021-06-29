@@ -47,9 +47,25 @@ task cucumberCli() {
                     '--plugin', 'html:build/cucumber/cucumber-report.html',
                     '--plugin', 'json:build/cucumber/cucumber.json',
                     '--plugin', 'rerun:build/cucumber/rerun.txt',
-                    '--glue', 'scenarios',
+                    '--glue', 'salesforce.scenarios',
                     'src/test/resources/features']
             ignoreExitValue = true
         }
     }
+}
+
+task executeFeatures(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.glue=salesforce']
+        jvmArgs = ['-Dcucumber.features=src/test/resources/features/']
+        jvmArgs = ['-Dcucumber.plugin=pretty,' +
+                           'html:build/cucumber/cucumber-report.html,' +
+                           'json:build/cucumber/cucumber.json,' +
+                           'rerun:build/cucumber/rerun.txt']
+    }
+    ignoreFailures = true
+    scanForTestClasses = false
+    testLogging.showStandardStreams = true
 }
