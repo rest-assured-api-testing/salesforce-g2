@@ -1,4 +1,4 @@
-Feature: Contact endpoint tests
+Feature: Contact
 
   @CreateContact
   Scenario Outline: Create contact with firstname and lastname values

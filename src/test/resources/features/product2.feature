@@ -1,4 +1,4 @@
-Feature: Requests for Product endpoint
+Feature: Product
 
   @GetProducts
   Scenario: Get all Products

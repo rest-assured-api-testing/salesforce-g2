@@ -34,13 +34,14 @@ public class ApiRequest {
         queryParams = new HashMap<>();
         pathParams = new HashMap<>();
         params = new HashMap<>();
+        body = "";
     }
 
     public String getBaseUri() {
         return baseUri;
     }
 
-    public void setBaseUri(String baseUri) {
+    public void setBaseUri(final String baseUri) {
         this.baseUri = baseUri;
     }
 
@@ -48,7 +49,7 @@ public class ApiRequest {
         return endpoint;
     }
 
-    public void setEndpoint(String endpoint) {
+    public void setEndpoint(final String endpoint) {
         this.endpoint = endpoint;
     }
 
@@ -56,7 +57,7 @@ public class ApiRequest {
         return body;
     }
 
-    public void setBody(String body) {
+    public void setBody(final String body) {
         this.body = body;
     }
 
@@ -64,7 +65,7 @@ public class ApiRequest {
         return token;
     }
 
-    public void setToken(String token) {
+    public void setToken(final String token) {
         this.token = token;
     }
 
@@ -72,7 +73,7 @@ public class ApiRequest {
         return method;
     }
 
-    public void setMethod(Enum<ApiMethod> method) {
+    public void setMethod(final Enum<ApiMethod> method) {
         this.method = method;
     }
 
@@ -92,15 +93,15 @@ public class ApiRequest {
         params.put(param, value);
     }
 
-    public void addPathParam(Map<String, String> pathParams) {
+    public void addPathParam(final Map<String, String> pathParams) {
         this.pathParams.putAll(pathParams);
     }
 
-    public void addQueryParam(Map<String, String> queryParams) {
+    public void addQueryParam(final Map<String, String> queryParams) {
         queryParams.putAll(queryParams);
     }
 
-    public void addParam(Map<String, String> pathParams) {
+    public void addParam(final Map<String, String> pathParams) {
         this.params.putAll(pathParams);
     }
 
