@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('commit') {
       steps {
-        sh './gradlew cucumberCli'
+        bat './gradlew cucumberCli'
       }
     }
 
