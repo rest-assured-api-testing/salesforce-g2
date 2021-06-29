@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('commit') {
       steps {
+        sh 'chmod +x gradlew'
         sh './gradlew clean executeFeatures'
       }
     }
