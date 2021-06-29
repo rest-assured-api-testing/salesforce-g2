@@ -38,13 +38,13 @@ Feature: Order
     When I set the "/Order" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
     Examples:
-      | description                                                                                                                                                                                                                                                                                                                                                                                                            | effectiveDate | status | expectedStatus |
-      | description                                                                                                                                                                                                                                                                                                                                                                                                            | 2022-01-01    | draft  | 201            |
-      | !@#$%^&*()_+~}{"?><                                                                                                                                                                                                                                                                                                                                                                                                    | 2022-01-01    | draft  | 201            |
-      |                                                                                                                                                                                                                                                                                                                                                                                                                        | 2022-01-01    | draft  | 201            |
-      | null                                                                                                                                                                                                                                                                                                                                                                                                                   | 2022-01-01    | draft  | 201            |
-      | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjkl12345  | 2022-01-01    | draft  | 201            |
-      | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjkl123456 | 2022-01-01    | draft  | 400            |
+      | description                                                                                                                                                                                                                                                      | effectiveDate | status | expectedStatus |
+      | description                                                                                                                                                                                                                                                      | 2022-01-01    | draft  | 201            |
+      | !@#$%^&*()_+~}{"?><                                                                                                                                                                                                                                              | 2022-01-01    | draft  | 201            |
+      |                                                                                                                                                                                                                                                                  | 2022-01-01    | draft  | 201            |
+      | null                                                                                                                                                                                                                                                             | 2022-01-01    | draft  | 201            |
+      | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongname  | 2022-01-01    | draft  | 201            |
+      | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnamea | 2022-01-01    | draft  | 201            |
 
   @CreateOrder
   Scenario Outline: Create an Order with billingStreet value
@@ -55,13 +55,13 @@ Feature: Order
     When I set the "/Order" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
     Examples:
-      | billingStreet                                                                                                                                                                                                                                                                                                                                                                                                          | effectiveDate | status | expectedStatus |
-      | anystreet                                                                                                                                                                                                                                                                                                                                                                                                              | 2022-01-01    | draft  | 201            |
-      | !@#$%^&*()_+~}{"?><                                                                                                                                                                                                                                                                                                                                                                                                    | 2022-01-01    | draft  | 201            |
-      |                                                                                                                                                                                                                                                                                                                                                                                                                        | 2022-01-01    | draft  | 201            |
-      | null                                                                                                                                                                                                                                                                                                                                                                                                                   | 2022-01-01    | draft  | 201            |
-      | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjkl12345  | 2022-01-01    | draft  | 201            |
-      | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjkl123456 | 2022-01-01    | draft  | 400            |
+      | billingStreet                                                                                                                                                                                                                                                    | effectiveDate | status | expectedStatus |
+      | anystreet                                                                                                                                                                                                                                                        | 2022-01-01    | draft  | 201            |
+      | !@#$%^&*()_+~}{"?><                                                                                                                                                                                                                                              | 2022-01-01    | draft  | 201            |
+      |                                                                                                                                                                                                                                                                  | 2022-01-01    | draft  | 201            |
+      | null                                                                                                                                                                                                                                                             | 2022-01-01    | draft  | 201            |
+      | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongname  | 2022-01-01    | draft  | 201            |
+      | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnamea | 2022-01-01    | draft  | 400            |
 
   @CreateOrder
   Scenario Outline: Create an Order with billingCity value
@@ -76,7 +76,6 @@ Feature: Order
       | anyCity                                   | 2022-01-01    | draft  | 201            |
       | !@#$%^&*()_+~}{"?><                       | 2022-01-01    | draft  | 201            |
       |                                           | 2022-01-01    | draft  | 201            |
-      | null                                      | 2022-01-01    | draft  | 201            |
       | 40chartextasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 41chartextasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
 
@@ -93,7 +92,6 @@ Feature: Order
       | anyState                                                                          | 2022-01-01    | draft  | 201            |
       | !@#$%^&*()_+~}{"?><                                                               | 2022-01-01    | draft  | 201            |
       |                                                                                   | 2022-01-01    | draft  | 201            |
-      | null                                                                              | 2022-01-01    | draft  | 201            |
       | 80chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 81chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
 
@@ -110,7 +108,6 @@ Feature: Order
       | anyPostalCode         | 2022-01-01    | draft  | 201            |
       | !@#$%^&*()_+~}{"?><   | 2022-01-01    | draft  | 201            |
       |                       | 2022-01-01    | draft  | 201            |
-      | null                  | 2022-01-01    | draft  | 201            |
       | 20chartextasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 21chartextasdfghjklma | 2022-01-01    | draft  | 400            |
 
@@ -127,7 +124,6 @@ Feature: Order
       | anyPostalCode                                                                     | 2022-01-01    | draft  | 201            |
       | !@#$%^&*()_+~}{"?><                                                               | 2022-01-01    | draft  | 201            |
       |                                                                                   | 2022-01-01    | draft  | 201            |
-      | null                                                                              | 2022-01-01    | draft  | 201            |
       | 80chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 81chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
 
@@ -144,7 +140,6 @@ Feature: Order
       | anyPoNumber                                                                       | 2022-01-01    | draft  | 201            |
       | !@#$%^&*()_+~}{"?><                                                               | 2022-01-01    | draft  | 201            |
       |                                                                                   | 2022-01-01    | draft  | 201            |
-      | null                                                                              | 2022-01-01    | draft  | 201            |
       | 80chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 81chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
 
@@ -161,18 +156,16 @@ Feature: Order
       | order                                                                             | 2022-01-01    | draft  | 204            |
       | 01234567890order                                                                  | 2022-01-01    | draft  | 204            |
       |                                                                                   | 2022-01-01    | draft  | 204            |
-      | null                                                                              | 2022-01-01    | draft  | 204            |
       | 50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 204            |
       | 51charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
-      | order                                                                             | 2021-08-06    | draft  | 201            |
-      | order                                                                             | 2021-88-06    | draft  | 201            |
-      | order                                                                             | 2021-08-99    | draft  | 201            |
-      | order                                                                             | 2021-00-01    | draft  | 201            |
-      | order                                                                             | 2021-01-00    | draft  | 201            |
+      | order                                                                             | 2021-08-06    | draft  | 204            |
+      | order                                                                             | 2021-88-06    | draft  | 204            |
+      | order                                                                             | 2021-08-99    | draft  | 204            |
+      | order                                                                             | 2021-00-01    | draft  | 204            |
+      | order                                                                             | 2021-01-00    | draft  | 204            |
       | order                                                                             | 05-04-2021    | draft  | 400            |
       | order                                                                             | someDate      | draft  | 400            |
       | order                                                                             |               | draft  | 400            |
-      | order                                                                             | null          | draft  | 400            |
       | order                                                                             | 2022-01-01    | other  | 400            |
       | order                                                                             | 2022-01-01    | 1      | 400            |
 
@@ -188,40 +181,34 @@ Feature: Order
     Then the response status code should be "<expectedStatus>"
     Examples:
       | effectiveDate | endDate    | poDate     | customerAuthorizedDate | companyAuthorizedDate | expectedStatus |
-      | 2021-88-06    | null       | null       | null                   | null                  | 204            |
-      | 2021-08-99    | null       | null       | null                   | null                  | 204            |
-      | 1700-01-01    | null       | null       | null                   | null                  | 204            |
-      | 1699-12-30    | null       | null       | null                   | null                  | 400            |
-      | 05-04-2021    | null       | null       | null                   | null                  | 400            |
-      | someDate      | null       | null       | null                   | null                  | 400            |
-      |               | null       | null       | null                   | null                  | 400            |
-      | null          |            | null       | null                   | null                  | 400            |
-      | 2022-01-01    | 2022-01-01 | null       | null                   | null                  | 204            |
-      | 2021-01-01    | 2020-01-01 | null       | null                   | null                  | 400            |
-      | 1700-01-01    | 1700-01-01 | null       | null                   | null                  | 204            |
-      | 1699-12-30    | 1699-12-30 | null       | null                   | null                  | 400            |
-      | 2021-01-01    | 05-04-2021 | null       | null                   | null                  | 400            |
-      | 2021-01-01    | someDate   | null       | null                   | null                  | 400            |
-      | 2021-01-01    |            | null       | null                   | null                  | 204            |
-      | 2021-01-01    | null       | null       | null                   | null                  | 204            |
-      | 2021-01-01    | null       | 1700       | null                   | null                  | 204            |
-      | 2021-01-01    | null       | 1699       | null                   | null                  | 400            |
-      | 2021-01-01    | null       | 05-04-2021 | null                   | null                  | 400            |
-      | 2021-01-01    | null       | some       | null                   | null                  | 400            |
-      | 2021-01-01    | null       |            | null                   | null                  | 204            |
-      | 2021-01-01    | null       | null       | null                   | null                  | 204            |
-      | 2021-01-01    | null       | null       | 1700                   | null                  | 204            |
-      | 2021-01-01    | null       | null       | 1699                   | null                  | 400            |
-      | 2021-01-01    | null       | null       | 05-04-2021             | null                  | 400            |
-      | 2021-01-01    | null       | null       | some                   | null                  | 400            |
-      | 2021-01-01    | null       | null       |                        | null                  | 204            |
-      | 2021-01-01    | null       | null       | null                   | null                  | 204            |
-      | 2021-01-01    | null       | null       | null                   | 1700                  | 204            |
-      | 2021-01-01    | null       | null       | null                   | 1699                  | 400            |
-      | 2021-01-01    | null       | null       | null                   | 05-04-2021            | 400            |
-      | 2021-01-01    | null       | null       | null                   | some                  | 400            |
-      | 2021-01-01    | null       | null       | null                   |                       | 204            |
-      | 2021-01-01    | null       | null       | null                   | null                  | 204            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 204            |
+      | 1700-01-01    | 2022-02-02 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 204            |
+      | 1699-12-30    | 2022-02-02 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 400            |
+      | 05-04-2021    | 2022-02-02 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 400            |
+      | someDate      | 2022-02-02 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 400            |
+      |               | 2022-02-02 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 400            |
+      | 2022-01-01    | 2022-01-01 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 204            |
+      | 2021-01-01    | 2020-01-01 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 400            |
+      | 1700-01-01    | 1700-01-01 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 204            |
+      | 1699-12-30    | 1699-12-30 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 400            |
+      | 2021-01-01    | 05-04-2021 | 2022-02-02 | 2022-02-02             | 2022-02-02            | 400            |
+      | 2021-01-01    | someDate   | 2022-02-02 | 2022-02-02             | 2022-02-02            | 400            |
+      | 2021-01-01    |            | 2022-02-02 | 2022-02-02             | 2022-02-02            | 204            |
+      | 2021-01-01    | 2022-02-02 | 1700-01-01 | 2022-02-02             | 2022-02-02            | 204            |
+      | 2021-01-01    | 2022-02-02 | 1699-12-30 | 2022-02-02             | 2022-02-02            | 400            |
+      | 2021-01-01    | 2022-02-02 | 05-04-2021 | 2022-02-02             | 2022-02-02            | 400            |
+      | 2021-01-01    | 2022-02-02 | some       | 2022-02-02             | 2022-02-02            | 400            |
+      | 2021-01-01    | 2022-02-02 |            | 2022-02-02             | 2022-02-02            | 204            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | 1700-01-01             | 2022-02-02            | 204            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | 1699-12-30             | 2022-02-02            | 400            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | 05-04-2021             | 2022-02-02            | 400            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | some                   | 2022-02-02            | 400            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 |                        | 2022-02-02            | 204            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | 2022-02-02             | 1700-01-01            | 204            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | 2022-02-02             | 1699-12-30            | 400            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | 2022-02-02             | 05-04-2021            | 400            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | 2022-02-02             | some                  | 400            |
+      | 2021-01-01    | 2022-02-02 | 2022-02-02 | 2022-02-02             |                       | 204            |
 
   @UpdateOrder
   Scenario Outline: Update an Order's shippingStreet field.
@@ -232,20 +219,20 @@ Feature: Order
     When I set the "/Order/{id}" endpoint and send the request with updated body
     Then the response status code should be "<expectedStatus>"
     Examples:
-      | shippingStreet                                                                                                                                                                                                                                                                                                                                                                                                         | effectiveDate | status | expectedStatus |
-      | anystreet                                                                                                                                                                                                                                                                                                                                                                                                              | 2022-01-01    | draft  | 201            |
-      | !@#$%^&*()_+~}{"?><                                                                                                                                                                                                                                                                                                                                                                                                    | 2022-01-01    | draft  | 201            |
-      |                                                                                                                                                                                                                                                                                                                                                                                                                        | 2022-01-01    | draft  | 201            |
-      | null                                                                                                                                                                                                                                                                                                                                                                                                                   | 2022-01-01    | draft  | 201            |
-      | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjkl12345  | 2022-01-01    | draft  | 201            |
-      | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjkl123456 | 2022-01-01    | draft  | 400            |
+      | shippingStreet                                                                                                                                                                                                                                                   | effectiveDate | status | expectedStatus |
+      | anystreet                                                                                                                                                                                                                                                        | 2022-01-01    | draft  | 204            |
+      | !@#$%^&*()_+~}{"?><                                                                                                                                                                                                                                              | 2022-01-01    | draft  | 204            |
+      |                                                                                                                                                                                                                                                                  | 2022-01-01    | draft  | 204            |
+      | null                                                                                                                                                                                                                                                             | 2022-01-01    | draft  | 204            |
+      | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongname  | 2022-01-01    | draft  | 204            |
+      | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnamea | 2022-01-01    | draft  | 204            |
 
   @UpdateOrder
   Scenario Outline: Update an Order's shippingCity field.
     Given I set the pathParams and updated body with the requisite key "accountId" for the request
-      | effectiveDate  | <effectiveDate>  |
-      | status         | <status>         |
-      | shippingCity | <shippingCity> |
+      | effectiveDate | <effectiveDate> |
+      | status        | <status>        |
+      | shippingCity  | <shippingCity>  |
     When I set the "/Order/{id}" endpoint and send the request with updated body
     Then the response status code should be "<expectedStatus>"
     Examples:
