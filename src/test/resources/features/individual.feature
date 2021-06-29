@@ -1,4 +1,4 @@
-Feature: Requests for Account endpoint
+Feature: Individual
   @GetIndividuals
   Scenario: Get all Individuals
     Given
@@ -6,7 +6,7 @@ Feature: Requests for Account endpoint
     Then the response status code should be "200"
 
   @CreateIndividual
-  Scenario Outline: Create a Individual
+  Scenario Outline: Create an Individual with firstname, lastname, salutation and birthday
     Given I set the pathParams and body to request
       | firstName  | <firsNameIndividual>   |
       | lastName   | <lastNameIndividual>   |
@@ -34,7 +34,7 @@ Feature: Requests for Account endpoint
       | Santiago           | Cespedes           | Master               | 1997-05-03          | 400    |
 
   @CreateIndividual
-  Scenario Outline: Create a Individual
+  Scenario Outline: Create an Individual with firstname, salutation and birthday
     Given I set the pathParams and body to request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
@@ -48,13 +48,13 @@ Feature: Requests for Account endpoint
       |                    |                      | 1990-05-10          | 400    |
 
   @GetIndividual
-  Scenario: Get a Individual
+  Scenario: Get an Individual
     Given I set the pathParams to request
     When I set the "/Individual/{id}" endpoint and send the request
     Then the response status code should be "200"
 
   @UpdateIndividual
-  Scenario Outline: Update a Individual
+  Scenario Outline: Update firstname and lastname of an Individual
     Given I set the pathParams and updated body to request
       | firstName  | <firsNameIndividual> |
       | lastName   | <lastNameIndividual> |
@@ -67,7 +67,7 @@ Feature: Requests for Account endpoint
       | Marisol            |                    | 400    |
 
   @UpdateIndividual
-  Scenario Outline: Update a Individual
+  Scenario Outline: Update firstname, salutation and birthday of an Individual
     Given I set the pathParams and updated body to request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
@@ -87,7 +87,7 @@ Feature: Requests for Account endpoint
       | Person 5           |                      | 2000-12-40          | 400    |
 
   @DeleteIndividual
-  Scenario: Delete a Individual
+  Scenario: Delete an Individual
     Given I set the pathParams to request
     When I set the "/Individual/{id}" endpoint and send the delete request
     Then the response status code should be "204"
