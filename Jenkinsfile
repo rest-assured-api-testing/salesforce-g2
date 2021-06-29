@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('commit') {
       steps {
-        sh 'echo hi'
+        sh './gradlew clean executeFeatures'
       }
     }
 
