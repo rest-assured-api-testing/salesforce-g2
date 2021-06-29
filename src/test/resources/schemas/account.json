@@ -24,112 +24,112 @@
       "type": "boolean"
     },
     "MasterRecordId": {
-      "type": "string"
+      "type": "null"
     },
     "Name": {
       "type": "string"
     },
     "Type": {
-      "type": "string"
+      "type": "null"
     },
     "ParentId": {
-      "type": "string"
+      "type": "null"
     },
     "BillingStreet": {
-      "type": "string"
+      "type": "null"
     },
     "BillingCity": {
-      "type": "string"
+      "type": "null"
     },
     "BillingState": {
-      "type": "string"
+      "type": "null"
     },
     "BillingPostalCode": {
-      "type": "string"
+      "type": "null"
     },
     "BillingCountry": {
-      "type": "string"
+      "type": "null"
     },
     "BillingLatitude": {
-      "type": "string"
+      "type": "null"
     },
     "BillingLongitude": {
-      "type": "string"
+      "type": "null"
     },
     "BillingGeocodeAccuracy": {
-      "type": "string"
+      "type": "null"
     },
     "BillingAddress": {
-      "type": "object"
+      "type": "null"
     },
     "ShippingStreet": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingCity": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingState": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingPostalCode": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingCountry": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingLatitude": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingLongitude": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingGeocodeAccuracy": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingAddress": {
-      "type": "object"
+      "type": "null"
     },
     "Phone": {
-      "type": "string"
+      "type": "null"
     },
     "Fax": {
-      "type": "string"
+      "type": "null"
     },
     "AccountNumber": {
-      "type": "string"
+      "type": "null"
     },
     "Website": {
-      "type": "string"
+      "type": "null"
     },
     "PhotoUrl": {
       "type": "string"
     },
     "Sic": {
-      "type": "string"
+      "type": "null"
     },
     "Industry": {
-      "type": "string"
+      "type": "null"
     },
     "AnnualRevenue": {
-      "type": "string"
+      "type": "null"
     },
     "NumberOfEmployees": {
-      "type": "string"
+      "type": "null"
     },
     "Ownership": {
-      "type": "string"
+      "type": "null"
     },
     "TickerSymbol": {
-      "type": "string"
+      "type": "null"
     },
     "Description": {
-      "type": "string"
+      "type": "null"
     },
     "Rating": {
-      "type": "string"
+      "type": "null"
     },
     "Site": {
-      "type": "string"
+      "type": "null"
     },
     "OwnerId": {
       "type": "string"
@@ -150,7 +150,7 @@
       "type": "string"
     },
     "LastActivityDate": {
-      "type": "string"
+      "type": "null"
     },
     "LastViewedDate": {
       "type": "string"
@@ -159,61 +159,61 @@
       "type": "string"
     },
     "Jigsaw": {
-      "type": "string"
+      "type": "null"
     },
     "JigsawCompanyId": {
-      "type": "string"
+      "type": "null"
     },
     "CleanStatus": {
       "type": "string"
     },
     "AccountSource": {
-      "type": "string"
+      "type": "null"
     },
     "DunsNumber": {
-      "type": "string"
+      "type": "null"
     },
     "Tradestyle": {
-      "type": "string"
+      "type": "null"
     },
     "NaicsCode": {
-      "type": "string"
+      "type": "null"
     },
     "NaicsDesc": {
-      "type": "string"
+      "type": "null"
     },
     "YearStarted": {
-      "type": "string"
+      "type": "null"
     },
     "SicDesc": {
-      "type": "string"
+      "type": "null"
     },
     "DandbCompanyId": {
-      "type": "string"
+      "type": "null"
     },
     "OperatingHoursId": {
-      "type": "string"
+      "type": "null"
     },
     "CustomerPriority__c": {
-      "type": "string"
+      "type": "null"
     },
     "SLA__c": {
-      "type": "string"
+      "type": "null"
     },
     "Active__c": {
-      "type": "string"
+      "type": "null"
     },
     "NumberofLocations__c": {
-      "type": "string"
+      "type": "null"
     },
     "UpsellOpportunity__c": {
-      "type": "string"
+      "type": "null"
     },
     "SLASerialNumber__c": {
-      "type": "string"
+      "type": "null"
     },
     "SLAExpirationDate__c": {
-      "type": "string"
+      "type": "null"
     }
   },
   "required": [

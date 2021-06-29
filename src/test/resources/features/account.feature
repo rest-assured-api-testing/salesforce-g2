@@ -14,7 +14,7 @@ Feature: Account
       | Type          | <typeAccount>   |
       | Rating        | <ratingAccount> |
     When I set the "/Account" endpoint and send the request with body
-    Then the response status code should be "<status>"
+    Then the response status code should be "<status>" with the "responsetocreate" schema
     Examples:
       | nameAccount   | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
       | New Account 0 | 1236978       | 78968900       | Prospect           | Hot           | 201    |
@@ -61,7 +61,7 @@ Feature: Account
   Scenario: Get an Account
     Given I set the pathParams to request
     When I set the "/Account/{id}" endpoint and send the request
-    Then the response status code should be "200"
+    Then the response status code should be "200" with the "account" schema
 
   @UpdateAccount
   Scenario Outline: Update name, account number, phone, type and rating of an Account

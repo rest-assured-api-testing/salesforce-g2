@@ -30,16 +30,16 @@
       "type": "string"
     },
     "Pricebook2Id": {
-      "type": "string"
+      "type": "null"
     },
     "OriginalOrderId": {
-      "type": "string"
+      "type": "null"
     },
     "EffectiveDate": {
       "type": "string"
     },
     "EndDate": {
-      "type": "string"
+      "type": "null"
     },
     "IsReductionOrder": {
       "type": "boolean"
@@ -48,100 +48,100 @@
       "type": "string"
     },
     "Description": {
-      "type": "string"
+      "type": "null"
     },
     "CustomerAuthorizedById": {
-      "type": "string"
+      "type": "null"
     },
     "CustomerAuthorizedDate": {
-      "type": "string"
+      "type": "null"
     },
     "CompanyAuthorizedById": {
-      "type": "string"
+      "type": "null"
     },
     "CompanyAuthorizedDate": {
-      "type": "string"
+      "type": "null"
     },
     "Type": {
-      "type": "string"
+      "type": "null"
     },
     "BillingStreet": {
-      "type": "string"
+      "type": "null"
     },
     "BillingCity": {
-      "type": "string"
+      "type": "null"
     },
     "BillingState": {
-      "type": "string"
+      "type": "null"
     },
     "BillingPostalCode": {
-      "type": "string"
+      "type": "null"
     },
     "BillingCountry": {
-      "type": "string"
+      "type": "null"
     },
     "BillingLatitude": {
-      "type": "string"
+      "type": "null"
     },
     "BillingLongitude": {
-      "type": "string"
+      "type": "null"
     },
     "BillingGeocodeAccuracy": {
-      "type": "string"
+      "type": "null"
     },
     "BillingAddress": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingStreet": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingCity": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingState": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingPostalCode": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingCountry": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingLatitude": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingLongitude": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingGeocodeAccuracy": {
-      "type": "string"
+      "type": "null"
     },
     "ShippingAddress": {
-      "type": "string"
+      "type": "null"
     },
     "Name": {
-      "type": "string"
+      "type": "null"
     },
     "PoDate": {
-      "type": "string"
+      "type": "null"
     },
     "PoNumber": {
-      "type": "string"
+      "type": "null"
     },
     "OrderReferenceNumber": {
-      "type": "string"
+      "type": "null"
     },
     "BillToContactId": {
-      "type": "string"
+      "type": "null"
     },
     "ShipToContactId": {
-      "type": "string"
+      "type": "null"
     },
     "ActivatedDate": {
-      "type": "string"
+      "type": "null"
     },
     "ActivatedById": {
-      "type": "string"
+      "type": "null"
     },
     "StatusCode": {
       "type": "string"

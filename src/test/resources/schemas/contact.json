@@ -2,21 +2,6 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "attributes": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "type",
-        "url"
-      ]
-    },
     "Id": {
       "type": "string"
     },
@@ -24,118 +9,118 @@
       "type": "boolean"
     },
     "MasterRecordId": {
-      "type": "string"
+      "type": "null"
     },
     "AccountId": {
-      "type": "string"
+      "type": "null"
     },
     "LastName": {
       "type": "string"
     },
     "FirstName": {
-      "type": "string"
+      "type": "null"
     },
     "Salutation": {
-      "type": "string"
+      "type": "null"
     },
     "Name": {
       "type": "string"
     },
     "OtherStreet": {
-      "type": "string"
+      "type": "null"
     },
     "OtherCity": {
-      "type": "string"
+      "type": "null"
     },
     "OtherState": {
-      "type": "string"
+      "type": "null"
     },
     "OtherPostalCode": {
-      "type": "string"
+      "type": "null"
     },
     "OtherCountry": {
-      "type": "string"
+      "type": "null"
     },
     "OtherLatitude": {
-      "type": "string"
+      "type": "null"
     },
     "OtherLongitude": {
-      "type": "string"
+      "type": "null"
     },
     "OtherGeocodeAccuracy": {
-      "type": "string"
+      "type": "null"
     },
     "OtherAddress": {
-      "type": "string"
+      "type": "null"
     },
     "MailingStreet": {
-      "type": "string"
+      "type": "null"
     },
     "MailingCity": {
-      "type": "string"
+      "type": "null"
     },
     "MailingState": {
-      "type": "string"
+      "type": "null"
     },
     "MailingPostalCode": {
-      "type": "string"
+      "type": "null"
     },
     "MailingCountry": {
-      "type": "string"
+      "type": "null"
     },
     "MailingLatitude": {
-      "type": "string"
+      "type": "null"
     },
     "MailingLongitude": {
-      "type": "string"
+      "type": "null"
     },
     "MailingGeocodeAccuracy": {
-      "type": "string"
+      "type": "null"
     },
     "MailingAddress": {
-      "type": "string"
+      "type": "null"
     },
     "Phone": {
-      "type": "string"
+      "type": "null"
     },
     "Fax": {
-      "type": "string"
+      "type": "null"
     },
     "MobilePhone": {
-      "type": "string"
+      "type": "null"
     },
     "HomePhone": {
-      "type": "string"
+      "type": "null"
     },
     "OtherPhone": {
-      "type": "string"
+      "type": "null"
     },
     "AssistantPhone": {
-      "type": "string"
+      "type": "null"
     },
     "ReportsToId": {
-      "type": "string"
+      "type": "null"
     },
     "Email": {
       "type": "string"
     },
     "Title": {
-      "type": "string"
+      "type": "null"
     },
     "Department": {
-      "type": "string"
+      "type": "null"
     },
     "AssistantName": {
-      "type": "string"
+      "type": "null"
     },
     "LeadSource": {
-      "type": "string"
+      "type": "null"
     },
     "Birthdate": {
-      "type": "string"
+      "type": "null"
     },
     "Description": {
-      "type": "string"
+      "type": "null"
     },
     "OwnerId": {
       "type": "string"
@@ -156,13 +141,13 @@
       "type": "string"
     },
     "LastActivityDate": {
-      "type": "string"
+      "type": "null"
     },
     "LastCURequestDate": {
-      "type": "string"
+      "type": "null"
     },
     "LastCUUpdateDate": {
-      "type": "string"
+      "type": "null"
     },
     "LastViewedDate": {
       "type": "string"
@@ -171,10 +156,10 @@
       "type": "string"
     },
     "EmailBouncedReason": {
-      "type": "string"
+      "type": "null"
     },
     "EmailBouncedDate": {
-      "type": "string"
+      "type": "null"
     },
     "IsEmailBounced": {
       "type": "boolean"
@@ -183,26 +168,25 @@
       "type": "string"
     },
     "Jigsaw": {
-      "type": "string"
+      "type": "null"
     },
     "JigsawContactId": {
-      "type": "string"
+      "type": "null"
     },
     "CleanStatus": {
       "type": "string"
     },
     "IndividualId": {
-      "type": "string"
+      "type": "null"
     },
     "Level__c": {
-      "type": "string"
+      "type": "null"
     },
     "Languages__c": {
-      "type": "string"
+      "type": "null"
     }
   },
   "required": [
-    "attributes",
     "Id",
     "IsDeleted",
     "MasterRecordId",
