@@ -5,7 +5,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package tests;
+package salesforce.tests;
 
 import salesforce.auth.Authentication;
 import salesforce.entities.CreatedResponse;

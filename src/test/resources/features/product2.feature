@@ -1,4 +1,4 @@
-Feature: Requests for Product endpoint
+Feature: Product
 
   @GetProducts
   Scenario: Get all Products
@@ -14,7 +14,7 @@ Feature: Requests for Product endpoint
       | description | <descriptionProduct> |
       | isActive    | <isActiveProduct>    |
     When I set the "/Product2" endpoint and send the request with body
-    Then the response status code should be "<status>"
+    Then the response status code should be "<status>" with the "responsetocreate" schema
     Examples:
       | nameProduct          | productCodeProduct | descriptionProduct     | isActiveProduct | status |
       | New incoming product | NIP1               | This is a test product | true            | 201    |
@@ -28,7 +28,7 @@ Feature: Requests for Product endpoint
   Scenario: Get a Product
     Given I set the pathParams to request
     When I set the "/Product2/{id}" endpoint and send the request
-    Then the response status code should be "200"
+    Then the response status code should be "200" with the "product02" schema
 
   @UpdateProduct
   Scenario Outline: Update a Product

@@ -1,4 +1,4 @@
-Feature: Requests for Campaign endpoint
+Feature: Campaign
 
   @GetCampaigns
   Scenario: Get all Campaigns
@@ -14,7 +14,7 @@ Feature: Requests for Campaign endpoint
       | type     | <typeCampaign>     |
       | status   | <statusCampaign>   |
     When I set the "/Campaign" endpoint and send the request with body
-    Then the response status code should be "<status>"
+    Then the response status code should be "<status>" with the "responsetocreate" schema
     Examples:
       | nameCampaign          | isActiveCampaign | typeCampaign            | statusCampaign | status |
       | New incoming campaign | true             | This is a test campaign | NIP1           | 201    |
@@ -28,7 +28,7 @@ Feature: Requests for Campaign endpoint
   Scenario: Get a Campaign
     Given I set the pathParams to request
     When I set the "/Campaign/{id}" endpoint and send the request
-    Then the response status code should be "200"
+    Then the response status code should be "200" with the "campaign" schema
 
   @UpdateCampaign
   Scenario Outline: Update a Product

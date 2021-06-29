@@ -1,4 +1,4 @@
-Feature: Order endpoint tests
+Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with name, effectiveDate and status fields
@@ -7,7 +7,8 @@ Feature: Order endpoint tests
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
     When I set the "/Order" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>"
+    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+
     Examples:
       | name                                                                              | effectiveDate | status | expectedStatus |
       | order                                                                             | 2022-01-01    | draft  | 201            |

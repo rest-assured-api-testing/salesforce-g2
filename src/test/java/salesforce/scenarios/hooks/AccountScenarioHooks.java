@@ -5,8 +5,9 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-package scenarios.hooks;
+package salesforce.scenarios.hooks;
 
+import api.ApiMethod;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -39,7 +40,7 @@ public class AccountScenarioHooks {
         Account account = new Account();
         account.setName("First Account");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
+        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -48,7 +49,7 @@ public class AccountScenarioHooks {
     }
 
     @After(value = "@GetAccounts or @GetAccount or @UpdateAccount or @CreateAccount")
-    public void setDown() {
+    public void setDown() throws JsonProcessingException {
         logger.info("======================= A Account After Hook");
         if (createdResponse.getId() != null) {
             logger.info("======================= Inside After Hook");
@@ -56,7 +57,7 @@ public class AccountScenarioHooks {
             Map<String, String> pathParams = new HashMap<>();
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
-            apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
+            apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
         }
         logger.info("======================= Passed if After Hook");
     }

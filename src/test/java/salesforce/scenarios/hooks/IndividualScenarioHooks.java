@@ -5,8 +5,9 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-package scenarios.hooks;
+package salesforce.scenarios.hooks;
 
+import api.ApiMethod;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import org.apache.log4j.LogManager;
@@ -40,7 +41,7 @@ public class IndividualScenarioHooks {
         person.setFirstName("Pepito");
         person.setLastName("Flores");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.PEOPLE.get(), pathParams, person);
+        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -49,13 +50,13 @@ public class IndividualScenarioHooks {
     }
 
     @After(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @CreateIndividual")
-    public void setDown() {
+    public void setDown() throws JsonProcessingException {
         logger.info("======================= A Individual After Hook");
         if (createdResponse.getId() != null) {
             Map<String, String> pathParams = new HashMap<>();
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
-            apiResponse = ApiRequestManager.delete(Endpoints.PERSON.get(), pathParams);
+            apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
         }
     }
 }

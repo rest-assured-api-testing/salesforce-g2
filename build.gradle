@@ -20,6 +20,8 @@ dependencies {
     implementation 'io.cucumber:cucumber-testng:6.10.4'
     implementation 'io.cucumber:cucumber-picocontainer:6.10.4'
     implementation 'log4j:log4j:1.2.17'
+    implementation 'org.slf4j:slf4j-api:2.0.0-alpha1'
+    implementation 'org.slf4j:slf4j-simple:2.0.0-alpha1'
     implementation 'net.masterthought:cucumber-reporting:5.5.3'
 }
 
@@ -47,9 +49,25 @@ task cucumberCli() {
                     '--plugin', 'html:build/cucumber/cucumber-report.html',
                     '--plugin', 'json:build/cucumber/cucumber.json',
                     '--plugin', 'rerun:build/cucumber/rerun.txt',
-                    '--glue', 'scenarios',
+                    '--glue', 'salesforce.scenarios',
                     'src/test/resources/features']
             ignoreExitValue = true
         }
     }
+}
+
+task executeFeatures(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.glue=salesforce']
+        jvmArgs = ['-Dcucumber.features=src/test/resources/features/']
+        jvmArgs = ['-Dcucumber.plugin=pretty,' +
+                           'html:build/cucumber/cucumber-report.html,' +
+                           'json:build/cucumber/cucumber.json,' +
+                           'rerun:build/cucumber/rerun.txt']
+    }
+    ignoreFailures = true
+    scanForTestClasses = false
+    testLogging.showStandardStreams = true
 }

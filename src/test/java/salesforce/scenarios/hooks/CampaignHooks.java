@@ -5,8 +5,9 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-package scenarios.hooks;
+package salesforce.scenarios.hooks;
 
+import api.ApiMethod;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -39,7 +40,7 @@ public class CampaignHooks {
         Campaign campaign = new Campaign();
         campaign.setName("The first campaign");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.CAMPAIGNS.get(), pathParams, campaign);
+        apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGNS.get(), pathParams, campaign, ApiMethod.POST);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -47,11 +48,11 @@ public class CampaignHooks {
     }
 
     @After(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @CreateCampaign")
-    public void setLast() {
+    public void setLast() throws JsonProcessingException {
         logger.info("~~~~~~~~~~~~~~~~~~ AfterHook: Delete the Campaign ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoints.CAMPAIGN.get(), pathParams);
+        apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGN.get(), pathParams, ApiMethod.DELETE);
     }
 }
