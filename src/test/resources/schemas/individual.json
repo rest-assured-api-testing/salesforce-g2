@@ -30,10 +30,10 @@
       "type": "string"
     },
     "FirstName": {
-      "type": "string"
+      "type": "null"
     },
     "Salutation": {
-      "type": "string"
+      "type": "null"
     },
     "Name": {
       "type": "string"
@@ -63,46 +63,46 @@
       "type": "boolean"
     },
     "BirthDate": {
-      "type": "string"
+      "type": "null"
     },
     "DeathDate": {
-      "type": "string"
+      "type": "null"
     },
     "ConvictionsCount": {
-      "type": "string"
+      "type": "null"
     },
     "ChildrenCount": {
-      "type": "string"
+      "type": "null"
     },
     "MilitaryService": {
-      "type": "string"
+      "type": "null"
     },
     "IsHomeOwner": {
       "type": "boolean"
     },
     "Occupation": {
-      "type": "string"
+      "type": "null"
     },
     "Website": {
-      "type": "string"
+      "type": "null"
     },
     "IndividualsAge": {
-      "type": "string"
+      "type": "null"
     },
     "LastViewedDate": {
       "type": "string"
     },
     "MasterRecordId": {
-      "type": "string"
+      "type": "null"
     },
     "ConsumerCreditScore": {
-      "type": "string"
+      "type": "null"
     },
     "ConsumerCreditScoreProviderName": {
-      "type": "string"
+      "type": "null"
     },
     "InfluencerRating": {
-      "type": "string"
+      "type": "null"
     },
     "CreatedDate": {
       "type": "string"

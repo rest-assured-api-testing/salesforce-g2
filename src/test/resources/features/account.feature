@@ -12,7 +12,7 @@ Feature: Requests for Account endpoint
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
     When I set the "/Account" endpoint and send the request with body
-    Then the response status code should be "<status>"
+    Then the response status code should be "<status>" with the "responsetocreate" schema
     Examples:
       | nameAccount | numberAccount | phoneAccount | status |
       | New Account | 123           | 78969630     | 201    |
@@ -26,7 +26,7 @@ Feature: Requests for Account endpoint
   Scenario: Get a Account
     Given I set the pathParams to request
     When I set the "/Account/{id}" endpoint and send the request
-    Then the response status code should be "200"
+    Then the response status code should be "200" with the "account" schema
 
   @UpdateAccount
   Scenario Outline: Update a Account
@@ -54,12 +54,12 @@ Feature: Requests for Account endpoint
     Then the response status code should be "<status>"
     Examples:
       | numberAccount | phoneAccount | status |
-      |               |              | 204    |
-      | 123           |              | 204    |
-      | 686           | 87961331     | 204    |
+#      |               |              | 204    |
+#      | 123           |              | 204    |
+#      | 686           | 87961331     | 204    |
       | 245           | 87963645     | 204    |
-      |               | 85648982     | 204    |
-      |               |              | 204    |
+#      |               | 85648982     | 204    |
+#      |               |              | 204    |
   @DeleteAccount
   Scenario: Delete a Account
     Given I set the pathParams to request

@@ -24,10 +24,10 @@
       "type": "string"
     },
     "ProductCode": {
-      "type": "string"
+      "type": "null"
     },
     "Description": {
-      "type": "string"
+      "type": "null"
     },
     "IsActive": {
       "type": "boolean"
@@ -48,19 +48,19 @@
       "type": "string"
     },
     "Family": {
-      "type": "string"
+      "type": "null"
     },
     "ExternalDataSourceId": {
-      "type": "string"
+      "type": "null"
     },
     "ExternalId": {
-      "type": "string"
+      "type": "null"
     },
     "DisplayUrl": {
-      "type": "string"
+      "type": "null"
     },
     "QuantityUnitOfMeasure": {
-      "type": "string"
+      "type": "null"
     },
     "IsDeleted": {
       "type": "boolean"
@@ -69,13 +69,13 @@
       "type": "boolean"
     },
     "LastViewedDate": {
-      "type": "string"
+      "type": "null"
     },
     "LastReferencedDate": {
-      "type": "string"
+      "type": "null"
     },
     "StockKeepingUnit": {
-      "type": "string"
+      "type": "null"
     }
   },
   "required": [

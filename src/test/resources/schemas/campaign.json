@@ -27,7 +27,7 @@
       "type": "string"
     },
     "ParentId": {
-      "type": "string"
+      "type": "null"
     },
     "Type": {
       "type": "string"
@@ -36,19 +36,19 @@
       "type": "string"
     },
     "StartDate": {
-      "type": "string"
+      "type": "null"
     },
     "EndDate": {
-      "type": "string"
+      "type": "null"
     },
     "ExpectedRevenue": {
-      "type": "string"
+      "type": "null"
     },
     "BudgetedCost": {
-      "type": "string"
+      "type": "null"
     },
     "ActualCost": {
-      "type": "string"
+      "type": "null"
     },
     "ExpectedResponse": {
       "type": "number"
@@ -60,7 +60,7 @@
       "type": "boolean"
     },
     "Description": {
-      "type": "string"
+      "type": "null"
     },
     "NumberOfLeads": {
       "type": "integer"
@@ -105,7 +105,7 @@
       "type": "string"
     },
     "LastActivityDate": {
-      "type": "string"
+      "type": "null"
     },
     "LastViewedDate": {
       "type": "string"
@@ -114,7 +114,7 @@
       "type": "string"
     },
     "CampaignMemberRecordTypeId": {
-      "type": "string"
+      "type": "null"
     }
   },
   "required": [

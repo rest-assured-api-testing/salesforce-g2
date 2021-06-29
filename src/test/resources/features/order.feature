@@ -7,7 +7,7 @@ Feature: Order endpoint tests
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
     When I set the "/Order" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>"
+    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
 
     Examples:
       | name                                                | effectiveDate | status | expectedStatus |

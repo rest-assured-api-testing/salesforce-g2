@@ -6,7 +6,7 @@ Feature: Contact endpoint tests
       | firstname | <firstname> |
       | lastname  | <lastname>  |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>"
+    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
 
     Examples:
       | firstname                                           | lastname                                            | expectedStatus |
@@ -29,7 +29,7 @@ Feature: Contact endpoint tests
       | lastname  | <lastname>  |
       | birthdate | <birthdate> |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>"
+    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
 
     Examples:
       | firstname | lastname | birthdate  | expectedStatus |
@@ -49,7 +49,7 @@ Feature: Contact endpoint tests
       | lastname   | <lastname>   |
       | department | <department> |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>"
+    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
 
     Examples:
       | firstname | lastname | department                                          | expectedStatus |
@@ -68,7 +68,7 @@ Feature: Contact endpoint tests
       | lastname  | <lastname>  |
       | phone     | <phone>     |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>"
+    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
 
     Examples:
       | firstname | lastname | phone                | expectedStatus |
@@ -88,7 +88,7 @@ Feature: Contact endpoint tests
       | lastname    | <lastname>    |
       | description | <description> |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>"
+    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
 
     Examples:
       | firstname | lastname | description                                                                                                                                                                                                                                                 | expectedStatus |  |
@@ -106,7 +106,7 @@ Feature: Contact endpoint tests
       | lastname  | <lastname>  |
       | email     | <email>     |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>"
+    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
 
     Examples:
       | firstname | lastname | email                                               | expectedStatus |

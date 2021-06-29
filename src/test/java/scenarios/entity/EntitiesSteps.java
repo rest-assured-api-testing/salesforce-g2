@@ -98,4 +98,13 @@ public class EntitiesSteps {
         logger.info("=================== Common Then ===========================");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
+
+    @Then("the response status code should be {string} with the {string} schema")
+    public void theResponseStatusCodeShouldBe(final String status, final String schema) {
+        logger.info("=================== Common Then ===========================");
+        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status));
+        if (status.equals("201")) {
+            apiResponse.validateBodySchema("schemas/" + schema + ".json");
+        }
+    }
 }

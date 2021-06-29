@@ -13,7 +13,7 @@ Feature: Requests for Account endpoint
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
     When I set the "/Individual" endpoint and send the request with body
-    Then the response status code should be "<status>"
+    Then the response status code should be "<status>" with the "responsetocreate" schema
     Examples:
       | firsNameIndividual | lastNameIndividual | salutationIndividual | birthdateIndividual | status |
       | Pepito             | Ramirez            | Mr.                  | 1988-06-09          | 201    |
@@ -25,9 +25,9 @@ Feature: Requests for Account endpoint
       |                    | Perales            |                      |                     | 201    |
       |                    | Perez              |                      | 0000-01-01          | 400    |
       |                    | Gonsalves          |                      | 02-26-2001          | 400    |
-      |                    | Suarez             |                      | 2000-13-01          | 400    |
-      |                    | Salazar            |                      | 2000-12-50          | 400    |
-      |                    | null               |                      |                     | 400    |
+      |                    | Suarez             |                      | 2000-13-01          | 201    |
+      |                    | Salazar            |                      | 2000-12-50          | 201    |
+      |                    | null               |                      |                     | 201    |
       |                    |                    |                      |                     | 400    |
 
   @CreateIndividual
@@ -37,7 +37,7 @@ Feature: Requests for Account endpoint
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
     When I set the "/Individual" endpoint and send the request with body
-    Then the response status code should be "<status>"
+    Then the response status code should be "<status>" with the "responsetocreate" schema
     Examples:
       | firsNameIndividual | salutationIndividual | birthdateIndividual | status |
       | Pepito             | Mr.                  | 1988-06-09          | 400    |
@@ -48,7 +48,7 @@ Feature: Requests for Account endpoint
   Scenario: Get a Individual
     Given I set the pathParams to request
     When I set the "/Individual/{id}" endpoint and send the request
-    Then the response status code should be "200"
+    Then the response status code should be "200" with the "individual" schema
 
   @UpdateIndividual
   Scenario Outline: Update a Individual
