@@ -18,6 +18,7 @@ import salesforce.auth.Authentication;
 import salesforce.config.Endpoints;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
+import salesforce.entities.RequisiteElement;
 import salesforce.entities.Token;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,10 +26,12 @@ import java.util.Map;
 public class ContactScenarioHooks {
 
     private CreatedResponse createdResponse;
+    private RequisiteElement requisiteElement;
     private Logger logger = LogManager.getLogger(getClass());
 
-    public ContactScenarioHooks(final CreatedResponse createdResponse) {
+    public ContactScenarioHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
         this.createdResponse = createdResponse;
+        this.requisiteElement = requisiteElement;
     }
 
     @Before(order = 1)

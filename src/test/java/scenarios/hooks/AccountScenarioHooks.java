@@ -17,15 +17,19 @@ import salesforce.entities.CreatedResponse;
 import salesforce.entities.Account;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import salesforce.entities.RequisiteElement;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class AccountScenarioHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
+    private RequisiteElement requisiteElement;
 
-    public AccountScenarioHooks(final CreatedResponse createdResponse) {
+    public AccountScenarioHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
         this.createdResponse = createdResponse;
+        this.requisiteElement = requisiteElement;
     }
 
     @Before(value = "@GetAccounts or @GetAccount or @UpdateAccount or @DeleteAccount", order = 2)
