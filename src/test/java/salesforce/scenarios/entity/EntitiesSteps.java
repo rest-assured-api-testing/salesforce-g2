@@ -96,6 +96,6 @@ public class EntitiesSteps {
     @Then("the response status code should be {string}")
     public void theResponseStatusCodeShouldBe(final String status) {
         logger.info("=================== Common Then ===========================");
-        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
+        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status));
     }
 }

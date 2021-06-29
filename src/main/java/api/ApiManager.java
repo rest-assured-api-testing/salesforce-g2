@@ -30,7 +30,7 @@ public class ApiManager {
                 .pathParams(apiRequest.getPathParams())
                 .baseUri(apiRequest.getBaseUri())
                 .contentType(ContentType.JSON)
-                .log().all();
+                .log().method().log().uri().log().body();
     }
 
     /**
