@@ -7,6 +7,7 @@
  */
 package salesforce.scenarios.hooks;
 
+import api.ApiMethod;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -45,18 +46,18 @@ public class ContactScenarioHooks {
         Contact contact = new Contact();
         contact.setFirstName("firstname");
         contact.setLastName("lastname");
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.CONTACTS.get(), pathParams, contact);
+        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.CONTACTS.get(), pathParams, contact, ApiMethod.POST);
         createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
     }
 
     @After(value = "@GetContact or @UpdateContact or @CreateContact")
-    public void setDownContact() {
+    public void setDownContact() throws JsonProcessingException {
         logger.info("*** Delete created Contact ***");
         if (createdResponse.getId() != null) {
             Map<String, String> pathParams = new HashMap<>();
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
-            apiResponse = ApiRequestManager.delete(Endpoints.CONTACT.get(), pathParams);
+            apiResponse = ApiRequestManager.execute(Endpoints.CONTACT.get(), pathParams, ApiMethod.DELETE);
         }
     }
 }

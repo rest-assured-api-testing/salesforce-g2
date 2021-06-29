@@ -1,4 +1,4 @@
-Feature: Requests for Campaign endpoint
+Feature: Campaign
 
   @GetCampaigns
   Scenario: Get all Campaigns

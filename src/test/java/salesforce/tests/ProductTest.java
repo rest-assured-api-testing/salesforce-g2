@@ -7,6 +7,7 @@
  */
 package salesforce.tests;
 
+import api.ApiMethod;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,23 +31,23 @@ public class ProductTest extends CommonTest {
         product.setProductCode("FP1");
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
+        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
 
     @AfterMethod(onlyForGroups = {"post", "patch"})
-    public void deleteAProduct() {
+    public void deleteAProduct() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
+        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test
-    public void getProducts() {
-        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.PRODUCTS.get(), new HashMap<>());
+    public void getProducts() throws JsonProcessingException {
+        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.PRODUCTS.get(), new HashMap<>(), ApiMethod.GET);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
@@ -58,16 +59,16 @@ public class ProductTest extends CommonTest {
         product.setProductCode("FP1");
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
+        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
 
     @Test(groups = "post")
-    public void getAProduct() {
+    public void getAProduct() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        ApiResponse apiResponse = ApiRequestManager.get(Endpoints.PRODUCT.get(), pathParams);
+        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.GET);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
@@ -79,16 +80,16 @@ public class ProductTest extends CommonTest {
         product.setProductCode("FP1-1");
         product.setDescription("The description of the product with the description changed");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.update(Endpoints.PRODUCT.get(), pathParams, product);
+        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, product, ApiMethod.PATCH);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test(groups = "delete")
-    public void deleteProduct() {
+    public void deleteProduct() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
+        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 }

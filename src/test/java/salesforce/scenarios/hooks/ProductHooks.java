@@ -7,6 +7,7 @@
  */
 package salesforce.scenarios.hooks;
 
+import api.ApiMethod;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,7 +36,7 @@ public class ProductHooks {
         Product product = new Product();
         product.setName("The first product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.create(Endpoints.PRODUCTS.get(), pathParams, product);
+        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -43,11 +44,11 @@ public class ProductHooks {
     }
 
     @After(value = "@GetProducts or @GetProduct or @UpdateProduct or @CreateProduct", order = 2)
-    public void setLast() {
+    public void setLast() throws JsonProcessingException {
         logger.info("~~~~~~~~~~~~~~~~~~~~~~ AfterHook: Delete the Product ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.delete(Endpoints.PRODUCT.get(), pathParams);
+        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
     }
 }

@@ -1,4 +1,4 @@
-Feature: Order endpoint tests
+Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with name, effectiveDate and status fields

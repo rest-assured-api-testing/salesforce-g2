@@ -7,6 +7,7 @@
  */
 package salesforce.scenarios.hooks;
 
+import api.ApiMethod;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -42,7 +43,7 @@ public class OrderScenarioHooks {
         Map<String, String> pathParams = new HashMap<>();
         Account account = new Account();
         account.setName("testAccount01");
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ACCOUNTS.get(), pathParams, account);
+        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
         accountId = createdResponse.getId();
     }
@@ -58,15 +59,15 @@ public class OrderScenarioHooks {
         order.setAccountId(accountId);
         order.setEffectiveDate(date);
         order.setStatus("Draft");
-        ApiResponse apiResponse = ApiRequestManager.create(Endpoints.ORDERS.get(), pathParams, order);
+        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ORDERS.get(), pathParams, order, ApiMethod.POST);
         createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
     }
 
     @After(value = "@GetOrder or @UpdateOrder or @CreateOrder")
-    public void setDownAccount() {
+    public void setDownAccount() throws JsonProcessingException {
         logger.info("*** Delete created Account ***");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), accountId);
-        apiResponse = ApiRequestManager.delete(Endpoints.ACCOUNT.get(), pathParams);
+        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
     }
 }
