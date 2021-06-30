@@ -5,10 +5,10 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package salesforce.scenarios.hooks;
+package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
+import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
@@ -46,7 +46,7 @@ public class OrderScenarioHooks {
         Map<String, String> pathParams = new HashMap<>();
         Account account = new Account();
         account.setName("testAccount01");
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         requisiteElement.setId(apiResponse.getBody(CreatedResponse.class).getId());
         apiResponse.logAll();
     }
@@ -62,7 +62,7 @@ public class OrderScenarioHooks {
         order.setAccountId(requisiteElement.getId());
         order.setEffectiveDate(date);
         order.setStatus("Draft");
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ORDERS.get(), pathParams, order, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.ORDERS.get(), pathParams, order, ApiMethod.POST);
         apiResponse.logAll();
         createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
     }
@@ -72,6 +72,6 @@ public class OrderScenarioHooks {
         logger.info("*** Delete created Account ***");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), requisiteElement.getId());
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
     }
 }

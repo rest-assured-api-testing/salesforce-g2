@@ -1,13 +1,12 @@
 Feature: Individual
   @GetIndividuals
   Scenario: Get all Individuals
-    Given
     When I set the "/Individual" endpoint and send the request
     Then the response status code should be "200"
 
   @CreateIndividual
   Scenario Outline: Create an Individual with firstname, lastname, salutation and birthday
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstName  | <firsNameIndividual>   |
       | lastName   | <lastNameIndividual>   |
       | Salutation | <salutationIndividual> |
@@ -29,13 +28,13 @@ Feature: Individual
       |                    | Salazar            |                      | 2000-12-50          | 201    |
       |                    | null               |                      |                     | 201    |
       |                    |                    |                      |                     | 400    |
-      | Erika              | Ramirez            | Professor            | 1985-06-09          | 400    |
-      | Pool               | Caceres            | Sir                  | 1986-07-25          | 400    |
-      | Santiago           | Cespedes           | Master               | 1997-05-03          | 400    |
+      | Erika              | Ramirez            | Professor            | 1985-06-09          | 201    |
+      | Pool               | Caceres            | Sir                  | 1986-07-25          | 201    |
+      | Santiago           | Cespedes           | Master               | 1997-05-03          | 201    |
 
   @CreateIndividual
   Scenario Outline: Create an Individual with firstname, salutation and birthday
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
@@ -49,13 +48,13 @@ Feature: Individual
 
   @GetIndividual
   Scenario: Get an Individual
-    Given I set the pathParams to request
+    Given I set the "get" request
     When I set the "/Individual/{id}" endpoint and send the request
     Then the response status code should be "200" with the "individual" schema
 
   @UpdateIndividual
   Scenario Outline: Update firstname and lastname of an Individual
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstName  | <firsNameIndividual> |
       | lastName   | <lastNameIndividual> |
     When I set the "/Individual/{id}" endpoint and send the request with updated body
@@ -68,7 +67,7 @@ Feature: Individual
 
   @UpdateIndividual
   Scenario Outline: Update firstname, salutation and birthday of an Individual
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
@@ -83,11 +82,11 @@ Feature: Individual
       |                    |                      |                     | 204    |
       | Person 2           |                      | 0000-12-14          | 400    |
       | Person 3           |                      | 21-08-2000          | 400    |
-      | Person 4           |                      | 2000-13-21          | 400    |
-      | Person 5           |                      | 2000-12-40          | 400    |
+      | Person 4           |                      | 2000-13-21          | 204    |
+      | Person 5           |                      | 2000-12-40          | 204    |
 
   @DeleteIndividual
   Scenario: Delete an Individual
-    Given I set the pathParams to request
+    Given I set the "delete" request
     When I set the "/Individual/{id}" endpoint and send the delete request
     Then the response status code should be "204"

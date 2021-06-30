@@ -5,10 +5,10 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package salesforce.tests;
+package rest.salesforce.com.tests;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
+import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import salesforce.config.Endpoints;
@@ -31,7 +31,7 @@ public class ContactsTest extends CommonTest {
         Account account = new Account();
         account.setName("testAccount01");
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         accountId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -42,7 +42,7 @@ public class ContactsTest extends CommonTest {
         contact.setFirstName("firstname");
         contact.setLastName("lastname");
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.CONTACTS.get(), pathParams, contact, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.CONTACTS.get(), pathParams, contact, ApiMethod.POST);
         contactId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -53,7 +53,7 @@ public class ContactsTest extends CommonTest {
         contact.setFirstName("firstname");
         contact.setLastName("lastname");
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.CONTACTS.get(), pathParams, contact, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.CONTACTS.get(), pathParams, contact, ApiMethod.POST);
         contactId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -65,7 +65,7 @@ public class ContactsTest extends CommonTest {
         contact.setLastName("lastnameUpdated");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), contactId);
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.CONTACT.get(), pathParams, contact, ApiMethod.PATCH);
+        ApiResponse apiResponse = Request.execute(Endpoints.CONTACT.get(), pathParams, contact, ApiMethod.PATCH);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 
@@ -73,7 +73,7 @@ public class ContactsTest extends CommonTest {
     public void deleteContact() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), contactId);
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.CONTACT.get(), pathParams, ApiMethod.DELETE);
+        ApiResponse apiResponse = Request.execute(Endpoints.CONTACT.get(), pathParams, ApiMethod.DELETE);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 
@@ -81,7 +81,7 @@ public class ContactsTest extends CommonTest {
     public void deleteAccount() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), accountId);
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
+        ApiResponse apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }
