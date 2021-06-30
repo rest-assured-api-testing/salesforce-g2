@@ -12,7 +12,8 @@ Feature: Individual
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
     When I set the "/Individual" endpoint and send the request with body
-    Then the response status code should be "<status>" with the "responsetocreate" schema
+    Then the response status code should be "<status>"
+    And Validate "responsetocreate" schema
     Examples:
       | firsNameIndividual | lastNameIndividual | salutationIndividual | birthdateIndividual | status |
       | Pepito             | Ramirez            | Mr.                  | 1988-06-09          | 201    |
@@ -39,7 +40,8 @@ Feature: Individual
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
     When I set the "/Individual" endpoint and send the request with body
-    Then the response status code should be "<status>" with the "responsetocreate" schema
+    Then the response status code should be "<status>"
+    And Validate "responsetocreate" schema
     Examples:
       | firsNameIndividual | salutationIndividual | birthdateIndividual | status |
       | Pepito             | Mr.                  | 1988-06-09          | 400    |
@@ -50,7 +52,8 @@ Feature: Individual
   Scenario: Get an Individual
     Given I set the "get" request
     When I set the "/Individual/{id}" endpoint and send the request
-    Then the response status code should be "200" with the "individual" schema
+    Then the response status code should be "200"
+    And Validate "individual" schema
 
   @UpdateIndividual
   Scenario Outline: Update firstname and lastname of an Individual
@@ -88,5 +91,5 @@ Feature: Individual
   @DeleteIndividual
   Scenario: Delete an Individual
     Given I set the "delete" request
-    When I set the "/Individual/{id}" endpoint and send the delete request
+    When I send "/Individual/{id}" delete request
     Then the response status code should be "204"
