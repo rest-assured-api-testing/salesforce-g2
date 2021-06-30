@@ -5,6 +5,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
+
 package salesforce.scenarios.hooks;
 
 import api.ApiMethod;
@@ -13,16 +14,18 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.config.Endpoints;
-import salesforce.entities.CreatedResponse;
 import salesforce.entities.Campaign;
+import salesforce.entities.CreatedResponse;
 import salesforce.entities.RequisiteElement;
 
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * Scenario hooks for campaign entity.
+ */
 public class CampaignHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
