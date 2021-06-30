@@ -17,9 +17,7 @@ public enum Credentials {
     PASSWORD("PASSWORD", "password"),
     CLIENT_ID("CLIENT_ID", "client_id"),
     CLIENT_SECRET("CLIENT_SECRET", "client_secret"),
-    GRANT_TYPE("password", "grant_type"),
-    TOKEN_URL("TOKEN_URL", "TOKEN_URL"),
-    BASE_URL("BASE_URL", "BASE_URL");
+    GRANT_TYPE("password", "grant_type");
 
     private String name;
     private String value;

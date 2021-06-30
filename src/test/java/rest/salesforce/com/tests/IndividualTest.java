@@ -5,10 +5,10 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package rest.salesforce.com.tests;
 
 import api.ApiMethod;
-import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.HashMap;
@@ -18,6 +18,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import salesforce.config.Endpoints;
+import salesforce.config.Request;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Person;
 

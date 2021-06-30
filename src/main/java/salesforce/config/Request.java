@@ -8,19 +8,16 @@
 
 package salesforce.config;
 
-import static salesforce.config.EnvConfigurationFile.dotenv;
 import static salesforce.entities.Token.accessToken;
+
 import api.ApiManager;
 import api.ApiMethod;
 import api.ApiRequestBuilder;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.http.HttpHeaders;
 import java.util.Map;
 import org.apache.http.HttpHeaders;
-
-import static salesforce.entities.Token.accessToken;
 
 /**
  * Helps to manage the basic request.

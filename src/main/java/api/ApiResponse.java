@@ -5,12 +5,16 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package api;
 
-import io.restassured.response.Response;
+package api;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
+import io.restassured.response.Response;
+
+/**
+ * Wrappers a Response entity.
+ */
 public class ApiResponse {
     private Response response;
 
