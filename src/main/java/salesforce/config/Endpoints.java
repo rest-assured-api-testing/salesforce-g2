@@ -8,6 +8,8 @@
 
 package salesforce.config;
 
+import static salesforce.config.EnvConfigurationFile.dotenv;
+
 /**
  * Gives requested endpoint.
  */
@@ -15,17 +17,20 @@ public enum Endpoints {
 
     ID("id"),
     PEOPLE("/Individual"),
-    PERSON("/Individual/{" + Endpoints.ID.get() + "}"),
+    PERSON(String.format("/Individual/{%s%s", Endpoints.ID.get(), "}")),
     ACCOUNTS("/Account"),
-    ACCOUNT("/Account/{" + Endpoints.ID.get() + "}"),
+    ACCOUNT(String.format("/Account/{%s%s", Endpoints.ID.get(), "}")),
     ORDERS("/Order"),
-    ORDER("/Order/{" + Endpoints.ID.get() + "}"),
+    ORDER(String.format("/Order/{%s%s", Endpoints.ID.get(), "}")),
     CONTACTS("/Contact"),
-    CONTACT("/Contact/{" + Endpoints.ID.get() + "}"),
+    CONTACT(String.format("/Contact/{%s%s", Endpoints.ID.get(), "}")),
     CAMPAIGNS("/Campaign"),
-    CAMPAIGN("/Campaign/{" + Endpoints.ID.get() + "}"),
+    CAMPAIGN(String.format("/Campaign/{%s%s", Endpoints.ID.get(), "}")),
     PRODUCTS("/Product2"),
-    PRODUCT("/Product2/{" + Endpoints.ID.get() + "}");
+    PRODUCT(String.format("/Product2/{%s%s", Endpoints.ID.get(), "}")),
+    PERSONAL_URL(dotenv.get("PERSONAL_URL")),
+    BASE_URL(String.format("https://%s%s", Endpoints.PERSONAL_URL.get(), "/services/data/v52.0/sobjects")),
+    TOKEN_URL("https://login.salesforce.com/services/oauth2/token");
 
     private String endpoint;
 

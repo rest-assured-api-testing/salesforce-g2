@@ -33,7 +33,7 @@ Feature: Individual
       | Santiago           | Cespedes           | Master               | 1997-05-03          | 201    |
 
   @CreateIndividual
-  Scenario Outline: Create an Individual with firstname, salutation and birthday
+  Scenario Outline: An Individual with firstname, salutation and birthday shouldn't be created without lastname
     Given I set the post request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
@@ -63,6 +63,16 @@ Feature: Individual
       | firsNameIndividual | lastNameIndividual | status |
       | Pedro Luis         | Ramirez            | 204    |
       |                    | Rodriguez          | 204    |
+
+  @UpdateIndividual
+  Scenario Outline: Firstname shouldn't be updated with null lastname of an Individual
+    Given I set the update request
+      | firstName  | <firsNameIndividual> |
+      | lastName   | <lastNameIndividual> |
+    When I set the "/Individual/{id}" endpoint and send the request with updated body
+    Then the response status code should be "<status>"
+    Examples:
+      | firsNameIndividual | lastNameIndividual | status |
       | Marisol            |                    | 400    |
 
   @UpdateIndividual
@@ -80,10 +90,21 @@ Feature: Individual
       |                    |                      | 1990-05-10          | 204    |
       |                    |                      | 1990-03-20          | 204    |
       |                    |                      |                     | 204    |
-      | Person 2           |                      | 0000-12-14          | 400    |
-      | Person 3           |                      | 21-08-2000          | 400    |
       | Person 4           |                      | 2000-13-21          | 204    |
       | Person 5           |                      | 2000-12-40          | 204    |
+
+  @UpdateIndividual
+  Scenario Outline: Firstname, salutation shouldn't be updated with a bad birthday format of an Individual
+    Given I set the update request
+      | firstName  | <firsNameIndividual>   |
+      | Salutation | <salutationIndividual> |
+      | BirthDate  | <birthdateIndividual> |
+    When I set the "/Individual/{id}" endpoint and send the request with updated body
+    Then the response status code should be "<status>"
+    Examples:
+      | firsNameIndividual | salutationIndividual | birthdateIndividual | status |
+      | Person 2           |                      | 0000-12-14          | 400    |
+      | Person 3           |                      | 21-08-2000          | 400    |
 
   @DeleteIndividual
   Scenario: Delete an Individual

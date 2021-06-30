@@ -125,7 +125,7 @@ public class EntitiesSteps {
     public void theResponseStatusCodeShouldBe(final String status, final String schema) {
         logger.info("=================== Common Then ===========================");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status));
-        if (status.equals("201")) {
+        if (status.equals(String.valueOf(HttpStatus.SC_CREATED))) {
             apiResponse.validateBodySchema("schemas/" + schema + ".json");
         }
     }

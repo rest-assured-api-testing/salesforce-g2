@@ -13,6 +13,7 @@ import static salesforce.config.EnvConfigurationFile.dotenv;
 
 import org.apache.http.HttpHeaders;
 import salesforce.config.Credentials;
+import salesforce.config.Endpoints;
 import salesforce.config.HeaderValue;
 import salesforce.entities.Token;
 
@@ -37,7 +38,8 @@ public class Authentication {
                         .header(HttpHeaders.ACCEPT, HeaderValue.APP_JSON.get())
                         .header(HttpHeaders.CONTENT_TYPE, HeaderValue.APP_X_FORM.get())
                         .log().all()
-                        .when().post(dotenv.get(Credentials.TOKEN_URL.getEnumName()))
+                        .when()
+                        .post(Endpoints.TOKEN_URL.get())
                         .as(Token.class);
     }
 }
