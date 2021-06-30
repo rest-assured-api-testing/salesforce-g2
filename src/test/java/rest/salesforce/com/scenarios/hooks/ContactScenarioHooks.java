@@ -9,7 +9,6 @@
 package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
@@ -20,6 +19,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.auth.Authentication;
 import salesforce.config.Endpoints;
+import salesforce.config.Request;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.RequisiteElement;
