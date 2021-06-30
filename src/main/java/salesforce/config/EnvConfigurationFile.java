@@ -5,10 +5,14 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
+/**
+ * Helps to configure the environment variables.
+ */
 public class EnvConfigurationFile {
 
     /**

@@ -5,16 +5,19 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package api;
 
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Keeps all data that are required to construct the request.
+ */
 public class ApiRequest {
     private String baseUri;
     private String endpoint;
@@ -26,6 +29,9 @@ public class ApiRequest {
     private Map<String, String> pathParams;
     private Map<String, String> params;
 
+    /**
+     * Api request constructor
+     */
     public ApiRequest() {
         headers = new ArrayList<>();
         queryParams = new HashMap<>();
@@ -82,20 +88,20 @@ public class ApiRequest {
         queryParams.put(param, value);
     }
 
-    public void addPathParam(final String param, final String value) {
-        pathParams.put(param, value);
+    public void addQueryParam(final Map<String, String> newQueryParams) {
+        queryParams.putAll(newQueryParams);
     }
 
-    public void addParam(final String param, final String value) {
-        params.put(param, value);
+    public void addPathParam(final String param, final String value) {
+        pathParams.put(param, value);
     }
 
     public void addPathParam(final Map<String, String> pathParams) {
         this.pathParams.putAll(pathParams);
     }
 
-    public void addQueryParam(final Map<String, String> queryParams) {
-        queryParams.putAll(queryParams);
+    public void addParam(final String param, final String value) {
+        params.put(param, value);
     }
 
     public void addParam(final Map<String, String> pathParams) {

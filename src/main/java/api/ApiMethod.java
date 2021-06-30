@@ -5,8 +5,12 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package api;
 
+/**
+ * Gives request types.
+ */
 public enum ApiMethod {
     GET, POST, DELETE, PATCH;
 }

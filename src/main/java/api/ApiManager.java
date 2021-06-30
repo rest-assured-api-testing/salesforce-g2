@@ -5,14 +5,18 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package api;
+
+import static io.restassured.RestAssured.given;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-import static io.restassured.RestAssured.given;
-
+/**
+ * Manages the creation of RequestSpecification and execution of an ApiRequest salesforce.entities.
+ */
 public class ApiManager {
 
     /**

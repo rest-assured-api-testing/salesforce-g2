@@ -5,8 +5,12 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.config;
 
+/**
+ * Gives request format.
+ */
 public enum HeaderValue {
     APP_JSON("application/json"),
     APP_X_FORM("application/x-www-form-urlencoded");

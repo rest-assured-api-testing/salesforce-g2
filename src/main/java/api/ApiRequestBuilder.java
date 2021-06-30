@@ -5,10 +5,14 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package api;
 
 import java.util.Map;
 
+/**
+ * Helps to build an ApiRequest entity.
+ */
 public class ApiRequestBuilder {
     private ApiRequest apiRequest = new ApiRequest();
 
@@ -52,6 +56,10 @@ public class ApiRequestBuilder {
         return this;
     }
 
+    public ApiRequestBuilder pathParam(final String param, final Long value) {
+        return pathParam(param, value.toString());
+    }
+
     public ApiRequestBuilder param(final String param, final String value) {
         apiRequest.addParam(param, value);
         return this;
@@ -65,10 +73,6 @@ public class ApiRequestBuilder {
     public ApiRequestBuilder params(final Map<String, String> params) {
         apiRequest.addParam(params);
         return this;
-    }
-
-    public ApiRequestBuilder pathParam(final String param, final Long value) {
-        return pathParam(param, value.toString());
     }
 
     public ApiRequest build() {
