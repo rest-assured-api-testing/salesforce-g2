@@ -29,9 +29,9 @@ Feature: Individual
       |                    | Salazar            |                      | 2000-12-50          | 201    |
       |                    | null               |                      |                     | 201    |
       |                    |                    |                      |                     | 400    |
-      | Erika              | Ramirez            | Professor            | 1985-06-09          | 400    |
-      | Pool               | Caceres            | Sir                  | 1986-07-25          | 400    |
-      | Santiago           | Cespedes           | Master               | 1997-05-03          | 400    |
+      | Erika              | Ramirez            | Professor            | 1985-06-09          | 201    |
+      | Pool               | Caceres            | Sir                  | 1986-07-25          | 201    |
+      | Santiago           | Cespedes           | Master               | 1997-05-03          | 201    |
 
   @CreateIndividual
   Scenario Outline: Create an Individual with firstname, salutation and birthday
@@ -83,8 +83,8 @@ Feature: Individual
       |                    |                      |                     | 204    |
       | Person 2           |                      | 0000-12-14          | 400    |
       | Person 3           |                      | 21-08-2000          | 400    |
-      | Person 4           |                      | 2000-13-21          | 400    |
-      | Person 5           |                      | 2000-12-40          | 400    |
+      | Person 4           |                      | 2000-13-21          | 204    |
+      | Person 5           |                      | 2000-12-40          | 204    |
 
   @DeleteIndividual
   Scenario: Delete an Individual

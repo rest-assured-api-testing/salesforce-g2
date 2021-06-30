@@ -23,16 +23,16 @@ Feature: Account
       | New Account 3 |               |                |                    | Hot           | 201    |
       | New Account 4 | 245           | 87963645       |                    | Warm          | 201    |
       | New Account 5 |               | 85648982       |                    | Cold          | 201    |
-      | New Account 6 |               | 85648982       | Customer - Direct  | Very Cold     | 400    |
-      | New Account 7 |               | 85648982       | Customer - Channel | very Warm     | 400    |
-      | New Account 8 |               |                |                    | Freeze        | 400    |
-      | New Account 9 |               |                | My Prospect        |               | 400    |
-      | New Account 1 |               |                | IA                 |               | 400    |
-      | New Account 2 |               |                | --------------     |               | 400    |
-      | New Account 3 | anyNumber     |                |                    |               | 400    |
-      | New Account 4 |               | anyPhoneNumber |                    |               | 400    |
+      | New Account 6 |               | 85648982       | Customer - Direct  | Very Cold     | 201    |
+      | New Account 7 |               | 85648982       | Customer - Channel | very Warm     | 201    |
+      | New Account 8 |               |                |                    | Freeze        | 201    |
+      | New Account 9 |               |                | My Prospect        |               | 201    |
+      | New Account 1 |               |                | IA                 |               | 201    |
+      | New Account 2 |               |                | --------------     |               | 201    |
+      | New Account 3 | anyNumber     |                |                    |               | 201    |
+      | New Account 4 |               | anyPhoneNumber |                    |               | 201    |
       |               |               |                |                    |               | 400    |
-      | null          | null          | null           | null               | null          | 400    |
+      | null          | null          | null           | null               | null          | 201    |
       |               | 1236978       | 78968900       | Prospect           | Hot           | 400    |
       |               |               | 78968900       | Prospect           | Warm          | 400    |
       |               |               |                | Prospect           | Cold          | 400    |
@@ -54,8 +54,8 @@ Feature: Account
       | New Account |               |                | 201    |
       |             | 245           | 87963645       | 400    |
       |             |               | 85648982       | 400    |
-      | New Account | anyNumber     |                | 400    |
-      | New Account |               | anyPhoneNumber | 400    |
+      | New Account | anyNumber     |                | 201    |
+      | New Account |               | anyPhoneNumber | 201    |
 
   @GetAccount
   Scenario: Get an Account
@@ -75,16 +75,16 @@ Feature: Account
     Then the response status code should be "<status>"
     Examples:
       | nameAccount     | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
-      | Updated Account | 1236978       | 78968900       | Prospect           | Hot           | 201    |
-      | Updated Account |               | 78969630       | Prospect           | Warm          | 201    |
-      | Updated Account |               |                | Technology Partner | Cold          | 201    |
-      | Updated Account |               |                |                    | Warm          | 201    |
-      | Updated Account | 5698932       | 87963645       | Customer - Direct  |               | 201    |
-      | Updated Account | 2455896       | 87963645       |                    |               | 201    |
-      | Updated Account | 5559863       |                |                    | Cold          | 201    |
-      | Updated Account |               |                |                    |               | 201    |
-      | 123456789       |               |                |                    |               | 201    |
-      | 1z1as5faf6asf   |               |                |                    |               | 201    |
+      | Updated Account | 1236978       | 78968900       | Prospect           | Hot           | 204    |
+      | Updated Account |               | 78969630       | Prospect           | Warm          | 204    |
+      | Updated Account |               |                | Technology Partner | Cold          | 204    |
+      | Updated Account |               |                |                    | Warm          | 204    |
+      | Updated Account | 5698932       | 87963645       | Customer - Direct  |               | 204    |
+      | Updated Account | 2455896       | 87963645       |                    |               | 204    |
+      | Updated Account | 5559863       |                |                    | Cold          | 204    |
+      | Updated Account |               |                |                    |               | 204    |
+      | 123456789       |               |                |                    |               | 204    |
+      | 1z1as5faf6asf   |               |                |                    |               | 204    |
       |                 | 1236978       | 78968900       | Prospect           | Hot           | 400    |
       |                 |               | 78969630       | Prospect           | Warm          | 400    |
       |                 |               |                | Technology Partner | Cold          | 400    |
@@ -93,8 +93,8 @@ Feature: Account
       |                 | 2455896       | 87963645       |                    |               | 400    |
       |                 | 5559863       |                |                    | Cold          | 400    |
       |                 |               |                |                    |               | 400    |
-      | Updated Account |               | 78962158       | My Prospect        |               | 400    |
-      | Updated Account |               | 85879955       |                    | very Warm     | 400    |
+      | Updated Account |               | 78962158       | My Prospect        |               | 204    |
+      | Updated Account |               | 85879955       |                    | very Warm     | 204    |
 
   @UpdateAccount
   Scenario Outline: Update name, account number and phone of an Account
