@@ -1,13 +1,12 @@
 Feature: Account
   @GetAccounts
   Scenario: Get all Accounts
-    Given
     When I set the "/Account" endpoint and send the request
     Then the response status code should be "200"
 
   @CreateAccount
   Scenario Outline: Create an Account with name, account number, phone, type and rating
-    Given I set the pathParams and body to request
+    Given I set the post request
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
@@ -41,7 +40,7 @@ Feature: Account
 
   @CreateAccount
   Scenario Outline: Create an Account with name, account number and phone
-    Given I set the pathParams and body to request
+    Given I set the post request
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
@@ -59,13 +58,13 @@ Feature: Account
 
   @GetAccount
   Scenario: Get an Account
-    Given I set the pathParams to request
+    Given I set the "get" request
     When I set the "/Account/{id}" endpoint and send the request
     Then the response status code should be "200" with the "account" schema
 
   @UpdateAccount
   Scenario Outline: Update name, account number, phone, type and rating of an Account
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
@@ -98,7 +97,7 @@ Feature: Account
 
   @UpdateAccount
   Scenario Outline: Update name, account number and phone of an Account
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
@@ -115,7 +114,7 @@ Feature: Account
 
   @UpdateAccount
   Scenario Outline: Update number and phone of an Account
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
     When I set the "/Account/{id}" endpoint and send the request with updated body
@@ -131,7 +130,7 @@ Feature: Account
 
   @UpdateAccount
   Scenario Outline: Update name and created date of an Account
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | name        | <nameAccount>         |
       | CreatedDate | <createdDateAccount>  |
     When I set the "/Account/{id}" endpoint and send the request with updated body
@@ -145,6 +144,6 @@ Feature: Account
 
   @DeleteAccount
   Scenario: Delete an Account
-    Given I set the pathParams to request
+    Given I set the "delete" request
     When I set the "/Account/{id}" endpoint and send the delete request
     Then the response status code should be "204"

@@ -1,13 +1,12 @@
 Feature: Individual
   @GetIndividuals
   Scenario: Get all Individuals
-    Given
     When I set the "/Individual" endpoint and send the request
     Then the response status code should be "200"
 
   @CreateIndividual
   Scenario Outline: Create an Individual with firstname, lastname, salutation and birthday
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstName  | <firsNameIndividual>   |
       | lastName   | <lastNameIndividual>   |
       | Salutation | <salutationIndividual> |
@@ -35,7 +34,7 @@ Feature: Individual
 
   @CreateIndividual
   Scenario Outline: Create an Individual with firstname, salutation and birthday
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
@@ -49,13 +48,13 @@ Feature: Individual
 
   @GetIndividual
   Scenario: Get an Individual
-    Given I set the pathParams to request
+    Given I set the "get" request
     When I set the "/Individual/{id}" endpoint and send the request
     Then the response status code should be "200" with the "individual" schema
 
   @UpdateIndividual
   Scenario Outline: Update firstname and lastname of an Individual
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstName  | <firsNameIndividual> |
       | lastName   | <lastNameIndividual> |
     When I set the "/Individual/{id}" endpoint and send the request with updated body
@@ -68,7 +67,7 @@ Feature: Individual
 
   @UpdateIndividual
   Scenario Outline: Update firstname, salutation and birthday of an Individual
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
@@ -88,6 +87,6 @@ Feature: Individual
 
   @DeleteIndividual
   Scenario: Delete an Individual
-    Given I set the pathParams to request
+    Given I set the "delete" request
     When I set the "/Individual/{id}" endpoint and send the delete request
     Then the response status code should be "204"

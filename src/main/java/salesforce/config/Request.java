@@ -5,19 +5,22 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-package api;
+package salesforce.config;
 
+import api.ApiManager;
+import api.ApiMethod;
+import api.ApiRequestBuilder;
+import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpHeaders;
-import salesforce.config.CredentialsConfig;
 
 import java.util.Map;
 
 import static salesforce.entities.Token.accessToken;
 import static salesforce.config.EnvConfigurationFile.dotenv;
 
-public class ApiRequestManager {
+public class Request {
 
     /**
      * Builds a basic ApiRequestBuilder.
@@ -32,7 +35,7 @@ public class ApiRequestManager {
     public static <T> ApiRequestBuilder buildRequest(final String endpoint, final Map<String, String> pathParams,
                                                      final String entity, final Enum<ApiMethod> type) {
         return new ApiRequestBuilder().header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", accessToken))
-                .baseUri(dotenv.get(CredentialsConfig.BASE_URL.getEnumValue()))
+                .baseUri(dotenv.get(Credentials.BASE_URL.getEnumValue()))
                 .method(type)
                 .endpoint(endpoint)
                 .pathParams(pathParams)

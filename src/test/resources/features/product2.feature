@@ -2,13 +2,12 @@ Feature: Product
 
   @GetProducts
   Scenario: Get all Products
-    Given
     When I set the "/Product2" endpoint and send the request
     Then the response status code should be "200"
 
   @CreateProduct
   Scenario Outline: Create a Product
-    Given I set the pathParams and body to request
+    Given I set the post request
       | name        | <nameProduct>        |
       | productCode | <productCodeProduct> |
       | description | <descriptionProduct> |
@@ -26,13 +25,13 @@ Feature: Product
 
   @GetProduct
   Scenario: Get a Product
-    Given I set the pathParams to request
+    Given I set the "get" request
     When I set the "/Product2/{id}" endpoint and send the request
     Then the response status code should be "200" with the "product02" schema
 
   @UpdateProduct
   Scenario Outline: Update a Product
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | name        | <nameProduct>        |
       | productCode | <productCodeProduct> |
       | description | <descriptionProduct> |
@@ -50,6 +49,6 @@ Feature: Product
 
   @DeleteProduct
   Scenario: Delete a Product
-    Given I set the pathParams to request
+    Given I set the "delete" request
     When I set the "/Product2/{id}" endpoint and send the delete request
     Then the response status code should be "204"

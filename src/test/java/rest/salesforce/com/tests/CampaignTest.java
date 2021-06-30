@@ -5,10 +5,10 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package salesforce.tests;
+package rest.salesforce.com.tests;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
+import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import salesforce.config.Endpoints;
@@ -29,7 +29,7 @@ public class CampaignTest extends CommonTest {
         Campaign campaign = new Campaign();
         campaign.setName("First campaign");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGNS.get(), pathParams, campaign, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.CAMPAIGNS.get(), pathParams, campaign, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
@@ -39,13 +39,13 @@ public class CampaignTest extends CommonTest {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGN.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.CAMPAIGN.get(), pathParams, ApiMethod.DELETE);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test
     public void getCampaign() throws JsonProcessingException {
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGNS.get(), new HashMap<>(), ApiMethod.GET);
+        ApiResponse apiResponse = Request.execute(Endpoints.CAMPAIGNS.get(), new HashMap<>(), ApiMethod.GET);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
@@ -55,7 +55,7 @@ public class CampaignTest extends CommonTest {
         Campaign campaign = new Campaign();
         campaign.setName("New campaign");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGNS.get(), pathParams, campaign, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.CAMPAIGNS.get(), pathParams, campaign, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
@@ -64,7 +64,7 @@ public class CampaignTest extends CommonTest {
     public void getACampaign() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGN.get(), pathParams, ApiMethod.GET);
+        ApiResponse apiResponse = Request.execute(Endpoints.CAMPAIGN.get(), pathParams, ApiMethod.GET);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
@@ -75,7 +75,7 @@ public class CampaignTest extends CommonTest {
         Campaign campaign = new Campaign();
         campaign.setDescription("This the updated description of the campaign");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGN.get(), pathParams, campaign, ApiMethod.PATCH);
+        apiResponse = Request.execute(Endpoints.CAMPAIGN.get(), pathParams, campaign, ApiMethod.PATCH);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
@@ -84,7 +84,7 @@ public class CampaignTest extends CommonTest {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGN.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.CAMPAIGN.get(), pathParams, ApiMethod.DELETE);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 }

@@ -5,17 +5,17 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-package salesforce.scenarios.hooks;
+package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
+import salesforce.config.Request;
 import api.ApiResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.config.Endpoints;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import salesforce.config.Endpoints;
 import salesforce.entities.CreatedResponse;
-import salesforce.entities.Account;
+import salesforce.entities.Person;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import salesforce.entities.RequisiteElement;
@@ -23,24 +23,25 @@ import salesforce.entities.RequisiteElement;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountScenarioHooks {
+public class IndividualScenarioHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
     private RequisiteElement requisiteElement;
 
-    public AccountScenarioHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
+    public IndividualScenarioHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
         this.createdResponse = createdResponse;
         this.requisiteElement = requisiteElement;
     }
 
-    @Before(value = "@GetAccounts or @GetAccount or @UpdateAccount or @DeleteAccount", order = 2)
+    @Before(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @DeleteIndividual", order = 2)
     public void setUp() throws JsonProcessingException {
-        logger.info("======================= A Account Before Hook");
+        logger.info("======================= A Individual Before Hook");
         Map<String, String> pathParams = new HashMap<>();
-        Account account = new Account();
-        account.setName("First Account");
+        Person person = new Person();
+        person.setFirstName("Pepito");
+        person.setLastName("Flores");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -48,17 +49,14 @@ public class AccountScenarioHooks {
 
     }
 
-    @After(value = "@GetAccounts or @GetAccount or @UpdateAccount or @CreateAccount")
+    @After(value = "@GetIndividuals or @GetIndividual or @UpdateIndividual or @CreateIndividual")
     public void setDown() throws JsonProcessingException {
-        logger.info("======================= A Account After Hook");
+        logger.info("======================= A Individual After Hook");
         if (createdResponse.getId() != null) {
-            logger.info("======================= Inside After Hook");
-            logger.info("======================= " + createdResponse.getId());
             Map<String, String> pathParams = new HashMap<>();
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
-            apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
+            apiResponse = Request.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
         }
-        logger.info("======================= Passed if After Hook");
     }
 }
