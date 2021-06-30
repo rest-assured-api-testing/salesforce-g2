@@ -5,6 +5,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.scenarios.entity;
 
 import api.ApiMethod;
@@ -16,6 +17,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -23,15 +26,15 @@ import salesforce.config.Endpoints;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.RequisiteElement;
 
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * Definition of the steps for all entities
+ */
 public class EntitiesSteps {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
     private RequisiteElement requisiteElement;
     private ApiResponse apiResponse;
-    private Map<String, String> pathParams = new HashMap<>();;
+    private Map<String, String> pathParams = new HashMap<>();
     private String body;
 
     public EntitiesSteps(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
@@ -45,6 +48,7 @@ public class EntitiesSteps {
         body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         logger.info(body);
     }
+
     @Given("I set the pathParams and body with the requisite key {string} for the request")
     public void iSetThePathParamsAndBodyWithTheRequisiteKeyForTheRequest(final String key, final DataTable jsonData) throws JsonProcessingException {
         logger.info("=================== Create Given ==========================");
@@ -54,11 +58,13 @@ public class EntitiesSteps {
         body = new ObjectMapper().writeValueAsString(jsonMap);
         logger.info(body);
     }
+
     @Given("I set the pathParams to request")
     public void iSetThePathParamsToRequest() {
         logger.info("=================== Delete and Get Given ==================");
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
     }
+
     @Given("I set the pathParams and updated body to request")
     public void iSetThePathParamsAndUpdatedBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
         logger.info("=================== Update Given ==========================");
@@ -67,6 +73,7 @@ public class EntitiesSteps {
         body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         logger.info(body);
     }
+
     @Given("I set the pathParams and updated body with the requisite key {string} for the request")
     public void iSetThePathParamsAndUpdatedBodyWithTheRequisiteKeyForTheRequest(final String key, final DataTable jsonData) throws JsonProcessingException {
         logger.info("=================== Create Given ==========================");
@@ -74,7 +81,7 @@ public class EntitiesSteps {
         Map<String, String> jsonMap = new HashMap<>(json);
         pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        jsonMap.put(key,requisiteElement.getId());
+        jsonMap.put(key, requisiteElement.getId());
         body = new ObjectMapper().writeValueAsString(jsonMap);
         logger.info(body);
     }
@@ -119,7 +126,7 @@ public class EntitiesSteps {
     public void theResponseStatusCodeShouldBe(final String status, final String schema) {
         logger.info("=================== Common Then ===========================");
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status));
-        if (status.equals(HttpStatus.SC_CREATED)) {
+        if (status.equals("201")) {
             apiResponse.validateBodySchema("schemas/" + schema + ".json");
         }
     }
