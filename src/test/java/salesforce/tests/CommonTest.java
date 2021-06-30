@@ -5,11 +5,12 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.tests;
 
+import org.testng.annotations.BeforeSuite;
 import salesforce.auth.Authentication;
 import salesforce.entities.CreatedResponse;
-import org.testng.annotations.BeforeSuite;
 
 public class CommonTest {
     protected CreatedResponse createdResponse;

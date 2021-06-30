@@ -5,21 +5,26 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.tests;
 
 import api.ApiMethod;
 import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.util.HashMap;
+import java.util.Map;
+import org.apache.http.HttpStatus;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import salesforce.config.Endpoints;
 import salesforce.entities.Account;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
-import org.apache.http.HttpStatus;
-import org.testng.Assert;
-import org.testng.annotations.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ContactsTest extends CommonTest {
 
