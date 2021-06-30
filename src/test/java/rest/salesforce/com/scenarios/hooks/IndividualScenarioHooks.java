@@ -10,19 +10,21 @@ package rest.salesforce.com.scenarios.hooks;
 import api.ApiMethod;
 import salesforce.config.Request;
 import api.ApiResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import salesforce.config.Endpoints;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Person;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import salesforce.entities.RequisiteElement;
 
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * Scenario hooks for individual entity.
+ */
 public class IndividualScenarioHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;

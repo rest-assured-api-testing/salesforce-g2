@@ -5,7 +5,11 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.auth;
+
+import static io.restassured.RestAssured.given;
+import static salesforce.config.EnvConfigurationFile.dotenv;
 
 import org.apache.http.HttpHeaders;
 import salesforce.config.Credentials;
@@ -13,11 +17,16 @@ import salesforce.config.Endpoints;
 import salesforce.config.HeaderValue;
 import salesforce.entities.Token;
 
-import static salesforce.config.EnvConfigurationFile.dotenv;
-import static io.restassured.RestAssured.given;
-
+/**
+ * Makes the authentication to the webpage.
+ */
 public class Authentication {
 
+    /**
+     * Gets the authentication.
+     *
+     * @return the authentication.
+     */
     public static Token getAuth() {
         return
                 given().urlEncodingEnabled(true)

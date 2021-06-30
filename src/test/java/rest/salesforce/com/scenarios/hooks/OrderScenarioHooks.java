@@ -13,6 +13,11 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.config.Endpoints;
@@ -21,12 +26,9 @@ import salesforce.entities.CreatedResponse;
 import salesforce.entities.Order;
 import salesforce.entities.RequisiteElement;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
+/**
+ * Scenario hooks for order entity.
+ */
 public class OrderScenarioHooks {
 
     private Logger logger = LogManager.getLogger(getClass());

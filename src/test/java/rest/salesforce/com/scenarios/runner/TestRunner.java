@@ -11,6 +11,9 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterSuite;
 import salesforce.report.ReportingUtils;
 
+/**
+ * Generates JVM reports.
+ */
 public class TestRunner extends AbstractTestNGCucumberTests {
 
     @AfterSuite

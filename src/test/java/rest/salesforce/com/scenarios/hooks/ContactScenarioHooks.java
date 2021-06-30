@@ -5,6 +5,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
@@ -13,6 +14,8 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.auth.Authentication;
@@ -21,9 +24,10 @@ import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.RequisiteElement;
 import salesforce.entities.Token;
-import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * Scenario hooks for contact entity.
+ */
 public class ContactScenarioHooks {
 
     private CreatedResponse createdResponse;
@@ -36,8 +40,8 @@ public class ContactScenarioHooks {
     }
 
     @Before(order = 1)
-    public  void setUp() {
-        if(Token.accessToken == null) {
+    public void setUp() {
+        if (Token.accessToken == null) {
             Authentication.getAuth();
         }
     }

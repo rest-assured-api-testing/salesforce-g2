@@ -11,15 +11,15 @@ import api.ApiMethod;
 import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.config.Endpoints;
-import salesforce.entities.CreatedResponse;
-import salesforce.entities.Account;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.HashMap;
-import java.util.Map;
+import salesforce.config.Endpoints;
+import salesforce.entities.Account;
+import salesforce.entities.CreatedResponse;
 
 public class AccountTest extends CommonTest {
 
