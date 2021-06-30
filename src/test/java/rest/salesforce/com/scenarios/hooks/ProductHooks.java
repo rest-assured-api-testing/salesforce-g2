@@ -13,16 +13,18 @@ import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import salesforce.config.Endpoints;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import salesforce.entities.Product;
-import salesforce.entities.CreatedResponse;
-import salesforce.entities.RequisiteElement;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import salesforce.config.Endpoints;
+import salesforce.entities.CreatedResponse;
+import salesforce.entities.Product;
+import salesforce.entities.RequisiteElement;
 
+/**
+ * Scenario hooks for product entity.
+ */
 public class ProductHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;

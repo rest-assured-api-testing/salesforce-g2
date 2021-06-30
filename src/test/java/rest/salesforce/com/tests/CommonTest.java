@@ -7,9 +7,9 @@
  */
 package rest.salesforce.com.tests;
 
+import org.testng.annotations.BeforeSuite;
 import salesforce.auth.Authentication;
 import salesforce.entities.CreatedResponse;
-import org.testng.annotations.BeforeSuite;
 
 public class CommonTest {
     protected CreatedResponse createdResponse;

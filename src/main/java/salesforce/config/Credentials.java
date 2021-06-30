@@ -5,9 +5,14 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.config;
 
+/**
+ * Gives requested key.
+ */
 public enum Credentials {
+    
     USERNAME1("USERNAME1", "username"),
     PASSWORD("PASSWORD", "password"),
     CLIENT_ID("CLIENT_ID", "client_id"),

@@ -5,8 +5,14 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.entities;
 
+/**
+ * Receive required generic items.
+ *
+ * @param <T> generics elements.
+ */
 public class RequisiteElement<T> {
 
     private T element;
