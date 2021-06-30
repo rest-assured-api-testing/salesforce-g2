@@ -6,10 +6,10 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.scenarios.hooks;
+package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
+import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
@@ -53,7 +53,7 @@ public class ContactScenarioHooks {
         Contact contact = new Contact();
         contact.setFirstName("firstname");
         contact.setLastName("lastname");
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.CONTACTS.get(), pathParams, contact, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.CONTACTS.get(), pathParams, contact, ApiMethod.POST);
         createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
     }
 
@@ -64,7 +64,7 @@ public class ContactScenarioHooks {
             Map<String, String> pathParams = new HashMap<>();
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
-            apiResponse = ApiRequestManager.execute(Endpoints.CONTACT.get(), pathParams, ApiMethod.DELETE);
+            apiResponse = Request.execute(Endpoints.CONTACT.get(), pathParams, ApiMethod.DELETE);
         }
     }
 }

@@ -5,11 +5,10 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-
-package salesforce.scenarios.hooks;
+package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
+import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
@@ -19,43 +18,43 @@ import java.util.Map;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.config.Endpoints;
+import salesforce.entities.Campaign;
 import salesforce.entities.CreatedResponse;
-import salesforce.entities.Product;
 import salesforce.entities.RequisiteElement;
 
 /**
- * Scenario hooks for product entity.
+ * Scenario hooks for campaign entity.
  */
-public class ProductHooks {
+public class CampaignHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
     private RequisiteElement requisiteElement;
 
-    public ProductHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
+    public CampaignHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
         this.createdResponse = createdResponse;
         this.requisiteElement = requisiteElement;
     }
 
-    @Before(value = "@GetProducts or @GetProduct or @UpdateProduct or @DeleteProduct", order = 2)
+    @Before(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @DeleteCampaign", order = 2)
     public void setUp() throws JsonProcessingException {
-        logger.info("~~~~~~~~~~~~~~~~~~~~~~ BeforeHook: Create a Product ~~~~~~~~~~~~~~~~~~~~~~~");
+        logger.info("~~~~~~~~~~~~~~~~~~ BeforeHook: Create a Campaign ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
-        Product product = new Product();
-        product.setName("The first product");
+        Campaign campaign = new Campaign();
+        campaign.setName("The first campaign");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.CAMPAIGNS.get(), pathParams, campaign, ApiMethod.POST);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
         createdResponse.setErrors(createdResponseHelper.getErrors());
     }
 
-    @After(value = "@GetProducts or @GetProduct or @UpdateProduct or @CreateProduct", order = 2)
+    @After(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @CreateCampaign")
     public void setLast() throws JsonProcessingException {
-        logger.info("~~~~~~~~~~~~~~~~~~~~~~ AfterHook: Delete the Product ~~~~~~~~~~~~~~~~~~~~~~~");
+        logger.info("~~~~~~~~~~~~~~~~~~ AfterHook: Delete the Campaign ~~~~~~~~~~~~~~~~~~~~~~~");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.CAMPAIGN.get(), pathParams, ApiMethod.DELETE);
     }
 }

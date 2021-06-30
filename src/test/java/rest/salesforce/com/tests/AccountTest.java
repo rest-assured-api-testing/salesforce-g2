@@ -5,11 +5,10 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-
-package salesforce.tests;
+package rest.salesforce.com.tests;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
+import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.HashMap;
@@ -19,80 +18,77 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import salesforce.config.Endpoints;
+import salesforce.entities.Account;
 import salesforce.entities.CreatedResponse;
-import salesforce.entities.Person;
 
-public class IndividualTest extends CommonTest {
+public class AccountTest extends CommonTest {
 
     @BeforeMethod(onlyForGroups = {"get", "update", "delete"})
     public void create() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
-        person.setFirstName("Pepito");
-        person.setLastName("Flores");
+        Account account = new Account();
+        account.setName("First Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @Test(groups = "get")
-    public void getAllIndividualTest() throws JsonProcessingException {
+    public void getAllAccountTest() throws JsonProcessingException {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), new HashMap<String, String>(), ApiMethod.GET);
+        apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), new HashMap<String, String>(), ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
 
     @Test(groups = "post")
-    public void createAIndividualTest() throws JsonProcessingException {
+    public void createAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
-        person.setFirstName("Pepito");
-        person.setLastName("Flores");
+        Account account = new Account();
+        account.setName("Created Account ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
     }
 
     @Test(groups = "get")
-    public void getAIndividualTest() throws JsonProcessingException {
+    public void getAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.GET);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
 
     @Test(groups = "update")
-    public void updateAIndividualTest() throws JsonProcessingException {
+    public void updateAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        Person person = new Person();
-        person.setFirstName("Pedrito");
-        person.setLastName("Fantasy");
+        Account account = new Account();
+        account.setName("Updated Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, person, ApiMethod.PATCH);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, account, ApiMethod.PATCH);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 
     @Test(groups = "delete")
-    public void deleteAIndividualTest() throws JsonProcessingException {
+    public void deleteAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -103,63 +99,62 @@ public class IndividualTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
 
     @Test(groups = "get")
-    public void doNotGetAllIndividualTest() throws JsonProcessingException {
+    public void doNotGetAllAccountTest() throws JsonProcessingException {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute("/Inidivua", new HashMap<String, String>(), ApiMethod.GET);
+        apiResponse = Request.execute("/Accoun", new HashMap<String, String>(), ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
 
     @Test
-    public void doNotCreateAIndividualTest() throws JsonProcessingException {
+    public void doNotCreateAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
-        Person person = new Person();
+        Account account = new Account();
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST).log().body();
     }
 
     @Test(groups = "get")
-    public void doNotGetAIndividualTest() throws JsonProcessingException {
+    public void doNotGetAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.GET);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
 
     @Test(groups = "update")
-    public void doNotUpdateAIndividualTest() throws JsonProcessingException {
+    public void doNotUpdateAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), " ");
-        Person person = new Person();
-        person.setFirstName("Pedrito");
-        person.setLastName("Fantasy 2");
+        Account account = new Account();
+        account.setName("Updated Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, person, ApiMethod.PATCH);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, account, ApiMethod.PATCH);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
 
     @Test(groups = {"delete", "badDelete"})
-    public void doNotDeleteAIndividualTest() throws JsonProcessingException {
+    public void doNotDeleteAAccountTest() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }

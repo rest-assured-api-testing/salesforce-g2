@@ -5,11 +5,10 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-
-package salesforce.scenarios.entity;
+package rest.salesforce.com.scenarios.entity;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
+import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,7 +41,7 @@ public class EntitiesSteps {
         this.requisiteElement = requisiteElement;
     }
 
-    @Given("I set the pathParams and body to request")
+    @Given("I set the post request")
     public void iSetThePathParamsAndBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
         logger.info("=================== Create Given ==========================");
         body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
@@ -58,14 +57,14 @@ public class EntitiesSteps {
         body = new ObjectMapper().writeValueAsString(jsonMap);
         logger.info(body);
     }
-
-    @Given("I set the pathParams to request")
-    public void iSetThePathParamsToRequest() {
+    
+    @Given("I set the {string} request")
+    public void iSetTheRequest(final String method) {
         logger.info("=================== Delete and Get Given ==================");
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
     }
 
-    @Given("I set the pathParams and updated body to request")
+    @Given("I set the update request")
     public void iSetThePathParamsAndUpdatedBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
         logger.info("=================== Update Given ==========================");
         pathParams = new HashMap<>();
@@ -90,7 +89,7 @@ public class EntitiesSteps {
     public void iSetTheEndpointAndSendTheRequestWithBody(final String endpoint) throws JsonProcessingException {
         logger.info("=================== Create When ===========================");
         logger.info(body);
-        apiResponse = ApiRequestManager.execute(endpoint, pathParams, body, ApiMethod.POST);
+        apiResponse = Request.execute(endpoint, pathParams, body, ApiMethod.POST);
         if (apiResponse.getStatusCode() == HttpStatus.SC_CREATED) {
             CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
             createdResponse.setId(createdResponseHelper.getId());
@@ -100,19 +99,19 @@ public class EntitiesSteps {
     @When("I set the {string} endpoint and send the delete request")
     public void iSetTheEndpointAndSendTheDeleteRequest(final String endpoint) throws JsonProcessingException {
         logger.info("=================== Delete When ===========================");
-        apiResponse = ApiRequestManager.execute(endpoint, pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(endpoint, pathParams, ApiMethod.DELETE);
     }
 
     @When("I set the {string} endpoint and send the request")
     public void iSetTheEndpointAndSendTheRequest(final String endpoint) throws JsonProcessingException {
         logger.info("=================== Get When ==============================");
-        apiResponse = ApiRequestManager.execute(endpoint, pathParams, ApiMethod.GET);
+        apiResponse = Request.execute(endpoint, pathParams, ApiMethod.GET);
     }
 
     @When("I set the {string} endpoint and send the request with updated body")
     public void iSetTheEndpointAndSendTheRequestWithUpdatedBody(final String endpoint) throws JsonProcessingException {
         logger.info("=================== Update When ===========================");
-        apiResponse = ApiRequestManager.execute(endpoint, pathParams, body, ApiMethod.PATCH);
+        apiResponse = Request.execute(endpoint, pathParams, body, ApiMethod.PATCH);
 
     }
 

@@ -11,8 +11,8 @@ package salesforce.config;
 /**
  * Gives requested key.
  */
-public enum CredentialsConfig {
-
+public enum Credentials {
+    
     USERNAME1("USERNAME1", "username"),
     PASSWORD("PASSWORD", "password"),
     CLIENT_ID("CLIENT_ID", "client_id"),
@@ -24,7 +24,7 @@ public enum CredentialsConfig {
     private String name;
     private String value;
 
-    CredentialsConfig(final String name, final String value) {
+    Credentials(final String name, final String value) {
         this.name = name;
         this.value = value;
     }

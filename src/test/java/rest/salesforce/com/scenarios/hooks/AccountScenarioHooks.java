@@ -5,11 +5,10 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-
-package salesforce.scenarios.hooks;
+package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
+import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
@@ -19,43 +18,49 @@ import java.util.Map;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.config.Endpoints;
-import salesforce.entities.Campaign;
+import salesforce.entities.Account;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.RequisiteElement;
 
 /**
- * Scenario hooks for campaign entity.
+ * Scenario hooks for account entity.
  */
-public class CampaignHooks {
+public class AccountScenarioHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
     private RequisiteElement requisiteElement;
 
-    public CampaignHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
+    public AccountScenarioHooks(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
         this.createdResponse = createdResponse;
         this.requisiteElement = requisiteElement;
     }
 
-    @Before(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @DeleteCampaign", order = 2)
+    @Before(value = "@GetAccounts or @GetAccount or @UpdateAccount or @DeleteAccount", order = 2)
     public void setUp() throws JsonProcessingException {
-        logger.info("~~~~~~~~~~~~~~~~~~ BeforeHook: Create a Campaign ~~~~~~~~~~~~~~~~~~~~~~~");
+        logger.info("======================= A Account Before Hook");
         Map<String, String> pathParams = new HashMap<>();
-        Campaign campaign = new Campaign();
-        campaign.setName("The first campaign");
+        Account account = new Account();
+        account.setName("First Account");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGNS.get(), pathParams, campaign, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
         createdResponse.setErrors(createdResponseHelper.getErrors());
+
     }
 
-    @After(value = "@GetCampaigns or @GetCampaign or @UpdateCampaign or @CreateCampaign")
-    public void setLast() throws JsonProcessingException {
-        logger.info("~~~~~~~~~~~~~~~~~~ AfterHook: Delete the Campaign ~~~~~~~~~~~~~~~~~~~~~~~");
-        Map<String, String> pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.CAMPAIGN.get(), pathParams, ApiMethod.DELETE);
+    @After(value = "@GetAccounts or @GetAccount or @UpdateAccount or @CreateAccount")
+    public void setDown() throws JsonProcessingException {
+        logger.info("======================= A Account After Hook");
+        if (createdResponse.getId() != null) {
+            logger.info("======================= Inside After Hook");
+            logger.info("======================= " + createdResponse.getId());
+            Map<String, String> pathParams = new HashMap<>();
+            pathParams.put(Endpoints.ID.get(), createdResponse.getId());
+            ApiResponse apiResponse;
+            apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
+        }
+        logger.info("======================= Passed if After Hook");
     }
 }

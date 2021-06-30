@@ -6,10 +6,9 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.tests;
+package rest.salesforce.com.tests;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.time.LocalDateTime;
@@ -25,6 +24,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import salesforce.config.Endpoints;
+import salesforce.config.Request;
 import salesforce.entities.Account;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.Order;
@@ -40,7 +40,7 @@ public class OrdersTest extends CommonTest {
         Account account = new Account();
         account.setName("testAccount01");
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         accountId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -55,7 +55,7 @@ public class OrdersTest extends CommonTest {
         order.setEffectiveDate(date);
         order.setStatus("Draft");
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ORDERS.get(), pathParams, order, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.ORDERS.get(), pathParams, order, ApiMethod.POST);
         orderId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -70,7 +70,7 @@ public class OrdersTest extends CommonTest {
         order.setEffectiveDate(date);
         order.setStatus("Draft");
         Map<String, String> pathParams = new HashMap<>();
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ORDERS.get(), pathParams, order, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.ORDERS.get(), pathParams, order, ApiMethod.POST);
         orderId = apiResponse.getBody(CreatedResponse.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_CREATED);
     }
@@ -86,7 +86,7 @@ public class OrdersTest extends CommonTest {
         order.setStatus("Draft");
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), orderId);
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ORDER.get(), pathParams, order, ApiMethod.PATCH);
+        ApiResponse apiResponse = Request.execute(Endpoints.ORDER.get(), pathParams, order, ApiMethod.PATCH);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 
@@ -94,7 +94,7 @@ public class OrdersTest extends CommonTest {
     public void deleteOrder() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), orderId);
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ORDER.get(), pathParams, ApiMethod.DELETE);
+        ApiResponse apiResponse = Request.execute(Endpoints.ORDER.get(), pathParams, ApiMethod.DELETE);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 
@@ -102,7 +102,7 @@ public class OrdersTest extends CommonTest {
     public void deleteAccount() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), accountId);
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
+        ApiResponse apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
     }
 }
