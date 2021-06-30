@@ -10,6 +10,7 @@ package salesforce.config;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class EnvConfigurationFile {
+
     /**
      * Constant that refers path of environment variables file.
      */

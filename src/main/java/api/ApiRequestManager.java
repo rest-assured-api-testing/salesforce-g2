@@ -24,7 +24,7 @@ public class ApiRequestManager {
      *
      * @param endpoint
      * @param pathParams contains names and values of params.
-     * @param entity contains the body of request.
+     * @param entity     contains the body of request.
      * @param type       of request.
      * @param <T>        type of a entity.
      * @return a ApiRequestBuilder that contains basic data of request
@@ -47,8 +47,8 @@ public class ApiRequestManager {
      * @param entity     that sends as body of request.
      * @param type       of request.
      * @param <T>        is type of a entity.
-     * @throws JsonProcessingException due to method execution.
      * @return ApiResponse that is result of request execution.
+     * @throws JsonProcessingException due to method execution.
      */
     public static <T> ApiResponse execute(final String endpoint, final Map<String, String> pathParams,
                                           final T entity, final Enum<ApiMethod> type)
@@ -56,7 +56,7 @@ public class ApiRequestManager {
         String convertedEntity;
         if (entity instanceof String) {
             convertedEntity = (String) entity;
-        } else  {
+        } else {
             convertedEntity = new ObjectMapper().writeValueAsString(entity);
         }
         return ApiManager.execute(buildRequest(endpoint, pathParams, convertedEntity, type).build());

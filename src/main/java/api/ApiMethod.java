@@ -7,9 +7,6 @@
  */
 package api;
 
-/**
- * Gives request types.
- */
 public enum ApiMethod {
-    GET, POST, DELETE, PUT, PATCH;
+    GET, POST, DELETE, PATCH;
 }

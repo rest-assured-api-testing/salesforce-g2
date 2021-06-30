@@ -9,9 +9,6 @@ package api;
 
 import java.util.Map;
 
-/**
- * Helps to build an ApiRequest entity.
- */
 public class ApiRequestBuilder {
     private ApiRequest apiRequest = new ApiRequest();
 

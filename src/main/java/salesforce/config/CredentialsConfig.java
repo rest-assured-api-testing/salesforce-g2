@@ -8,6 +8,7 @@
 package salesforce.config;
 
 public enum CredentialsConfig {
+
     USERNAME1("USERNAME1", "username"),
     PASSWORD("PASSWORD", "password"),
     CLIENT_ID("CLIENT_ID", "client_id"),
