@@ -80,10 +80,10 @@ public class EntitiesSteps {
         body = new ObjectMapper().writeValueAsString(bodyMap);
         if (apiMethod == ApiMethod.POST || apiMethod == ApiMethod.PATCH) {
             apiResponse = Request.execute(endpoint, pathParams, body, apiMethod);
-            apiResponse.logAll();
         } else {
             apiResponse = Request.execute(endpoint, pathParams, apiMethod);
         }
+        apiResponse.logAll();
     }
 
     @Then("^the response status code should be \"(.*?)\"$")

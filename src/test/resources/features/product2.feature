@@ -29,7 +29,7 @@ Feature: Product
   Scenario: Get a Product
     Given I set a "GET" request
     And I set the ID path parameter
-    When I send the request with the "/Product2"/{id}" endpoint
+    When I send the request with the "/Product2/{id}" endpoint
     Then the response status code should be "200"
     And its schema should match the "product02" schema
 
