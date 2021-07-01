@@ -97,7 +97,7 @@ public class EntitiesSteps {
         }
     }
 
-    @When("I set the {string} endpoint and send the delete request")
+    @When("I send {string} delete request")
     public void iSetTheEndpointAndSendTheDeleteRequest(final String endpoint) throws JsonProcessingException {
         logger.info("=================== Delete When ===========================");
         apiResponse = Request.execute(endpoint, pathParams, ApiMethod.DELETE);
@@ -122,12 +122,11 @@ public class EntitiesSteps {
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 
-    @Then("the response status code should be {string} with the {string} schema")
-    public void theResponseStatusCodeShouldBe(final String status, final String schema) {
+    @Then("Validate {string} schema")
+    public void validateTheSchema(final String schema) {
         logger.info("=================== Common Then ===========================");
-        apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status));
-        if (status.equals(String.valueOf(HttpStatus.SC_CREATED))) {
+//        if (apiResponse.getStatusCode() == 201) {
             apiResponse.validateBodySchema("schemas/" + schema + ".json");
-        }
+//        }
     }
 }
