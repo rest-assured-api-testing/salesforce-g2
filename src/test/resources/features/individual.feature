@@ -23,15 +23,28 @@ Feature: Individual
       |                    | Aranjuez           |                      | 1990-04-23          | 201    |
       |                    | Perales            |                      |                     | 201    |
       |                    | Perales            |                      |                     | 201    |
-      |                    | Perez              |                      | 0000-01-01          | 400    |
-      |                    | Gonsalves          |                      | 02-26-2001          | 400    |
       |                    | Suarez             |                      | 2000-13-01          | 201    |
       |                    | Salazar            |                      | 2000-12-50          | 201    |
       |                    | null               |                      |                     | 201    |
-      |                    |                    |                      |                     | 400    |
       | Erika              | Ramirez            | Professor            | 1985-06-09          | 201    |
       | Pool               | Caceres            | Sir                  | 1986-07-25          | 201    |
       | Santiago           | Cespedes           | Master               | 1997-05-03          | 201    |
+
+  @CreateIndividual
+  Scenario Outline: An Individual with firstname, lastname, salutation and birthday shouldn't be created with null
+  lastname
+    Given I set a "POST" request with payload
+      | firstName  | <firsNameIndividual>   |
+      | lastName   | <lastNameIndividual>   |
+      | Salutation | <salutationIndividual> |
+      | BirthDate  | <birthdateIndividual> |
+    When I send the request with the "/Individual" endpoint
+    Then the response status code should be "<status>"
+    Examples:
+      | firsNameIndividual | lastNameIndividual | salutationIndividual | birthdateIndividual | status |
+      |                    | Perez              |                      | 0000-01-01          | 400    |
+      |                    | Gonsalves          |                      | 02-26-2001          | 400    |
+      |                    |                    |                      |                     | 400    |
 
   @CreateIndividual
   Scenario Outline: An Individual with firstname, salutation and birthday shouldn't be created without lastname
