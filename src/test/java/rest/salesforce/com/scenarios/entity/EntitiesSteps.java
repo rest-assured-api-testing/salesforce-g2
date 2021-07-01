@@ -58,7 +58,6 @@ public class EntitiesSteps {
         Map<String, String> json = jsonData.asMap(String.class, String.class);
         bodyMap = new HashMap<>(json);
         apiMethod = Enum.valueOf(ApiMethod.class, method);
-        //body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
         logger.info(body);
     }
 
@@ -75,28 +74,6 @@ public class EntitiesSteps {
         bodyMap.put(key, requisiteElement.getId());
     }
 
-//    @Given("I set the pathParams and body with the requisite key {string} for the request")
-//    public void iSetThePathParamsAndBodyWithTheRequisiteKeyForTheRequest(final String key, final DataTable jsonData) throws JsonProcessingException {
-//        logger.info("=================== Create Given ==========================");
-//        Map<String, String> json = jsonData.asMap(String.class, String.class);
-//        Map<String, String> jsonMap = new HashMap<>(json);
-//        jsonMap.put(key, requisiteElement.getId());
-//        body = new ObjectMapper().writeValueAsString(jsonMap);
-//        logger.info(body);
-//    }
-//
-//    @Given("I set the pathParams and updated body with the requisite key {string} for the request")
-//    public void iSetThePathParamsAndUpdatedBodyWithTheRequisiteKeyForTheRequest(final String key, final DataTable jsonData) throws JsonProcessingException {
-//        logger.info("=================== Create Given ==========================");
-//        Map<String, String> json = jsonData.asMap(String.class, String.class);
-//        Map<String, String> jsonMap = new HashMap<>(json);
-//        pathParams = new HashMap<>();
-//        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-//        jsonMap.put(key, requisiteElement.getId());
-//        body = new ObjectMapper().writeValueAsString(jsonMap);
-//        logger.info(body);
-//    }
-
     @When("^I send the request with the \"(.*?)\" endpoint$")
     public void iSendTheRequestWithTheEndpoint(final String endpoint) throws JsonProcessingException {
         logger.info("=================== I Send The Request ===========================");
@@ -104,7 +81,6 @@ public class EntitiesSteps {
         if (apiMethod == ApiMethod.POST || apiMethod == ApiMethod.PATCH) {
             apiResponse = Request.execute(endpoint, pathParams, body, apiMethod);
             apiResponse.logAll();
-            System.out.println(apiResponse.getStatusCode() + "STATUS\n\n\n\n");
         } else {
             apiResponse = Request.execute(endpoint, pathParams, apiMethod);
         }
@@ -123,8 +99,6 @@ public class EntitiesSteps {
     @Then("^its schema should match the \"(.*?)\" schema$")
     public void itsSchemaShouldMatchTheSchema(final String schema) {
         logger.info("=================== Validate Schema ===========================");
-//        if (apiResponse.getStatusCode() == 201) {
             apiResponse.validateBodySchema("schemas/" + schema + ".json");
-//        }
     }
 }
