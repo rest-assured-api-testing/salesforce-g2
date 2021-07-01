@@ -8,7 +8,6 @@
 
 package salesforce.config;
 
-import static salesforce.config.EnvConfigurationFile.dotenv;
 import static salesforce.entities.Token.accessToken;
 import api.ApiManager;
 import api.ApiMethod;
@@ -16,8 +15,8 @@ import api.ApiRequestBuilder;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Map;
 import org.apache.http.HttpHeaders;
+import java.util.Map;
 
 /**
  * Helps to manage the basic request.
@@ -38,7 +37,7 @@ public class Request {
                                                      final String entity, final Enum<ApiMethod> type) {
         return new ApiRequestBuilder()
                 .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", accessToken))
-                .baseUri(dotenv.get(Credentials.BASE_URL.getEnumValue()))
+                .baseUri(Endpoints.BASE_URL.get())
                 .method(type)
                 .endpoint(endpoint)
                 .pathParams(pathParams)

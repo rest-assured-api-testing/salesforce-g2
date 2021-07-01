@@ -125,8 +125,8 @@ public class EntitiesSteps {
     @Then("Validate {string} schema")
     public void validateTheSchema(final String schema) {
         logger.info("=================== Common Then ===========================");
-        if (apiResponse.getStatusCode() == HttpStatus.SC_CREATED) {
+//        if (apiResponse.getStatusCode() == 201) {
             apiResponse.validateBodySchema("schemas/" + schema + ".json");
-        }
+//        }
     }
 }

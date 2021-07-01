@@ -31,13 +31,26 @@ Feature: Account
       | New Account 2 |               |                | --------------     |               | 201    |
       | New Account 3 | anyNumber     |                |                    |               | 201    |
       | New Account 4 |               | anyPhoneNumber |                    |               | 201    |
-      |               |               |                |                    |               | 400    |
       | null          | null          | null           | null               | null          | 201    |
+      | 1111111111111 |               |                |                    |               | 201    |
+
+  @CreateAccount
+  Scenario Outline: An Account with account number, phone, type, rating and null name shouldn't be created
+    Given I set the post request
+      | name          | <nameAccount>   |
+      | AccountNumber | <numberAccount> |
+      | Phone         | <phoneAccount>  |
+      | Type          | <typeAccount>   |
+      | Rating        | <ratingAccount> |
+    When I set the "/Account" endpoint and send the request with body
+    Then the response status code should be "<status>"
+    Examples:
+      | nameAccount   | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
+      |               |               |                |                    |               | 400    |
       |               | 1236978       | 78968900       | Prospect           | Hot           | 400    |
       |               |               | 78968900       | Prospect           | Warm          | 400    |
       |               |               |                | Prospect           | Cold          | 400    |
       |               |               |                |                    | Hot           | 400    |
-      | 1111111111111 |               |                |                    |               | 201    |
 
   @CreateAccount
   Scenario Outline: Create an Account with name, account number and phone
@@ -53,10 +66,21 @@ Feature: Account
       | New Account | 123           | 78969630       | 201    |
       | New Account |               | 55587963       | 201    |
       | New Account |               |                | 201    |
-      |             | 245           | 87963645       | 400    |
-      |             |               | 85648982       | 400    |
       | New Account | anyNumber     |                | 201    |
       | New Account |               | anyPhoneNumber | 201    |
+
+  @CreateAccount
+  Scenario Outline: An Account with account number, phone and null name shouldn't be created
+    Given I set the post request
+      | name          | <nameAccount>   |
+      | AccountNumber | <numberAccount> |
+      | Phone         | <phoneAccount>  |
+    When I set the "/Account" endpoint and send the request with body
+    Then the response status code should be "<status>"
+    Examples:
+      | nameAccount | numberAccount | phoneAccount   | status |
+      |             | 245           | 87963645       | 400    |
+      |             |               | 85648982       | 400    |
 
   @GetAccount
   Scenario: Get an Account
@@ -87,6 +111,21 @@ Feature: Account
       | Updated Account |               |                |                    |               | 204    |
       | 123456789       |               |                |                    |               | 204    |
       | 1z1as5faf6asf   |               |                |                    |               | 204    |
+      | Updated Account |               | 78962158       | My Prospect        |               | 204    |
+      | Updated Account |               | 85879955       |                    | very Warm     | 204    |
+
+  @UpdateAccount
+  Scenario Outline: Account number, phone, type and rating shouldn't be updated with null name of an Account
+    Given I set the update request
+      | name          | <nameAccount>   |
+      | AccountNumber | <numberAccount> |
+      | Phone         | <phoneAccount>  |
+      | Type          | <typeAccount>   |
+      | Rating        | <ratingAccount> |
+    When I set the "/Account/{id}" endpoint and send the request with updated body
+    Then the response status code should be "<status>"
+    Examples:
+      | nameAccount     | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
       |                 | 1236978       | 78968900       | Prospect           | Hot           | 400    |
       |                 |               | 78969630       | Prospect           | Warm          | 400    |
       |                 |               |                | Technology Partner | Cold          | 400    |
@@ -95,8 +134,6 @@ Feature: Account
       |                 | 2455896       | 87963645       |                    |               | 400    |
       |                 | 5559863       |                |                    | Cold          | 400    |
       |                 |               |                |                    |               | 400    |
-      | Updated Account |               | 78962158       | My Prospect        |               | 204    |
-      | Updated Account |               | 85879955       |                    | very Warm     | 204    |
 
   @UpdateAccount
   Scenario Outline: Update name, account number and phone of an Account
@@ -111,6 +148,17 @@ Feature: Account
       | Updated Account |               |              | 204    |
       | Updated Account | 123           |              | 204    |
       | Updated Account | 686           | 87961331     | 204    |
+
+  @UpdateAccount
+  Scenario Outline: Account number and phone shouldn't be updated with null name of an Account
+    Given I set the update request
+      | name          | <nameAccount>   |
+      | AccountNumber | <numberAccount> |
+      | Phone         | <phoneAccount>  |
+    When I set the "/Account/{id}" endpoint and send the request with updated body
+    Then the response status code should be "<status>"
+    Examples:
+      | nameAccount     | numberAccount | phoneAccount | status |
       |                 | 245           | 87963645     | 400    |
       |                 |               | 85648982     | 400    |
       |                 |               |              | 400    |
@@ -132,7 +180,7 @@ Feature: Account
       |               |              | 204    |
 
   @UpdateAccount
-  Scenario Outline: Update name and created date of an Account
+  Scenario Outline: Name shouldn't be updated with a created date of an Account
     Given I set the update request
       | name        | <nameAccount>         |
       | CreatedDate | <createdDateAccount>  |
