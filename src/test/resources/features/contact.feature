@@ -26,7 +26,6 @@ Feature: Contact
       | lastname  | <lastname>  |
     When I send the request with the "/Contact" endpoint
     Then the response status code should be "<expectedStatus>"
-    And its schema should match the "success" schema
     Examples:
       | firstname                                 | lastname                                                                          | expectedStatus |
       | 41charlongnameghjklmasdfghjklmasdfghjklma | lastname                                                                          | 400            |
@@ -58,7 +57,6 @@ Feature: Contact
       | birthdate | <birthdate> |
     When I send the request with the "/Contact" endpoint
     Then the response status code should be "<expectedStatus>"
-    And its schema should match the "success" schema
     Examples:
       | firstname | lastname | birthdate  | expectedStatus |
       | firstname | lastname | null       | 400            |
@@ -91,7 +89,6 @@ Feature: Contact
       | department | <department> |
     When I send the request with the "/Contact" endpoint
     Then the response status code should be "<expectedStatus>"
-    And its schema should match the "success" schema
     Examples:
       | firstname | lastname | department                                                                        | expectedStatus |
       | firstname | lastname | 81charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 400            |
@@ -122,7 +119,6 @@ Feature: Contact
       | phone     | <phone>     |
     When I send the request with the "/Contact" endpoint
     Then the response status code should be "<expectedStatus>"
-    And its schema should match the "success" schema
     Examples:
       | firstname | lastname | phone                                     | expectedStatus |
       | firstname | lastname | 41charlongnameghjklmasdfghjklmasdfghjklma | 400            |
@@ -137,23 +133,11 @@ Feature: Contact
     Then the response status code should be "<expectedStatus>"
     And its schema should match the "success" schema
     Examples:
-      | firstname | lastname | description                                                                                                                                                                                                                                                     | expectedStatus |
-      | firstname | lastname | description                                                                                                                                                                                                                                                     | 201            |
-      | firstname | lastname |                                                                                                                                                                                                                                                                 | 201            |
-      | firstname | lastname | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongname | 201            |
-
-  @CreateContact
-  Scenario Outline: Create contact with description invalid values
-    Given I set a "POST" request with payload
-      | firstname   | <firstname>   |
-      | lastname    | <lastname>    |
-      | description | <description> |
-    When I send the request with the "/Contact" endpoint
-    Then the response status code should be "<expectedStatus>"
-    And its schema should match the "success" schema
-    Examples:
       | firstname | lastname | description                                                                                                                                                                                                                                                      | expectedStatus |
-      | firstname | lastname | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnamea | 400            |
+      | firstname | lastname | description                                                                                                                                                                                                                                                      | 201            |
+      | firstname | lastname |                                                                                                                                                                                                                                                                  | 201            |
+      | firstname | lastname | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongname  | 201            |
+      | firstname | lastname | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnamea | 201            |
 
   @CreateContact
   Scenario Outline: Create contact with email valid values
@@ -163,7 +147,7 @@ Feature: Contact
       | email     | <email>     |
     When I send the request with the "/Contact" endpoint
     Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | firstname | lastname | email                                                                            | expectedStatus |
       | firstname | lastname | email@mail.com                                                                   | 201            |
@@ -179,7 +163,6 @@ Feature: Contact
       | email     | <email>     |
     When I send the request with the "/Contact" endpoint
     Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
     Examples:
       | firstname | lastname | email                                                                             | expectedStatus |
       | firstname | lastname | 81charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 400            |
@@ -194,7 +177,7 @@ Feature: Contact
 
   @UpdateContact
   Scenario Outline: Update a Contact firstname and lastname valid values
-    Given I set a "PATCH" request with payloadt
+    Given I set a "PATCH" request with payload
       | firstname | <firstname> |
       | lastname  | <lastname>  |
     And I set the ID path parameter
@@ -212,7 +195,7 @@ Feature: Contact
 
   @UpdateContact
   Scenario Outline: Update a Contact firstname and lastname invalid values
-    Given I set a "PATCH" request with payloadt
+    Given I set a "PATCH" request with payload
       | firstname | <firstname> |
       | lastname  | <lastname>  |
     And I set the ID path parameter
@@ -250,11 +233,10 @@ Feature: Contact
     And I set the ID path parameter
     When I send the request with the "/Contact/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
-      | firstname | lastname | birthdate  | expectedStatus |
+    Examples:
       | firstname | lastname | birthdate  | expectedStatus |
       | firstname | lastname | anytext    | 400            |
       | firstname | lastname | 0001-01-01 | 400            |
-      | firstname | lastname | 1700-12-30 | 204            |
       | firstname | lastname | 1699-01-01 | 400            |
 
   @UpdateContact
@@ -296,6 +278,7 @@ Feature: Contact
       | lastname  | <lastname>  |
       | phone     | <phone>     |
     And I set the ID path parameter
+    When I send the request with the "/Contact/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
     Examples:
       | firstname | lastname | phone                                    | expectedStatus |
@@ -312,6 +295,7 @@ Feature: Contact
       | lastname  | <lastname>  |
       | phone     | <phone>     |
     And I set the ID path parameter
+    When I send the request with the "/Contact/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
     Examples:
       | firstname | lastname | phone                                     | expectedStatus |
@@ -319,7 +303,7 @@ Feature: Contact
 
   @UpdateContact
   Scenario Outline: Update a Contact description valid values
-    Given I set a "POST" request with payload
+    Given I set a "PATCH" request with payload
       | firstname   | <firstname>   |
       | lastname    | <lastname>    |
       | description | <description> |
@@ -336,7 +320,7 @@ Feature: Contact
 
   @UpdateContact
   Scenario Outline: Update a Contact email valid values
-    Given I set a "POST" request with payload
+    Given I set a "PATCH" request with payload
       | firstname | <firstname> |
       | lastname  | <lastname>  |
       | email     | <email>     |
@@ -349,11 +333,10 @@ Feature: Contact
       | firstname | lastname |                                                                                  | 204            |
       | firstname | lastname | a@b.c                                                                            | 204            |
       | firstname | lastname | 80charlongname@mail.comfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm | 204            |
-      |           |          |                                                                                  |                |
 
   @UpdateContact
   Scenario Outline: Update a Contact email invalid values
-    Given I set a "POST" request with payload
+    Given I set a "PATCH" request with payload
       | firstname | <firstname> |
       | lastname  | <lastname>  |
       | email     | <email>     |
