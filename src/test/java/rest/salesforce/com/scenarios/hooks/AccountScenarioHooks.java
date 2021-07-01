@@ -61,6 +61,7 @@ public class AccountScenarioHooks {
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
             apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
+            apiResponse.logAll();
         }
         logger.info("======================= Passed if After Hook");
     }

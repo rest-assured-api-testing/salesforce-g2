@@ -18,6 +18,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.HashMap;
 import java.util.Map;
+
+import io.cucumber.java.sl.In;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -35,98 +37,68 @@ public class EntitiesSteps {
     private RequisiteElement requisiteElement;
     private ApiResponse apiResponse;
     private Map<String, String> pathParams = new HashMap<>();
+    private Map<String, String> bodyMap;
     private String body;
+    private ApiMethod apiMethod;
 
     public EntitiesSteps(final CreatedResponse createdResponse, final RequisiteElement requisiteElement) {
         this.createdResponse = createdResponse;
         this.requisiteElement = requisiteElement;
     }
 
-    @Given("I set the post request")
-    public void iSetThePathParamsAndBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
-        logger.info("=================== Create Given ==========================");
-        body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
-        logger.info(body);
+    @Given("^I set a \"(GET|DELETE)\" request$")
+    public void iSetAGetDeleteRequest(final String method) {
+        logger.info("=================== I Set a Request ==========================");
+        apiMethod = Enum.valueOf(ApiMethod.class, method);
     }
 
-    @Given("I set the pathParams and body with the requisite key {string} for the request")
-    public void iSetThePathParamsAndBodyWithTheRequisiteKeyForTheRequest(final String key, final DataTable jsonData) throws JsonProcessingException {
-        logger.info("=================== Create Given ==========================");
+    @Given("^I set a \"(POST|PATCH)\" request with payload$")
+    public void iSetAPatchPostRequestWithPayload(final String method, final DataTable jsonData) {
+        logger.info("=================== Given I Set A Request With Payload ==========================");
         Map<String, String> json = jsonData.asMap(String.class, String.class);
-        Map<String, String> jsonMap = new HashMap<>(json);
-        jsonMap.put(key, requisiteElement.getId());
-        body = new ObjectMapper().writeValueAsString(jsonMap);
+        bodyMap = new HashMap<>(json);
+        apiMethod = Enum.valueOf(ApiMethod.class, method);
         logger.info(body);
     }
-    
-    @Given("I set the {string} request")
-    public void iSetTheRequest(final String method) {
-        logger.info("=================== Delete and Get Given ==================");
-        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-    }
 
-    @Given("I set the update request")
-    public void iSetThePathParamsAndUpdatedBodyToRequest(final DataTable jsonData) throws JsonProcessingException {
-        logger.info("=================== Update Given ==========================");
+    @Given("^I set the ID path parameter$")
+    public void iSetTheIDPathParameter() {
+        logger.info("=================== I Set The Id Path Parameter ==========================");
         pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        body = new ObjectMapper().writeValueAsString(jsonData.asMap(String.class, String.class));
-        logger.info(body);
     }
 
-    @Given("I set the pathParams and updated body with the requisite key {string} for the request")
-    public void iSetThePathParamsAndUpdatedBodyWithTheRequisiteKeyForTheRequest(final String key, final DataTable jsonData) throws JsonProcessingException {
-        logger.info("=================== Create Given ==========================");
-        Map<String, String> json = jsonData.asMap(String.class, String.class);
-        Map<String, String> jsonMap = new HashMap<>(json);
-        pathParams = new HashMap<>();
-        pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        jsonMap.put(key, requisiteElement.getId());
-        body = new ObjectMapper().writeValueAsString(jsonMap);
-        logger.info(body);
+    @Given("^I add the required \"(.*?)\" field to the payload$")
+    public void iAddTheRequiredFieldToThePayload(String key) {
+        logger.info("=================== I add the required field to the Payload ==========================");
+        bodyMap.put(key, requisiteElement.getId());
     }
 
-    @When("I set the {string} endpoint and send the request with body")
-    public void iSetTheEndpointAndSendTheRequestWithBody(final String endpoint) throws JsonProcessingException {
-        logger.info("=================== Create When ===========================");
-        logger.info(body);
-        apiResponse = Request.execute(endpoint, pathParams, body, ApiMethod.POST);
-        if (apiResponse.getStatusCode() == HttpStatus.SC_CREATED) {
-            CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
-            createdResponse.setId(createdResponseHelper.getId());
+    @When("^I send the request with the \"(.*?)\" endpoint$")
+    public void iSendTheRequestWithTheEndpoint(final String endpoint) throws JsonProcessingException {
+        logger.info("=================== I Send The Request ===========================");
+        body = new ObjectMapper().writeValueAsString(bodyMap);
+        if (apiMethod == ApiMethod.POST || apiMethod == ApiMethod.PATCH) {
+            apiResponse = Request.execute(endpoint, pathParams, body, apiMethod);
+            apiResponse.logAll();
+        } else {
+            apiResponse = Request.execute(endpoint, pathParams, apiMethod);
         }
     }
 
-    @When("I send {string} delete request")
-    public void iSetTheEndpointAndSendTheDeleteRequest(final String endpoint) throws JsonProcessingException {
-        logger.info("=================== Delete When ===========================");
-        apiResponse = Request.execute(endpoint, pathParams, ApiMethod.DELETE);
-    }
-
-    @When("I set the {string} endpoint and send the request")
-    public void iSetTheEndpointAndSendTheRequest(final String endpoint) throws JsonProcessingException {
-        logger.info("=================== Get When ==============================");
-        apiResponse = Request.execute(endpoint, pathParams, ApiMethod.GET);
-    }
-
-    @When("I set the {string} endpoint and send the request with updated body")
-    public void iSetTheEndpointAndSendTheRequestWithUpdatedBody(final String endpoint) throws JsonProcessingException {
-        logger.info("=================== Update When ===========================");
-        apiResponse = Request.execute(endpoint, pathParams, body, ApiMethod.PATCH);
-
-    }
-
-    @Then("the response status code should be {string}")
+    @Then("^the response status code should be \"(.*?)\"$")
     public void theResponseStatusCodeShouldBe(final String status) {
-        logger.info("=================== Common Then ===========================");
+        logger.info("=================== Validate Response Status ===========================");
+        if (apiResponse.getStatusCode() == HttpStatus.SC_CREATED){
+            CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
+            createdResponse.setId(createdResponseHelper.getId());
+        }
         apiResponse.getResponse().then().assertThat().statusCode(Integer.parseInt(status)).log().body();
     }
 
-    @Then("Validate {string} schema")
-    public void validateTheSchema(final String schema) {
-        logger.info("=================== Common Then ===========================");
-//        if (apiResponse.getStatusCode() == 201) {
+    @Then("^its schema should match the \"(.*?)\" schema$")
+    public void itsSchemaShouldMatchTheSchema(final String schema) {
+        logger.info("=================== Validate Schema ===========================");
             apiResponse.validateBodySchema("schemas/" + schema + ".json");
-//        }
     }
 }

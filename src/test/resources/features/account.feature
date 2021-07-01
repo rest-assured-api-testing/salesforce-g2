@@ -1,20 +1,20 @@
 Feature: Account
   @GetAccounts
   Scenario: Get all Accounts
-    When I set the "/Account" endpoint and send the request
+    Given I set a "GET" request
+    When I send the request with the "/Account" endpoint
     Then the response status code should be "200"
-
   @CreateAccount
   Scenario Outline: Create an Account with name, account number, phone, type and rating
-    Given I set the post request
+    Given I set a "POST" request with payload
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
       | Type          | <typeAccount>   |
       | Rating        | <ratingAccount> |
-    When I set the "/Account" endpoint and send the request with body
+    When I send the request with the "/Account" endpoint
     Then the response status code should be "<status>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | nameAccount   | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
       | New Account 0 | 1236978       | 78968900       | Prospect           | Hot           | 201    |
@@ -36,13 +36,13 @@ Feature: Account
 
   @CreateAccount
   Scenario Outline: An Account with account number, phone, type, rating and null name shouldn't be created
-    Given I set the post request
+    Given I set a "POST" request with payload
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
       | Type          | <typeAccount>   |
       | Rating        | <ratingAccount> |
-    When I set the "/Account" endpoint and send the request with body
+    When I send the request with the "/Account" endpoint
     Then the response status code should be "<status>"
     Examples:
       | nameAccount   | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
@@ -54,13 +54,13 @@ Feature: Account
 
   @CreateAccount
   Scenario Outline: Create an Account with name, account number and phone
-    Given I set the post request
+    Given I set a "POST" request with payload
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
-    When I set the "/Account" endpoint and send the request with body
+    When I send the request with the "/Account" endpoint
     Then the response status code should be "<status>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | nameAccount | numberAccount | phoneAccount   | status |
       | New Account | 123           | 78969630       | 201    |
@@ -71,33 +71,35 @@ Feature: Account
 
   @CreateAccount
   Scenario Outline: An Account with account number, phone and null name shouldn't be created
-    Given I set the post request
+    Given I set a "POST" request with payload
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
-    When I set the "/Account" endpoint and send the request with body
+    When I send the request with the "/Account" endpoint
     Then the response status code should be "<status>"
     Examples:
-      | nameAccount | numberAccount | phoneAccount   | status |
-      |             | 245           | 87963645       | 400    |
-      |             |               | 85648982       | 400    |
+      | nameAccount | numberAccount | phoneAccount | status |
+      |             | 245           | 87963645     | 400    |
+      |             |               | 85648982     | 400    |
 
   @GetAccount
   Scenario: Get an Account
-    Given I set the "get" request
-    When I set the "/Account/{id}" endpoint and send the request
+    Given I set a "GET" request
+    And I set the ID path parameter
+    When I send the request with the "/Account/{id}" endpoint
     Then the response status code should be "200"
-    And Validate "account" schema
+    And its schema should match the "account" schema
 
   @UpdateAccount
   Scenario Outline: Update name, account number, phone, type and rating of an Account
-    Given I set the update request
+    Given I set a "PATCH" request with payload
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
       | Type          | <typeAccount>   |
       | Rating        | <ratingAccount> |
-    When I set the "/Account/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    When I send the request with the "/Account/{id}" endpoint
     Then the response status code should be "<status>"
     Examples:
       | nameAccount     | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
@@ -116,13 +118,14 @@ Feature: Account
 
   @UpdateAccount
   Scenario Outline: Account number, phone, type and rating shouldn't be updated with null name of an Account
-    Given I set the update request
+    Given I set a "PATCH" request with payload
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
       | Type          | <typeAccount>   |
       | Rating        | <ratingAccount> |
-    When I set the "/Account/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    When I send the request with the "/Account/{id}" endpoint
     Then the response status code should be "<status>"
     Examples:
       | nameAccount     | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
@@ -137,11 +140,12 @@ Feature: Account
 
   @UpdateAccount
   Scenario Outline: Update name, account number and phone of an Account
-    Given I set the update request
+    Given I set a "PATCH" request with payload
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
-    When I set the "/Account/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    When I send the request with the "/Account/{id}" endpoint
     Then the response status code should be "<status>"
     Examples:
       | nameAccount     | numberAccount | phoneAccount | status |
@@ -151,11 +155,12 @@ Feature: Account
 
   @UpdateAccount
   Scenario Outline: Account number and phone shouldn't be updated with null name of an Account
-    Given I set the update request
+    Given I set a "PATCH" request with payload
       | name          | <nameAccount>   |
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
-    When I set the "/Account/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    When I send the request with the "/Account/{id}" endpoint
     Then the response status code should be "<status>"
     Examples:
       | nameAccount     | numberAccount | phoneAccount | status |
@@ -165,10 +170,11 @@ Feature: Account
 
   @UpdateAccount
   Scenario Outline: Update number and phone of an Account
-    Given I set the update request
+    Given I set a "PATCH" request with payload
       | AccountNumber | <numberAccount> |
       | Phone         | <phoneAccount>  |
-    When I set the "/Account/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    When I send the request with the "/Account/{id}" endpoint
     Then the response status code should be "<status>"
     Examples:
       | numberAccount | phoneAccount | status |
@@ -181,10 +187,11 @@ Feature: Account
 
   @UpdateAccount
   Scenario Outline: Name shouldn't be updated with a created date of an Account
-    Given I set the update request
+    Given I set a "PATCH" request with payload
       | name        | <nameAccount>         |
       | CreatedDate | <createdDateAccount>  |
-    When I set the "/Account/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    When I send the request with the "/Account/{id}" endpoint
     Then the response status code should be "<status>"
     Examples:
       | nameAccount     | createdDateAccount             | status |
@@ -195,6 +202,7 @@ Feature: Account
 
   @DeleteAccount
   Scenario: Delete an Account
-    Given I set the "delete" request
-    When I send "/Account/{id}" delete request
+    Given I set a "DELETE" request
+    And I set the ID path parameter
+    When I send the request with the "/Account/{id}" endpoint
     Then the response status code should be "204"

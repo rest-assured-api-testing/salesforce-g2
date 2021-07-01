@@ -2,19 +2,20 @@ Feature: Campaign
 
   @GetCampaigns
   Scenario: Get all Campaigns
-    When I set the "/Campaign" endpoint and send the request
+    Given I set a "GET" request
+    When I send the request with the "/Campaign" endpoint
     Then the response status code should be "200"
 
   @CreateCampaign
   Scenario Outline: Create a Campaign
-    Given I set the post request
+    Given I set a "POST" request with payload
       | name     | <nameCampaign>     |
       | isActive | <isActiveCampaign> |
       | type     | <typeCampaign>     |
       | status   | <statusCampaign>   |
-    When I set the "/Campaign" endpoint and send the request with body
+    When I send the request with the "/Campaign" endpoint
     Then the response status code should be "<status>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | nameCampaign          | isActiveCampaign | typeCampaign            | statusCampaign | status |
       | New incoming campaign | true             | This is a test campaign | NIP1           | 201    |
@@ -26,19 +27,21 @@ Feature: Campaign
 
   @GetCampaign
   Scenario: Get a Campaign
-    Given I set the "get" request
-    When I set the "/Campaign/{id}" endpoint and send the request
+    Given I set a "GET" request
+    And I set the ID path parameter
+    When I send the request with the "/Campaign/{id}" endpoint
     Then the response status code should be "200"
-    And Validate "campaign" schema
+    And its schema should match the "campaign" schema
 
   @UpdateCampaign
   Scenario Outline: Update a Product
-    Given I set the update request
+    Given I set a "PATCH" request with payload
       | name     | <nameCampaign>     |
       | isActive | <isActiveCampaign> |
       | type     | <typeCampaign>     |
       | status   | <statusCampaign>   |
-    When I set the "/Campaign/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    When I send the request with the "/Campaign/{id}" endpoint
     Then the response status code should be "<status>"
     Examples:
       | nameCampaign      | isActiveCampaign | typeCampaign            | statusCampaign | status |
@@ -51,6 +54,7 @@ Feature: Campaign
 
   @DeleteCampaign
   Scenario: Delete a Campaign
-    Given I set the "delete" request
-    When I send "/Campaign/{id}" delete request
+    Given I set a "DELETE" request
+    And I set the ID path parameter
+    When I send the request with the "/Campaign/{id}" endpoint
     Then the response status code should be "204"
