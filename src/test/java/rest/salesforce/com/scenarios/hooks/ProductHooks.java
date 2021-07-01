@@ -5,24 +5,27 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-package salesforce.scenarios.hooks;
+
+package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import salesforce.config.Endpoints;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import salesforce.entities.Product;
-import salesforce.entities.CreatedResponse;
-import salesforce.entities.RequisiteElement;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import salesforce.config.Endpoints;
+import salesforce.config.Request;
+import salesforce.entities.CreatedResponse;
+import salesforce.entities.Product;
+import salesforce.entities.RequisiteElement;
 
+/**
+ * Scenario hooks for product entity.
+ */
 public class ProductHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
@@ -40,7 +43,7 @@ public class ProductHooks {
         Product product = new Product();
         product.setName("The first product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -53,6 +56,6 @@ public class ProductHooks {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
     }
 }

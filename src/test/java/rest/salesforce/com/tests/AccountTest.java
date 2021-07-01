@@ -5,21 +5,22 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package salesforce.tests;
+
+package rest.salesforce.com.tests;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.config.Endpoints;
-import salesforce.entities.CreatedResponse;
-import salesforce.entities.Account;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.HashMap;
-import java.util.Map;
+import salesforce.config.Endpoints;
+import salesforce.config.Request;
+import salesforce.entities.Account;
+import salesforce.entities.CreatedResponse;
 
 public class AccountTest extends CommonTest {
 
@@ -30,7 +31,7 @@ public class AccountTest extends CommonTest {
         account.setName("First Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
@@ -40,7 +41,7 @@ public class AccountTest extends CommonTest {
     public void getAllAccountTest() throws JsonProcessingException {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), new HashMap<String, String>(), ApiMethod.GET);
+        apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), new HashMap<String, String>(), ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
@@ -52,7 +53,7 @@ public class AccountTest extends CommonTest {
         account.setName("Created Account ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
@@ -64,7 +65,7 @@ public class AccountTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.GET);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
@@ -77,7 +78,7 @@ public class AccountTest extends CommonTest {
         account.setName("Updated Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, account, ApiMethod.PATCH);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, account, ApiMethod.PATCH);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -88,7 +89,7 @@ public class AccountTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -99,7 +100,7 @@ public class AccountTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -108,7 +109,7 @@ public class AccountTest extends CommonTest {
     public void doNotGetAllAccountTest() throws JsonProcessingException {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute("/Accoun", new HashMap<String, String>(), ApiMethod.GET);
+        apiResponse = Request.execute("/Accoun", new HashMap<String, String>(), ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
@@ -119,7 +120,7 @@ public class AccountTest extends CommonTest {
         Account account = new Account();
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.ACCOUNTS.get(), pathParams, account, ApiMethod.POST);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST).log().body();
     }
@@ -130,7 +131,7 @@ public class AccountTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.GET);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
@@ -143,7 +144,7 @@ public class AccountTest extends CommonTest {
         account.setName("Updated Account");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, account, ApiMethod.PATCH);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, account, ApiMethod.PATCH);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
@@ -154,7 +155,7 @@ public class AccountTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.ACCOUNT.get(), pathParams, ApiMethod.DELETE);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }

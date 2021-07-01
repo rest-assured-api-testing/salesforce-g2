@@ -5,25 +5,29 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package salesforce.scenarios.hooks;
+
+package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.auth.Authentication;
 import salesforce.config.Endpoints;
+import salesforce.config.Request;
 import salesforce.entities.Contact;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.RequisiteElement;
 import salesforce.entities.Token;
-import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * Scenario hooks for contact entity.
+ */
 public class ContactScenarioHooks {
 
     private CreatedResponse createdResponse;
@@ -36,20 +40,20 @@ public class ContactScenarioHooks {
     }
 
     @Before(order = 1)
-    public  void setUp() {
-        if(Token.accessToken == null) {
+    public void setUp() {
+        if (Token.accessToken == null) {
             Authentication.getAuth();
         }
     }
 
-    @Before(value = "@GetContact or @UpdateContact or @DeleteContact")
+    @Before(value = "@GetContact or @UpdateContact or @DeleteContact", order = 2)
     public void createContact() throws JsonProcessingException {
         logger.info("*** Create a Contact to test operations ***");
         Map<String, String> pathParams = new HashMap<>();
         Contact contact = new Contact();
         contact.setFirstName("firstname");
         contact.setLastName("lastname");
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.CONTACTS.get(), pathParams, contact, ApiMethod.POST);
+        ApiResponse apiResponse = Request.execute(Endpoints.CONTACTS.get(), pathParams, contact, ApiMethod.POST);
         createdResponse.setId(apiResponse.getBody(CreatedResponse.class).getId());
     }
 
@@ -60,7 +64,7 @@ public class ContactScenarioHooks {
             Map<String, String> pathParams = new HashMap<>();
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
-            apiResponse = ApiRequestManager.execute(Endpoints.CONTACT.get(), pathParams, ApiMethod.DELETE);
+            apiResponse = Request.execute(Endpoints.CONTACT.get(), pathParams, ApiMethod.DELETE);
         }
     }
 }

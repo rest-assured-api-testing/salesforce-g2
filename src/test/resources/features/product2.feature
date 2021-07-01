@@ -2,19 +2,20 @@ Feature: Product
 
   @GetProducts
   Scenario: Get all Products
-    Given
-    When I set the "/Product2" endpoint and send the request
+    Given I set a "GET" request
+    When I send the request with the "/Product2" endpoint
     Then the response status code should be "200"
 
   @CreateProduct
   Scenario Outline: Create a Product
-    Given I set the pathParams and body to request
+    Given I set a "POST" request with payload
       | name        | <nameProduct>        |
       | productCode | <productCodeProduct> |
       | description | <descriptionProduct> |
       | isActive    | <isActiveProduct>    |
-    When I set the "/Product2" endpoint and send the request with body
-    Then the response status code should be "<status>" with the "responsetocreate" schema
+    When I send the request with the "/Product2" endpoint
+    Then the response status code should be "<status>"
+    And its schema should match the "success" schema
     Examples:
       | nameProduct          | productCodeProduct | descriptionProduct     | isActiveProduct | status |
       | New incoming product | NIP1               | This is a test product | true            | 201    |
@@ -26,18 +27,21 @@ Feature: Product
 
   @GetProduct
   Scenario: Get a Product
-    Given I set the pathParams to request
-    When I set the "/Product2/{id}" endpoint and send the request
-    Then the response status code should be "200" with the "product02" schema
+    Given I set a "GET" request
+    And I set the ID path parameter
+    When I send the request with the "/Product2/{id}" endpoint
+    Then the response status code should be "200"
+    And its schema should match the "product02" schema
 
   @UpdateProduct
   Scenario Outline: Update a Product
-    Given I set the pathParams and updated body to request
+    Given I set a "PATCH" request with payload
       | name        | <nameProduct>        |
       | productCode | <productCodeProduct> |
       | description | <descriptionProduct> |
       | isActive    | <isActiveProduct>    |
-    When I set the "/Product2/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    When I send the request with the "/Product2/{id}" endpoint
     Then the response status code should be "<status>"
     Examples:
       | nameProduct     | productCodeProduct | descriptionProduct     | isActiveProduct | status |
@@ -50,6 +54,7 @@ Feature: Product
 
   @DeleteProduct
   Scenario: Delete a Product
-    Given I set the pathParams to request
-    When I set the "/Product2/{id}" endpoint and send the delete request
+    Given I set a "DELETE" request
+    And I set the ID path parameter
+    When I send the request with the "/Product2/{id}" endpoint
     Then the response status code should be "204"

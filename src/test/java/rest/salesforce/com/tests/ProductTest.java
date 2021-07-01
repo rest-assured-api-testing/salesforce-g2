@@ -5,21 +5,22 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package salesforce.tests;
+
+package rest.salesforce.com.tests;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.config.Endpoints;
-import salesforce.entities.CreatedResponse;
-import salesforce.entities.Product;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.HashMap;
-import java.util.Map;
+import salesforce.config.Endpoints;
+import salesforce.config.Request;
+import salesforce.entities.CreatedResponse;
+import salesforce.entities.Product;
 
 public class ProductTest extends CommonTest {
 
@@ -31,7 +32,7 @@ public class ProductTest extends CommonTest {
         product.setProductCode("FP1");
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
@@ -41,13 +42,13 @@ public class ProductTest extends CommonTest {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test
     public void getProducts() throws JsonProcessingException {
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.PRODUCTS.get(), new HashMap<>(), ApiMethod.GET);
+        ApiResponse apiResponse = Request.execute(Endpoints.PRODUCTS.get(), new HashMap<>(), ApiMethod.GET);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
@@ -59,7 +60,7 @@ public class ProductTest extends CommonTest {
         product.setProductCode("FP1");
         product.setDescription("The description of the product");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.PRODUCTS.get(), pathParams, product, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED);
     }
@@ -68,7 +69,7 @@ public class ProductTest extends CommonTest {
     public void getAProduct() throws JsonProcessingException {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
-        ApiResponse apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.GET);
+        ApiResponse apiResponse = Request.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.GET);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
@@ -80,7 +81,7 @@ public class ProductTest extends CommonTest {
         product.setProductCode("FP1-1");
         product.setDescription("The description of the product with the description changed");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, product, ApiMethod.PATCH);
+        apiResponse = Request.execute(Endpoints.PRODUCT.get(), pathParams, product, ApiMethod.PATCH);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
@@ -89,7 +90,7 @@ public class ProductTest extends CommonTest {
         Map<String, String> pathParams = new HashMap<>();
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.PRODUCT.get(), pathParams, ApiMethod.DELETE);
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 }

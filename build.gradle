@@ -39,7 +39,7 @@ configurations {
     }
 }
 
-tasks.withType(checkstyle) {
+tasks.withType(Checkstyle) {
     ignoreFailures = true
     reports {
         html.enabled = true
@@ -57,7 +57,7 @@ task cucumberCli() {
                     '--plugin', 'html:build/cucumber/cucumber-report.html',
                     '--plugin', 'json:build/cucumber/cucumber.json',
                     '--plugin', 'rerun:build/cucumber/rerun.txt',
-                    '--glue', 'salesforce.scenarios',
+                    '--glue', 'rest.salesforce.com.scenarios',
                     'src/test/resources/features']
             ignoreExitValue = true
         }
@@ -68,7 +68,7 @@ task executeFeatures(type: Test) {
     useTestNG()
     options {
         useDefaultListeners = false
-        jvmArgs = ['-Dcucumber.glue=salesforce']
+        jvmArgs = ['-Dcucumber.glue=rest.salesforce.com.scenarios']
         jvmArgs = ['-Dcucumber.features=src/test/resources/features/']
         jvmArgs = ['-Dcucumber.plugin=pretty,' +
                            'html:build/cucumber/cucumber-report.html,' +
