@@ -1,19 +1,19 @@
 Feature: Individual
   @GetIndividuals
   Scenario: Get all Individuals
-    Given
     When I set the "/Individual" endpoint and send the request
     Then the response status code should be "200"
 
   @CreateIndividual
   Scenario Outline: Create an Individual with firstname, lastname, salutation and birthday
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstName  | <firsNameIndividual>   |
       | lastName   | <lastNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
     When I set the "/Individual" endpoint and send the request with body
-    Then the response status code should be "<status>" with the "responsetocreate" schema
+    Then the response status code should be "<status>"
+    And Validate "responsetocreate" schema
     Examples:
       | firsNameIndividual | lastNameIndividual | salutationIndividual | birthdateIndividual | status |
       | Pepito             | Ramirez            | Mr.                  | 1988-06-09          | 201    |
@@ -34,13 +34,13 @@ Feature: Individual
       | Santiago           | Cespedes           | Master               | 1997-05-03          | 201    |
 
   @CreateIndividual
-  Scenario Outline: Create an Individual with firstname, salutation and birthday
-    Given I set the pathParams and body to request
+  Scenario Outline: An Individual with firstname, salutation and birthday shouldn't be created without lastname
+    Given I set the post request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
     When I set the "/Individual" endpoint and send the request with body
-    Then the response status code should be "<status>" with the "responsetocreate" schema
+    Then the response status code should be "<status>"
     Examples:
       | firsNameIndividual | salutationIndividual | birthdateIndividual | status |
       | Pepito             | Mr.                  | 1988-06-09          | 400    |
@@ -49,13 +49,14 @@ Feature: Individual
 
   @GetIndividual
   Scenario: Get an Individual
-    Given I set the pathParams to request
+    Given I set the "get" request
     When I set the "/Individual/{id}" endpoint and send the request
-    Then the response status code should be "200" with the "individual" schema
+    Then the response status code should be "200"
+    And Validate "individual" schema
 
   @UpdateIndividual
   Scenario Outline: Update firstname and lastname of an Individual
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstName  | <firsNameIndividual> |
       | lastName   | <lastNameIndividual> |
     When I set the "/Individual/{id}" endpoint and send the request with updated body
@@ -64,11 +65,21 @@ Feature: Individual
       | firsNameIndividual | lastNameIndividual | status |
       | Pedro Luis         | Ramirez            | 204    |
       |                    | Rodriguez          | 204    |
+
+  @UpdateIndividual
+  Scenario Outline: Firstname shouldn't be updated with null lastname of an Individual
+    Given I set the update request
+      | firstName  | <firsNameIndividual> |
+      | lastName   | <lastNameIndividual> |
+    When I set the "/Individual/{id}" endpoint and send the request with updated body
+    Then the response status code should be "<status>"
+    Examples:
+      | firsNameIndividual | lastNameIndividual | status |
       | Marisol            |                    | 400    |
 
   @UpdateIndividual
   Scenario Outline: Update firstname, salutation and birthday of an Individual
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstName  | <firsNameIndividual>   |
       | Salutation | <salutationIndividual> |
       | BirthDate  | <birthdateIndividual> |
@@ -81,13 +92,24 @@ Feature: Individual
       |                    |                      | 1990-05-10          | 204    |
       |                    |                      | 1990-03-20          | 204    |
       |                    |                      |                     | 204    |
-      | Person 2           |                      | 0000-12-14          | 400    |
-      | Person 3           |                      | 21-08-2000          | 400    |
       | Person 4           |                      | 2000-13-21          | 204    |
       | Person 5           |                      | 2000-12-40          | 204    |
 
+  @UpdateIndividual
+  Scenario Outline: Firstname, salutation shouldn't be updated with a bad birthday format of an Individual
+    Given I set the update request
+      | firstName  | <firsNameIndividual>   |
+      | Salutation | <salutationIndividual> |
+      | BirthDate  | <birthdateIndividual> |
+    When I set the "/Individual/{id}" endpoint and send the request with updated body
+    Then the response status code should be "<status>"
+    Examples:
+      | firsNameIndividual | salutationIndividual | birthdateIndividual | status |
+      | Person 2           |                      | 0000-12-14          | 400    |
+      | Person 3           |                      | 21-08-2000          | 400    |
+
   @DeleteIndividual
   Scenario: Delete an Individual
-    Given I set the pathParams to request
-    When I set the "/Individual/{id}" endpoint and send the delete request
+    Given I set the "delete" request
+    When I send "/Individual/{id}" delete request
     Then the response status code should be "204"

@@ -30,7 +30,7 @@
       "type": "string"
     },
     "FirstName": {
-      "type": "null"
+      "type": "string"
     },
     "Salutation": {
       "type": "null"
@@ -90,7 +90,7 @@
       "type": "null"
     },
     "LastViewedDate": {
-      "type": "string"
+      "type": "null"
     },
     "MasterRecordId": {
       "type": "null"

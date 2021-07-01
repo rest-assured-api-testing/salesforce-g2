@@ -5,31 +5,41 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.auth;
 
+import static io.restassured.RestAssured.given;
+import static salesforce.config.EnvConfigurationFile.dotenv;
+
 import org.apache.http.HttpHeaders;
-import salesforce.config.CredentialsConfig;
+import salesforce.config.Credentials;
+import salesforce.config.Endpoints;
 import salesforce.config.HeaderValue;
 import salesforce.entities.Token;
 
-import static salesforce.config.EnvConfigurationFile.dotenv;
-import static io.restassured.RestAssured.given;
-
+/**
+ * Makes the authentication to the webpage.
+ */
 public class Authentication {
 
+    /**
+     * Gets the authentication.
+     *
+     * @return the authentication.
+     */
     public static Token getAuth() {
         return
                 given().urlEncodingEnabled(true)
-                        .param(CredentialsConfig.USERNAME1.getEnumValue(), dotenv.get(CredentialsConfig.USERNAME1.getEnumName()))
-                        .param(CredentialsConfig.PASSWORD.getEnumValue(), dotenv.get(CredentialsConfig.PASSWORD.getEnumName()))
-                        .param(CredentialsConfig.CLIENT_ID.getEnumValue(), dotenv.get(CredentialsConfig.CLIENT_ID.getEnumName()))
-                        .param(CredentialsConfig.CLIENT_SECRET.getEnumValue(), dotenv.get(CredentialsConfig.CLIENT_SECRET.getEnumName()))
-                        .param(CredentialsConfig.GRANT_TYPE.getEnumValue(), CredentialsConfig.PASSWORD.getEnumValue())
+                        .param(Credentials.USERNAME1.getEnumValue(), dotenv.get(Credentials.USERNAME1.getEnumName()))
+                        .param(Credentials.PASSWORD.getEnumValue(), dotenv.get(Credentials.PASSWORD.getEnumName()))
+                        .param(Credentials.CLIENT_ID.getEnumValue(), dotenv.get(Credentials.CLIENT_ID.getEnumName()))
+                        .param(Credentials.CLIENT_SECRET.getEnumValue(), dotenv.get(Credentials.CLIENT_SECRET.getEnumName()))
+                        .param(Credentials.GRANT_TYPE.getEnumValue(), Credentials.PASSWORD.getEnumValue())
                         .header(HttpHeaders.ACCEPT, HeaderValue.APP_JSON.get())
                         .header(HttpHeaders.CONTENT_TYPE, HeaderValue.APP_X_FORM.get())
                         .log().all()
-                        .when().
-                        post(dotenv.get(CredentialsConfig.TOKEN_URL.getEnumName()))
+                        .when()
+                        .post(Endpoints.TOKEN_URL.get())
                         .as(Token.class);
     }
 }

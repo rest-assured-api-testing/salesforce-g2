@@ -5,21 +5,22 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-package salesforce.tests;
+
+package rest.salesforce.com.tests;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.config.Endpoints;
-import salesforce.entities.CreatedResponse;
-import salesforce.entities.Person;
-import org.apache.http.HttpStatus;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.http.HttpStatus;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import salesforce.config.Endpoints;
+import salesforce.config.Request;
+import salesforce.entities.CreatedResponse;
+import salesforce.entities.Person;
 
 public class IndividualTest extends CommonTest {
 
@@ -31,7 +32,7 @@ public class IndividualTest extends CommonTest {
         person.setLastName("Flores");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
@@ -41,7 +42,7 @@ public class IndividualTest extends CommonTest {
     public void getAllIndividualTest() throws JsonProcessingException {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), new HashMap<String, String>(), ApiMethod.GET);
+        apiResponse = Request.execute(Endpoints.PEOPLE.get(), new HashMap<String, String>(), ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
@@ -54,7 +55,7 @@ public class IndividualTest extends CommonTest {
         person.setLastName("Flores");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
         createdResponse = apiResponse.getResponse().as(CreatedResponse.class);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_CREATED).log().body();
@@ -66,7 +67,7 @@ public class IndividualTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.GET);
+        apiResponse = Request.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_OK).log().body();
     }
@@ -80,7 +81,7 @@ public class IndividualTest extends CommonTest {
         person.setLastName("Fantasy");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, person, ApiMethod.PATCH);
+        apiResponse = Request.execute(Endpoints.PERSON.get(), pathParams, person, ApiMethod.PATCH);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -91,7 +92,7 @@ public class IndividualTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -102,7 +103,7 @@ public class IndividualTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), createdResponse.getId());
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT).log().body();
     }
@@ -111,7 +112,7 @@ public class IndividualTest extends CommonTest {
     public void doNotGetAllIndividualTest() throws JsonProcessingException {
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute("/Inidivua", new HashMap<String, String>(), ApiMethod.GET);
+        apiResponse = Request.execute("/Inidivua", new HashMap<String, String>(), ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
@@ -122,7 +123,7 @@ public class IndividualTest extends CommonTest {
         Person person = new Person();
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST).log().body();
     }
@@ -133,7 +134,7 @@ public class IndividualTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.GET);
+        apiResponse = Request.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.GET);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
@@ -147,7 +148,7 @@ public class IndividualTest extends CommonTest {
         person.setLastName("Fantasy 2");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, person, ApiMethod.PATCH);
+        apiResponse = Request.execute(Endpoints.PERSON.get(), pathParams, person, ApiMethod.PATCH);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }
@@ -158,7 +159,7 @@ public class IndividualTest extends CommonTest {
         pathParams.put(Endpoints.ID.get(), " ");
         ApiResponse apiResponse;
 
-        apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
+        apiResponse = Request.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
 
         apiResponse.getResponse().then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND).log().body();
     }

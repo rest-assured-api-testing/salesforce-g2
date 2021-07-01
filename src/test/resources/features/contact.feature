@@ -2,11 +2,12 @@ Feature: Contact
 
   @CreateContact
   Scenario Outline: Create contact with firstname and lastname values
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstname | <firstname> |
       | lastname  | <lastname>  |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname                                 | lastname                                                                          | expectedStatus |
@@ -25,12 +26,13 @@ Feature: Contact
 
   @CreateContact
   Scenario Outline: Create contact with firstname, lastname and birthdate values
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstname | <firstname> |
       | lastname  | <lastname>  |
       | birthdate | <birthdate> |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | birthdate  | expectedStatus |
@@ -46,12 +48,13 @@ Feature: Contact
 
   @CreateContact
   Scenario Outline: Create contact with firstname, lastname and department values
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstname  | <firstname>  |
       | lastname   | <lastname>   |
       | department | <department> |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | department                                                                        | expectedStatus |
@@ -65,12 +68,13 @@ Feature: Contact
 
   @CreateContact
   Scenario Outline: Create contact with firstname, lastname and phone values
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstname | <firstname> |
       | lastname  | <lastname>  |
       | phone     | <phone>     |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | phone                                     | expectedStatus |
@@ -84,12 +88,13 @@ Feature: Contact
 
   @CreateContact
   Scenario Outline: Create contact with firstname, lastname and description values
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstname   | <firstname>   |
       | lastname    | <lastname>    |
       | description | <description> |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | description                                                                                                                                                                                                                                                      | expectedStatus |  |
@@ -101,12 +106,13 @@ Feature: Contact
 
   @CreateContact
   Scenario Outline: Create contact with firstname, lastname and email values
-    Given I set the pathParams and body to request
+    Given I set the post request
       | firstname | <firstname> |
       | lastname  | <lastname>  |
       | email     | <email>     |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | email                                                                             | expectedStatus |
@@ -119,13 +125,13 @@ Feature: Contact
 
   @DeleteContact
   Scenario: Delete a Contact
-    Given I set the pathParams to request
-    When I set the "/Contact/{id}" endpoint and send the delete request
+    Given I set the "delete" request
+    When I send "/Contact/{id}" delete request
     Then the response status code should be "204"
 
   @UpdateContact
   Scenario Outline: Update a Contact firstname and lastname
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstname | <firstname> |
       | lastname  | <lastname>  |
     When I set the "/Contact/{id}" endpoint and send the request with updated body
@@ -145,7 +151,7 @@ Feature: Contact
 
   @UpdateContact
   Scenario Outline: Update a Contact birthday value
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstname | <firstname> |
       | lastname  | <lastname>  |
       | birthdate | <birthdate> |
@@ -165,7 +171,7 @@ Feature: Contact
 
   @UpdateContact
   Scenario Outline: Update a Contact department value
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstname  | <firstname>  |
       | lastname   | <lastname>   |
       | department | <department> |
@@ -184,7 +190,7 @@ Feature: Contact
 
   @UpdateContact
   Scenario Outline: Update a Contact phone value
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstname | <firstname> |
       | lastname  | <lastname>  |
       | phone     | <phone>     |
@@ -202,7 +208,7 @@ Feature: Contact
 
   @UpdateContact
   Scenario Outline: Update a Contact description value
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstname   | <firstname>   |
       | lastname    | <lastname>    |
       | description | <description> |
@@ -219,7 +225,7 @@ Feature: Contact
 
   @UpdateContact
   Scenario Outline: Update a Contact email value
-    Given I set the pathParams and updated body to request
+    Given I set the update request
       | firstname | <firstname> |
       | lastname  | <lastname>  |
       | email     | <email>     |

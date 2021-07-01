@@ -7,7 +7,8 @@ Feature: Order
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
     When I set the "/Order" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | name                                                                              | effectiveDate | status | expectedStatus |
@@ -37,6 +38,7 @@ Feature: Order
       | description   | <description>   |
     When I set the "/Order" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
     Examples:
       | description                                                                                                                                                                                                                                                      | effectiveDate | status | expectedStatus |
       | description                                                                                                                                                                                                                                                      | 2022-01-01    | draft  | 201            |
@@ -54,6 +56,7 @@ Feature: Order
       | billingStreet | <billingStreet> |
     When I set the "/Order" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
     Examples:
       | billingStreet                                                                                                                                                                                                                                                    | effectiveDate | status | expectedStatus |
       | anystreet                                                                                                                                                                                                                                                        | 2022-01-01    | draft  | 201            |
@@ -71,6 +74,7 @@ Feature: Order
       | billingCity   | <billingCity>   |
     When I set the "/Order" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
     Examples:
       | billingCity                               | effectiveDate | status | expectedStatus |
       | anyCity                                   | 2022-01-01    | draft  | 201            |
@@ -87,6 +91,7 @@ Feature: Order
       | billingState  | <billingState>  |
     When I set the "/Order" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
     Examples:
       | billingState                                                                      | effectiveDate | status | expectedStatus |
       | anyState                                                                          | 2022-01-01    | draft  | 201            |
@@ -103,6 +108,7 @@ Feature: Order
       | billingPostalCode   | <billingPostalCode>   |
     When I set the "/Order" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
     Examples:
       | billingPostalCode     | effectiveDate | status | expectedStatus |
       | anyPostalCode         | 2022-01-01    | draft  | 201            |
@@ -119,6 +125,7 @@ Feature: Order
       | billingCountry   | <billingCountry>   |
     When I set the "/Order" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
     Examples:
       | billingCountry                                                                    | effectiveDate | status | expectedStatus |
       | anyPostalCode                                                                     | 2022-01-01    | draft  | 201            |
@@ -135,6 +142,7 @@ Feature: Order
       | poNumber   | <poNumber>   |
     When I set the "/Order" endpoint and send the request with body
     Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
     Examples:
       | poNumber                                                                          | effectiveDate | status | expectedStatus |
       | anyPoNumber                                                                       | 2022-01-01    | draft  | 201            |

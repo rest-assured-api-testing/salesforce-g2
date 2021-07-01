@@ -5,24 +5,27 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-package salesforce.scenarios.hooks;
+
+package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import api.ApiRequestManager;
 import api.ApiResponse;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import salesforce.config.Endpoints;
-import salesforce.entities.CreatedResponse;
-import salesforce.entities.Person;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import salesforce.entities.RequisiteElement;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import salesforce.config.Endpoints;
+import salesforce.config.Request;
+import salesforce.entities.CreatedResponse;
+import salesforce.entities.Person;
+import salesforce.entities.RequisiteElement;
 
+/**
+ * Scenario hooks for individual entity.
+ */
 public class IndividualScenarioHooks {
     private Logger logger = LogManager.getLogger(getClass());
     private CreatedResponse createdResponse;
@@ -41,7 +44,7 @@ public class IndividualScenarioHooks {
         person.setFirstName("Pepito");
         person.setLastName("Flores");
         ApiResponse apiResponse;
-        apiResponse = ApiRequestManager.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
+        apiResponse = Request.execute(Endpoints.PEOPLE.get(), pathParams, person, ApiMethod.POST);
         CreatedResponse createdResponseHelper = apiResponse.getResponse().as(CreatedResponse.class);
         createdResponse.setId(createdResponseHelper.getId());
         createdResponse.setSuccess(createdResponseHelper.isSuccess());
@@ -56,7 +59,7 @@ public class IndividualScenarioHooks {
             Map<String, String> pathParams = new HashMap<>();
             pathParams.put(Endpoints.ID.get(), createdResponse.getId());
             ApiResponse apiResponse;
-            apiResponse = ApiRequestManager.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
+            apiResponse = Request.execute(Endpoints.PERSON.get(), pathParams, ApiMethod.DELETE);
         }
     }
 }

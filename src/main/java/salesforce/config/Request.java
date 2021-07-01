@@ -5,34 +5,39 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
-package api;
 
+package salesforce.config;
+
+import static salesforce.entities.Token.accessToken;
+import api.ApiManager;
+import api.ApiMethod;
+import api.ApiRequestBuilder;
+import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpHeaders;
-import salesforce.config.CredentialsConfig;
-
 import java.util.Map;
 
-import static salesforce.entities.Token.accessToken;
-import static salesforce.config.EnvConfigurationFile.dotenv;
-
-public class ApiRequestManager {
+/**
+ * Helps to manage the basic request.
+ */
+public class Request {
 
     /**
      * Builds a basic ApiRequestBuilder.
      *
-     * @param endpoint
+     * @param endpoint   is complement of base url.
      * @param pathParams contains names and values of params.
-     * @param entity contains the body of request.
+     * @param entity     contains the body of request.
      * @param type       of request.
      * @param <T>        type of a entity.
      * @return a ApiRequestBuilder that contains basic data of request
      */
     public static <T> ApiRequestBuilder buildRequest(final String endpoint, final Map<String, String> pathParams,
                                                      final String entity, final Enum<ApiMethod> type) {
-        return new ApiRequestBuilder().header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", accessToken))
-                .baseUri(dotenv.get(CredentialsConfig.BASE_URL.getEnumValue()))
+        return new ApiRequestBuilder()
+                .header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", accessToken))
+                .baseUri(Endpoints.BASE_URL.get())
                 .method(type)
                 .endpoint(endpoint)
                 .pathParams(pathParams)
@@ -47,19 +52,20 @@ public class ApiRequestManager {
      * @param entity     that sends as body of request.
      * @param type       of request.
      * @param <T>        is type of a entity.
-     * @throws JsonProcessingException due to method execution.
      * @return ApiResponse that is result of request execution.
+     * @throws JsonProcessingException due to method execution.
      */
-    public static <T> ApiResponse execute(final String endpoint, final Map<String, String> pathParams,
-                                          final T entity, final Enum<ApiMethod> type)
+    public static <T> ApiResponse execute(final String endpoint, final Map<String, String> pathParams, final T entity,
+                                          final Enum<ApiMethod> type)
             throws JsonProcessingException {
         String convertedEntity;
         if (entity instanceof String) {
             convertedEntity = (String) entity;
-        } else  {
+        } else {
             convertedEntity = new ObjectMapper().writeValueAsString(entity);
         }
-        return ApiManager.execute(buildRequest(endpoint, pathParams, convertedEntity, type).build());
+        return ApiManager.execute(buildRequest(endpoint, pathParams,
+                convertedEntity, type).build());
     }
 
     /**
@@ -72,7 +78,8 @@ public class ApiRequestManager {
      * @return a ApiResponse that is result of request execution.
      */
     public static <T> ApiResponse execute(final String endpoint, final Map<String, String> pathParams,
-                                          final Enum<ApiMethod> type) throws JsonProcessingException {
+                                          final Enum<ApiMethod> type)
+            throws JsonProcessingException {
         return execute(endpoint, pathParams, "", type);
     }
 }
