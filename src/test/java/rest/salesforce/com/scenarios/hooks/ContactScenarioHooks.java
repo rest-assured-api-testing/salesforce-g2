@@ -46,7 +46,7 @@ public class ContactScenarioHooks {
         }
     }
 
-    @Before(value = "@GetContact or @UpdateContact or @DeleteContact")
+    @Before(value = "@GetContact or @UpdateContact or @DeleteContact", order = 2)
     public void createContact() throws JsonProcessingException {
         logger.info("*** Create a Contact to test operations ***");
         Map<String, String> pathParams = new HashMap<>();

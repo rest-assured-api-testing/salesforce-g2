@@ -2,13 +2,14 @@ Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with name, effectiveDate and status fields
-    Given I set the pathParams and body with the requisite key "accountId" for the request
+    Given I set a "POST" request with payload
       | name          | <name>          |
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
-    When I set the "/Order" endpoint and send the request with body
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
     Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
 
     Examples:
       | name                                                                              | effectiveDate | status | expectedStatus |
@@ -32,13 +33,14 @@ Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with description value
-    Given I set the pathParams and body with the requisite key "accountId" for the request
+    Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
       | description   | <description>   |
-    When I set the "/Order" endpoint and send the request with body
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
     Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | description                                                                                                                                                                                                                                                      | effectiveDate | status | expectedStatus |
       | description                                                                                                                                                                                                                                                      | 2022-01-01    | draft  | 201            |
@@ -50,13 +52,14 @@ Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with billingStreet value
-    Given I set the pathParams and body with the requisite key "accountId" for the request
+    Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
       | billingStreet | <billingStreet> |
-    When I set the "/Order" endpoint and send the request with body
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
     Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | billingStreet                                                                                                                                                                                                                                                    | effectiveDate | status | expectedStatus |
       | anystreet                                                                                                                                                                                                                                                        | 2022-01-01    | draft  | 201            |
@@ -68,13 +71,14 @@ Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with billingCity value
-    Given I set the pathParams and body with the requisite key "accountId" for the request
+    Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
       | billingCity   | <billingCity>   |
-    When I set the "/Order" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
+    Then its schema should match the "Schema" schema
+    And its schema should match the "success" schema
     Examples:
       | billingCity                               | effectiveDate | status | expectedStatus |
       | anyCity                                   | 2022-01-01    | draft  | 201            |
@@ -85,13 +89,14 @@ Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with billingState value
-    Given I set the pathParams and body with the requisite key "accountId" for the request
+    Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
       | billingState  | <billingState>  |
-    When I set the "/Order" endpoint and send the request with body
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
     Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | billingState                                                                      | effectiveDate | status | expectedStatus |
       | anyState                                                                          | 2022-01-01    | draft  | 201            |
@@ -102,13 +107,14 @@ Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with billingPostalCode value
-    Given I set the pathParams and body with the requisite key "accountId" for the request
-      | effectiveDate | <effectiveDate> |
-      | status        | <status>        |
-      | billingPostalCode   | <billingPostalCode>   |
-    When I set the "/Order" endpoint and send the request with body
+    Given I set a "POST" request with payload
+      | effectiveDate     | <effectiveDate>     |
+      | status            | <status>            |
+      | billingPostalCode | <billingPostalCode> |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
     Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | billingPostalCode     | effectiveDate | status | expectedStatus |
       | anyPostalCode         | 2022-01-01    | draft  | 201            |
@@ -119,13 +125,14 @@ Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with billingCountry value
-    Given I set the pathParams and body with the requisite key "accountId" for the request
-      | effectiveDate | <effectiveDate> |
-      | status        | <status>        |
-      | billingCountry   | <billingCountry>   |
-    When I set the "/Order" endpoint and send the request with body
+    Given I set a "POST" request with payload
+      | effectiveDate  | <effectiveDate>  |
+      | status         | <status>         |
+      | billingCountry | <billingCountry> |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
     Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | billingCountry                                                                    | effectiveDate | status | expectedStatus |
       | anyPostalCode                                                                     | 2022-01-01    | draft  | 201            |
@@ -136,13 +143,14 @@ Feature: Order
 
   @CreateOrder
   Scenario Outline: Create an Order with poNumber value
-    Given I set the pathParams and body with the requisite key "accountId" for the request
+    Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
-      | poNumber   | <poNumber>   |
-    When I set the "/Order" endpoint and send the request with body
+      | poNumber      | <poNumber>      |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
     Then the response status code should be "<expectedStatus>"
-    And Validate "responsetocreate" schema
+    And its schema should match the "success" schema
     Examples:
       | poNumber                                                                          | effectiveDate | status | expectedStatus |
       | anyPoNumber                                                                       | 2022-01-01    | draft  | 201            |
@@ -153,11 +161,13 @@ Feature: Order
 
   @UpdateOrder
   Scenario Outline: Update an Order's name, effectiveDate and status fields.
-    Given I set the pathParams and updated body with the requisite key "accountId" for the request
+    Given I set a "PATCH" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
       | name          | <name>          |
-    When I set the "/Order/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
     Examples:
       | name                                                                              | effectiveDate | status | expectedStatus |
@@ -179,13 +189,15 @@ Feature: Order
 
   @UpdateOrder
   Scenario Outline: Update an Order's date fields.
-    Given I set the pathParams and updated body with the requisite key "accountId" for the request
+    Given I set a "PATCH" request with payload
       | effectiveDate          | <effectiveDate>          |
       | endDate                | <endDate>                |
       | poDate                 | <poDate>                 |
       | customerAuthorizedDate | <customerAuthorizedDate> |
       | companyAuthorizedDate  | <companyAuthorizedDate>  |
-    When I set the "/Order/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
     Examples:
       | effectiveDate | endDate    | poDate     | customerAuthorizedDate | companyAuthorizedDate | expectedStatus |
@@ -220,11 +232,13 @@ Feature: Order
 
   @UpdateOrder
   Scenario Outline: Update an Order's shippingStreet field.
-    Given I set the pathParams and updated body with the requisite key "accountId" for the request
+    Given I set a "PATCH" request with payload
       | effectiveDate  | <effectiveDate>  |
       | status         | <status>         |
       | shippingStreet | <shippingStreet> |
-    When I set the "/Order/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
     Examples:
       | shippingStreet                                                                                                                                                                                                                                                   | effectiveDate | status | expectedStatus |
@@ -233,15 +247,17 @@ Feature: Order
       |                                                                                                                                                                                                                                                                  | 2022-01-01    | draft  | 204            |
       | null                                                                                                                                                                                                                                                             | 2022-01-01    | draft  | 204            |
       | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongname  | 2022-01-01    | draft  | 204            |
-      | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnamea | 2022-01-01    | draft  | 204            |
+      | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnamea | 2022-01-01    | draft  | 400            |
 
   @UpdateOrder
   Scenario Outline: Update an Order's shippingCity field.
-    Given I set the pathParams and updated body with the requisite key "accountId" for the request
+    Given I set a "PATCH" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
       | shippingCity  | <shippingCity>  |
-    When I set the "/Order/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
     Examples:
       | shippingCity                              | effectiveDate | status | expectedStatus |
@@ -254,11 +270,13 @@ Feature: Order
 
   @UpdateOrder
   Scenario Outline: Update an Order's shippingState field.
-    Given I set the pathParams and updated body with the requisite key "accountId" for the request
+    Given I set a "PATCH" request with payload
       | effectiveDate  | <effectiveDate>  |
       | status         | <status>         |
       | shippingState | <shippingState> |
-    When I set the "/Order/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
     Examples:
       | shippingState                                                                     | effectiveDate | status | expectedStatus |
@@ -271,11 +289,13 @@ Feature: Order
 
   @UpdateOrder
   Scenario Outline: Update an Order's shippingPostalCode field.
-    Given I set the pathParams and updated body with the requisite key "accountId" for the request
+    Given I set a "PATCH" request with payload
       | effectiveDate  | <effectiveDate>  |
       | status         | <status>         |
       | shippingPostalCode | <shippingPostalCode> |
-    When I set the "/Order/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
     Examples:
       | shippingPostalCode    | effectiveDate | status | expectedStatus |
@@ -288,11 +308,13 @@ Feature: Order
 
   @UpdateOrder
   Scenario Outline: Update an Order's shippingCountry field.
-    Given I set the pathParams and updated body with the requisite key "accountId" for the request
+    Given I set a "PATCH" request with payload
       | effectiveDate  | <effectiveDate>  |
       | status         | <status>         |
       | shippingCountry | <shippingCountry> |
-    When I set the "/Order/{id}" endpoint and send the request with updated body
+    And I set the ID path parameter
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order/{id}" endpoint
     Then the response status code should be "<expectedStatus>"
     Examples:
       | shippingCountry                                                                   | effectiveDate | status | expectedStatus |
