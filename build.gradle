@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'checkstyle'
 }
 
 group 'org.example'
@@ -35,6 +36,13 @@ test {
 configurations {
     cucumberRuntime {
         extendsFrom testImplementation
+    }
+}
+
+tasks.withType(checkstyle) {
+    ignoreFailures = true
+    reports {
+        html.enabled = true
     }
 }
 
