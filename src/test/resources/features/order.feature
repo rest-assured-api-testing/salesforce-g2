@@ -1,7 +1,7 @@
 Feature: Order
 
   @CreateOrder
-  Scenario Outline: Create an Order with name, effectiveDate and status fields
+  Scenario Outline: Create an Order with name, effectiveDate and status valid fields
     Given I set a "POST" request with payload
       | name          | <name>          |
       | effectiveDate | <effectiveDate> |
@@ -10,20 +10,31 @@ Feature: Order
     When I send the request with the "/Order" endpoint
     Then the response status code should be "<expectedStatus>"
     And its schema should match the "success" schema
+    Examples:
+      | name                                                                             | effectiveDate | status | expectedStatus |
+      | order                                                                            | 2022-01-01    | draft  | 201            |
+      | 01234567890order                                                                 | 2022-01-01    | draft  | 201            |
+      |                                                                                  | 2022-01-01    | draft  | 201            |
+      | null                                                                             | 2022-01-01    | draft  | 201            |
+      | 50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm | 2022-01-01    | draft  | 201            |
+      | order                                                                            | 2021-08-06    | draft  | 201            |
+      | order                                                                            | 2021-88-06    | draft  | 201            |
+      | order                                                                            | 2021-08-99    | draft  | 201            |
+      | order                                                                            | 2021-00-01    | draft  | 201            |
+      | order                                                                            | 2021-01-00    | draft  | 201            |
 
+  @CreateOrder
+  Scenario Outline: Create an Order with name, effectiveDate and status invalid fields
+    Given I set a "POST" request with payload
+      | name          | <name>          |
+      | effectiveDate | <effectiveDate> |
+      | status        | <status>        |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
+    Then the response status code should be "<expectedStatus>"
     Examples:
       | name                                                                              | effectiveDate | status | expectedStatus |
-      | order                                                                             | 2022-01-01    | draft  | 201            |
-      | 01234567890order                                                                  | 2022-01-01    | draft  | 201            |
-      |                                                                                   | 2022-01-01    | draft  | 201            |
-      | null                                                                              | 2022-01-01    | draft  | 201            |
-      | 50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 51charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
-      | order                                                                             | 2021-08-06    | draft  | 201            |
-      | order                                                                             | 2021-88-06    | draft  | 201            |
-      | order                                                                             | 2021-08-99    | draft  | 201            |
-      | order                                                                             | 2021-00-01    | draft  | 201            |
-      | order                                                                             | 2021-01-00    | draft  | 201            |
       | order                                                                             | 05-04-2021    | draft  | 400            |
       | order                                                                             | someDate      | draft  | 400            |
       | order                                                                             |               | draft  | 400            |
@@ -32,7 +43,7 @@ Feature: Order
       | order                                                                             | 2022-01-01    | 1      | 400            |
 
   @CreateOrder
-  Scenario Outline: Create an Order with description value
+  Scenario Outline: Create an Order with description valid values
     Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
@@ -51,7 +62,7 @@ Feature: Order
       | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnamea | 2022-01-01    | draft  | 201            |
 
   @CreateOrder
-  Scenario Outline: Create an Order with billingStreet value
+  Scenario Outline: Create an Order with billingStreet valid values
     Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
@@ -61,34 +72,58 @@ Feature: Order
     Then the response status code should be "<expectedStatus>"
     And its schema should match the "success" schema
     Examples:
+      | billingStreet                                                                                                                                                                                                                                                   | effectiveDate | status | expectedStatus |
+      | anystreet                                                                                                                                                                                                                                                       | 2022-01-01    | draft  | 201            |
+      | !@#$%^&*()_+~}{"?><                                                                                                                                                                                                                                             | 2022-01-01    | draft  | 201            |
+      |                                                                                                                                                                                                                                                                 | 2022-01-01    | draft  | 201            |
+      | null                                                                                                                                                                                                                                                            | 2022-01-01    | draft  | 201            |
+      | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongname | 2022-01-01    | draft  | 201            |
+
+  @CreateOrder
+  Scenario Outline: Create an Order with billingStreet invalid value
+    Given I set a "POST" request with payload
+      | effectiveDate | <effectiveDate> |
+      | status        | <status>        |
+      | billingStreet | <billingStreet> |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
+    Then the response status code should be "<expectedStatus>"
+    Examples:
       | billingStreet                                                                                                                                                                                                                                                    | effectiveDate | status | expectedStatus |
-      | anystreet                                                                                                                                                                                                                                                        | 2022-01-01    | draft  | 201            |
-      | !@#$%^&*()_+~}{"?><                                                                                                                                                                                                                                              | 2022-01-01    | draft  | 201            |
-      |                                                                                                                                                                                                                                                                  | 2022-01-01    | draft  | 201            |
-      | null                                                                                                                                                                                                                                                             | 2022-01-01    | draft  | 201            |
-      | 255charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongname  | 2022-01-01    | draft  | 201            |
       | 256charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnameghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm50charlongnamea | 2022-01-01    | draft  | 400            |
 
   @CreateOrder
-  Scenario Outline: Create an Order with billingCity value
+  Scenario Outline: Create an Order with billingCity valid values
     Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
       | billingCity   | <billingCity>   |
     And I add the required "AccountId" field to the payload
     When I send the request with the "/Order" endpoint
-    Then its schema should match the "Schema" schema
+    Then the response status code should be "<expectedStatus>"
     And its schema should match the "success" schema
     Examples:
+      | billingCity                              | effectiveDate | status | expectedStatus |
+      | anyCity                                  | 2022-01-01    | draft  | 201            |
+      | !@#$%^&*()_+~}{"?><                      | 2022-01-01    | draft  | 201            |
+      |                                          | 2022-01-01    | draft  | 201            |
+      | 40chartextasdfghjklmasdfghjklmasdfghjklm | 2022-01-01    | draft  | 201            |
+
+  @CreateOrder
+  Scenario Outline: Create an Order with billingCity invalid values
+    Given I set a "POST" request with payload
+      | effectiveDate | <effectiveDate> |
+      | status        | <status>        |
+      | billingCity   | <billingCity>   |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
+    Then the response status code should be "<expectedStatus>"
+    Examples:
       | billingCity                               | effectiveDate | status | expectedStatus |
-      | anyCity                                   | 2022-01-01    | draft  | 201            |
-      | !@#$%^&*()_+~}{"?><                       | 2022-01-01    | draft  | 201            |
-      |                                           | 2022-01-01    | draft  | 201            |
-      | 40chartextasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 41chartextasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
 
   @CreateOrder
-  Scenario Outline: Create an Order with billingState value
+  Scenario Outline: Create an Order with billingState valid values
     Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
@@ -98,15 +133,27 @@ Feature: Order
     Then the response status code should be "<expectedStatus>"
     And its schema should match the "success" schema
     Examples:
+      | billingState                                                                     | effectiveDate | status | expectedStatus |
+      | anyState                                                                         | 2022-01-01    | draft  | 201            |
+      | !@#$%^&*()_+~}{"?><                                                              | 2022-01-01    | draft  | 201            |
+      |                                                                                  | 2022-01-01    | draft  | 201            |
+      | 80chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm | 2022-01-01    | draft  | 201            |
+
+  @CreateOrder
+  Scenario Outline: Create an Order with billingState invalid values
+    Given I set a "POST" request with payload
+      | effectiveDate | <effectiveDate> |
+      | status        | <status>        |
+      | billingState  | <billingState>  |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
+    Then the response status code should be "<expectedStatus>"
+    Examples:
       | billingState                                                                      | effectiveDate | status | expectedStatus |
-      | anyState                                                                          | 2022-01-01    | draft  | 201            |
-      | !@#$%^&*()_+~}{"?><                                                               | 2022-01-01    | draft  | 201            |
-      |                                                                                   | 2022-01-01    | draft  | 201            |
-      | 80chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 81chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
 
   @CreateOrder
-  Scenario Outline: Create an Order with billingPostalCode value
+  Scenario Outline: Create an Order with billingPostalCode valid values
     Given I set a "POST" request with payload
       | effectiveDate     | <effectiveDate>     |
       | status            | <status>            |
@@ -116,15 +163,28 @@ Feature: Order
     Then the response status code should be "<expectedStatus>"
     And its schema should match the "success" schema
     Examples:
-      | billingPostalCode     | effectiveDate | status | expectedStatus |
-      | anyPostalCode         | 2022-01-01    | draft  | 201            |
-      | !@#$%^&*()_+~}{"?><   | 2022-01-01    | draft  | 201            |
-      |                       | 2022-01-01    | draft  | 201            |
-      | 20chartextasdfghjklm  | 2022-01-01    | draft  | 201            |
-      | 21chartextasdfghjklma | 2022-01-01    | draft  | 400            |
+      | billingPostalCode    | effectiveDate | status | expectedStatus |
+      | anyPostalCode        | 2022-01-01    | draft  | 201            |
+      | !@#$%^&*()_+~}{"?><  | 2022-01-01    | draft  | 201            |
+      |                      | 2022-01-01    | draft  | 201            |
+      | 20chartextasdfghjklm | 2022-01-01    | draft  | 201            |
 
   @CreateOrder
-  Scenario Outline: Create an Order with billingCountry value
+  Scenario Outline: Create an Order with billingPostalCode invalid values
+    Given I set a "POST" request with payload
+      | effectiveDate     | <effectiveDate>     |
+      | status            | <status>            |
+      | billingPostalCode | <billingPostalCode> |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
+    Then the response status code should be "<expectedStatus>"
+    Examples:
+      | billingPostalCode     | effectiveDate | status | expectedStatus |
+      | 21chartextasdfghjklma | 2022-01-01    | draft  | 400            |
+
+
+  @CreateOrder
+  Scenario Outline: Create an Order with billingCountry valid values
     Given I set a "POST" request with payload
       | effectiveDate  | <effectiveDate>  |
       | status         | <status>         |
@@ -134,15 +194,27 @@ Feature: Order
     Then the response status code should be "<expectedStatus>"
     And its schema should match the "success" schema
     Examples:
+      | billingCountry                                                                   | effectiveDate | status | expectedStatus |
+      | anyPostalCode                                                                    | 2022-01-01    | draft  | 201            |
+      | !@#$%^&*()_+~}{"?><                                                              | 2022-01-01    | draft  | 201            |
+      |                                                                                  | 2022-01-01    | draft  | 201            |
+      | 80chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm | 2022-01-01    | draft  | 201            |
+
+  @CreateOrder
+  Scenario Outline: Create an Order with billingCountry invalid values
+    Given I set a "POST" request with payload
+      | effectiveDate  | <effectiveDate>  |
+      | status         | <status>         |
+      | billingCountry | <billingCountry> |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
+    Then the response status code should be "<expectedStatus>"
+    Examples:
       | billingCountry                                                                    | effectiveDate | status | expectedStatus |
-      | anyPostalCode                                                                     | 2022-01-01    | draft  | 201            |
-      | !@#$%^&*()_+~}{"?><                                                               | 2022-01-01    | draft  | 201            |
-      |                                                                                   | 2022-01-01    | draft  | 201            |
-      | 80chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 81chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
 
   @CreateOrder
-  Scenario Outline: Create an Order with poNumber value
+  Scenario Outline: Create an Order with poNumber valid values
     Given I set a "POST" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
@@ -152,15 +224,27 @@ Feature: Order
     Then the response status code should be "<expectedStatus>"
     And its schema should match the "success" schema
     Examples:
+      | poNumber                                                                         | effectiveDate | status | expectedStatus |
+      | anyPoNumber                                                                      | 2022-01-01    | draft  | 201            |
+      | !@#$%^&*()_+~}{"?><                                                              | 2022-01-01    | draft  | 201            |
+      |                                                                                  | 2022-01-01    | draft  | 201            |
+      | 80chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm | 2022-01-01    | draft  | 201            |
+
+  @CreateOrder
+  Scenario Outline: Create an Order with poNumber invalid values
+    Given I set a "POST" request with payload
+      | effectiveDate | <effectiveDate> |
+      | status        | <status>        |
+      | poNumber      | <poNumber>      |
+    And I add the required "AccountId" field to the payload
+    When I send the request with the "/Order" endpoint
+    Then the response status code should be "<expectedStatus>"
+    Examples:
       | poNumber                                                                          | effectiveDate | status | expectedStatus |
-      | anyPoNumber                                                                       | 2022-01-01    | draft  | 201            |
-      | !@#$%^&*()_+~}{"?><                                                               | 2022-01-01    | draft  | 201            |
-      |                                                                                   | 2022-01-01    | draft  | 201            |
-      | 80chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklm  | 2022-01-01    | draft  | 201            |
       | 81chartextasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklmasdfghjklma | 2022-01-01    | draft  | 400            |
 
   @UpdateOrder
-  Scenario Outline: Update an Order's name, effectiveDate and status fields.
+  Scenario Outline: Update an Order's name, effectiveDate and status valid values.
     Given I set a "PATCH" request with payload
       | effectiveDate | <effectiveDate> |
       | status        | <status>        |
