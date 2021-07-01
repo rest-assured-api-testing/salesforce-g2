@@ -6,7 +6,8 @@ Feature: Contact
       | firstname | <firstname> |
       | lastname  | <lastname>  |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname                                 | lastname                                                                          | expectedStatus |
@@ -30,7 +31,8 @@ Feature: Contact
       | lastname  | <lastname>  |
       | birthdate | <birthdate> |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | birthdate  | expectedStatus |
@@ -51,7 +53,8 @@ Feature: Contact
       | lastname   | <lastname>   |
       | department | <department> |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | department                                                                        | expectedStatus |
@@ -70,7 +73,8 @@ Feature: Contact
       | lastname  | <lastname>  |
       | phone     | <phone>     |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | phone                                     | expectedStatus |
@@ -89,7 +93,8 @@ Feature: Contact
       | lastname    | <lastname>    |
       | description | <description> |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | description                                                                                                                                                                                                                                                      | expectedStatus |  |
@@ -106,7 +111,8 @@ Feature: Contact
       | lastname  | <lastname>  |
       | email     | <email>     |
     When I set the "/Contact" endpoint and send the request with body
-    Then the response status code should be "<expectedStatus>" with the "responsetocreate" schema
+    Then the response status code should be "<expectedStatus>"
+    And Validate "responsetocreate" schema
 
     Examples:
       | firstname | lastname | email                                                                             | expectedStatus |
@@ -120,7 +126,7 @@ Feature: Contact
   @DeleteContact
   Scenario: Delete a Contact
     Given I set the "delete" request
-    When I set the "/Contact/{id}" endpoint and send the delete request
+    When I send "/Contact/{id}" delete request
     Then the response status code should be "204"
 
   @UpdateContact

@@ -13,7 +13,8 @@ Feature: Account
       | Type          | <typeAccount>   |
       | Rating        | <ratingAccount> |
     When I set the "/Account" endpoint and send the request with body
-    Then the response status code should be "<status>" with the "responsetocreate" schema
+    Then the response status code should be "<status>"
+    And Validate "responsetocreate" schema
     Examples:
       | nameAccount   | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
       | New Account 0 | 1236978       | 78968900       | Prospect           | Hot           | 201    |
@@ -42,7 +43,7 @@ Feature: Account
       | Type          | <typeAccount>   |
       | Rating        | <ratingAccount> |
     When I set the "/Account" endpoint and send the request with body
-    Then the response status code should be "<status>" with the "responsetocreate" schema
+    Then the response status code should be "<status>"
     Examples:
       | nameAccount   | numberAccount | phoneAccount   | typeAccount        | ratingAccount | status |
       |               |               |                |                    |               | 400    |
@@ -59,6 +60,7 @@ Feature: Account
       | Phone         | <phoneAccount>  |
     When I set the "/Account" endpoint and send the request with body
     Then the response status code should be "<status>"
+    And Validate "responsetocreate" schema
     Examples:
       | nameAccount | numberAccount | phoneAccount   | status |
       | New Account | 123           | 78969630       | 201    |
@@ -84,7 +86,8 @@ Feature: Account
   Scenario: Get an Account
     Given I set the "get" request
     When I set the "/Account/{id}" endpoint and send the request
-    Then the response status code should be "200" with the "account" schema
+    Then the response status code should be "200"
+    And Validate "account" schema
 
   @UpdateAccount
   Scenario Outline: Update name, account number, phone, type and rating of an Account
@@ -193,5 +196,5 @@ Feature: Account
   @DeleteAccount
   Scenario: Delete an Account
     Given I set the "delete" request
-    When I set the "/Account/{id}" endpoint and send the delete request
+    When I send "/Account/{id}" delete request
     Then the response status code should be "204"

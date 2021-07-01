@@ -5,10 +5,10 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala.
  */
+
 package rest.salesforce.com.scenarios.hooks;
 
 import api.ApiMethod;
-import salesforce.config.Request;
 import api.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.After;
@@ -18,6 +18,7 @@ import java.util.Map;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import salesforce.config.Endpoints;
+import salesforce.config.Request;
 import salesforce.entities.Campaign;
 import salesforce.entities.CreatedResponse;
 import salesforce.entities.RequisiteElement;
